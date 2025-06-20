@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 我慢貯金アプリ（仮）
 
-## Getting Started
+「日々の我慢した支出を仮想的に“貯金”として記録し、節約を習慣化する」ことを目的としたWebアプリです。  
+20〜30代の一人暮らし社会人をターゲットに、使いやすく視覚的に楽しい体験を目指します。
 
-First, run the development server:
+---
+
+## 📅 作成開始時期
+
+- **デザイン検討**：2025年6月15日〜  
+- **App開発開始**：2025年6月21日〜  
+
+---
+
+## 🔧 使用技術スタック（予定）
+
+- **フロントエンド**：Next.js (App Router) + TypeScript + Tailwind CSS  
+- **バックエンド / DB**：Supabase（Auth & Database）  
+- **グラフ可視化**：Chart.js  
+- **状態管理**：Zustand  
+- **UI設計**：Figma
+
+---
+
+## 🎯 主な機能（開発予定）
+
+- [ ] ユーザー登録 / ログイン（Supabase Auth）
+- [ ] 最初に目標金額を設定（進捗を％で可視化）
+- [ ] 節約金額の登録・表示（CRUD）
+- [ ] 節約金額の合計を「週・月・年・総合」で集計
+- [ ] グラフ表示（棒グラフなど）
+- [ ] カレンダー表示
+- [ ] カテゴリ・メモ記録
+- [ ] アイコン選択（Notion風）
+- [ ] レスポンシブ対応
+
+---
+
+## 📁 ディレクトリ構成（初期）
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+my-app/
+├── app/               # App Router構成のルート
+│   ├── page.tsx       # トップページ
+│   └── layout.tsx     # 全体レイアウト
+├── components/        # UIコンポーネント
+├── lib/               # Supabase設定や型定義
+├── styles/            # グローバルCSS（Tailwind）
+├── utils/             # ヘルパー関数など
+└── README.md

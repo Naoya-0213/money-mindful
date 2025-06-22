@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import Header from "./components/header/Header";
 
 // google font(1)
 const geistSans = Geist({
@@ -33,9 +34,10 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body
-        className={`${inter.className} bg-[#F3F0EB] text-[#795549] min-h-screen`}
+        className={`${inter.className} bg-[#F3F0EB] text-[#795549] min-h-screen  flex  items-center flex-col w-full`}
       >
         {/* ヘッダー */}
+        <Header />
 
         {/* メインセクション */}
         <main>{children}</main>

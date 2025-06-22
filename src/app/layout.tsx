@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     "我慢して使わなかったお金を“仮想貯金”として記録し、楽しく節約習慣を身につけるアプリ。支出の我慢を可視化して、目標達成に近づこう！",
 };
 
+// ページ全体レイアウト
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,7 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* ヘッダー */}
+
+        {/* メインセクション */}
+        <main>{children}</main>
+
+        {/* フッター */}
+      </body>
     </html>
   );
 }

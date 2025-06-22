@@ -32,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} bg-[#F3F0EB] text-[#795549] min-h-screen`}
+      >
         {/* ヘッダー */}
 
         {/* メインセクション */}

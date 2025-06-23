@@ -15,7 +15,7 @@ export async function createClient<T = unknown>() {
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              cookieStore.set(name, value, options),
             );
           } catch {
             // `setAll` メソッドは Server Component から呼び出されました。
@@ -23,6 +23,6 @@ export async function createClient<T = unknown>() {
           }
         },
       },
-    }
+    },
   );
 }

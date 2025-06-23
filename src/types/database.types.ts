@@ -4,196 +4,196 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[]
+  | Json[];
 
 export type Database = {
   public: {
     Tables: {
       categories: {
         Row: {
-          created_at: string
-          icon_url: string | null
-          id: string
-          name: string | null
-          user_id: string | null
-        }
+          created_at: string;
+          icon_url: string | null;
+          id: string;
+          name: string | null;
+          user_id: string | null;
+        };
         Insert: {
-          created_at?: string
-          icon_url?: string | null
-          id?: string
-          name?: string | null
-          user_id?: string | null
-        }
+          created_at?: string;
+          icon_url?: string | null;
+          id?: string;
+          name?: string | null;
+          user_id?: string | null;
+        };
         Update: {
-          created_at?: string
-          icon_url?: string | null
-          id?: string
-          name?: string | null
-          user_id?: string | null
-        }
+          created_at?: string;
+          icon_url?: string | null;
+          id?: string;
+          name?: string | null;
+          user_id?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "categories_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: "categories_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
           },
-        ]
-      }
+        ];
+      };
       goals: {
         Row: {
-          created_at: string
-          end_date: string | null
-          id: string
-          start_date: string | null
-          target_amount: number | null
-          title: string | null
-          user_id: string | null
-        }
+          created_at: string;
+          end_date: string | null;
+          id: string;
+          start_date: string | null;
+          target_amount: number | null;
+          title: string | null;
+          user_id: string | null;
+        };
         Insert: {
-          created_at?: string
-          end_date?: string | null
-          id?: string
-          start_date?: string | null
-          target_amount?: number | null
-          title?: string | null
-          user_id?: string | null
-        }
+          created_at?: string;
+          end_date?: string | null;
+          id?: string;
+          start_date?: string | null;
+          target_amount?: number | null;
+          title?: string | null;
+          user_id?: string | null;
+        };
         Update: {
-          created_at?: string
-          end_date?: string | null
-          id?: string
-          start_date?: string | null
-          target_amount?: number | null
-          title?: string | null
-          user_id?: string | null
-        }
+          created_at?: string;
+          end_date?: string | null;
+          id?: string;
+          start_date?: string | null;
+          target_amount?: number | null;
+          title?: string | null;
+          user_id?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "goals_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: "goals_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
           },
-        ]
-      }
+        ];
+      };
       memos: {
         Row: {
-          content: string | null
-          created_at: string
-          icon_url: string | null
-          id: string
-          user_id: string | null
-        }
+          content: string | null;
+          created_at: string;
+          icon_url: string | null;
+          id: string;
+          user_id: string | null;
+        };
         Insert: {
-          content?: string | null
-          created_at?: string
-          icon_url?: string | null
-          id?: string
-          user_id?: string | null
-        }
+          content?: string | null;
+          created_at?: string;
+          icon_url?: string | null;
+          id?: string;
+          user_id?: string | null;
+        };
         Update: {
-          content?: string | null
-          created_at?: string
-          icon_url?: string | null
-          id?: string
-          user_id?: string | null
-        }
+          content?: string | null;
+          created_at?: string;
+          icon_url?: string | null;
+          id?: string;
+          user_id?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "memos_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: "memos_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
           },
-        ]
-      }
+        ];
+      };
       profiles: {
         Row: {
-          created_at: string | null
-          id: string
-          image_url: string | null
-          name: string
-        }
+          created_at: string | null;
+          id: string;
+          image_url: string | null;
+          name: string;
+        };
         Insert: {
-          created_at?: string | null
-          id: string
-          image_url?: string | null
-          name?: string
-        }
+          created_at?: string | null;
+          id: string;
+          image_url?: string | null;
+          name?: string;
+        };
         Update: {
-          created_at?: string | null
-          id?: string
-          image_url?: string | null
-          name?: string
-        }
-        Relationships: []
-      }
+          created_at?: string | null;
+          id?: string;
+          image_url?: string | null;
+          name?: string;
+        };
+        Relationships: [];
+      };
       savings: {
         Row: {
-          amount: number | null
-          category_id: string | null
-          created_at: string | null
-          id: string
-          memo_id: string | null
-          saved_at: string | null
-          user_id: string | null
-        }
+          amount: number | null;
+          category_id: string | null;
+          created_at: string | null;
+          id: string;
+          memo_id: string | null;
+          saved_at: string | null;
+          user_id: string | null;
+        };
         Insert: {
-          amount?: number | null
-          category_id?: string | null
-          created_at?: string | null
-          id?: string
-          memo_id?: string | null
-          saved_at?: string | null
-          user_id?: string | null
-        }
+          amount?: number | null;
+          category_id?: string | null;
+          created_at?: string | null;
+          id?: string;
+          memo_id?: string | null;
+          saved_at?: string | null;
+          user_id?: string | null;
+        };
         Update: {
-          amount?: number | null
-          category_id?: string | null
-          created_at?: string | null
-          id?: string
-          memo_id?: string | null
-          saved_at?: string | null
-          user_id?: string | null
-        }
+          amount?: number | null;
+          category_id?: string | null;
+          created_at?: string | null;
+          id?: string;
+          memo_id?: string | null;
+          saved_at?: string | null;
+          user_id?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "savings_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: "savings_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
           },
-        ]
-      }
-    }
+        ];
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Enums: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     CompositeTypes: {
-      [_ in never]: never
-    }
-  }
-}
+      [_ in never]: never;
+    };
+  };
+};
 
-type DefaultSchema = Database[Extract<keyof Database, "public">]
+type DefaultSchema = Database[Extract<keyof Database, "public">];
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof Database },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof Database;
   }
     ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
@@ -201,7 +201,7 @@ export type Tables<
 > = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
   ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
       Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
+      Row: infer R;
     }
     ? R
     : never
@@ -209,64 +209,64 @@ export type Tables<
         DefaultSchema["Views"])
     ? (DefaultSchema["Tables"] &
         DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R
+        Row: infer R;
       }
       ? R
       : never
-    : never
+    : never;
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof Database },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof Database;
   }
     ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
   ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
+      Insert: infer I;
     }
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I
+        Insert: infer I;
       }
       ? I
       : never
-    : never
+    : never;
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof Database },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof Database;
   }
     ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
   ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
+      Update: infer U;
     }
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U
+        Update: infer U;
       }
       ? U
       : never
-    : never
+    : never;
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof Database },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof Database;
   }
     ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
@@ -274,14 +274,14 @@ export type Enums<
   ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never
+    : never;
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof Database;
   }
     ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
@@ -289,10 +289,10 @@ export type CompositeTypes<
   ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
+    : never;
 
 export const Constants = {
   public: {
     Enums: {},
   },
-} as const
+} as const;

@@ -34,12 +34,12 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body
-        className={`${inter.className} bg-white text-[#795549] min-h-screen flex items-center flex-col`}
+        className={`${inter.className} flex min-h-screen flex-col items-center bg-white text-[#795549]`}
       >
         {/* ヘッダー */}
         <Header />
         {/* メインセクション */}
-        <main className="w-full flex justify-center">
+        <main className="flex w-full justify-center">
           <div className="w-full max-w-[480px]"> {children}</div>
         </main>
 

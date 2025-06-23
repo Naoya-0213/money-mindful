@@ -1,3 +1,5 @@
+// ホーム画面
+
 "use client";
 
 import React from "react";
@@ -22,7 +24,9 @@ const Home = () => {
       </div>
 
       {/* 仮追加ボタン */}
-      <Button onClick={() => alert("クリックされた！")} >追加</ Button>
+      <Button onClick={() => alert("クリックされた！")}>追加</Button>
+
+      {/* 仮履歴表示 */}
     </div>
   );
 };

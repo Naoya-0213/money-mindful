@@ -8,7 +8,7 @@ import Button from "../button/Button";
 
 const Home = () => {
   return (
-    <div className="flex w-full flex-col items-center gap-5 p-5 font-bold">
+    <div className="flex min-h-[calc(100vh-70px)] w-full flex-col items-center gap-5 p-5 font-bold">
       {/* 仮タイトル */}
       <div className="text-2xl">
         <h3>北海道旅行</h3>
@@ -29,6 +29,9 @@ const Home = () => {
       {/* 仮履歴表示 */}
       <div className="self-start text-2xl">
         <h3>直近の登録履歴</h3>
+        <p className="pt-[20px]">4月22日　　　外食　　　1,000円</p>
+        <p className="pt-[20px]">4月23日　　　コンビニ　 700円</p>
+        <p className="pt-[20px]">4月24日　　　飲料　　　1,000円</p>
       </div>
     </div>
   );

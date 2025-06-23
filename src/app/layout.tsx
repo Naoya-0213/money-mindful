@@ -38,9 +38,12 @@ export default function RootLayout({
       >
         {/* ヘッダー */}
         <Header />
+
         {/* メインセクション */}
         <main className="flex w-full justify-center">
-          <div className="w-full max-w-[480px]"> {children}</div>
+          <div className="min-h-[100vh] w-full max-w-[480px]">
+            <div className="mt-[70px]">{children}</div>
+          </div>
         </main>
 
         {/* フッター */}

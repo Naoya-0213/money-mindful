@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 // google font(1)
 const geistSans = Geist({
@@ -35,18 +36,20 @@ export default function RootLayout({
     <html lang="jp">
       <body
         className={`${inter.className} flex min-h-screen flex-col items-center bg-white text-[#795549]`}
+        style={{ minHeight: "100dvh" }}
       >
         {/* ヘッダー */}
         <Header />
 
         {/* メインセクション */}
-        <main className="flex w-full justify-center">
-          <div className="min-h-[100vh] w-full max-w-[480px]">
-            <div className="mt-[70px]">{children}</div>
+        <main className="flex w-full justify-center ">
+          <div className="min-h-[calc(100dvh-80px)] w-full max-w-[480px] pt-[70px] pb-[80px] bg-[#F3F0EB]">
+            {children}
           </div>
         </main>
 
         {/* フッター */}
+        <Footer />
       </body>
     </html>
   );

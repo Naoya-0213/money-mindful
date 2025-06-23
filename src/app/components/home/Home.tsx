@@ -8,7 +8,7 @@ import Button from "../button/Button";
 
 const Home = () => {
   return (
-    <div className="flex min-h-[calc(100vh-70px)] w-full flex-col items-center gap-5 p-5 font-bold">
+    <div className="flex w-full flex-col items-center gap-5 p-5 font-bold">
       {/* 仮タイトル */}
       <div className="text-2xl">
         <h3>北海道旅行</h3>

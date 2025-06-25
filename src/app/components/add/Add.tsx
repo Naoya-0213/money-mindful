@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../button/Button";
+import Category from "../category/Category";
 
 const Add = () => {
   return (
@@ -10,41 +11,39 @@ const Add = () => {
       {/* 入力フォーム */}
       <div className="flex flex-col gap-5">
         {/* タイトル */}
-        <label className="font-semibold">タイトル</label>
+        <label className="text-xl font-semibold">タイトル</label>
         <input
           type="text"
           placeholder="外食を我慢"
-          className="h-[60px] rounded-xl border border-[#795549] bg-white px-6 py-2"
+          className="h-[60px] rounded-xl border border-[#795549] bg-white px-6 py-2 text-xl"
         />
 
         {/* 額 */}
-        <label className="font-semibold">額</label>
+        <label className="text-xl font-semibold">額</label>
         <div className="flex items-center gap-4">
           <input
             type="number"
             placeholder="500"
-            className="h-[60px] w-full rounded-xl border border-[#795549] bg-white px-6 py-2"
+            className="h-[60px] w-full rounded-xl border border-[#795549] bg-white px-6 py-2 text-xl"
           />
-          <span className="text-sm font-bold">円</span>
+          <span className="text-xl font-bold">円</span>
         </div>
 
         {/* カテゴリー */}
-        <label className="font-semibold">カテゴリー</label>
-        <div className="flex items-center gap-2">
-          <button className="rounded-md border border-[#795549] px-2 py-1 text-sm">
+        <div className="mt-2 flex items-center gap-4">
+          <label className="text-xl font-semibold">カテゴリー</label>
+          <button className="rounded-md border bg-[#795549] px-3 py-1 text-base text-[#F3F0EB]">
             編集
           </button>
         </div>
+
+        {/* ラベル */}
         <div className="flex flex-wrap gap-2">
-          <button className="rounded-md bg-[#D7CDBE] px-3 py-1 text-sm font-bold">
-            外食
-          </button>
-          <button className="rounded-md border border-[#795549] px-3 py-1 text-sm">
-            飲み物
-          </button>
-          <button className="rounded-md border border-[#795549] px-3 py-1 text-sm">
-            交通費
-          </button>
+          <Category className="border-1 border-[#795549]">外食</Category>
+          <Category className="border-1 border-[#795549]">飲み物</Category>
+          <Category className="border-1 border-[#795549]">飲み会</Category>
+          <Category className="border-1 border-[#795549]">コンビニ</Category>
+          <Category className="border-1 border-[#795549]">コンビニ</Category>
         </div>
 
         {/* メモ */}

@@ -8,6 +8,13 @@
   --foreground: #171717;
 } */
 
+/* ヘッダーの高さ共通指定 */
+:root {
+  --header-height: 65px;
+}
+
+
+/* フッターの高さ共通指定 */
 :root {
   --footer-height: 65px;
 }

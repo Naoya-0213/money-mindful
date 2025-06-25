@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div
       style={{ height: "var(--footer-height)" }}
-      className="fixed bottom-0 z-50 grid h-[65px] w-full max-w-[480px] grid-cols-5 bg-[#D7CDBE]"
+      className="fixed bottom-0 z-50 grid w-full max-w-[480px] grid-cols-5 bg-[#D7CDBE]"
     >
       <FooterItem
         icon="/icon/home.png"

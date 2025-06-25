@@ -42,10 +42,11 @@ export default function RootLayout({
         <Header />
 
         {/* メインセクション */}
-        <main className="flex w-full justify-center">
-          <div className="min-h-[calc(100dvh-80px)] w-full max-w-[480px] bg-[#F3F0EB] pt-[70px]">
-            {children}
-          </div>
+        <main
+          style={{ paddingBottom: "var(--footer-height)" }}
+          className="flex w-full max-w-[480px] flex-grow flex-col justify-between bg-[#F3F0EB] pt-[70px] pb-[80px]"
+        >
+          {children}
         </main>
 
         {/* フッター */}

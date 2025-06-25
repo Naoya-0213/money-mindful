@@ -8,8 +8,11 @@
   --foreground: #171717;
 } */
 
+:root {
+  --footer-height: 65px;
+}
+
 /* globals.css */
 .nextjs-portal {
   display: none !important;
 }
-

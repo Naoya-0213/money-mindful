@@ -47,7 +47,7 @@ const Add = () => {
         </div>
 
         {/* メモ */}
-        <label className="font-semibold">メモ</label>
+        <label className="text-xl font-semibold">メモ</label>
         <input
           type="text"
           placeholder="例：コンビニのアイスを我慢"

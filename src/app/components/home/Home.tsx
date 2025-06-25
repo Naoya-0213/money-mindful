@@ -5,6 +5,7 @@
 import React from "react";
 import Image from "next/image";
 import Button from "../button/Button";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -24,7 +25,9 @@ const Home = () => {
       </div>
 
       {/* 仮追加ボタン */}
-      <Button onClick={() => alert("クリックされた！")}>追加</Button>
+      <Link href="/money-mindful/add" className="w-full flex justify-center">
+        <Button>追加</Button>
+      </Link>
 
       {/* 仮履歴表示 */}
       <div className="self-start text-2xl">

@@ -5,7 +5,7 @@ import React from "react";
 
 export default function AddPage() {
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-[#F3F0EB]">
+    <div className="mx-auto flex w-full max-w-[480px] flex-col gap-5 bg-[#F3F0EB]">
       <Add />
     </div>
   );

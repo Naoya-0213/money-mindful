@@ -4,7 +4,7 @@ import Category from "../category/Category";
 
 const Add = () => {
   return (
-    <div className="flex w-full flex-col gap-5 px-6 py-6 text-[#795549]">
+    <div className="flex w-full flex-col gap-5 p-5 text-[#795549]">
       {/* タイトル */}
       <h2 className="text-2xl font-bold">我慢記録を追加</h2>
 
@@ -42,7 +42,7 @@ const Add = () => {
           <Category className="border-1 border-[#795549]">外食</Category>
           <Category className="border-1 border-[#795549]">飲み物</Category>
           <Category className="border-1 border-[#795549]">飲み会</Category>
-          <Category className="border-1 border-[#795549]">コンビニ</Category>
+          <Category className="border-1 border-[#795549]">衝動買い</Category>
           <Category className="border-1 border-[#795549]">コンビニ</Category>
         </div>
 

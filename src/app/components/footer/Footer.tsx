@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="grid h-[80px] w-full max-w-[480px] grid-cols-5 bg-[#D7CDBE]">
+    <div className="fixed bottom-0 z-50 grid h-[80px] w-full max-w-[480px] grid-cols-5 bg-[#D7CDBE]">
       {/* ホーム */}
       <Link
         href="/money-mindful/home"

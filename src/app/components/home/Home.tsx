@@ -17,7 +17,7 @@ const Home = () => {
         <p>¥50,000</p>
       </div>
 
-      {/* グラフ */}
+      {/* 仮グラフ */}
       <Image src="/temp/仮グラフ.png" alt="仮グラフ" width={200} height={200} />
 
       {/* 期限 */}

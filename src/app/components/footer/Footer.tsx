@@ -30,7 +30,7 @@ const Footer = () => {
       <FooterItem
         icon="/icon/calendar.png"
         label="記録"
-        href="/money-mindful/home"
+        href="/money-mindful/calendar"
       />
 
       {/* 設定 */}

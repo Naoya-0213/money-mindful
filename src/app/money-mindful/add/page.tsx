@@ -1,3 +1,5 @@
+// 追加セクション
+
 "use client";
 
 import Add from "@/app/components/add/Add";

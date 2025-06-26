@@ -57,7 +57,7 @@ const Add = () => {
 
       {/* 仮追加ボタン */}
       <div className="flex justify-center">
-        <Button onClick={() => alert("クリックされた！")}>追加</Button>
+        <Button onClick={() => alert("supabaseへ送信！")}>追加</Button>
       </div>
     </div>
   );

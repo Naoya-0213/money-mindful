@@ -1,3 +1,5 @@
+// 記録履歴（タイトル・詳細・金額のみ）
+
 import React from "react";
 
 const EasyLog = () => {

@@ -1,3 +1,5 @@
+// 記録履歴（日付・タイトル・詳細・金額）
+
 import React from "react";
 
 const Log = () => {

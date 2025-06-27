@@ -37,7 +37,7 @@ const Footer = () => {
       <FooterItem
         icon="/icon/setting.png"
         label="設定"
-        href="/money-mindful/home"
+        href="/money-mindful/setting"
       />
     </div>
   );

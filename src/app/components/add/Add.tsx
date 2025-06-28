@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../button/Button";
 import Category from "../category/Category";
+import SmallButton from "../button/SmallButton";
 
 const Add = () => {
   return (
@@ -32,9 +33,8 @@ const Add = () => {
         {/* カテゴリー */}
         <div className="mt-2 flex items-center gap-4">
           <label className="text-xl font-semibold">カテゴリー</label>
-          <button className="rounded-md border bg-[#795549] px-3 py-1 text-base text-[#F3F0EB]">
-            編集
-          </button>
+
+          <SmallButton>編集</SmallButton>
         </div>
 
         {/* ラベル */}

@@ -7,23 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/components/button/Button";
 import Log from "@/app/components/log/Log";
+import SectionCard from "@/app/components/section-card/SectionCard";
+import GoalCard from "@/app/components/section-card/GoalCard";
 
 const Home = () => {
   return (
     <div className="flex w-full flex-col items-center gap-5 p-5">
       {/* タイトル */}
-      <div className="text-3xl font-bold">
-        <h3>北海道旅行</h3>
-        <p>¥50,000</p>
-      </div>
-
-      {/* 仮グラフ */}
-      <Image src="/temp/仮グラフ.png" alt="仮グラフ" width={200} height={200} />
-
-      {/* 期限 */}
-      <div className="text-2xl font-semibold">
-        <p>2025年9月30日まで</p>
-      </div>
+      <GoalCard />
 
       {/* 追加ボタン */}
       <Link href="/money-mindful/add" className="flex w-full justify-center">

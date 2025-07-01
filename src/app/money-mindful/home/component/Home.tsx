@@ -3,18 +3,20 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/components/button/Button";
 import Log from "@/app/components/log/Log";
-import SectionCard from "@/app/components/section-card/SectionCard";
 import GoalCard from "@/app/components/section-card/GoalCard";
+import GoalStatusCard from "./GoalStatusCard";
 
 const Home = () => {
   return (
     <div className="flex w-full flex-col items-center gap-5 p-5">
       {/* タイトル */}
       <GoalCard />
+
+      {/* 進捗 */}
+      <GoalStatusCard />
 
       {/* 追加ボタン */}
       <Link href="/money-mindful/add" className="flex w-full justify-center">

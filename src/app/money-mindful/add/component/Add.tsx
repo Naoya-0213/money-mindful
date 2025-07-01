@@ -1,9 +1,9 @@
 "use client"
 
+import Button from "@/app/components/button/Button";
+import SmallButton from "@/app/components/button/SmallButton";
+import Category from "@/app/components/category/Category";
 import React from "react";
-import Button from "../button/Button";
-import Category from "../category/Category";
-import SmallButton from "../button/SmallButton";
 
 
 const Add = () => {

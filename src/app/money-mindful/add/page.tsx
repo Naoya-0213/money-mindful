@@ -1,7 +1,8 @@
 // 追加セクション
 
-import Add from "@/app/components/add/Add";
+
 import React from "react";
+import Add from "./component/Add";
 
 export default function AddPage() {
   return (

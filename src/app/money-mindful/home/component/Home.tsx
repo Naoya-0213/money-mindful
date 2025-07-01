@@ -4,9 +4,9 @@
 
 import React from "react";
 import Image from "next/image";
-import Button from "../button/Button";
 import Link from "next/link";
-import Log from "../log/Log";
+import Button from "@/app/components/button/Button";
+import Log from "@/app/components/log/Log";
 
 const Home = () => {
   return (

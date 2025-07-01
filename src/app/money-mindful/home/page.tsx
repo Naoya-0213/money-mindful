@@ -1,7 +1,7 @@
 // ホームセクション
 
 import React from "react";
-import Home from "../../components/home/Home";
+import Home from "./component/Home";
 
 export default function MoneyMindfullApp() {
   return (

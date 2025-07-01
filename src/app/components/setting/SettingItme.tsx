@@ -1,5 +1,7 @@
 // フッターの部品用
 
+"use client"
+
 import React from "react";
 import SmallButton from "../button/SmallButton";
 

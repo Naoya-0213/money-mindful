@@ -1,6 +1,6 @@
 // 合計セクション
 
-import Total from "@/app/components/total/Total";
+import Total from "@/app/money-mindful/total/component/Total";
 import React from "react";
 
 export default function TotalPage() {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import EasyLog from "../log/EasyLog";
+import EasyLog from "../../../components/log/EasyLog";
 
 const Calendar = () => {
   return (

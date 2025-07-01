@@ -1,6 +1,6 @@
 // カレンダーでの記録表示セクション
 
-import Calendar from "@/app/components/calendar/Calendar";
+import Calendar from "@/app/money-mindful/calendar/component/Calendar";
 import React from "react";
 
 export default function CalendarPage() {

@@ -23,9 +23,7 @@ const Home = () => {
       <AddRecordCard />
 
       {/* 追加ボタン */}
-      <Link href="/money-mindful/add" className="flex w-full justify-center">
-        <Button>我慢記録を追加する</Button>
-      </Link>
+      
 
       {/* 履歴表示 */}
       <div className="w-full self-start pt-5">

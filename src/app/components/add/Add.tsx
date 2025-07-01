@@ -1,7 +1,10 @@
+"use client"
+
 import React from "react";
 import Button from "../button/Button";
 import Category from "../category/Category";
 import SmallButton from "../button/SmallButton";
+
 
 const Add = () => {
   return (

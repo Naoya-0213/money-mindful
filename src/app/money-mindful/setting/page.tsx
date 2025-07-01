@@ -1,7 +1,5 @@
 // 設定セクション
 
-"use client";
-
 import Setting from "@/app/components/setting/Setting";
 import React from "react";
 

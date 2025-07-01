@@ -1,7 +1,5 @@
 // 合計セクション
 
-"use client";
-
 import Total from "@/app/components/total/Total";
 import React from "react";
 

@@ -1,7 +1,5 @@
 // 追加セクション
 
-"use client";
-
 import Add from "@/app/components/add/Add";
 import React from "react";
 

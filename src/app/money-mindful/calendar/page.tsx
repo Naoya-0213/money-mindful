@@ -1,7 +1,5 @@
 // カレンダーでの記録表示セクション
 
-"use client";
-
 import Calendar from "@/app/components/calendar/Calendar";
 import React from "react";
 

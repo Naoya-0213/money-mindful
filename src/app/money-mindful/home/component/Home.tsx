@@ -8,6 +8,7 @@ import Button from "@/app/components/button/Button";
 import Log from "@/app/components/log/Log";
 import GoalCard from "@/app/components/section-card/GoalCard";
 import GoalStatusCard from "./GoalStatusCard";
+import AddRecordCard from "./AddRecordCard";
 
 const Home = () => {
   return (
@@ -17,6 +18,9 @@ const Home = () => {
 
       {/* 進捗 */}
       <GoalStatusCard />
+
+      {/* 我慢記録 */}
+      <AddRecordCard />
 
       {/* 追加ボタン */}
       <Link href="/money-mindful/add" className="flex w-full justify-center">

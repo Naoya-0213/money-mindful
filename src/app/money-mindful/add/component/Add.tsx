@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
 import Button from "@/app/components/button/Button";
 import SmallButton from "@/app/components/button/SmallButton";
 import Category from "@/app/components/category/Category";
 import React from "react";
-
 
 const Add = () => {
   return (
@@ -41,13 +40,6 @@ const Add = () => {
         </div>
 
         {/* ラベル */}
-        <div className="flex flex-wrap gap-2">
-          <Category className="border-1 border-[#795549]">外食</Category>
-          <Category className="border-1 border-[#795549]">飲み物</Category>
-          <Category className="border-1 border-[#795549]">飲み会</Category>
-          <Category className="border-1 border-[#795549]">衝動買い</Category>
-          <Category className="border-1 border-[#795549]">コンビニ</Category>
-        </div>
 
         {/* メモ */}
         <label className="text-xl font-semibold">メモ</label>

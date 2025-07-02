@@ -1,21 +1,18 @@
-// 共通ボタン
-
+import Image from "next/image";
 import React from "react";
 
 type CategoryProps = {
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
+  title: string;
+  icon: string;
+  label: string;
 };
 
-const Category = ({ children, onClick, className }: CategoryProps) => {
+const Category = ({ title, icon, label }: CategoryProps) => {
   return (
-    <button
-      onClick={onClick}
-      className={`h-[40px] min-w-[60px] rounded-lg px-6 py-2 text-center text-base text-[#795549] ${className ?? ""}`}
-    >
-      {children}
-    </button>
+    <div className="flex min-w-[120px] items-center justify-center gap-2 rounded-3xl border-2 border-[#795549] bg-[#D7CDBE] px-4 py-2">
+      <Image src={icon} alt={label} width={25} height={25}></Image>
+      <button className="text-base">{title}</button>
+    </div>
   );
 };
 

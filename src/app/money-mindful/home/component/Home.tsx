@@ -22,9 +22,6 @@ const Home = () => {
       {/* 我慢記録 */}
       <AddRecordCard />
 
-      {/* 追加ボタン */}
-      
-
       {/* 履歴表示 */}
       <div className="w-full self-start pt-5">
         <h3 className="text-2xl font-bold">直近の登録履歴</h3>

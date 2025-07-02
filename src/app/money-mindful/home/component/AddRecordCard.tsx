@@ -1,6 +1,7 @@
 // ホーム専用コンポーネント：我慢記録セクション
 
 import Button from "@/app/components/button/Button";
+import Category from "@/app/components/category/Category";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Link from "next/link";
 import React from "react";
@@ -20,11 +21,25 @@ const AddRecordCard = () => {
         </div>
 
         {/* 備考 */}
-        <div className="flex w-full flex-col items-center rounded-2xl bg-[#F3F0EB] p-5 font-semibold">
-          <p>カテゴリーを追加して、</p>
-          <p>整理できます。</p>
+        <div className="flex w-full flex-col items-center gap-5 rounded-2xl bg-[#F3F0EB] p-5 font-semibold">
+          <div className="flex flex-col items-center">
+            <p>カテゴリーを追加して、</p>
+            <p>整理できます。</p>
+          </div>
 
           {/* カテゴリー例 */}
+          <div className="flex gap-5">
+            <Category
+              icon="/icon/categories/drink.png"
+              title="飲み物"
+              label="飲み物icon"
+            />
+            <Category
+              icon="/icon/categories/food.png"
+              title="外食"
+              label="外食icon"
+            />
+          </div>
         </div>
 
         {/* 追加へ移動ボタン */}

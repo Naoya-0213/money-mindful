@@ -1,4 +1,4 @@
-// 日付ごとの記録履歴コンポーネント
+// 日付ごとの記録履歴用
 
 import React from "react";
 import LogItemCard from "./LogItemCard";

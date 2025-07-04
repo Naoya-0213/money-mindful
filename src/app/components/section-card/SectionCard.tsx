@@ -14,10 +14,10 @@ const SectionCard = ({ title, icon, label, children }: SectionCardProps) => {
       <div className="flex flex-col gap-5 p-5">
         <div className="flex items-center justify-start gap-5">
           {/* icon */}
-          <Image src={icon} alt={label} width={30} height={30} />
+          <Image src={icon} alt={label} width={25} height={25} />
 
           {/* タイトル */}
-          <h2 className="text-2xl font-bold">{title}</h2>
+          <h2 className="text-xl font-bold">{title}</h2>
         </div>
 
         {/* 他要素 */}

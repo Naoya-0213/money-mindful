@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import EasyLog from "../../../components/log/EasyLog";
 
 const Calendar = () => {
   return (
@@ -17,9 +16,6 @@ const Calendar = () => {
       {/* 選択日の記録表示 */}
       <div className="w-full">
         <h2 className="text-2xl font-bold">6月15日（水）</h2>
-        <EasyLog />
-        <EasyLog />
-        <EasyLog />
       </div>
     </div>
   );

@@ -13,53 +13,55 @@ const GoalStatusCard = () => {
         icon="/icon/home/paper-plane.png"
         label="進捗icon"
       >
-        {/* 進捗グラフ */}
-        <div className="flex w-full items-center justify-center">
-          <Image
-            src="/temp/仮進捗グラフ.png"
-            alt="仮カレンダー"
-            width={250}
-            height={250}
-            layout="responsive"
-            className="max-w-[250px]"
-          />
-        </div>
-
-        {/* 合計 */}
-        <div className="flex items-center justify-center gap-5">
-          <div className="flex min-w-[50px] justify-center">
-            <span className="text-xl font-bold">合計</span>
+        <div className="flex flex-col gap-3">
+          {/* 進捗グラフ */}
+          <div className="flex w-full items-center justify-center">
+            <Image
+              src="/temp/仮進捗グラフ.png"
+              alt="仮カレンダー"
+              width={200}
+              height={200}
+              layout="responsive"
+              className="max-w-[200px]"
+            />
           </div>
 
-          <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-xl font-bold">
-            ¥35,000
-          </p>
-        </div>
+          {/* 合計 */}
+          <div className="flex items-center justify-center gap-5">
+            <div className="flex min-w-[50px] justify-center">
+              <span className="text-lg font-bold">合計</span>
+            </div>
 
-        {/* 区切り線 */}
-        <div className="mx-auto h-0.5 w-[95%] rounded-full bg-[#795549]" />
-
-        {/* 残数表示 */}
-        {/* 日数 */}
-        <div className="flex items-center justify-center gap-5">
-          <div className="flex min-w-[50px] justify-center">
-            <span className="text-xl font-bold">残り</span>
+            <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
+              ¥35,000
+            </p>
           </div>
-          <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-xl font-bold">
-            90
-          </p>
-          <div className="flex min-w-[50px] justify-center">
-            <span className="text-xl font-bold">日で</span>
-          </div>
-        </div>
 
-        {/* 金額 */}
-        <div className="flex items-center justify-center gap-5">
-          <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-xl font-bold">
-            ¥15,000
-          </p>
-          <div className="flex min-w-[100px] justify-center">
-            <span className="text-xl font-bold">を貯める！</span>
+          {/* 区切り線 */}
+          <div className="mx-auto h-0.5 w-[95%] rounded-full bg-[#795549] mt-2 mb-2" />
+
+          {/* 残数表示 */}
+          {/* 日数 */}
+          <div className="flex items-center justify-center gap-5">
+            <div className="flex min-w-[50px] justify-center">
+              <span className="text-lg font-bold">残り</span>
+            </div>
+            <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
+              90
+            </p>
+            <div className="flex min-w-[50px] justify-center">
+              <span className="text-lg font-bold">日で</span>
+            </div>
+          </div>
+
+          {/* 金額 */}
+          <div className="flex items-center justify-center gap-5">
+            <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
+              ¥15,000
+            </p>
+            <div className="flex min-w-[100px] justify-center">
+              <span className="text-lg font-bold">を貯める！</span>
+            </div>
           </div>
         </div>
       </SectionCard>

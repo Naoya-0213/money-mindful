@@ -5,10 +5,12 @@ import LogItemCard from "./LogItemCard";
 
 const LogGroupByDate = () => {
   return (
-    <div className="">
+    <div className="flex flex-col gap-3">
       <div>
-        <h3 className="text-xl font-bold">4月23日（月）</h3>
+        <h3 className="text-xl font-bold">2025年4月23日（月）</h3>
       </div>
+      <LogItemCard />
+      <LogItemCard />
       <LogItemCard />
     </div>
   );

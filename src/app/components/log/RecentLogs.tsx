@@ -12,6 +12,7 @@ const RecentLogs = () => {
         label="履歴icon"
         title="直近の登録履歴"
       >
+        {/* 履歴 */}
         <LogGroupByDate />
       </SectionCard>
     </div>

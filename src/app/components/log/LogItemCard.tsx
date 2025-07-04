@@ -4,26 +4,29 @@ import CategoryIcon from "../category/category-icon/CategoryIcon";
 
 const LogItemCard = () => {
   return (
-    <div className="flex gap-5">
-      {/* アイコン */}
-      <div>
-        <CategoryIcon name="drink" alt="飲み物アイコン" />
+    <div className="flex w-full items-center justify-between rounded-2xl bg-[#F3F0EB] p-3">
+      <div className="flex items-center gap-5">
+        {/* アイコン */}
+        <div>
+          <CategoryIcon name="drink" alt="飲み物アイコン" />
+        </div>
+        {/* タイトル */}
+        <div className="font-bold">ジュース</div>
       </div>
 
-      {/* タイトル */}
-      <div>ジュース</div>
-
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         {/* 金額 */}
-        <div>¥150</div>
+        <div className="font-bold">¥150</div>
 
         {/* 詳細誘導ボタン */}
-        <Image
-          src="/icon/arrow/next-icon.png"
-          alt="矢印"
-          width={24}
-          height={24}
-        />
+        <div>
+          <Image
+            src="/icon/arrow/next-icon.png"
+            alt="矢印"
+            width={24}
+            height={24}
+          />
+        </div>
       </div>
     </div>
   );

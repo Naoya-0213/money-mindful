@@ -5,10 +5,11 @@
 import React from "react";
 import Link from "next/link";
 import Button from "@/app/components/button/Button";
-import Log from "@/app/components/log/Log";
+import Log from "@/app/components/log/LogGroupByDate";
 import GoalCard from "@/app/components/section-card/GoalCard";
 import GoalStatusCard from "./GoalStatusCard";
 import AddRecordCard from "./AddRecordCard";
+import RecentLogs from "../../../components/log/RecentLogs";
 
 const Home = () => {
   return (
@@ -23,14 +24,8 @@ const Home = () => {
       <AddRecordCard />
 
       {/* 履歴表示 */}
-      <div className="w-full self-start pt-5">
-        <h3 className="text-2xl font-bold">直近の登録履歴</h3>
-      </div>
-
       <div className="w-full">
-        <Log />
-        <Log />
-        <Log />
+        <RecentLogs />
       </div>
     </div>
   );

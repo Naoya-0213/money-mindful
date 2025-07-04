@@ -1,7 +1,7 @@
 // ホーム専用コンポーネント：我慢記録セクション
 
 import Button from "@/app/components/button/Button";
-import Category from "@/app/components/category/Category";
+import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Link from "next/link";
 import React from "react";
@@ -29,16 +29,10 @@ const AddRecordCard = () => {
 
           {/* カテゴリー例 */}
           <div className="flex gap-5">
-            <Category
-              icon="/icon/categories/drink.png"
-              title="飲み物"
-              label="飲み物icon"
-            />
-            <Category
-              icon="/icon/categories/food.png"
-              title="外食"
-              label="外食icon"
-            />
+            <CategoryIcon name="clothing" alt="服アイコン" />
+            <CategoryIcon name="beer" alt="飲み会アイコン" />
+            <CategoryIcon name="train" alt="交通費アイコン" />
+            <CategoryIcon name="food" alt="食費アイコン" />
           </div>
         </div>
 

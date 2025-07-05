@@ -1,5 +1,7 @@
+"use client"
+
 import React from "react";
-import SettingItem from "./SettingItme";
+import SettingItem from "../../../components/setting/SettingItme";
 
 const Setting = () => {
   return (

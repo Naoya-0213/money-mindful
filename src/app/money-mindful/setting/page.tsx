@@ -1,6 +1,6 @@
 // 設定セクション
 
-import Setting from "@/app/components/setting/Setting";
+import Setting from "@/app/money-mindful/setting/component/Setting";
 import React from "react";
 
 export default function SettingPage() {

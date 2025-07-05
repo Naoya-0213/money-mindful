@@ -3,7 +3,7 @@
 import SectionCard from "@/app/components/section-card/SectionCard";
 import React from "react";
 import LogItemCard from "./LogItemCard";
-import type { CategoryType } from "../category/category-icon/lib/categoryIconMap";
+import type { CategoryType } from "../../../const/category-icon/categoryIconMap";
 
 // 仮データ（あとでSupabase連携予定）
 const mockLogs: {

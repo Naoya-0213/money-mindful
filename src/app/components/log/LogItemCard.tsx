@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import CategoryIcon from "../category/category-icon/CategoryIcon";
 
-import { CategoryType } from "../category/category-icon/lib/categoryIconMap";
+import { CategoryType } from "../../../const/category-icon/categoryIconMap";
 
 type Props = {
   title: string;

@@ -1,3 +1,5 @@
+// カテゴリー編集ページ用
+
 import Button from "@/app/components/button/Button";
 import EditCategoryPage from "@/app/components/category/EditCategoryPage";
 import SectionCard from "@/app/components/section-card/SectionCard";

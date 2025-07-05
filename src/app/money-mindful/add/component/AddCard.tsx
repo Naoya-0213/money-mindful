@@ -5,12 +5,13 @@ import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import FormField from "@/app/components/form/FormField";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ImageResponse } from "next/server";
-
-import React from "react";
+import React, { useState } from "react";
 
 const AddCard = () => {
   const router = useRouter();
+  const [date, setDate] = useState(
+    () => new Date().toISOString().split("T")[0],
+  );
 
   return (
     <div className="flex w-full flex-col gap-5 bg-[#EAE3D8]">
@@ -28,6 +29,15 @@ const AddCard = () => {
         icon="/icon/add/money.png"
       />
 
+      {/* カレンダー */}
+      <FormField
+        label="カレンダー"
+        placeholder=""
+        icon="/icon/add/calendar.png"
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
       {/* カテゴリー */}
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
@@ -44,12 +54,10 @@ const AddCard = () => {
         <button
           className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
           style={{ height: "var(--input-height)" }}
-          onClick={() =>
-            router.push("/money-mindful/add/AddEditCategoryPage")
-          }
+          onClick={() => router.push("/money-mindful/edit-category-page")}
           type="button"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-5 text-lg font-bold text-[#795549]">
               <CategoryIcon name="beer" />
               飲み会

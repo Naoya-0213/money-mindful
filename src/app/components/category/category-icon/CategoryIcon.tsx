@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import { categoryIconMap } from "./lib/categoryIconMap";
+import { categoryIconMap } from "../../../../const/category-icon/categoryIconMap";
 
 type CategoryIconProps = {
   name: keyof typeof categoryIconMap;

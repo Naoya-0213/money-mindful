@@ -3,9 +3,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import Button from "@/app/components/button/Button";
-import Log from "@/app/components/log/LogGroupByDate";
 import GoalCard from "@/app/components/section-card/GoalCard";
 import GoalStatusCard from "./GoalStatusCard";
 import AddRecordCard from "./AddRecordCard";

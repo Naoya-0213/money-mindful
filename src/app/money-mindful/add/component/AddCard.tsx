@@ -45,13 +45,13 @@ const AddCard = () => {
           className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
           style={{ height: "var(--input-height)" }}
           onClick={() =>
-            router.push("/money-mindful/add/component/AddEditCategoryPage")
+            router.push("/money-mindful/add/AddEditCategoryPage")
           }
           type="button"
         >
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-5 text-lg font-bold text-[#795549]">
-              <CategoryIcon name="beer" alt="飲み会" />
+              <CategoryIcon name="beer" />
               飲み会
             </div>
             <div>

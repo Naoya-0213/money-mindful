@@ -6,18 +6,17 @@ import { categoryIconMap } from "./lib/categoryIconMap";
 
 type CategoryIconProps = {
   name: keyof typeof categoryIconMap;
-  alt: string;
 };
 
-const CategoryIcon = ({ name, alt }: CategoryIconProps) => {
-  const src = categoryIconMap[name];
+const CategoryIcon = ({ name }: CategoryIconProps) => {
+  const icon = categoryIconMap[name];
 
   return (
     <div
       className="flex items-center justify-center rounded-full bg-[#D7CDBE]"
       style={{ width: 40, height: 40 }}
     >
-      <Image src={src} alt={alt} width={25} height={25} />
+      <Image src={icon.src} alt={icon.alt} width={25} height={25} />
     </div>
   );
 };

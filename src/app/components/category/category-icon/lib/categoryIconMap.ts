@@ -2,26 +2,28 @@
 
 export const categoryIconMap = {
   // 飲み物アイコン
-  drink: "/icon/categories/icon/drink.png",
+  drink: { src: "/icon/categories/icon/drink.png", alt: "飲み物アイコン" },
 
   // 飲み会アイコン
-  beer: "/icon/categories/icon/beer.png",
+  beer: { src: "/icon/categories/icon/beer.png", alt: "飲み会アイコン" },
 
   // 食費アイコン
-  food: "/icon/categories/icon/food.png",
+  food: { src: "/icon/categories/icon/food.png", alt: "食費アイコン" },
 
   // 交通費アイコン
-  train: "/icon/categories/icon/train.png",
+  train: { src: "/icon/categories/icon/train.png", alt: "交通費アイコン" },
 
   // 買い物アイコン
-  shopping: "/icon/categories/icon/shopping.png",
+  shopping: { src: "/icon/categories/icon/shopping.png", alt: "買い物アイコン" },
 
   // お金アイコン
-  money: "/icon/categories/icon/money.png",
+  money: { src: "/icon/categories/icon/money.png", alt: "お金アイコン" },
 
   // 交際費アイコン
-  social: "/icon/categories/icon/social.png",
+  social: { src: "/icon/categories/icon/social.png", alt: "交際費アイコン" },
 
   // 服アイコン
-  clothing: "/icon/categories/icon/clothing.png",
+  clothing: { src: "/icon/categories/icon/clothing.png", alt: "服アイコン" },
 } as const;
+
+export type CategoryType = keyof typeof categoryIconMap;

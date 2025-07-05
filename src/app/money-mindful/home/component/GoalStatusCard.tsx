@@ -21,7 +21,7 @@ const GoalStatusCard = () => {
               alt="仮カレンダー"
               width={200}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
               className="max-w-[200px]"
             />
           </div>
@@ -38,7 +38,7 @@ const GoalStatusCard = () => {
           </div>
 
           {/* 区切り線 */}
-          <div className="mx-auto h-0.5 w-[95%] rounded-full bg-[#795549] mt-2 mb-2" />
+          <div className="mx-auto mt-2 mb-2 h-0.5 w-[95%] rounded-full bg-[#795549]" />
 
           {/* 残数表示 */}
           {/* 日数 */}

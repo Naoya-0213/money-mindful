@@ -11,7 +11,7 @@ const Total = () => {
         alt="仮合計グラフ"
         width={800}
         height={400}
-        layout="responsive"
+        style={{ width: "100%", height: "auto" }}
       />
 
       {/* 合計表示 */}

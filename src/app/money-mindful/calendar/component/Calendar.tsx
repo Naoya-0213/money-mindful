@@ -10,7 +10,7 @@ const Calendar = () => {
         alt="仮カレンダー"
         width={800}
         height={400}
-        layout="responsive"
+        style={{ width: "100%", height: "auto" }}
       />
 
       {/* 選択日の記録表示 */}

@@ -29,10 +29,10 @@ const AddRecordCard = () => {
 
           {/* カテゴリー例 */}
           <div className="flex gap-5">
-            <CategoryIcon name="clothing" alt="服アイコン" />
-            <CategoryIcon name="beer" alt="飲み会アイコン" />
-            <CategoryIcon name="train" alt="交通費アイコン" />
-            <CategoryIcon name="food" alt="食費アイコン" />
+            <CategoryIcon name="clothing" />
+            <CategoryIcon name="beer" />
+            <CategoryIcon name="train" />
+            <CategoryIcon name="food" />
           </div>
         </div>
 

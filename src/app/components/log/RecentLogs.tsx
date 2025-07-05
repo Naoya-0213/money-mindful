@@ -29,6 +29,7 @@ const RecentLogs = () => {
         {mockLogs.map((log) => (
           <LogItemCard
             key={log.id}
+            id={log.id}
             title={log.title}
             amount={log.amount}
             category={log.category}

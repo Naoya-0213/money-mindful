@@ -1,20 +1,29 @@
 // components/log/LogItemCard.tsx
+"use client";
 
 import React from "react";
 import Image from "next/image";
 import CategoryIcon from "../category/category-icon/CategoryIcon";
 
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
+import { useRouter } from "next/navigation";
 
 type Props = {
   title: string;
+  id: string;
   amount: number;
   category: CategoryType; // カテゴリー名 → CategoryIconに渡す用
 };
 
-const LogItemCard = ({ title, amount, category }: Props) => {
+const LogItemCard = ({ id, title, amount, category }: Props) => {
+  const router = useRouter();
+
   return (
-    <div className="flex w-full items-center justify-between rounded-2xl bg-[#F3F0EB] p-3">
+    <button
+      type="button"
+      onClick={() => router.push(`/money-mindful/detail-log/${id}`)}
+      className="flex w-full items-center justify-between rounded-2xl bg-[#F3F0EB] p-3"
+    >
       <div className="flex items-center gap-5">
         {/* アイコン */}
         <div>
@@ -38,7 +47,7 @@ const LogItemCard = ({ title, amount, category }: Props) => {
           />
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

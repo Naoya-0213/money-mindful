@@ -5,9 +5,14 @@ import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import FormField from "@/app/components/form/FormField";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, type ReactNode } from "react";
 
-const AddCard = () => {
+type AddCardProps = {
+  children?: ReactNode;
+  buttonTitle: string;
+};
+
+const AddCard = ({ children, buttonTitle }: AddCardProps) => {
   const router = useRouter();
   const [date, setDate] = useState(
     () => new Date().toISOString().split("T")[0],
@@ -54,7 +59,7 @@ const AddCard = () => {
         <button
           className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
           style={{ height: "var(--input-height)" }}
-          onClick={() => router.push("/money-mindful/edit-category-page")}
+          onClick={() => router.push("/money-mindful/add/AddCategoryPage")}
           type="button"
         >
           <div className="flex items-center justify-between">
@@ -82,10 +87,12 @@ const AddCard = () => {
         isTextarea
       />
 
-      {/* 追加ボタン */}
+      {/* 追加or保存ボタン */}
       <div className="flex justify-center">
-        <Button onClick={() => alert("supabaseへ送信！")}>追加</Button>
+        <Button onClick={() => alert("supabaseへ送信！")}>{buttonTitle}</Button>
       </div>
+
+      {children}
     </div>
   );
 };

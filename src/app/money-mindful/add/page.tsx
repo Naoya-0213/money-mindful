@@ -1,8 +1,9 @@
 // 追加セクション
 
 import React from "react";
-import AddCard from "./component/AddCard";
+
 import SectionCard from "@/app/components/section-card/SectionCard";
+import AddCard from "@/app/components/section-card/AddCard";
 
 export default function AddPage() {
   return (
@@ -13,7 +14,7 @@ export default function AddPage() {
         label="進捗icon"
       >
         {/* 我慢記録 */}
-        <AddCard />
+        <AddCard buttonTitle="保存" />
       </SectionCard>
     </div>
   );

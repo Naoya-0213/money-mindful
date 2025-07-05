@@ -1,9 +1,11 @@
 "use client";
 
 import Button from "@/app/components/button/Button";
+import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import FormField from "@/app/components/form/FormField";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ImageResponse } from "next/server";
 
 import React from "react";
 
@@ -40,12 +42,28 @@ const AddCard = () => {
           <h2 className="text-lg font-bold text-[#795549]">カテゴリー</h2>
         </div>
         <button
-          className="h-14 w-full rounded-2xl border border-[#E0E0E0] bg-white px-6 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
+          className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
+          style={{ height: "var(--input-height)" }}
           onClick={() =>
             router.push("/money-mindful/add/component/AddEditCategoryPage")
           }
           type="button"
-        ></button>
+        >
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-5 text-lg font-bold text-[#795549]">
+              <CategoryIcon name="beer" alt="飲み会" />
+              飲み会
+            </div>
+            <div>
+              <Image
+                src="/icon/arrow/next-icon.png"
+                alt="矢印"
+                width={24}
+                height={24}
+              />
+            </div>
+          </div>
+        </button>
       </div>
 
       {/* メモ */}

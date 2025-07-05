@@ -28,7 +28,7 @@ const FormField = ({
   return (
     <div className="flex flex-col gap-3">
       {/* タイトル */}
-      <div className="flex gap-3 items-center">
+      <div className="flex items-center gap-3">
         <div>
           {icon && <Image src={icon} alt={label} width={20} height={20} />}
         </div>
@@ -41,7 +41,7 @@ const FormField = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className="min-h-24 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-6 py-2 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
+          className="min-h-26 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
         />
       ) : (
         <input
@@ -49,7 +49,8 @@ const FormField = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className="h-14 w-full rounded-2xl border border-[#E0E0E0] bg-white px-6 py-2 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
+          style={{ height: "var(--input-height)" }}
+          className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
         />
       )}
     </div>

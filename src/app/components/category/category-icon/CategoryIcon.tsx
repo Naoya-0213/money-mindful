@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import React from "react";
-import { categoryIconMap } from "../../../../const/category-icon/categoryIconMap";
+import { CATEGORY_ICON_LIST } from "../../../../const/category-icon/categoryIconMap";
 
 type CategoryIconProps = {
-  name: keyof typeof categoryIconMap;
+  name: keyof typeof CATEGORY_ICON_LIST;
 };
 
 const CategoryIcon = ({ name }: CategoryIconProps) => {
-  const icon = categoryIconMap[name];
+  const icon = CATEGORY_ICON_LIST[name];
 
   return (
     <div

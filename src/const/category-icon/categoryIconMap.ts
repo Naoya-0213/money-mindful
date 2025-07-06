@@ -1,6 +1,6 @@
 // カテゴリーアイコン一括管理用
 
-export const categoryIconMap = {
+export const CATEGORY_ICON_LIST = {
   // 飲み物アイコン
   drink: { src: "/icon/categories/icon/drink.png", alt: "飲み物アイコン" },
 
@@ -26,4 +26,4 @@ export const categoryIconMap = {
   clothing: { src: "/icon/categories/icon/clothing.png", alt: "服アイコン" },
 } as const;
 
-export type CategoryType = keyof typeof categoryIconMap;
+export type CategoryType = keyof typeof CATEGORY_ICON_LIST;

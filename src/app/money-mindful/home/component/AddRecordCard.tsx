@@ -31,7 +31,7 @@ const AddRecordCard = () => {
           <div className="flex gap-5">
             <CategoryIcon name="clothing" />
             <CategoryIcon name="beer" />
-            <CategoryIcon name="train" />
+            <CategoryIcon name="transportation" />
             <CategoryIcon name="food" />
           </div>
         </div>

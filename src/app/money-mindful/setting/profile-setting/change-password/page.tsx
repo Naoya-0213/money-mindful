@@ -17,19 +17,19 @@ const ChangeImagePage = () => {
           icon="/icon/setting/profile/social.png"
           label="パスワード変更"
         >
-          {/* 現在の名前 */}
+          {/* 現在のパスワード */}
           <DisplayField
-            label="現在のEmail"
-            icon="/icon/setting/profile/email.png"
+            label="現在のPassword"
+            icon="/icon/setting/profile/password.png"
           >
-            Naoya
+            ⚫ ⚫ ⚫ ⚫︎ ⚫ ⚫ ⚫ ⚫ ⚫
           </DisplayField>
 
-          {/* 新しい名前 */}
+          {/* 新しいパスワード */}
           <FormField
-            label="新しいEmail"
-            icon="/icon/setting/profile/email(2).png"
-            placeholder="新しいメールアドレスを入力"
+            label="新しいPassword"
+            icon="/icon/setting/profile/password(2).png"
+            placeholder="新しいパスワードを入力"
           />
 
           {/* 注意点 */}
@@ -39,11 +39,9 @@ const ChangeImagePage = () => {
             </p>
 
             <div className="flex flex-col items-center">
+              <p className="font-semibold text-[#777777]">登録アドレスに届く</p>
               <p className="font-semibold text-[#777777]">
-                新旧両方のアドレスに届く
-              </p>
-              <p className="font-semibold text-[#777777]">
-                確認メールからリンクを開いて
+                メールのリンクを開いて
               </p>
               <p className="font-semibold text-[#777777]">
                 変更を完了してください。

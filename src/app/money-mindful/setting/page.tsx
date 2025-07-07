@@ -13,14 +13,18 @@ export default function SettingPage() {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         {/* プロフィール */}
         <SectionCard
-          title="プロフィール設定"
+          label="プロフィール設定"
           icon="/icon/setting/profile/social.png"
-          label="プロフィール設定icon"
         >
           <div className="flex flex-col items-center gap-5">
             {/* プロフィール画像 */}
             <div>
-              <Image src="/icon/setting/profile/profile-user.png" alt="プロフィール画像" width={80} height={80} />
+              <Image
+                src="/icon/setting/profile/profile-user.png"
+                alt="プロフィール画像"
+                width={80}
+                height={80}
+              />
             </div>
 
             {/* ユーザー名表示 */}

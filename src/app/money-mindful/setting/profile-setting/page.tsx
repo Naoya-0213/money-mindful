@@ -1,5 +1,6 @@
 // プロフィール編集用
 
+import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";
@@ -84,17 +85,37 @@ const ProfileSetting = () => {
                 ⚫ ⚫ ⚫ ⚫︎ ⚫ ⚫ ⚫ ⚫ ⚫
               </DisplayField>
 
-              {/* Email変更リンク */}
-              <p className="font-semibold text-[#777777]">
-                パスワードの変更は
-                <Link
-                  href="/money-mindful/setting/profile-setting/change-password"
-                  className="text-[#666] underline"
-                >
-                  こちら
-                </Link>
-              </p>
+              <div>
+                {/* Password変更リンク */}
+                <p className="font-semibold text-[#777777]">
+                  パスワードの変更は
+                  <Link
+                    href="/money-mindful/setting/profile-setting/change-password"
+                    className="text-[#666] underline"
+                  >
+                    こちら
+                  </Link>
+                </p>
+                {/* Passwordリセットリンク */}
+                <p className="font-semibold text-[#777777]">
+                  パスワードをお忘れの方は
+                  <Link
+                    href="/money-mindful/setting/profile-setting/change-password"
+                    className="text-[#666] underline"
+                  >
+                    こちら
+                  </Link>
+                </p>
+              </div>
             </div>
+
+            {/* 閉じるボタン */}
+            <Link
+              href="/money-mindful/setting"
+              className="flex w-full justify-center"
+            >
+              <Button>閉じる</Button>
+            </Link>
           </div>
         </SectionCard>
       </div>

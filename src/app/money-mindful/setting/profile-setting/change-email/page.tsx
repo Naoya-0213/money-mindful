@@ -17,7 +17,7 @@ const ChangeImagePage = () => {
           icon="/icon/setting/profile/social.png"
           label="メールアドレス変更"
         >
-          {/* 現在の名前 */}
+          {/* 現在のメールアドレス */}
           <DisplayField
             label="現在のEmail"
             icon="/icon/setting/profile/email.png"
@@ -25,7 +25,7 @@ const ChangeImagePage = () => {
             Naoya
           </DisplayField>
 
-          {/* 新しい名前 */}
+          {/* 新しいメールアドレス */}
           <FormField
             label="新しいEmail"
             icon="/icon/setting/profile/email(2).png"

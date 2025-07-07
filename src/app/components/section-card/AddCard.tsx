@@ -2,7 +2,7 @@
 
 import Button from "@/app/components/button/Button";
 import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
-import FormField from "@/app/components/form/FormField";
+import FormField from "@/app/components/field/FormField";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState, type ReactNode } from "react";

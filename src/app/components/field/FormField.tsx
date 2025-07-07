@@ -1,4 +1,4 @@
-// フォーム用
+// 入力input（textarea）用
 
 import Image from "next/image";
 import React from "react";
@@ -31,7 +31,7 @@ const FormField = ({
       {/* タイトル */}
       <div className="flex items-center gap-3">
         <div>
-          {icon && <Image src={icon} alt={label} width={20} height={20} />}
+          {icon && <Image src={icon} alt="アイコン" width={20} height={20} />}
         </div>
         <label className="text-lg font-bold text-[#795549]">{label}</label>
       </div>

@@ -1,5 +1,6 @@
 // プロフィール編集用
 
+import DisplayField from "@/app/components/field/DisplayFeild";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,11 +26,46 @@ const ProfileSetting = () => {
               />
 
               {/* 画像変更リンク */}
-
               <p className="font-semibold text-[#777777]">
                 画像の変更は
                 <Link
                   href="/money-mindful/setting/profile-setting/change-image"
+                  className="text-[#666] underline"
+                >
+                  こちら
+                </Link>
+              </p>
+            </div>
+
+            {/* ユーザー名 */}
+            <div className="flex flex-col gap-3">
+              <DisplayField label="名前" icon="/icon/setting/profile/name.png">
+                Naoya
+              </DisplayField>
+
+              {/* ユーザー名変更リンク */}
+              <p className="font-semibold text-[#777777]">
+                名前の変更は
+                <Link
+                  href="/money-mindful/setting/profile-setting/change-image"
+                  className="text-[#666] underline"
+                >
+                  こちら
+                </Link>
+              </p>
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-col gap-3">
+              <DisplayField label="Email" icon="/icon/setting/profile/email.png">
+                naoya.work0213@gmail.com
+              </DisplayField>
+
+              {/* Email変更リンク */}
+              <p className="font-semibold text-[#777777]">
+                メールアドレスの変更は
+                <Link
+                  href="/money-mindful/setting/profile-setting/change-email"
                   className="text-[#666] underline"
                 >
                   こちら

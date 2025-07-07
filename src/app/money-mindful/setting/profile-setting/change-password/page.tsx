@@ -34,17 +34,12 @@ const ChangeImagePage = () => {
 
           {/* 注意点 */}
           <div className="flex flex-col items-center gap-5">
-            <p className="font-semibold text-[#777777]">
-              変更には確認が必要です！
-            </p>
-
             <div className="flex flex-col items-center">
-              <p className="font-semibold text-[#777777]">登録アドレスに届く</p>
               <p className="font-semibold text-[#777777]">
-                メールのリンクを開いて
+                ログイン中であれば、
               </p>
               <p className="font-semibold text-[#777777]">
-                変更を完了してください。
+                いつでも変更可能です！
               </p>
             </div>
           </div>

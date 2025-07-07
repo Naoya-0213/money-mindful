@@ -22,7 +22,7 @@ const ChangeImagePage = () => {
             label="現在のEmail"
             icon="/icon/setting/profile/email.png"
           >
-            Naoya
+            naoya.work0213@gmail.com
           </DisplayField>
 
           {/* 新しいメールアドレス */}

@@ -6,6 +6,7 @@ import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -15,24 +16,39 @@ const ChangeImagePage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
           icon="/icon/setting/profile/social.png"
-          label="プロフィール設定"
+          label="ユーザー画像変更"
         >
-          {/* 現在の名前 */}
-          <DisplayField
-            label="現在の名前"
-            icon="/icon/setting/profile/name.png"
-          >
-            Naoya
-          </DisplayField>
+          <div className="flex flex-col items-center gap-5">
+            {/* プロフィール画像 */}
+            <div>
+              <Image
+                src="/icon/setting/profile/profile-user.png"
+                alt="プロフィール画像"
+                width={100}
+                height={100}
+              />
+            </div>
 
-          {/* 新しい名前 */}
-          <FormField
-            label="新しい名前"
-            icon="/icon/setting/profile/name(2).png"
-            placeholder="新しい名前を入力"
-          />
+            {/* 注意点 */}
+            <div className="flex flex-col items-center">
+              <p className="font-semibold text-[#777777]">
+                お好きな画像に変更できます！
+              </p>
+            </div>
 
-          <div className="mt-5 flex flex-col gap-5">
+            {/* 画像を選択ボタン */}
+            <Link
+              href="/money-mindful/setting/profile-setting/change-image"
+              className="flex w-full justify-center"
+            >
+              <Button
+                onClick={() => alert("画像を選択！")}
+                className="bg-[#D7CDBE] !text-[#795549]"
+              >
+                画像を選択
+              </Button>
+            </Link>
+
             {/* 保存ボタン */}
             <Link
               href="/money-mindful/setting/profile-setting"
@@ -40,6 +56,7 @@ const ChangeImagePage = () => {
             >
               <Button onClick={() => alert("supabaseへ保存！")}>保存</Button>
             </Link>
+
             {/* 戻るボタン */}
             <Link
               href="/money-mindful/setting/profile-setting"

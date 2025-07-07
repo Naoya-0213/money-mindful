@@ -85,28 +85,16 @@ const ProfileSetting = () => {
                 ⚫ ⚫ ⚫ ⚫︎ ⚫ ⚫ ⚫ ⚫ ⚫
               </DisplayField>
 
-              <div>
-                {/* Password変更リンク */}
-                <p className="font-semibold text-[#777777]">
-                  パスワードの変更は
-                  <Link
-                    href="/money-mindful/setting/profile-setting/change-password"
-                    className="text-[#666] underline"
-                  >
-                    こちら
-                  </Link>
-                </p>
-                {/* Passwordリセットリンク */}
-                <p className="font-semibold text-[#777777]">
-                  パスワードをお忘れの方は
-                  <Link
-                    href="/money-mindful/setting/profile-setting/change-password"
-                    className="text-[#666] underline"
-                  >
-                    こちら
-                  </Link>
-                </p>
-              </div>
+              {/* Password変更リンク */}
+              <p className="font-semibold text-[#777777]">
+                パスワードの変更は
+                <Link
+                  href="/money-mindful/setting/profile-setting/change-password"
+                  className="text-[#666] underline"
+                >
+                  こちら
+                </Link>
+              </p>
             </div>
 
             {/* 閉じるボタン */}

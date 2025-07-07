@@ -11,9 +11,8 @@ const ProfileSetting = () => {
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
-          title="プロフィール設定"
           icon="/icon/setting/profile/social.png"
-          label="目標設定icon"
+          label="プロフィール設定"
         >
           <div className="flex flex-col gap-5">
             {/* プロフィール画像 */}
@@ -57,7 +56,10 @@ const ProfileSetting = () => {
 
             {/* Email */}
             <div className="flex flex-col gap-3">
-              <DisplayField label="Email" icon="/icon/setting/profile/email.png">
+              <DisplayField
+                label="Email"
+                icon="/icon/setting/profile/email.png"
+              >
                 naoya.work0213@gmail.com
               </DisplayField>
 
@@ -66,6 +68,27 @@ const ProfileSetting = () => {
                 メールアドレスの変更は
                 <Link
                   href="/money-mindful/setting/profile-setting/change-email"
+                  className="text-[#666] underline"
+                >
+                  こちら
+                </Link>
+              </p>
+            </div>
+
+            {/* Password */}
+            <div className="flex flex-col gap-3">
+              <DisplayField
+                label="Password"
+                icon="/icon/setting/profile/password.png"
+              >
+                ⚫ ⚫ ⚫ ⚫︎ ⚫ ⚫ ⚫ ⚫ ⚫
+              </DisplayField>
+
+              {/* Email変更リンク */}
+              <p className="font-semibold text-[#777777]">
+                パスワードの変更は
+                <Link
+                  href="/money-mindful/setting/profile-setting/change-password"
                   className="text-[#666] underline"
                 >
                   こちら

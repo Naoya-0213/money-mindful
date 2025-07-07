@@ -41,11 +41,7 @@ const mockLogs: DailyLogs[] = [
 const RecentLogs = () => {
   return (
     <div className="w-full">
-      <SectionCard
-        icon="/icon/home/folder.png"
-        label="履歴icon"
-        title="直近の登録履歴"
-      >
+      <SectionCard label="直近の登録履歴" icon="/icon/home/folder.png">
         {/* 仮データを map で表示 */}
         {mockLogs.map((daily, index) => (
           <div key={`${daily.date}-${index}`} className="flex flex-col gap-3">

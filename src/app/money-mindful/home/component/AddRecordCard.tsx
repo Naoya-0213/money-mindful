@@ -9,11 +9,7 @@ import React from "react";
 const AddRecordCard = () => {
   return (
     <div className="w-full">
-      <SectionCard
-        title="我慢を記録しよう！"
-        icon="/icon/home/pencil.png"
-        label="我慢記録icon"
-      >
+      <SectionCard icon="/icon/home/pencil.png" label="我慢を記録しよう！">
         {/* 説明文 */}
         <div className="flex flex-col items-center justify-center font-semibold text-[#777777]">
           <p>コンビニのコーヒーや外食.....</p>

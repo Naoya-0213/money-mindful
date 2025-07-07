@@ -14,9 +14,8 @@ const ChangeImagePage = () => {
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
-          title="プロフィール設定"
           icon="/icon/setting/profile/social.png"
-          label="目標設定icon"
+          label="ユーザー名変更"
         >
           {/* 現在の名前 */}
           <DisplayField
@@ -33,7 +32,7 @@ const ChangeImagePage = () => {
             placeholder="新しい名前を入力"
           />
 
-          <div className="flex flex-col gap-5 mt-5">
+          <div className="mt-5 flex flex-col gap-5">
             {/* 保存ボタン */}
             <Link
               href="/money-mindful/setting/profile-setting"

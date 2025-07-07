@@ -8,9 +8,8 @@ const GoalCard = () => {
     <div className="w-full">
       {/* セクション */}
       <SectionCard
-        title="現在の目標"
         icon="/icon/home/flag.png"
-        label="目標設定icon"
+        label="現在の目標"
       >
         {/* データ取得 */}
         <div className="flex flex-col gap-3">

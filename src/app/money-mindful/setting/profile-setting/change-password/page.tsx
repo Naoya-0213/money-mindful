@@ -1,4 +1,4 @@
-// プロフィール設定/Email変更用
+// プロフィール設定/Password変更用
 
 "use client";
 
@@ -15,7 +15,7 @@ const ChangeImagePage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
           icon="/icon/setting/profile/social.png"
-          label="メールアドレス変更"
+          label="パスワード変更"
         >
           {/* 現在の名前 */}
           <DisplayField

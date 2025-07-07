@@ -8,9 +8,8 @@ const AddCategoryPage = () => {
   return (
     <div className="flex gap-5 p-5">
       <SectionCard
-        title="カテゴリー選択"
+        label="カテゴリー選択"
         icon="/icon/categories/categories.png"
-        label="カテゴリーicon"
       >
         <div className="flex flex-col gap-3">
           <CategoryItem name="food" />

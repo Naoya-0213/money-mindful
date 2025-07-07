@@ -8,11 +8,7 @@ const GoalStatusCard = () => {
   return (
     <div className="w-full">
       {/* 進捗 */}
-      <SectionCard
-        title="目標達成まで......"
-        icon="/icon/home/paper-plane.png"
-        label="進捗icon"
-      >
+      <SectionCard icon="/icon/home/paper-plane.png" label="目標達成まで">
         <div className="flex flex-col gap-3">
           {/* 進捗グラフ */}
           <div className="flex w-full items-center justify-center">

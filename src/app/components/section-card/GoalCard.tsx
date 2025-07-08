@@ -45,7 +45,7 @@ const GoalCard = () => {
         </div>
 
         {/* 目標編集ボタン */}
-        <Link href="/money-mindful/add" className="flex w-full justify-center">
+        <Link href="/money-mindful/setting/goal-setting" className="flex w-full justify-center">
           <Button>目標を編集する</Button>
         </Link>
       </SectionCard>

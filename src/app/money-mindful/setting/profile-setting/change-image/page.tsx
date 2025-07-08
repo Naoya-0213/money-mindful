@@ -3,8 +3,6 @@
 "use client";
 
 import Button from "@/app/components/button/Button";
-import DisplayField from "@/app/components/field/DisplayFeild";
-import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,5 +1,7 @@
 // 設定セクション
 
+"use client"
+
 import Button from "@/app/components/button/Button";
 import GoalCard from "@/app/components/section-card/GoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
@@ -44,8 +46,30 @@ export default function SettingPage() {
             </Link>
           </div>
         </SectionCard>
-        {/* 現在の目標 */}
+
+        {/* 目標設定 */}
         <GoalCard />
+
+        {/* アカウント管理 */}
+        <SectionCard
+          icon="/icon/setting/account/enter.png"
+          label="アカウント管理"
+        >
+          <div className="flex flex-col items-center font-semibold text-[#777777]">
+            <p>アカウントに関する操作を行えます。</p>
+            <p>必要に応じてご利用ください。</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-5">
+            <Button onClick={() => alert("ログアウト！")}>ログアウト</Button>
+            <Button onClick={() => alert("アカウント削除！")}>
+              アカウントを削除する
+            </Button>
+            <Button onClick={() => alert("データリセット！")}>
+              データリセット
+            </Button>
+          </div>
+        </SectionCard>
       </div>
     </div>
   );

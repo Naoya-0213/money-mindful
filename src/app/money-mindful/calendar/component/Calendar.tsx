@@ -12,11 +12,6 @@ const Calendar = () => {
         height={400}
         style={{ width: "100%", height: "auto" }}
       />
-
-      {/* 選択日の記録表示 */}
-      <div className="w-full">
-        <h2 className="text-2xl font-bold">6月15日（水）</h2>
-      </div>
     </div>
   );
 };

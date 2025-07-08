@@ -1,5 +1,6 @@
 // カレンダーでの記録表示セクション
 
+import RecentLogs from "@/app/components/log/RecentLogs";
 import Calendar from "@/app/money-mindful/calendar/component/Calendar";
 import React from "react";
 

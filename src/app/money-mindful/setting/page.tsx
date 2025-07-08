@@ -39,7 +39,7 @@ export default function SettingPage() {
 
             {/* プロフィール編集ボタン */}
             <Link
-              href="/money-mindful/setting/profile-setting"
+              href="/money-mindful/setting/profile"
               className="flex w-full justify-center"
             >
               <Button>プロフィール編集</Button>

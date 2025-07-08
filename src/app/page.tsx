@@ -1,10 +1,27 @@
 // PageTop
 // "use server"
 
+import { Database } from "@/types/database.types";
+import { createClient } from "@/utils/supabase/server";
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import BeforeLogin from "./components/before-login/BeforeLogin";
 
-export default function PageTop() {
-  // login機能は後ほど
+export default async function PageTop() {
+  const supabase = await createClient<Database>();
 
-  redirect("/money-mindful/home");
+  // セッションを取得
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session) {
+    redirect("/money-mindful/home");
+  }
+
+  return (
+    <div>
+      <BeforeLogin />
+    </div>
+  );
 }

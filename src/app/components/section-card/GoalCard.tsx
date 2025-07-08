@@ -7,10 +7,7 @@ const GoalCard = () => {
   return (
     <div className="w-full">
       {/* セクション */}
-      <SectionCard
-        icon="/icon/home/flag.png"
-        label="現在の目標"
-      >
+      <SectionCard icon="/icon/home/flag.png" label="現在の目標">
         {/* データ取得 */}
         <div className="flex flex-col gap-3">
           {/* 目的 */}
@@ -44,8 +41,18 @@ const GoalCard = () => {
           </div>
         </div>
 
+        {/* 説明文 */}
+        <div className="flex flex-col items-center justify-center font-semibold text-[#777777]">
+          <p>「やっぱり変更したい…！」</p>
+          <p>そんなときは</p>
+          <p>こちらから編集できます！</p>
+        </div>
+
         {/* 目標編集ボタン */}
-        <Link href="/money-mindful/setting/goal-setting" className="flex w-full justify-center">
+        <Link
+          href="/money-mindful/setting/goal-setting"
+          className="flex w-full justify-center"
+        >
           <Button>目標を編集する</Button>
         </Link>
       </SectionCard>

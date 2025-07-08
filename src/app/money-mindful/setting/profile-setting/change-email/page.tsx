@@ -58,6 +58,7 @@ const ChangeImagePage = () => {
           >
             <Button onClick={() => alert("supabaseへ保存！")}>保存</Button>
           </Link>
+          
           {/* 戻るボタン */}
           <Link
             href="/money-mindful/setting/profile-setting"

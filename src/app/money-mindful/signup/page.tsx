@@ -38,7 +38,7 @@ const SignUpPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3 pb-5">
             {/* 新規登録ボタン */}
             <Button onClick={() => alert("supabaseへ送信！")}>新規登録</Button>
 

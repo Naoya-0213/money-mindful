@@ -35,7 +35,7 @@ const BeforeLogin = () => {
             </div>
 
             {/* 説明文 */}
-            <div className="flex flex-col items-center gap-5 font-semibold text-[#777777] py-3">
+            <div className="flex flex-col items-center gap-5 py-3 font-semibold text-[#777777]">
               <div className="flex flex-col items-center">
                 <p>本当は買いたかったけど</p>
                 <p>今日は我慢した。</p>
@@ -57,21 +57,22 @@ const BeforeLogin = () => {
               </div>
             </div>
 
-            {/* ログインボタン */}
-            <Link
-              href="/money-mindful/login"
-              className="flex w-full justify-center"
-            >
-              <Button>ログイン</Button>
-            </Link>
-
-            {/* 新規登録ボタン */}
-            <Link
-              href="/money-mindful/signup"
-              className="flex w-full justify-center"
-            >
-              <Button>アカウント作成</Button>
-            </Link>
+            <div className="flex flex-col w-full items-center gap-5 pb-5">
+              {/* ログインボタン */}
+              <Link
+                href="/money-mindful/login"
+                className="flex w-full justify-center"
+              >
+                <Button>ログイン</Button>
+              </Link>
+              {/* 新規登録ボタン */}
+              <Link
+                href="/money-mindful/signup"
+                className="flex w-full justify-center"
+              >
+                <Button>アカウント作成</Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

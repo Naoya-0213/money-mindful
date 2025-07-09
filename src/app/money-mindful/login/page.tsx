@@ -32,7 +32,7 @@ const BeforeLoginPage = () => {
               <p className="font-semibold text-[#777777]">
                 パスワードを忘れた方は
                 <Link
-                  href="/money-mindful/signup"
+                  href="/money-mindful/login/password-reset"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -41,7 +41,7 @@ const BeforeLoginPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3 pt-5">
+          <div className="flex flex-col items-center gap-3 pt-5 pb-5">
             {/* ログインボタン */}
             <Button onClick={() => alert("supabaseへ送信！")}>ログイン</Button>
 

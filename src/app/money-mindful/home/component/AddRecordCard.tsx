@@ -11,7 +11,7 @@ const AddRecordCard = () => {
     <div className="w-full">
       <SectionCard icon="/icon/home/pencil.png" label="我慢を記録しよう！">
         {/* 説明文 */}
-        <div className="flex flex-col items-center justify-center font-semibold text-[#777777]">
+        <div className="flex flex-col items-center justify-center leading-relaxed font-semibold text-[#777777]">
           <p>コンビニのコーヒーや外食.....</p>
           <p>ちょっとした我慢を記録しよう。</p>
         </div>

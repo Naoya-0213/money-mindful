@@ -3,7 +3,6 @@
 
 import { Database } from "@/types/database.types";
 import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import BeforeLogin from "./components/before-login/BeforeLogin";
 

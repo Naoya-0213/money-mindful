@@ -42,7 +42,7 @@ const GoalCard = () => {
         </div>
 
         {/* 説明文 */}
-        <div className="flex flex-col items-center justify-center font-semibold text-[#777777]">
+        <div className="flex flex-col items-center justify-center leading-relaxed font-semibold text-[#777777]">
           <p>「やっぱり変更したい…！」</p>
           <p>そんなときは</p>
           <p>こちらから編集できます！</p>

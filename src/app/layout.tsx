@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import ClientUserSetter from "@/lib/ClientUserSetter";
+import { SupabaseLisner } from "@/lib/SupabaseListener";
 
 // google font(1)
 const geistSans = Geist({
@@ -27,17 +29,20 @@ export const metadata: Metadata = {
 };
 
 // ページ全体レイアウト
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { session, profile } = await SupabaseLisner();
+
   return (
     <html lang="jp">
       <body
         className={`${inter.className} flex min-h-screen flex-col items-center bg-white text-[#795549]`}
         style={{ minHeight: "100dvh" }}
       >
+        <ClientUserSetter session={session} profile={profile} />
         {/* ヘッダー */}
         <Header />
 

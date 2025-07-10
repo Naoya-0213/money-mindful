@@ -31,7 +31,7 @@ const BeforeLoginPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-col items-center gap-5 pb-5">
             {/* 送信ボタン */}
             <Button onClick={() => alert("supabaseへ送信！")}>送信</Button>
 

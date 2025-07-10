@@ -17,7 +17,7 @@
 - **フロントエンド**：Next.js (App Router) + TypeScript + Tailwind CSS
 - **バックエンド / DB**：Supabase（Auth & Database）
 - **グラフ可視化**：Chart.js
-- **状態管理**：Zustand
+- **状態管理**：Zustand(https://zustand-demo.pmnd.rs/)
 - **UI 設計**：Figma
 
 ---

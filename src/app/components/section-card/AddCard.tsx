@@ -88,7 +88,7 @@ const AddCard = ({ children, buttonTitle }: AddCardProps) => {
       />
 
       {/* 追加or保存ボタン */}
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-5">
         <Button onClick={() => alert("supabaseへ送信！")}>{buttonTitle}</Button>
       </div>
 

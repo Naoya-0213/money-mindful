@@ -14,7 +14,7 @@ const DetailLogPage = () => {
         {/* 我慢記録 */}
         <AddCard buttonTitle="保存">
           {/* 戻るボタン */}
-          <div className="flex w-full flex-col items-center gap-5">
+          <div className="flex w-full flex-col items-center gap-5 pb-5">
             <div className="flex w-full justify-center">
               <Button href="/money-mindful/home">戻る</Button>
             </div>

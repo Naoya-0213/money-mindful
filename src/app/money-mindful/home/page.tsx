@@ -5,7 +5,6 @@ import GoalCard from "@/app/components/section-card/GoalCard";
 import GoalStatusCard from "./component/GoalStatusCard";
 import AddRecordCard from "./component/AddRecordCard";
 import RecentLogs from "@/app/components/log/RecentLogs";
-import { notFound } from "next/navigation";
 
 export default function HomePage() {
   return (

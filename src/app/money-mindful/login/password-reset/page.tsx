@@ -67,6 +67,7 @@ const PasswordResetPage = () => {
             )}
           </div>
 
+          {/* 備考 */}
           <div className="flex flex-col items-center gap-5 leading-relaxed font-semibold text-[#777777]">
             <div className="flex flex-col items-center">
               <p>入力されたメールアドレスに</p>

@@ -57,7 +57,7 @@ const BeforeLogin = () => {
               </div>
             </div>
 
-            <div className="flex flex-col w-full items-center gap-5 pb-5">
+            <div className="flex w-full flex-col items-center gap-5 pb-5">
               {/* ログインボタン */}
               <Link
                 href="/money-mindful/login"

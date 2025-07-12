@@ -74,7 +74,7 @@ const BeforeLoginPage = () => {
             {/* パスワード入力欄 */}
             <FormField
               label="Password"
-              placeholder="パスワードを入力"
+              placeholder="6文字以上でパスワードを入力"
               icon="/icon/login/lock.png"
               {...register("password")}
             />

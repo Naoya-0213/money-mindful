@@ -1,6 +1,8 @@
+// 新規登録用
+
 "use client";
 
-import Button from "@/app/components/button/Button";
+
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import { createClient } from "@/utils/supabase/clients";
@@ -10,6 +12,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import Button from '@/app/components/button/Button';
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;

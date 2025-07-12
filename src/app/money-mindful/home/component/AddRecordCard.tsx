@@ -33,9 +33,9 @@ const AddRecordCard = () => {
         </div>
 
         {/* 追加へ移動ボタン */}
-        <Link href="/money-mindful/add" className="flex w-full justify-center">
-          <Button>我慢を記録する</Button>
-        </Link>
+        <div className="flex w-full justify-center">
+          <Button href="/money-mindful/add">我慢を記録する</Button>
+        </div>
       </SectionCard>
     </div>
   );

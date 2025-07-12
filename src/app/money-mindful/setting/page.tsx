@@ -38,12 +38,11 @@ export default function SettingPage() {
             </div>
 
             {/* プロフィール編集ボタン */}
-            <Link
-              href="/money-mindful/setting/profile"
-              className="flex w-full justify-center"
-            >
-              <Button>プロフィール編集</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/setting/profile">
+                プロフィール編集
+              </Button>
+            </div>
           </div>
         </SectionCard>
 

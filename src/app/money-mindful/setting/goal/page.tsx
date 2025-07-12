@@ -50,19 +50,18 @@ const GoalSetting = () => {
 
           <div className="flex flex-col gap-5 pt-5">
             {/* 保存ボタン */}
-            <Link
-              href="/money-mindful/setting"
-              className="flex w-full justify-center"
-            >
-              <Button onClick={() => alert("supabaseへ保存！")}>保存</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button
+                href="/money-mindful/setting"
+                onClick={() => alert("supabaseへ保存！")}
+              >
+                保存
+              </Button>
+            </div>
             {/* 戻るボタン */}
-            <Link
-              href="/money-mindful/setting"
-              className="flex w-full justify-center"
-            >
-              <Button>戻る</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/setting">戻る</Button>
+            </div>
             {/* 削除ボタン */}
             <div className="flex w-full justify-center">
               <Button

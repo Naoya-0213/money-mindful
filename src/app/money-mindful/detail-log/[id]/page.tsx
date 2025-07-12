@@ -5,7 +5,6 @@
 import Button from "@/app/components/button/Button";
 import AddCard from "@/app/components/section-card/AddCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Link from "next/link";
 import React from "react";
 
 const DetailLogPage = () => {
@@ -16,12 +15,9 @@ const DetailLogPage = () => {
         <AddCard buttonTitle="保存">
           {/* 戻るボタン */}
           <div className="flex w-full flex-col items-center gap-5">
-            <Link
-              href="/money-mindful/home"
-              className="flex w-full justify-center"
-            >
-              <Button>戻る</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/home">戻る</Button>
+            </div>
 
             {/* 削除ボタン */}
             <Button

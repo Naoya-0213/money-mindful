@@ -35,33 +35,32 @@ const ChangeImagePage = () => {
             </div>
 
             {/* 画像を選択ボタン */}
-            <Link
-              href="/money-mindful/setting/profile-setting/change-image"
-              className="flex w-full justify-center"
-            >
+            <div className="flex w-full justify-center">
               <Button
+                href="/money-mindful/setting/profile-setting/change-image"
                 onClick={() => alert("画像を選択！")}
                 className="bg-[#D7CDBE] !text-[#795549]"
               >
                 画像を選択
               </Button>
-            </Link>
+            </div>
 
             {/* 保存ボタン */}
-            <Link
-              href="/money-mindful/setting/profile-setting"
-              className="flex w-full justify-center"
-            >
-              <Button onClick={() => alert("supabaseへ保存！")}>保存</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button
+                href="/money-mindful/setting/profile-setting"
+                onClick={() => alert("supabaseへ保存！")}
+              >
+                保存
+              </Button>
+            </div>
 
             {/* 戻るボタン */}
-            <Link
-              href="/money-mindful/setting/profile-setting"
-              className="flex w-full justify-center"
-            >
-              <Button>戻る</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/setting/profile-setting">
+                戻る
+              </Button>
+            </div>
           </div>
         </SectionCard>
       </div>

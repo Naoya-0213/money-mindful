@@ -98,12 +98,9 @@ const ProfileSetting = () => {
             </div>
 
             {/* 閉じるボタン */}
-            <Link
-              href="/money-mindful/setting"
-              className="flex w-full justify-center"
-            >
-              <Button>閉じる</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/setting">閉じる</Button>
+            </div>
           </div>
         </SectionCard>
       </div>

@@ -45,19 +45,18 @@ const ChangeImagePage = () => {
           </div>
 
           {/* 保存ボタン */}
-          <Link
-            href="/money-mindful/setting/profile-setting"
-            className="flex w-full justify-center"
-          >
-            <Button onClick={() => alert("supabaseへ保存！")}>保存</Button>
-          </Link>
+          <div className="flex w-full justify-center">
+            <Button
+              href="/money-mindful/setting/profile-setting"
+              onClick={() => alert("supabaseへ保存！")}
+            >
+              保存
+            </Button>
+          </div>
           {/* 戻るボタン */}
-          <Link
-            href="/money-mindful/setting/profile-setting"
-            className="flex w-full justify-center"
-          >
-            <Button>戻る</Button>
-          </Link>
+          <div className="flex w-full justify-center">
+            <Button href="/money-mindful/setting/profile-setting">戻る</Button>
+          </div>
         </SectionCard>
       </div>
     </div>

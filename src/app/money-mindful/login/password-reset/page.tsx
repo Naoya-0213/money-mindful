@@ -85,12 +85,9 @@ const PasswordResetForEmailPage = () => {
             <Button type="submit">送信</Button>
 
             {/* 戻るボタン */}
-            <Link
-              href="/money-mindful/login"
-              className="flex w-full justify-center"
-            >
-              <Button>戻る</Button>
-            </Link>
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/login">戻る</Button>
+            </div>
           </div>
         </SectionCard>
       </form>

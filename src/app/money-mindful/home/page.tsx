@@ -5,6 +5,7 @@ import GoalCard from "@/app/components/section-card/GoalCard";
 import GoalStatusCard from "./component/GoalStatusCard";
 import AddRecordCard from "./component/AddRecordCard";
 import RecentLogs from "@/app/components/log/RecentLogs";
+import { notFound } from "next/navigation";
 
 export default function HomePage() {
   return (
@@ -12,13 +13,10 @@ export default function HomePage() {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         {/* タイトル */}
         <GoalCard />
-
         {/* 進捗 */}
         <GoalStatusCard />
-
         {/* 我慢記録 */}
         <AddRecordCard />
-
         {/* 履歴表示 */}
         <div className="w-full">
           <RecentLogs />

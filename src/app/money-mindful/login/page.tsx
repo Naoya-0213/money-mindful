@@ -26,10 +26,10 @@ const schema = z.object({
 const BeforeLoginPage = () => {
   const router = useRouter();
 
-  // 送信ボタンクリック動作
+  // submitボタンクリック動作
   const onSubmit = (data: Schema) => {
     console.log("送信データ:", data);
-    // supabase.auth.signInWithPassword などへ接続予定？
+    // supabase.auth.signInWithPassword などへ接続予定
     // router.push("/home") などで遷移もOK
   };
 

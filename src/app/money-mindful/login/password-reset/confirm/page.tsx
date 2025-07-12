@@ -23,7 +23,7 @@ const schema = z.object({
 });
 
 // ログインページ
-const BeforeLoginPage = () => {
+const NewPasswordPage = () => {
   const router = useRouter();
 
   // submitボタンクリック動作
@@ -89,4 +89,4 @@ const BeforeLoginPage = () => {
   );
 };
 
-export default BeforeLoginPage;
+export default NewPasswordPage;

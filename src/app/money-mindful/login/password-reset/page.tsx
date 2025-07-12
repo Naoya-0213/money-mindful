@@ -21,7 +21,7 @@ const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません" }),
 });
 
-const PasswordResetPage = () => {
+const PasswordResetForEmailPage = () => {
   const router = useRouter();
 
   // submitボタンクリック動作
@@ -98,4 +98,4 @@ const PasswordResetPage = () => {
   );
 };
 
-export default PasswordResetPage;
+export default PasswordResetForEmailPage;

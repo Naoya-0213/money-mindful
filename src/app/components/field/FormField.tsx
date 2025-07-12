@@ -8,7 +8,7 @@ type FormFieldProps = {
   placeholder?: string;
 
   // タイプの選択
-  type?: "text" | "number" | "date";
+  type?: "text" | "number" | "date" | "email";
 
   // テキストエリアの場合に指定
   isTextarea?: boolean;
@@ -30,16 +30,7 @@ const FormField = forwardRef<
   FormFieldProps
 >(
   (
-    {
-      label,
-      placeholder,
-      type = "text",
-      isTextarea = false,
-      icon,
-      value,
-      onChange,
-      onBlur,
-    },
+    { label, placeholder, type = "text", isTextarea = false, icon, ...rest },
     ref,
   ) => {
     return (
@@ -56,9 +47,7 @@ const FormField = forwardRef<
         {isTextarea ? (
           <textarea
             placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
+            {...rest}
             className="min-h-26 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
             ref={ref as React.Ref<HTMLTextAreaElement>}
           />
@@ -66,9 +55,7 @@ const FormField = forwardRef<
           <input
             type={type}
             placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
+            {...rest}
             style={{ height: "var(--input-height)" }}
             className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
             ref={ref as React.Ref<HTMLInputElement>}

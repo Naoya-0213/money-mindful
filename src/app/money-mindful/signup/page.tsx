@@ -2,7 +2,6 @@
 
 "use client";
 
-
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import { createClient } from "@/utils/supabase/clients";
@@ -12,25 +11,71 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Button from '@/app/components/button/Button';
+import Button from "@/app/components/button/Button";
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
 // zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
-  email: z.string().email({ message: "メールアドレスの形式ではありません" }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "メールアドレスの形式ではありません" }),
   password: z.string().min(6, { message: "6文字以上入力する必要があります" }),
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "1文字以上入力する必要があります" }),
 });
 
 const SignUpPage = () => {
   const router = useRouter();
 
   // submitボタンクリック動作
-  const onSubmit = (data: Schema) => {
-    console.log("送信データ:", data);
-    // supabase.auth.signInWithPassword などへ接続予定
-    // router.push("/home") などで遷移もOK
+  const onSubmit = async (data: Schema) => {
+    const { name, email, password } = data;
+
+    // ① サインアップ
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp(
+      {
+        email,
+        password,
+      },
+    );
+
+    if (signUpError) {
+      console.error("登録エラー", signUpError.message);
+      alert("登録に失敗しました。再度お試しください。");
+      return;
+    }
+
+    // ② ユーザーIDを取得
+    const userId = signUpData.user?.id;
+
+    if (!userId) {
+      alert("ユーザーIDの取得に失敗しました。");
+      return;
+    }
+
+    // ③ プロフィール情報などをprofilesテーブルにinsert
+    const { error: profileError } = await supabase.from("profiles").insert({
+      id: userId, // Supabase AuthのUID
+      email, // メールアドレス
+      name,
+      image_url: null, // 初期はnull
+      created_at: new Date().toISOString(),
+    });
+
+    if (profileError) {
+      console.error("プロフィール登録エラー", profileError.message);
+      alert("プロフィールの登録に失敗しました。");
+      return;
+    }
+
+    // 登録成功 → 確認メール送信済み画面へ遷移するなど
+    alert("確認メールを送信しました！メールをご確認ください。");
+    router.push("/money-mindful/login");
   };
 
   // supabase連携（別ページにて連携済み）
@@ -43,7 +88,7 @@ const SignUpPage = () => {
     formState: { errors },
   } = useForm({
     // 初期値
-    defaultValues: { email: "", password: "" },
+    defaultValues: { name: "", email: "", password: "" },
     // バリデーション（zod連携）
     resolver: zodResolver(schema),
   });
@@ -56,11 +101,26 @@ const SignUpPage = () => {
       >
         <SectionCard label="新規登録" icon="/icon/login/enter.png">
           <div className="flex flex-col gap-3">
+            {/* 名前入力欄 */}
+            <FormField
+              label="Email"
+              placeholder="名前を入力"
+              icon="/icon/login/profile-user.png"
+              type="text"
+              {...register("name")}
+            />
+            {errors.name && (
+              <p className="mt-1 px-4 text-sm text-red-500">
+                {errors.name.message}
+              </p>
+            )}
+
             {/* メールアドレス入力欄 */}
             <FormField
               label="Email"
               placeholder="メールアドレスを入力"
               icon="/icon/login/email.png"
+              type="email"
               {...register("email")}
             />
             {errors.email && (

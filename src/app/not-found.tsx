@@ -1,6 +1,8 @@
+// ページ遷移後の 404 および not-found 表示用（自動で表示）
+
 import React from "react";
 import SectionCard from "./components/section-card/SectionCard";
-import Link from "next/link";
+
 import Button from "./components/button/Button";
 
 const NotFoundPage = () => {

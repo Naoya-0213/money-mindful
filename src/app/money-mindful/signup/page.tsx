@@ -8,7 +8,7 @@ import { createClient } from "@/utils/supabase/clients";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Button from "@/app/components/button/Button";
@@ -32,50 +32,72 @@ const schema = z.object({
 const SignUpPage = () => {
   const router = useRouter();
 
+  // 登録時のメッセージ
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
   // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
-    const { name, email, password } = data;
+    try {
+      const { name, email, password } = data;
 
-    // ① サインアップ
-    const { data: signUpData, error: signUpError } = await supabase.auth.signUp(
-      {
-        email,
-        password,
-      },
-    );
+      // ① サインアップ
+      const { data: signUpData, error: signUpError } =
+        await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo:
+              "http://localhost:3000/money-mindful/login/first-login",
+          },
+        });
 
-    if (signUpError) {
-      console.error("登録エラー", signUpError.message);
-      alert("登録に失敗しました。再度お試しください。");
-      return;
+      if (signUpError) {
+        console.error("登録エラー", signUpError.message);
+        alert("登録に失敗しました。再度お試しください。");
+        return;
+      }
+
+      // ② ユーザーIDを取得
+      const userId = signUpData.user?.id;
+
+      if (!userId) {
+        alert("ユーザーIDの取得に失敗しました。");
+        return;
+      }
+
+      // ③ プロフィール情報などをprofilesテーブルにinsert
+      const { error: profileError } = await supabase.from("profiles").insert({
+        id: userId, // Supabase AuthのUID
+        email, // メールアドレス
+        name,
+        image_url: null, // 初期はnull
+        created_at: new Date().toISOString(),
+      });
+
+      if (profileError) {
+        console.error("プロフィール登録エラー", profileError.message);
+        setMessage({
+          type: "error",
+          text: `登録に失敗しました：${profileError.message}`,
+        });
+        return;
+      }
+
+      // 登録成功 → 確認メール送信済み画面へ遷移するなど
+      setMessage({
+        type: "success",
+        text: "確認メールを送信しました！",
+      });
+    } catch (error) {
+      setMessage({
+        type: "error",
+        text: "予期せぬエラーが発生しました。",
+      });
+      console.error(error);
     }
-
-    // ② ユーザーIDを取得
-    const userId = signUpData.user?.id;
-
-    if (!userId) {
-      alert("ユーザーIDの取得に失敗しました。");
-      return;
-    }
-
-    // ③ プロフィール情報などをprofilesテーブルにinsert
-    const { error: profileError } = await supabase.from("profiles").insert({
-      id: userId, // Supabase AuthのUID
-      email, // メールアドレス
-      name,
-      image_url: null, // 初期はnull
-      created_at: new Date().toISOString(),
-    });
-
-    if (profileError) {
-      console.error("プロフィール登録エラー", profileError.message);
-      alert("プロフィールの登録に失敗しました。");
-      return;
-    }
-
-    // 登録成功 → 確認メール送信済み画面へ遷移するなど
-    alert("確認メールを送信しました！メールをご確認ください。");
-    router.push("/money-mindful/login");
   };
 
   // supabase連携（別ページにて連携済み）
@@ -156,6 +178,17 @@ const SignUpPage = () => {
           </div>
 
           <div className="flex flex-col items-center gap-3 pb-5">
+            {/* 登録時メッセージ */}
+            {message && (
+              <div
+                className={`font-bold ${
+                  message.type === "error" ? "text-red-500" : "text-green-700"
+                }`}
+              >
+                {message.text}
+              </div>
+            )}
+
             {/* 新規登録ボタン */}
             <Button type="submit">新規登録</Button>
 

@@ -3,7 +3,7 @@
 "use client";
 
 import Button from "@/app/components/button/Button";
-import GoalCard from "@/app/components/section-card/GoalCard";
+import GoalCard from "@/app/components/goal/GoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";
 import Link from "next/link";

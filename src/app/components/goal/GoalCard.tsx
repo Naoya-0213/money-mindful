@@ -1,5 +1,5 @@
 import React from "react";
-import SectionCard from "./SectionCard";
+import SectionCard from "../section-card/SectionCard";
 import Link from "next/link";
 import Button from "../button/Button";
 

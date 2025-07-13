@@ -1,3 +1,4 @@
+import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import React from "react";
 
@@ -8,13 +9,7 @@ const FirstLoginPage = () => {
         {/* 導入 */}
 
         {/* step1：目標設定 */}
-        <SectionCard
-          label="目標を登録しよう！"
-          numberIcon="/icon/login/step1/number-1.png"
-          icon="/icon/login/step1/flag.png"
-        >
-          <div></div>
-        </SectionCard>
+        <NoGoalCard numberIcon="/icon/login/step1/number-1.png" />
 
         {/* step2：我慢記録 */}
         <SectionCard

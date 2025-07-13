@@ -3,6 +3,7 @@
 import Button from "@/app/components/button/Button";
 import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 import Link from "next/link";
 import React from "react";
 
@@ -17,7 +18,7 @@ const AddRecordCard = () => {
         </div>
 
         {/* 備考 */}
-        <div className="flex w-full flex-col items-center gap-5 rounded-2xl bg-[#F3F0EB] p-5 font-semibold">
+        <SectionInfoBox>
           <div className="flex flex-col items-center">
             <p>カテゴリーを追加して、</p>
             <p>整理できます。</p>
@@ -30,7 +31,7 @@ const AddRecordCard = () => {
             <CategoryIcon name="transportation" />
             <CategoryIcon name="food" />
           </div>
-        </div>
+        </SectionInfoBox>
 
         {/* 追加へ移動ボタン */}
         <div className="flex w-full justify-center">

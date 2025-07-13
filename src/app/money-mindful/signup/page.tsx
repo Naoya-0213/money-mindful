@@ -32,6 +32,9 @@ const schema = z.object({
 const SignUpPage = () => {
   const router = useRouter();
 
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
+
   // 登録時のメッセージ
   const [message, setMessage] = useState<{
     type: "success" | "error";
@@ -100,9 +103,6 @@ const SignUpPage = () => {
     }
   };
 
-  // supabase連携（別ページにて連携済み）
-  const supabase = createClient();
-
   // react-hook-form連携
   const {
     register,
@@ -125,7 +125,7 @@ const SignUpPage = () => {
           <div className="flex flex-col gap-3">
             {/* 名前入力欄 */}
             <FormField
-              label="Email"
+              label="名前"
               placeholder="名前を入力"
               icon="/icon/login/profile-user.png"
               type="text"

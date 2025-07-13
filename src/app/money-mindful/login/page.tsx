@@ -9,7 +9,7 @@ import { createClient } from "@/utils/supabase/clients";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -27,12 +27,28 @@ const BeforeLoginPage = () => {
   const router = useRouter();
 
   // submitボタンクリック動作
-  const onSubmit = (data: Schema) => {
-    console.log("送信データ:", data);
-    // supabase.auth.signInWithPassword などへ接続予定
-    // router.push("/home") などで遷移もOK
-  };
+  const onSubmit = async (data: Schema) => {
+    try {
+      const { email, password } = data;
 
+      const { data: signInData, error: signInError } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+      if (signInError) {
+        console.error("ログインエラー", signInError.message);
+        alert("ログインに失敗しました。メールアドレスとパスワードを確認してください。");
+        return;
+      }
+
+      router.push("/money-mindful/home");
+    } catch (error) {
+      console.error("予期せぬエラー", error);
+      alert("予期せぬエラーが発生しました。");
+    }
+  };
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 

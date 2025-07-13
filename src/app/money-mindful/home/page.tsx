@@ -3,7 +3,7 @@
 import React from "react";
 import GoalCard from "@/app/components/goal/GoalCard";
 import GoalStatusCard from "./component/GoalStatusCard";
-import AddRecordCard from "./component/AddRecordCard";
+import AddRecordCard from "../../components/add/AddRecordCard";
 import RecentLogs from "@/app/components/log/RecentLogs";
 
 export default function HomePage() {

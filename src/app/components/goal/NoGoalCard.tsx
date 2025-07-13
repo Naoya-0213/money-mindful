@@ -24,29 +24,33 @@ const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
 
         {/* 説明カード1 */}
         <SectionInfoBox>
-          <p>目標例</p>
-          <p>・北海道旅行に行く（¥100,000）</p>
-          <p>・スニーカーを買う（¥20,000）</p>
-          <p>・switch2を買う（¥50,000）</p>
+          <div className="flex justify-center">
+            <div>
+              <p>目標例</p>
+              <p>・北海道旅行に行く（¥100,000）</p>
+              <p>・スニーカーを買う（¥20,000）</p>
+              <p>・switch2を買う（¥50,000）</p>
+            </div>
+          </div>
         </SectionInfoBox>
 
         {/* 説明カード2 */}
         <SectionInfoBox>
-          <div className="flex gap-5">
+          <div className="flex justify-between gap-3 px-5">
             {/* アイコン */}
-            <div className="flex min-w-[70px] flex-col items-center justify-center gap-1">
+            <div className="flex w-1/3 min-w-[70px] flex-col items-center justify-center gap-1">
               <Image
                 src="/icon/setting/goal/profile-user.png"
                 alt="アイコン"
-                width={30}
-                height={30}
+                width={35}
+                height={35}
               />
               <p className="mt-[1px] text-sm font-semibold">設定</p>
             </div>
 
             {/* 備考 */}
-            <div className="flex flex-col items-center">
-              <p>画面下部の設定ボタン</p>
+            <div className="flex w-2/3 flex-col items-center">
+              <p>フッターの設定</p>
               <p>から変更可能です。</p>
             </div>
           </div>

@@ -7,9 +7,8 @@ import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import { createClient } from "@/utils/supabase/clients";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -24,15 +23,45 @@ const schema = z.object({
 const PasswordResetForEmailPage = () => {
   const router = useRouter();
 
-  // submitボタンクリック動作
-  const onSubmit = (data: Schema) => {
-    console.log("送信データ:", data);
-    // supabase.auth.signInWithPassword などへ接続予定
-    // router.push("/home") などで遷移もOK
-  };
-
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
+
+  // 登録時のメッセージ
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  // submitボタンクリック動作
+  const onSubmit = async (data: Schema) => {
+    try {
+      const { email } = data;
+
+      // パスワードリセットへ遷移
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo:
+          "http://localhost:3000/money-mindful/login/password-reset/confirm",
+      });
+
+      if (error) {
+        console.error("登録エラー", error.message);
+        alert("登録に失敗しました。再度お試しください。");
+        return;
+      }
+
+      // 登録成功 → 確認メール送信済み画面へ遷移するなど
+      setMessage({
+        type: "success",
+        text: "確認メールを送信しました！",
+      });
+    } catch (error) {
+      setMessage({
+        type: "error",
+        text: "予期せぬエラーが発生しました。",
+      });
+      console.error(error);
+    }
+  };
 
   // react-hook-form連携
   const {
@@ -59,6 +88,7 @@ const PasswordResetForEmailPage = () => {
               label="Email"
               placeholder="メールアドレスを入力"
               icon="/icon/login/email.png"
+              {...register("email")}
             />
             {errors.email && (
               <p className="mt-1 px-4 text-sm text-red-500">
@@ -81,6 +111,16 @@ const PasswordResetForEmailPage = () => {
           </div>
 
           <div className="flex flex-col items-center gap-5 pb-5">
+            {/* 登録時メッセージ */}
+            {message && (
+              <div
+                className={`font-bold ${
+                  message.type === "error" ? "text-red-500" : "text-green-700"
+                }`}
+              >
+                {message.text}
+              </div>
+            )}
             {/* 送信ボタン */}
             <Button type="submit">送信</Button>
 

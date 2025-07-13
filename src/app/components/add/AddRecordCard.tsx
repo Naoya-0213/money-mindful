@@ -26,17 +26,19 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
 
         {/* 備考 */}
         <SectionInfoBox>
-          <div className="flex flex-col items-center">
-            <p>カテゴリーを追加して、</p>
-            <p>整理できます。</p>
-          </div>
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-col items-center">
+              <p>カテゴリーを追加して、</p>
+              <p>整理できます。</p>
+            </div>
 
-          {/* カテゴリー例 */}
-          <div className="flex gap-5">
-            <CategoryIcon name="clothing" />
-            <CategoryIcon name="beer" />
-            <CategoryIcon name="transportation" />
-            <CategoryIcon name="food" />
+            {/* カテゴリー例 */}
+            <div className="flex w-full justify-center gap-5">
+              <CategoryIcon name="clothing" />
+              <CategoryIcon name="beer" />
+              <CategoryIcon name="transportation" />
+              <CategoryIcon name="food" />
+            </div>
           </div>
         </SectionInfoBox>
 

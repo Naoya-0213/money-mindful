@@ -2,8 +2,9 @@ import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";
 import React from "react";
-import AddRecordCard from "../../home/component/AddRecordCard";
+import AddRecordCard from "../../../components/add/AddRecordCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
+import Button from "@/app/components/button/Button";
 
 const FirstLoginPage = () => {
   return (
@@ -82,14 +83,14 @@ const FirstLoginPage = () => {
 
           {/* 説明文1 */}
           <SectionInfoBox>
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between gap-3 px-5">
               {/* アイコン */}
               <div className="flex w-1/3 min-w-[70px] flex-col items-center justify-center gap-1">
                 <Image
                   src="/icon/setting/goal/profile-user.png"
                   alt="アイコン"
-                  width={30}
-                  height={30}
+                  width={35}
+                  height={35}
                 />
                 <p className="mt-[1px] text-sm font-semibold">合計</p>
               </div>
@@ -104,14 +105,14 @@ const FirstLoginPage = () => {
 
           {/* 説明文2 */}
           <SectionInfoBox>
-            <div className="flex justify-between gap-5">
+            <div className="flex justify-between gap-5 px-5">
               {/* アイコン */}
               <div className="flex w-1/3 min-w-[70px] flex-col items-center justify-center gap-1">
                 <Image
                   src="/icon/setting/goal/profile-user.png"
                   alt="アイコン"
-                  width={30}
-                  height={30}
+                  width={35}
+                  height={35}
                 />
                 <p className="mt-[1px] text-sm font-semibold">カレンダー</p>
               </div>
@@ -125,7 +126,10 @@ const FirstLoginPage = () => {
           </SectionInfoBox>
         </SectionCard>
 
-        {/* ホームへ遷移ボタン */}
+        {/* ホームに戻るボタン */}
+        <div className="flex w-full justify-center py-5">
+          <Button href="/money-mindful/home">ホームへ移動する</Button>
+        </div>
       </div>
     </div>
   );

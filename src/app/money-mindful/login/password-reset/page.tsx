@@ -17,10 +17,13 @@ type Schema = z.infer<typeof schema>;
 
 // zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
-  email: z.string().email({ message: "メールアドレスの形式ではありません" }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "メールアドレスの形式ではありません" }),
 });
 
-const PasswordResetForEmailPage = () => {
+const PasswordResetConfirmPage = () => {
   const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
@@ -37,22 +40,25 @@ const PasswordResetForEmailPage = () => {
     try {
       const { email } = data;
 
-      // パスワードリセットへ遷移
+      // パスワードリセットリンク送信処理
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo:
           "http://localhost:3000/money-mindful/login/password-reset/confirm",
       });
 
       if (error) {
-        console.error("登録エラー", error.message);
-        alert("登録に失敗しました。再度お試しください。");
+        console.error("更新エラー", error.message);
+        setMessage({
+          type: "error",
+          text: "更新に失敗しました。\n再度お試しください。",
+        });
         return;
       }
 
-      // 登録成功 → 確認メール送信済み画面へ遷移するなど
+      // 送信成功 → メッセージ表示
       setMessage({
         type: "success",
-        text: "確認メールを送信しました！",
+        text: "変更用のリンクを送信しました！\nメールをご確認ください。",
       });
     } catch (error) {
       setMessage({
@@ -81,12 +87,13 @@ const PasswordResetForEmailPage = () => {
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <SectionCard label="パスワード変更" icon="/icon/login/enter.png">
+        <SectionCard label="パスワード再設定" icon="/icon/login/enter.png">
           <div className="flex flex-col gap-3">
-            {/* メールアドレス入力欄 */}
+            {/* パスワード入力欄 */}
             <FormField
               label="Email"
               placeholder="メールアドレスを入力"
+              type="email"
               icon="/icon/login/email.png"
               {...register("email")}
             />
@@ -114,7 +121,7 @@ const PasswordResetForEmailPage = () => {
             {/* 登録時メッセージ */}
             {message && (
               <div
-                className={`font-bold ${
+                className={`text-center font-semibold whitespace-pre-line ${
                   message.type === "error" ? "text-red-500" : "text-green-700"
                 }`}
               >
@@ -135,4 +142,4 @@ const PasswordResetForEmailPage = () => {
   );
 };
 
-export default PasswordResetForEmailPage;
+export default PasswordResetConfirmPage;

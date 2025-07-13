@@ -59,7 +59,10 @@ const SignUpPage = () => {
 
       if (signUpError) {
         console.error("登録エラー", signUpError.message);
-        alert("登録に失敗しました。再度お試しください。");
+        setMessage({
+          type: "error",
+          text: "登録に失敗しました。もう一度お試しください。",
+        });
         return;
       }
 
@@ -67,7 +70,10 @@ const SignUpPage = () => {
       const userId = signUpData.user?.id;
 
       if (!userId) {
-        alert("ユーザーIDの取得に失敗しました。");
+        setMessage({
+          type: "error",
+          text: "ユーザーIDの取得に失敗しました。",
+        });
         return;
       }
 
@@ -181,7 +187,7 @@ const SignUpPage = () => {
             {/* 登録時メッセージ */}
             {message && (
               <div
-                className={`font-bold ${
+                className={`font-semibold ${
                   message.type === "error" ? "text-red-500" : "text-green-700"
                 }`}
               >

@@ -20,6 +20,8 @@ export default function HomePage() {
         <div className="w-full">
           <RecentLogs />
         </div>
+
+        
       </div>
     </div>
   );

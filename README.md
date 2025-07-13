@@ -42,6 +42,12 @@
 - signupのコンポ化。FormFieldとエラーメッセのコンポ化
 - supabaseからのメール送信時のロゴ設定
 
+## 📌 本番デプロイ時に忘れずにやること（Supabaseメール認証関連）
+
+- `emailRedirectTo` のURLを `localhost` → 本番ドメインに書き換える
+- Supabase Auth の「Redirect URLs」に本番URLを追加登録する
+- メールテンプレート内の `{confirmation_url}` が正しく埋まるか確認する
+
 ---
 
 ## 📁 ディレクトリ構成（初期）

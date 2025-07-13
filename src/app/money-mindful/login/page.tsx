@@ -18,13 +18,25 @@ type Schema = z.infer<typeof schema>;
 
 // zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
-  email: z.string().email({ message: "メールアドレスの形式ではありません" }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "メールアドレスの形式ではありません" }),
   password: z.string().min(6, { message: "6文字以上入力する必要があります" }),
 });
 
 // ログインページ
 const BeforeLoginPage = () => {
   const router = useRouter();
+
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
+
+  // 登録時のメッセージ
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
@@ -39,18 +51,22 @@ const BeforeLoginPage = () => {
 
       if (signInError) {
         console.error("ログインエラー", signInError.message);
-        alert("ログインに失敗しました。メールアドレスとパスワードを確認してください。");
+        setMessage({
+          type: "error",
+          text: "ログインに失敗しました。\n再度確認してください。",
+        });
         return;
       }
 
       router.push("/money-mindful/home");
     } catch (error) {
       console.error("予期せぬエラー", error);
-      alert("予期せぬエラーが発生しました。");
+      setMessage({
+        type: "error",
+        text: "予期せぬエラーが発生しました。",
+      });
     }
   };
-  // supabase連携（別ページにて連携済み）
-  const supabase = createClient();
 
   // react-hook-form連携
   const {
@@ -115,6 +131,16 @@ const BeforeLoginPage = () => {
           </div>
 
           <div className="flex flex-col items-center gap-3 pt-5 pb-5">
+            {/* メッセージ表示 */}
+            {message && (
+              <div
+                className={`text-center font-semibold whitespace-pre-line ${
+                  message.type === "error" ? "text-red-500" : "text-green-700"
+                }`}
+              >
+                {message.text}
+              </div>
+            )}
             {/* ログインボタン */}
             <Button type="submit">ログイン</Button>
 

@@ -1,3 +1,5 @@
+// 初回ログイン画面用
+
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";

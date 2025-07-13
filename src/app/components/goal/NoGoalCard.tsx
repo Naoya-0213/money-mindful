@@ -1,6 +1,8 @@
 import React from "react";
 import SectionCard from "../section-card/SectionCard";
 import SectionInfoBox from "../section-card/SectionInfoBox";
+import Image from "next/image";
+import Button from "../button/Button";
 
 type NoGoalCardProps = {
   numberIcon?: string;
@@ -9,7 +11,6 @@ type NoGoalCardProps = {
 const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
   return (
     <div className="w-full">
-      {/* step1：目標設定 */}
       <SectionCard
         label="目標を登録しよう！"
         numberIcon={numberIcon}
@@ -28,6 +29,33 @@ const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
           <p>・スニーカーを買う（¥20,000）</p>
           <p>・switch2を買う（¥50,000）</p>
         </SectionInfoBox>
+
+        {/* 説明カード2 */}
+        <SectionInfoBox>
+          <div className="flex gap-5">
+            {/* アイコン */}
+            <div className="flex min-w-[70px] flex-col items-center justify-center gap-1">
+              <Image
+                src="/icon/setting/goal/profile-user.png"
+                alt="アイコン"
+                width={30}
+                height={30}
+              />
+              <p className="mt-[1px] text-sm font-semibold">設定</p>
+            </div>
+
+            {/* 備考 */}
+            <div className="flex flex-col items-center">
+              <p>画面下部の設定ボタン</p>
+              <p>から変更可能です。</p>
+            </div>
+          </div>
+        </SectionInfoBox>
+
+        {/* 目標追加へ遷移ボタン */}
+        <div className="flex w-full justify-center">
+          <Button href="/money-mindful/setting/goal">目標を編集</Button>
+        </div>
       </SectionCard>
     </div>
   );

@@ -1,24 +1,65 @@
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import Image from "next/image";
 import React from "react";
+import AddRecordCard from "../../home/component/AddRecordCard";
+import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 
 const FirstLoginPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         {/* 導入 */}
+        <div className="w-full rounded-2xl bg-[#EAE3D8]">
+          <div className="flex flex-col items-center gap-5 p-5">
+            <div className="flex items-center justify-center gap-3">
+              {/* アイコン */}
+              <div>
+                <Image
+                  src="/icon/login/first-login/cracker.png"
+                  alt="アイコン"
+                  width={30}
+                  height={30}
+                />
+              </div>
+
+              {/* ロゴ */}
+              <div>
+                <Image
+                  src="/icon/login/before-login/money-mindful-title_icon.png"
+                  alt="アイコン"
+                  width={150}
+                  height={25}
+                />
+              </div>
+
+              {/* タイトル */}
+              <h2 className="min-w-[110px] text-lg font-bold">へようこそ！</h2>
+            </div>
+
+            {/* 説明文 */}
+            <div className="flex flex-col items-center gap-5 py-3 font-semibold text-[#777777]">
+              <div className="flex flex-col items-center">
+                <p>登録ありがとうございます！</p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <p>あなたの節約ストーリーが</p>
+                <p>今日から始まります。</p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <p>さっそく使い方を見てみましょう。</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* step1：目標設定 */}
         <NoGoalCard numberIcon="/icon/login/step1/number-1.png" />
 
         {/* step2：我慢記録 */}
-        <SectionCard
-          label="我慢を記録しよう！"
-          numberIcon="/icon/login/step2/number-2.png"
-          icon="/icon/login/step2/pencil.png"
-        >
-          <div></div>
-        </SectionCard>
+        <AddRecordCard numberIcon="/icon/login/step2/number-2.png" />
 
         {/* step3：記録確認 */}
         <SectionCard
@@ -26,7 +67,62 @@ const FirstLoginPage = () => {
           numberIcon="/icon/login/step3/number-3.png"
           icon="/icon/login/step3/money.png"
         >
-          <div></div>
+          {/* 備考 */}
+          <div className="flex flex-col items-center justify-center gap-5 leading-relaxed font-semibold text-[#777777]">
+            <div className="flex flex-col items-center">
+              <p>あなたの我慢は、</p>
+              <p>どんどん貯金に変わります。</p>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <p>カレンダーや集計で振り返って</p>
+              <p>がんばりを実感しましょう！</p>
+            </div>
+          </div>
+
+          {/* 説明文1 */}
+          <SectionInfoBox>
+            <div className="flex justify-between gap-3">
+              {/* アイコン */}
+              <div className="flex w-1/3 min-w-[70px] flex-col items-center justify-center gap-1">
+                <Image
+                  src="/icon/setting/goal/profile-user.png"
+                  alt="アイコン"
+                  width={30}
+                  height={30}
+                />
+                <p className="mt-[1px] text-sm font-semibold">合計</p>
+              </div>
+
+              {/* 備考 */}
+              <div className="flex w-2/3 flex-col items-center">
+                <p>これまでの成果を</p>
+                <p>グラフでチェック！</p>
+              </div>
+            </div>
+          </SectionInfoBox>
+
+          {/* 説明文2 */}
+          <SectionInfoBox>
+            <div className="flex justify-between gap-5">
+              {/* アイコン */}
+              <div className="flex w-1/3 min-w-[70px] flex-col items-center justify-center gap-1">
+                <Image
+                  src="/icon/setting/goal/profile-user.png"
+                  alt="アイコン"
+                  width={30}
+                  height={30}
+                />
+                <p className="mt-[1px] text-sm font-semibold">カレンダー</p>
+              </div>
+
+              {/* 備考 */}
+              <div className="flex w-2/3 flex-col items-center">
+                <p>日々の我慢記録を</p>
+                <p>振り返ろう！</p>
+              </div>
+            </div>
+          </SectionInfoBox>
         </SectionCard>
 
         {/* ホームへ遷移ボタン */}

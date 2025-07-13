@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import Button from "../button/Button";
 
@@ -13,7 +12,7 @@ const BeforeLogin = () => {
               {/* アイコン */}
               <div>
                 <Image
-                  src="/icon/before-login/light-bulb.png"
+                  src="/icon/login/before-login/light-bulb.png"
                   alt="アイコン"
                   width={35}
                   height={35}
@@ -23,7 +22,7 @@ const BeforeLogin = () => {
               {/* ロゴ */}
               <div>
                 <Image
-                  src="/icon/before-login/money-mindful-title_icon.png"
+                  src="/icon/login/before-login/money-mindful-title_icon.png"
                   alt="アイコン"
                   width={150}
                   height={25}

@@ -54,6 +54,9 @@ const SignUpPage = () => {
           options: {
             emailRedirectTo:
               "http://localhost:3000/money-mindful/login/first-login",
+            data: {
+              name, // ← ユーザー名をmetadataに渡す
+            },
           },
         });
 

@@ -26,7 +26,7 @@ const schema = z.object({
 });
 
 // ログインページ
-const BeforeLoginPage = () => {
+const LoginPage = () => {
   const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
@@ -161,4 +161,4 @@ const BeforeLoginPage = () => {
   );
 };
 
-export default BeforeLoginPage;
+export default LoginPage;

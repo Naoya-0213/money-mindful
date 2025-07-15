@@ -1,4 +1,7 @@
-// supabaseの認証用
+// このファイルの役割：
+// - Supabaseを使って現在のセッションを取得し、ログイン状態を確認する。
+// - すでにログイン済みの場合は、"/money-mindful/home" に自動リダイレクトする。
+// - 未ログイン状態の場合は、ログインページ（LoginPage）を表示する。
 
 // use server
 
@@ -8,7 +11,7 @@ import { redirect } from "next/navigation";
 import LoginPage from "../../money-mindful/login/page";
 
 // 認証状態の監視
-export default async function signinPage() {
+export default async function LoinAuthPage() {
   const supabase = await createClient<Database>();
 
   // セッションの取得

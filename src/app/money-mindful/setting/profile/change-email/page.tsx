@@ -9,7 +9,7 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 import Link from "next/link";
 import React from "react";
 
-const ChangeImagePage = () => {
+const ChangeEmailPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -71,4 +71,4 @@ const ChangeImagePage = () => {
   );
 };
 
-export default ChangeImagePage;
+export default ChangeEmailPage;

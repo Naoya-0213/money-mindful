@@ -54,11 +54,10 @@ export default function SettingPage() {
           icon="/icon/setting/account/enter.png"
           label="アカウント管理"
         >
-          <div className="flex flex-col items-center leading-relaxed font-semibold text-[#777777]">
+          <div className="flex flex-col items-center pt-3 pb-3 leading-relaxed font-semibold text-[#777777]">
             <p>アカウントに関する操作を行えます。</p>
             <p>必要に応じてご利用ください。</p>
           </div>
-
           <div className="flex flex-col items-center gap-5">
             <Button onClick={() => alert("ログアウト！")}>ログアウト</Button>
             <Button onClick={() => alert("アカウント削除！")}>

@@ -16,7 +16,7 @@ const ChangeImagePage = () => {
           icon="/icon/setting/profile/social.png"
           label="ユーザー画像変更"
         >
-          <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-col items-center gap-5 pb-5">
             {/* プロフィール画像 */}
             <div>
               <Image

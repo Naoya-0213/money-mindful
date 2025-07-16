@@ -15,7 +15,7 @@ const SectionCard = ({
   children,
 }: SectionCardProps) => {
   return (
-    <div className="w-full rounded-2xl bg-[#EAE3D8]">
+    <div className="w-full rounded-2xl bg-[#EAE3D8] pb-3">
       <div className="flex flex-col gap-5 p-5">
         <div className="flex items-center justify-start gap-5">
           {/* number-icon */}

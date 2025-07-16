@@ -54,8 +54,8 @@ const ChangeImagePage = () => {
             </Button>
           </div>
           {/* 戻るボタン */}
-          <div className="flex w-full justify-center">
-            <Button href="/money-mindful/setting/profile-setting">戻る</Button>
+          <div className="flex w-full justify-center pb-5">
+            <Button href="/money-mindful/setting/profile">戻る</Button>
           </div>
         </SectionCard>
       </div>

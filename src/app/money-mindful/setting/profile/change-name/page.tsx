@@ -32,11 +32,11 @@ const ChangeImagePage = () => {
             placeholder="新しい名前を入力"
           />
 
-          <div className="mt-5 flex flex-col gap-5">
+          <div className="mt-5 flex flex-col gap-5 pb-5">
             {/* 保存ボタン */}
             <div className="flex w-full justify-center">
               <Button
-                href="/money-mindful/setting/profile-setting"
+                href="/money-mindful/setting/profile"
                 onClick={() => alert("supabaseへ保存！")}
               >
                 保存
@@ -44,7 +44,7 @@ const ChangeImagePage = () => {
             </div>
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile-setting">
+              <Button href="/money-mindful/setting/profile">
                 戻る
               </Button>
             </div>

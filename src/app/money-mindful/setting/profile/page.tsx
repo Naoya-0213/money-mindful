@@ -29,7 +29,7 @@ const ProfileSetting = () => {
               <p className="font-semibold text-[#777777]">
                 画像の変更は
                 <Link
-                  href="/money-mindful/setting/profile-setting/change-image"
+                  href="/money-mindful/setting/profile/change-image"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -47,7 +47,7 @@ const ProfileSetting = () => {
               <p className="font-semibold text-[#777777]">
                 名前の変更は
                 <Link
-                  href="/money-mindful/setting/profile-setting/change-image"
+                  href="/money-mindful/setting/profile/change-name"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -68,7 +68,7 @@ const ProfileSetting = () => {
               <p className="font-semibold text-[#777777]">
                 メールアドレスの変更は
                 <Link
-                  href="/money-mindful/setting/profile-setting/change-email"
+                  href="/money-mindful/setting/profile/change-email"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -89,7 +89,7 @@ const ProfileSetting = () => {
               <p className="font-semibold text-[#777777]">
                 パスワードの変更は
                 <Link
-                  href="/money-mindful/setting/profile-setting/change-password"
+                  href="/money-mindful/setting/profile/change-password"
                   className="text-[#666] underline"
                 >
                   こちら

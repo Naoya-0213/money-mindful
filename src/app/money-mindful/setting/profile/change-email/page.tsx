@@ -9,7 +9,6 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 import { createClient } from "@/utils/supabase/clients";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -22,11 +21,20 @@ const schema = z.object({
 });
 
 // メールアドレス変更
-const ChangeEmailPage = ({ email }: { email: string }) => {
+const ChangeEmailPage = () => {
   const router = useRouter();
+
+  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
+
+  // 登録時のメッセージ
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  // ローディング画面用
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const {
     register,
@@ -42,7 +50,7 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
   // 送信
   const onSubmit: SubmitHandler<Schema> = async (data) => {
     setLoading(true);
-    setMessage("");
+    setMessage(null);
 
     try {
       // メールアドレス変更メールを送信
@@ -53,24 +61,25 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
 
       // エラーチェック
       if (updateUserError) {
-        setMessage("エラーが発生しました。" + updateUserError.message);
+        console.log("エラーが発生しました。" + updateUserError.message);
+        setMessage({
+          type: "error",
+          text: "エラーが発生しました。\n再度確認してください。",
+        });
         return;
       }
 
-      setMessage("確認用のURLを記載したメールを送信しました。");
-
-      // ログアウト
-      const { error: signOutError } = await supabase.auth.signOut();
-
-      // エラーチェック
-      if (signOutError) {
-        setMessage("エラーが発生しました。" + signOutError.message);
-        return;
-      }
-
-      router.push("/auth/signin");
+      // 登録成功 → 確認メール送信済み画面へ遷移するなど
+      setMessage({
+        type: "success",
+        text: "確認用のURLを記載したメールを送信しました。",
+      });
     } catch (error) {
-      setMessage("エラーが発生しました。" + error);
+      console.error("予期せぬエラー", error);
+      setMessage({
+        type: "error",
+        text: "予期せぬエラーが発生しました。",
+      });
       return;
     } finally {
       setLoading(false);
@@ -80,7 +89,10 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
-      <div className="flex w-full flex-col items-center gap-5 p-5">
+      <form
+        className="flex w-full flex-col items-center gap-5 p-5"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <SectionCard
           icon="/icon/setting/profile/social.png"
           label="メールアドレス変更"
@@ -91,6 +103,7 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
             icon="/icon/setting/profile/email.png"
           >
             naoya.work0213@gmail.com
+            {/* 現在のメールアドレスをここに表示する場合はpropsなどで渡してください */}
           </DisplayField>
 
           {/* 新しいメールアドレス */}
@@ -98,7 +111,13 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
             label="新しいEmail"
             icon="/icon/setting/profile/email(2).png"
             placeholder="新しいメールアドレスを入力"
+            {...register("email")}
           />
+          {errors.email && (
+            <p className="mt-1 px-4 text-sm text-red-500">
+              {errors.email.message}
+            </p>
+          )}
 
           {/* 注意点 */}
           <div className="flex flex-col items-center gap-5">
@@ -119,22 +138,32 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
             </div>
           </div>
 
-          {/* 保存ボタン */}
-          <div className="flex w-full justify-center">
-            <Button
-              href="/money-mindful/setting/profile-setting"
-              onClick={() => alert("supabaseへ保存！")}
-            >
-              保存
-            </Button>
-          </div>
+          <div className="flex flex-col items-center gap-3">
+            {/* 保存ボタン */}
+            <div className="flex w-full justify-center">
+              <Button type="submit">保存</Button>
+            </div>
 
-          {/* 戻るボタン */}
-          <div className="flex w-full justify-center">
-            <Button href="/money-mindful/setting/profile-setting">戻る</Button>
+            {/* メッセージ表示 */}
+            {message && (
+              <div
+                className={`text-center font-semibold whitespace-pre-line ${
+                  message.type === "error" ? "text-red-500" : "text-green-700"
+                }`}
+              >
+                {message.text}
+              </div>
+            )}
+
+            {/* 戻るボタン */}
+            <div className="flex w-full justify-center">
+              <Button href="/money-mindful/setting/profile-setting">
+                戻る
+              </Button>
+            </div>
           </div>
         </SectionCard>
-      </div>
+      </form>
     </div>
   );
 };

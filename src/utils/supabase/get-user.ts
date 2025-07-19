@@ -2,15 +2,14 @@
 
 import { createClient } from "@/utils/supabase/clients";
 
-export const getCurrentUser = async () => {
-  const supabase = createClient();
+export const getCurrentUser = async (
+  supabase: ReturnType<typeof createClient>,
+) => {
+  const result = await supabase.auth.getUser();
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
-
-  if (error) throw new Error(error.message);
-
-  return user;
+  if (result.error || !result.data.user) {
+    console.error("ユーザー情報の取得に失敗");
+    return null;
+  }
+  return result.data.user;
 };

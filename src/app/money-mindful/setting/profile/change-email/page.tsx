@@ -7,10 +7,11 @@ import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import { createClient } from "@/utils/supabase/clients";
+import { getCurrentUser } from "@/utils/supabase/get-user";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import z from "zod";
 type Schema = z.infer<typeof schema>;
@@ -26,6 +27,17 @@ const ChangeEmailPage = () => {
 
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
+
+  // 現在のメールアドレス取得用
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getCurrentUser(supabase);
+      if (user?.email) setEmail(user.email);
+    };
+    fetchUser();
+  }, []);
 
   // 登録時のメッセージ
   const [message, setMessage] = useState<{
@@ -102,8 +114,7 @@ const ChangeEmailPage = () => {
             label="現在のEmail"
             icon="/icon/setting/profile/email.png"
           >
-            naoya.work0213@gmail.com
-            {/* 現在のメールアドレスをここに表示する場合はpropsなどで渡してください */}
+            {email}
           </DisplayField>
 
           {/* 新しいメールアドレス */}

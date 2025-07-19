@@ -38,6 +38,18 @@ const LoginPage = () => {
     text: string;
   } | null>(null);
 
+  // react-hook-form連携
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    // 初期値
+    defaultValues: { email: "", password: "" },
+    // バリデーション（zod連携）
+    resolver: zodResolver(schema),
+  });
+
   // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
     try {
@@ -67,18 +79,6 @@ const LoginPage = () => {
       });
     }
   };
-
-  // react-hook-form連携
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    // 初期値
-    defaultValues: { email: "", password: "" },
-    // バリデーション（zod連携）
-    resolver: zodResolver(schema),
-  });
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

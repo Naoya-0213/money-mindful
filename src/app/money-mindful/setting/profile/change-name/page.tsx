@@ -6,7 +6,7 @@ import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Link from "next/link";
+
 import React from "react";
 
 const ChangeImagePage = () => {
@@ -44,9 +44,7 @@ const ChangeImagePage = () => {
             </div>
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile">
-                戻る
-              </Button>
+              <Button href="/money-mindful/setting/profile">戻る</Button>
             </div>
           </div>
         </SectionCard>

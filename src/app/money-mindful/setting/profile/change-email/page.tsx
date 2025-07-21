@@ -36,6 +36,18 @@ const ChangeEmailPage = () => {
   // 現在のメールアドレス取得用
   const [email, setEmail] = useState("");
 
+  // React hook formの指定
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    // 初期値
+    defaultValues: { email: "" },
+    // 入力値の検証
+    resolver: zodResolver(schema),
+  });
+
   useEffect(() => {
     const fetchUser = async () => {
       const user = await getCurrentUser(supabase);
@@ -52,18 +64,6 @@ const ChangeEmailPage = () => {
 
   // ローディング画面用
   const [loading, setLoading] = useState(false);
-
-  // React hook formの指定
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    // 初期値
-    defaultValues: { email: "" },
-    // 入力値の検証
-    resolver: zodResolver(schema),
-  });
 
   // メール変更確認メールの送信
   const onSubmit: SubmitHandler<Schema> = async (data) => {

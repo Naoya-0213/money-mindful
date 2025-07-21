@@ -1,7 +1,7 @@
 // 入力input（textarea）用
+import React, { forwardRef } from "react";
 
 import Image from "next/image";
-import React, { forwardRef } from "react";
 
 type FormFieldProps = {
   label: string;
@@ -48,7 +48,7 @@ const FormField = forwardRef<
           <textarea
             placeholder={placeholder}
             {...rest}
-            className="min-h-26 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
+            className="min-h-26 w-full font-bold resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
             ref={ref as React.Ref<HTMLTextAreaElement>}
           />
         ) : (
@@ -57,7 +57,7 @@ const FormField = forwardRef<
             placeholder={placeholder}
             {...rest}
             style={{ height: "var(--input-height)" }}
-            className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
+            className="w-full rounded-2xl border font-bold border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
             ref={ref as React.Ref<HTMLInputElement>}
           />
         )}

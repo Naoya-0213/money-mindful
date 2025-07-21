@@ -1,9 +1,11 @@
 // PageTop
 // "use server"
+import { redirect } from "next/navigation";
+
+import { createClient } from "@/utils/supabase/server";
 
 import { Database } from "@/types/database.types";
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+
 import BeforeLogin from "./components/before-login/BeforeLogin";
 
 export default async function PageTop() {

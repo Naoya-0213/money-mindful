@@ -54,6 +54,7 @@ const LogoutPage = () => {
     try {
       // ログアウト
       const { error } = await supabase.auth.signOut();
+      router.replace("/auth/login");
 
       // エラーチェック
       if (error) {

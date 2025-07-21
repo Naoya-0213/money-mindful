@@ -1,11 +1,11 @@
 // use server
 import { redirect } from "next/navigation";
 
+import BeforeLogin from "@/app/components/before-login/BeforeLogin";
+
 import { createClient } from "@/utils/supabase/server";
 
 import type { Database } from "@/types/database.types";
-
-import LoginPage from "../../money-mindful/login/page";
 
 // このファイルの役割：
 // - Supabaseを使って現在のセッションを取得し、ログイン状態を確認する。
@@ -26,5 +26,5 @@ export default async function LoinAuthPage() {
     redirect("/money-mindful/home");
   }
 
-  return <LoginPage />;
+  return <BeforeLogin />;
 }

@@ -54,7 +54,6 @@ const LogoutPage = () => {
     try {
       // ログアウト
       const { error } = await supabase.auth.signOut();
-      router.replace("/auth/login");
 
       // エラーチェック
       if (error) {
@@ -65,7 +64,7 @@ const LogoutPage = () => {
         return;
       }
 
-      router.push("/auth/login");
+      router.replace("/auth/login");
     } catch (error) {
       console.error("予期せぬエラー", error);
       setMessage({

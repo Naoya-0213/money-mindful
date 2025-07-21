@@ -18,13 +18,13 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== プロフィール設定/Email変更用 =====
 
-// Zodスキーマから型を自動推論してSchema型を定義
-type Schema = z.infer<typeof schema>;
-
 // 入力データの検証ルールを定義
 const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
 });
+
+// Zodスキーマから型を自動推論してSchema型を定義
+type Schema = z.infer<typeof schema>;
 
 // メールアドレス変更
 const ChangeEmailPage = () => {

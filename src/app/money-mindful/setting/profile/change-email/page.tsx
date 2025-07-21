@@ -108,7 +108,7 @@ const ChangeEmailPage = () => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[480px] min-w-[320px] flex flex-col gap-5 bg-[#F3F0EB]">
+    <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <form
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
@@ -139,7 +139,7 @@ const ChangeEmailPage = () => {
           )}
 
           {/* 注意点 */}
-          <div className="flex items-center gap-5 text-[#777777] py-3 font-semibold flex-col">
+          <div className="flex flex-col items-center gap-5 py-3 font-semibold text-[#777777]">
             <p className="">変更には確認が必要です！</p>
 
             <div className="flex flex-col items-center">
@@ -158,7 +158,7 @@ const ChangeEmailPage = () => {
                   width={25}
                   height={25}
                 />
-                <p className="font-bold text-lg">注意点</p>
+                <p className="text-lg font-bold">注意点</p>
               </div>
               <div className="flex flex-col items-center gap-5 text-[#777777]">
                 <div className="flex flex-col items-center">
@@ -194,9 +194,7 @@ const ChangeEmailPage = () => {
 
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile-setting">
-                戻る
-              </Button>
+              <Button href="/money-mindful/setting/profile">戻る</Button>
             </div>
           </div>
         </SectionCard>

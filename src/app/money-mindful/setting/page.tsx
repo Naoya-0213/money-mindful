@@ -1,15 +1,34 @@
-// 設定セクション
-
 "use client";
+
+import { useEffect, useState } from "react";
+
+import Image from "next/image";
 
 import Button from "@/app/components/button/Button";
 import GoalCard from "@/app/components/goal/GoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+
+import { createClient } from "@/utils/supabase/clients";
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
+
+// ===== 設定セクション =====
 
 export default function SettingPage() {
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
+
+  // 現在のメールアドレス、名前取得用
+  const [name, setName] = useState("");
+
+  // ページ初回読み込み時のみ実行（ユーザー情報の取得
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getCurrentUser(supabase);
+      if (user?.name) setName(user.name);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -30,7 +49,12 @@ export default function SettingPage() {
             </div>
 
             {/* ユーザー名表示 */}
-            <h2 className="text-lg font-bold">こんにちは、Naoyaさん</h2>
+
+            <div className="flex items-center gap-3 text-lg font-bold">
+              こんにちは、
+              {name}
+              　さん
+            </div>
 
             <div className="flex flex-col items-center leading-relaxed font-semibold text-[#777777]">
               <p>アイコンや名前を</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 import Image from "next/image";
@@ -30,6 +30,8 @@ type Schema = z.infer<typeof schema>;
 
 // メールアドレス変更
 const ChangeEmailPage = () => {
+  
+  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
@@ -103,6 +105,8 @@ const ChangeEmailPage = () => {
       return;
     } finally {
       setLoading(false);
+
+      // メール変更完了後に画面をリフレッシュするために使用するRouterフック
       router.refresh();
     }
   };

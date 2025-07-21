@@ -108,7 +108,7 @@ const ChangeEmailPage = () => {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
+    <div className="mx-auto w-full max-w-[480px] min-w-[320px] flex flex-col gap-5 bg-[#F3F0EB]">
       <form
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
@@ -139,51 +139,43 @@ const ChangeEmailPage = () => {
           )}
 
           {/* 注意点 */}
-          <div className="flex flex-col items-center gap-5">
-            <p className="font-semibold text-[#777777]">
-              変更には確認が必要です！
-            </p>
+          <div className="flex items-center gap-5 text-[#777777] py-3 font-semibold flex-col">
+            <p className="">変更には確認が必要です！</p>
 
             <div className="flex flex-col items-center">
-              <p className="font-semibold text-[#777777]">
-                新旧両方のアドレスに届く
-              </p>
-              <p className="font-semibold text-[#777777]">
-                確認メールからリンクを開いて
-              </p>
-              <p className="font-semibold text-[#777777]">
-                変更を完了してください。
-              </p>
+              <p>確認メールは両方に届きますが、</p>
+              <p>新アドレスに届く</p>
+              <p>リンクから操作してください。</p>
+              <p>（旧アドレスは通知のみ）</p>
             </div>
-
-            <SectionInfoBox>
-              <div className="flex flex-col gap-5">
-                <div className="flex gap-3">
-                  <Image
-                    src="/icon/error/warning.png"
-                    alt="アイコン"
-                    width={25}
-                    height={25}
-                  />
-                  <p>注意点</p>
+          </div>
+          <SectionInfoBox>
+            <div className="flex flex-col gap-5 pb-5">
+              <div className="flex gap-3">
+                <Image
+                  src="/icon/error/warning.png"
+                  alt="アイコン"
+                  width={25}
+                  height={25}
+                />
+                <p className="font-bold text-lg">注意点</p>
+              </div>
+              <div className="flex flex-col items-center gap-5 text-[#777777]">
+                <div className="flex flex-col items-center">
+                  <p>リンクはログインした状態で</p>
+                  <p>開いてください。</p>
                 </div>
-                <div className="flex flex-col items-center gap-5">
-                  <div className="flex flex-col items-center">
-                    <p>リンクはログインした状態で</p>
-                    <p>開いてください。</p>
-                  </div>
 
-                  <div className="flex flex-col items-center">
-                    <p>ログインが切れていた場合は、</p>
-                    <p>もう一度ログインしてから</p>
-                    <p>再度、変更してください。</p>
-                  </div>
+                <div className="flex flex-col items-center">
+                  <p>ログインが切れていた場合は、</p>
+                  <p>もう一度ログインしてから</p>
+                  <p>再度、変更してください。</p>
                 </div>
               </div>
-            </SectionInfoBox>
-          </div>
+            </div>
+          </SectionInfoBox>
 
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3 pt-3">
             {/* 保存ボタン */}
             <div className="flex w-full justify-center">
               <Button type="submit">保存</Button>

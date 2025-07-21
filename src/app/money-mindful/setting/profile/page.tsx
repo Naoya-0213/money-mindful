@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,9 +9,29 @@ import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
+import { createClient } from "@/utils/supabase/clients";
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
+
 // =====プロフィール編集用 =====
 
 const ProfileSetting = () => {
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
+
+  // 現在のメールアドレス、名前取得用
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
+  // ページ初回読み込み時のみ実行（ユーザー情報の取得
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getCurrentUser(supabase);
+      if (user?.email) setEmail(user.email);
+      if (user?.name) setName(user.name);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -45,7 +67,7 @@ const ProfileSetting = () => {
             {/* ユーザー名 */}
             <div className="flex flex-col gap-3">
               <DisplayField label="名前" icon="/icon/setting/profile/name.png">
-                Naoya
+                {name}
               </DisplayField>
 
               {/* ユーザー名変更リンク */}
@@ -66,7 +88,7 @@ const ProfileSetting = () => {
                 label="Email"
                 icon="/icon/setting/profile/email.png"
               >
-                naoya.work0213@gmail.com
+                {email}
               </DisplayField>
 
               {/* Email変更リンク */}

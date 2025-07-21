@@ -1,19 +1,24 @@
-// プロフィール設定/Email変更用
-
 "use client";
+
+import React, { useEffect, useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+
+import { useRouter } from "next/navigation";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
 
 import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/get-user";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import z from "zod";
+// ===== プロフィール設定/Email変更用 =====
+
+// Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
 // 入力データの検証ルールを定義

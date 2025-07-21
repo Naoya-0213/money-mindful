@@ -14,7 +14,7 @@ import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/get-user";
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== プロフィール設定/Email変更用 =====
 
@@ -53,6 +53,7 @@ const ChangeEmailPage = () => {
   // ローディング画面用
   const [loading, setLoading] = useState(false);
 
+  // React hook formの指定
   const {
     register,
     handleSubmit,

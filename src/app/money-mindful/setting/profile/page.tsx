@@ -39,7 +39,7 @@ const ProfileSetting = () => {
           icon="/icon/setting/profile/social.png"
           label="プロフィール設定"
         >
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-7">
             {/* プロフィール画像 */}
             <div className="flex flex-col items-center gap-5">
               <Image

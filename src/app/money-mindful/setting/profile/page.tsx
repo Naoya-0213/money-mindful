@@ -1,11 +1,13 @@
-// プロフィール編集用
+import React from "react";
+
+import Image from "next/image";
+import Link from "next/link";
 
 import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+
+// =====プロフィール編集用 =====
 
 const ProfileSetting = () => {
   return (
@@ -26,15 +28,18 @@ const ProfileSetting = () => {
               />
 
               {/* 画像変更リンク */}
-              <p className="font-semibold text-[#777777]">
-                画像の変更は
-                <Link
-                  href="/money-mindful/setting/profile/change-image"
-                  className="text-[#666] underline"
-                >
-                  こちら
-                </Link>
-              </p>
+              <div className="flex flex-col items-center">
+                <p className="font-semibold">実装予定...!</p>
+                <p className="font-semibold text-[#777777]">
+                  画像の変更は
+                  <Link
+                    href="/money-mindful/setting/profile/change-image"
+                    className="text-[#666] underline"
+                  >
+                    こちら
+                  </Link>
+                </p>
+              </div>
             </div>
 
             {/* ユーザー名 */}
@@ -79,7 +84,7 @@ const ProfileSetting = () => {
             {/* Password */}
             <div className="flex flex-col gap-3">
               <DisplayField
-                label="Password"
+                label="Password（実装予定）"
                 icon="/icon/setting/profile/password.png"
               >
                 ⚫ ⚫ ⚫ ⚫︎ ⚫ ⚫ ⚫ ⚫ ⚫

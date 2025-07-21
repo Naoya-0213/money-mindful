@@ -1,12 +1,13 @@
-// プロフィール設定/画像変更用
-
 "use client";
+
+import React from "react";
+
+import Image from "next/image";
 
 import Button from "@/app/components/button/Button";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+
+// プロフィール設定/画像変更用
 
 const ChangeImagePage = () => {
   return (
@@ -14,7 +15,7 @@ const ChangeImagePage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
           icon="/icon/setting/profile/social.png"
-          label="ユーザー画像変更"
+          label="ユーザー画像変更（実装予定）"
         >
           <div className="flex flex-col items-center gap-5 pb-5">
             {/* プロフィール画像 */}
@@ -37,8 +38,7 @@ const ChangeImagePage = () => {
             {/* 画像を選択ボタン */}
             <div className="flex w-full justify-center">
               <Button
-                href="/money-mindful/setting/profile-setting/change-image"
-                onClick={() => alert("画像を選択！")}
+                onClick={() => alert("実装予定...！")}
                 className="bg-[#D7CDBE] !text-[#795549]"
               >
                 画像を選択
@@ -47,19 +47,12 @@ const ChangeImagePage = () => {
 
             {/* 保存ボタン */}
             <div className="flex w-full justify-center">
-              <Button
-                href="/money-mindful/setting/profile-setting"
-                onClick={() => alert("supabaseへ保存！")}
-              >
-                保存
-              </Button>
+              <Button onClick={() => alert("実装予定...！")}>保存</Button>
             </div>
 
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile-setting">
-                戻る
-              </Button>
+              <Button href="/money-mindful/setting/profile">戻る</Button>
             </div>
           </div>
         </SectionCard>

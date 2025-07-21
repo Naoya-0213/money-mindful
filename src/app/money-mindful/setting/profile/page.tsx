@@ -12,7 +12,7 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
-// =====プロフィール編集用 =====
+// ===== プロフィール編集用 =====
 
 const ProfileSetting = () => {
   // supabase連携（別ページにて連携済み）

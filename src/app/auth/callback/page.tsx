@@ -2,16 +2,20 @@
 
 import { useEffect, useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { createClient } from "@/utils/supabase/clients";
 
 // ===== メール変更時に遷移 ======
-// （uiは後ほど変更）
+// （UIは後ほど調整）
 
 const AuthCallbackPage = () => {
   const [status, setStatus] = useState<"loading" | "success" | "error">(
     "loading",
   );
+  const router = useRouter();
 
+  // ✅ 初回セッション確認
   useEffect(() => {
     const checkSession = async () => {
       const supabase = createClient();
@@ -27,8 +31,15 @@ const AuthCallbackPage = () => {
     checkSession();
   }, []);
 
+  // ✅ エラー発生時は別ページへリダイレクト
+  useEffect(() => {
+    if (status === "error") {
+      router.replace("/auth/callback/callback-error");
+    }
+  }, [status, router]);
+
   if (status === "loading") return <p>確認中...</p>;
-  if (status === "error") return <p>ログイン情報が確認できませんでした。</p>;
+  if (status === "error") return null; // リダイレクト直前のためUI非表示
 
   return (
     <div className="p-8 text-center">

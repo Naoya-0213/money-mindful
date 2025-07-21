@@ -1,13 +1,15 @@
-// プロフィール設定/Password変更用
-
 "use client";
+
+import React from "react";
+
+import Link from "next/link";
 
 import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Link from "next/link";
-import React from "react";
+
+// ===== プロフィール設定/Password変更用 =====
 
 const ChangeImagePage = () => {
   return (
@@ -15,7 +17,7 @@ const ChangeImagePage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
           icon="/icon/setting/profile/social.png"
-          label="パスワード変更"
+          label="パスワード変更（実装予定）"
         >
           {/* 現在のパスワード */}
           <DisplayField
@@ -46,12 +48,7 @@ const ChangeImagePage = () => {
 
           {/* 保存ボタン */}
           <div className="flex w-full justify-center">
-            <Button
-              href="/money-mindful/setting/profile-setting"
-              onClick={() => alert("supabaseへ保存！")}
-            >
-              保存
-            </Button>
+            <Button onClick={() => alert("実装予定...！")}>保存</Button>
           </div>
           {/* 戻るボタン */}
           <div className="flex w-full justify-center pb-5">

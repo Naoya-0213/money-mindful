@@ -9,7 +9,7 @@
 import type { Database } from "@/types/database.types";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import SignUpPage from "@/app/money-mindful/signup/page";
+import SignUpPage from "@/app/auth/signup/form/page";
 
 // 認証状態の監視
 export default async function SignUpAuthPage() {

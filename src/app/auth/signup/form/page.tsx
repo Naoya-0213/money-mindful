@@ -205,7 +205,7 @@ const SignUpPage = () => {
             <p className="font-semibold text-[#777777]">
               ログインは
               <Link
-                href="/money-mindful/login"
+                href="/auth/login/form"
                 className="text-[#666] underline"
               >
                 こちら

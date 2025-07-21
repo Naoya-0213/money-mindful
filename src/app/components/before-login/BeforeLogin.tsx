@@ -59,11 +59,11 @@ const BeforeLogin = () => {
             <div className="flex w-full flex-col items-center gap-5 pb-5">
               {/* ログインボタン */}
               <div className="flex w-full justify-center">
-                <Button href="/money-mindful/login">ログイン</Button>
+                <Button href="/auth/login/form">ログイン</Button>
               </div>
               {/* 新規登録ボタン */}
               <div className="flex w-full justify-center">
-                <Button href="/money-mindful/signup">アカウント作成</Button>
+                <Button href="/auth/signup/form">アカウント作成</Button>
               </div>
             </div>
           </div>

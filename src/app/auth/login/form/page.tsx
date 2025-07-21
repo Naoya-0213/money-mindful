@@ -2,16 +2,24 @@
 
 "use client";
 
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
 import Button from "@/app/components/button/Button";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+
 import { createClient } from "@/utils/supabase/clients";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
+// ログイン確認画面用
+
+// ログイン確認画面用
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
@@ -121,7 +129,7 @@ const LoginPage = () => {
               <p className="font-semibold text-[#777777]">
                 パスワードを忘れた方は
                 <Link
-                  href="/money-mindful/login/password-reset"
+                  href="/auth/login/form/password-reset"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -147,10 +155,7 @@ const LoginPage = () => {
             {/* 新規登録へ誘導 */}
             <p className="font-semibold text-[#777777]">
               アカウント作成は
-              <Link
-                href="/money-mindful/signup"
-                className="text-[#666] underline"
-              >
+              <Link href="/auth/signup/form" className="text-[#666] underline">
                 こちら
               </Link>
             </p>

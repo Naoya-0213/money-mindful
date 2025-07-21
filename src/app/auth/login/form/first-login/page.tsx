@@ -4,7 +4,7 @@ import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import Image from "next/image";
 import React from "react";
-import AddRecordCard from "../../../components/add/AddRecordCard";
+import AddRecordCard from "../../../../components/add/AddRecordCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 import Button from "@/app/components/button/Button";
 

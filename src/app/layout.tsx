@@ -1,10 +1,19 @@
+"use client";
+
+import { useEffect } from "react";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import { useRouter } from "next/navigation";
+
 import ClientUserSetter from "@/lib/ClientUserSetter";
 import { SupabaseLisner } from "@/lib/SupabaseListener";
+
+import { createClient } from "@/utils/supabase/clients";
+
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import "./globals.css";
 
 // google font(1)
 const geistSans = Geist({
@@ -34,7 +43,22 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+
   const { session, profile } = await SupabaseLisner();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const supabase = createClient();
+      const { data } = await supabase.auth.getSession();
+
+      if (!data.session) {
+        router.replace("/session-error"); // セッション切れ画面へ遷移
+      }
+    };
+
+    checkSession();
+  }, []);
 
   return (
     <html lang="jp">

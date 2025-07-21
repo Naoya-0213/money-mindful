@@ -92,7 +92,7 @@ const ChangeEmailPage = () => {
       // 登録成功 → 確認メール送信済み画面へ遷移するなど
       setMessage({
         type: "success",
-        text: "確認用のURLを記載したメールを送信しました。",
+        text: "確認用のURLを記載したメールを\n送信しました。",
       });
     } catch (error) {
       console.error("予期せぬエラー", error);

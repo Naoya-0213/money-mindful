@@ -1,4 +1,4 @@
-// middleware.ts
+// ===== middleware.ts ======
 // ✅ ミドルウェアの役割
 // Next.js アプリにおける「全ページ共通のフィルター機能」
 // 「/money-mindful」配下にアクセスされた場合のみ、

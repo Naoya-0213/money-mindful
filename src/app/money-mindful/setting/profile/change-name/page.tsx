@@ -35,7 +35,7 @@ const ChangeUserNamePage = () => {
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
-  // 現在のメールアドレス取得用
+  // 現在の名前の取得
   const [name, setName] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
 

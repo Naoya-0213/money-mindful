@@ -6,7 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 
 import { Database } from "@/types/database.types";
 
-import BeforeLogin from "./components/before-login/BeforeLogin";
+import BeforeSignin from "./components/before-signin/BeforeSignin";
 
 export default async function PageTop() {
   const supabase = await createClient<Database>();
@@ -22,7 +22,7 @@ export default async function PageTop() {
 
   return (
     <div>
-      <BeforeLogin />
+      <BeforeSignin />
     </div>
   );
 }

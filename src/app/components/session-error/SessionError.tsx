@@ -1,5 +1,3 @@
-import React from "react";
-
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 
@@ -8,7 +6,7 @@ const SessionError = () => {
     <SectionCard icon="/icon/error/warning.png" label="セッションエラー">
       <div className="flex flex-col gap-5">
         {/* 注意文 */}
-        <div className="flex flex-col gap-5 items-center font-semibold text-[#777777]">
+        <div className="flex flex-col items-center gap-5 font-semibold text-[#777777]">
           <div className="flex flex-col items-center">
             <p>セッションが切れております。</p>
           </div>
@@ -25,7 +23,7 @@ const SessionError = () => {
 
       {/* ログインボタン */}
       <div className="flex justify-center">
-        <Button href="/money-mindful/login">ログインはこちら</Button>
+        <Button href="/money-mindful/signin">ログインはこちら</Button>
       </div>
     </SectionCard>
   );

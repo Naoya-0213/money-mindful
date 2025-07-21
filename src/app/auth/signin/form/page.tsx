@@ -21,6 +21,8 @@ import { createClient } from "@/utils/supabase/clients";
 
 // ログイン確認画面用
 
+// ログイン確認画面用
+
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
@@ -34,7 +36,7 @@ const schema = z.object({
 });
 
 // ログインページ
-const LoginPage = () => {
+const SigninPage = () => {
   const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
@@ -129,7 +131,7 @@ const LoginPage = () => {
               <p className="font-semibold text-[#777777]">
                 パスワードを忘れた方は
                 <Link
-                  href="/auth/login/form/password-reset"
+                  href="/auth/signin/form/password-reset"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -166,4 +168,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SigninPage;

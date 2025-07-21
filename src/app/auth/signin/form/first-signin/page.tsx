@@ -1,14 +1,14 @@
 // 初回ログイン画面用
+import Image from "next/image";
 
+import Button from "@/app/components/button/Button";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Image from "next/image";
-import React from "react";
-import AddRecordCard from "../../../../components/add/AddRecordCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
-import Button from "@/app/components/button/Button";
 
-const FirstLoginPage = () => {
+import AddRecordCard from "../../../../components/add/AddRecordCard";
+
+const FirstSignPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -137,4 +137,4 @@ const FirstLoginPage = () => {
   );
 };
 
-export default FirstLoginPage;
+export default FirstSignPage;

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import React from "react";
+
 import Button from "../button/Button";
 
-const BeforeLogin = () => {
+const BeforeSignin = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -59,7 +59,7 @@ const BeforeLogin = () => {
             <div className="flex w-full flex-col items-center gap-5 pb-5">
               {/* ログインボタン */}
               <div className="flex w-full justify-center">
-                <Button href="/auth/login/form">ログイン</Button>
+                <Button href="/auth/signin/form">ログイン</Button>
               </div>
               {/* 新規登録ボタン */}
               <div className="flex w-full justify-center">
@@ -73,4 +73,4 @@ const BeforeLogin = () => {
   );
 };
 
-export default BeforeLogin;
+export default BeforeSignin;

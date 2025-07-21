@@ -2,16 +2,22 @@
 
 "use client";
 
-import FormField from "@/app/components/field/FormField";
-import SectionCard from "@/app/components/section-card/SectionCard";
-import { createClient } from "@/utils/supabase/clients";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+
 import Button from "@/app/components/button/Button";
+import FormField from "@/app/components/field/FormField";
+import SectionCard from "@/app/components/section-card/SectionCard";
+
+import { createClient } from "@/utils/supabase/clients";
+
+// 新規登録用
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
@@ -204,10 +210,7 @@ const SignUpPage = () => {
             {/* ログインへ誘導 */}
             <p className="font-semibold text-[#777777]">
               ログインは
-              <Link
-                href="/auth/login/form"
-                className="text-[#666] underline"
-              >
+              <Link href="/auth/signin/form" className="text-[#666] underline">
                 こちら
               </Link>
             </p>

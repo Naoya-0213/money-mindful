@@ -22,7 +22,7 @@ const schema = z.object({
 // Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
-const LogoutPage = () => {
+const signoutPage = () => {
   const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
@@ -111,4 +111,4 @@ const LogoutPage = () => {
   );
 };
 
-export default LogoutPage;
+export default signoutPage;

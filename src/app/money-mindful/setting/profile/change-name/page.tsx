@@ -1,15 +1,51 @@
-// プロフィール設定/ユーザー名変更用
-
 "use client";
+
+import React, { useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
 
 import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
-import React from "react";
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
+import { createClient } from "@/utils/supabase/server";
 
-const ChangeImagePage = () => {
+// ===== プロフィール設定/ユーザー名変更用 =====
+
+// Zodスキーマから型を自動推論してSchema型を定義
+type Schema = z.infer<typeof schema>;
+
+// ユーザー名の変更
+const ChangeUserNamePage = () => {
+  const router = useRouter();
+
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
+
+  // 現在のメールアドレス取得用
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getCurrentUser(supabase);
+      if (user?.name) setName(user.name);
+    };
+    fetchUser();
+  }, []);
+
+  // 登録時のメッセージ
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  // ローディング画面用
+  const [loading, setLoading] = useState(false);
+
+  // 変更
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -22,7 +58,7 @@ const ChangeImagePage = () => {
             label="現在の名前"
             icon="/icon/setting/profile/name.png"
           >
-            Naoya
+            {name}
           </DisplayField>
 
           {/* 新しい名前 */}
@@ -53,4 +89,4 @@ const ChangeImagePage = () => {
   );
 };
 
-export default ChangeImagePage;
+export default ChangeUserNamePage;

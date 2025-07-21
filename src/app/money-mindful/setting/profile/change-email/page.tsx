@@ -65,7 +65,7 @@ const ChangeEmailPage = () => {
     resolver: zodResolver(schema),
   });
 
-  // 送信
+  // メール変更確認メールの送信
   const onSubmit: SubmitHandler<Schema> = async (data) => {
     setLoading(true);
     setMessage(null);

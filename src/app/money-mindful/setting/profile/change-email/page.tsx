@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +13,7 @@ import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
@@ -153,6 +155,32 @@ const ChangeEmailPage = () => {
                 変更を完了してください。
               </p>
             </div>
+
+            <SectionInfoBox>
+              <div className="flex flex-col gap-5">
+                <div className="flex gap-3">
+                  <Image
+                    src="/icon/error/warning.png"
+                    alt="アイコン"
+                    width={25}
+                    height={25}
+                  />
+                  <p>注意点</p>
+                </div>
+                <div className="flex flex-col items-center gap-5">
+                  <div className="flex flex-col items-center">
+                    <p>リンクはログインした状態で</p>
+                    <p>開いてください。</p>
+                  </div>
+
+                  <div className="flex flex-col items-center">
+                    <p>ログインが切れていた場合は、</p>
+                    <p>もう一度ログインしてから</p>
+                    <p>再度、変更してください。</p>
+                  </div>
+                </div>
+              </div>
+            </SectionInfoBox>
           </div>
 
           <div className="flex flex-col items-center gap-3">

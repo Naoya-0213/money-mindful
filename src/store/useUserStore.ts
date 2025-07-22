@@ -13,7 +13,7 @@ type StateType = {
   resetUser: () => void;
 };
 
-const useStore = create<StateType>((set) => ({
+const useUserStore = create<StateType>((set) => ({
   // 初期値
   user: { id: "", name: "", email: "", image_url: "", created_at: "" },
   //  アップデート
@@ -25,4 +25,4 @@ const useStore = create<StateType>((set) => ({
     }),
 }));
 
-export default useStore;
+export default useUserStore;

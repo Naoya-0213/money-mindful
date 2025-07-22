@@ -17,26 +17,13 @@ export const getCurrentUser = async (
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("name, image_url, email") // emailも含まれているなら取得可能
+    .select("*") // emailも含まれているなら取得可能
     .eq("id", user.id)
     .single();
 
-  if (profileError) {
+  if (profileError || !profile) {
     console.error("プロフィール情報の取得に失敗:", profileError.message);
-    return {
-      id: user.id,
-      email: user.email,
-      name: null,
-      image_url: null,
-    };
+    return null;
   }
-  return {
-    id: user.id,
-
-    // profiles.emailがなければauth.email
-    email: profile.email ?? user.email,
-
-    name: profile.name,
-    image_url: profile.image_url,
-  };
+  return profile;
 };

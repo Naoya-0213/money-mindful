@@ -23,7 +23,7 @@ const SessionError = () => {
 
       {/* ログインボタン */}
       <div className="flex justify-center">
-        <Button href="/money-mindful/signin">ログインはこちら</Button>
+        <Button href="/auth/signin">ログインはこちら</Button>
       </div>
     </SectionCard>
   );

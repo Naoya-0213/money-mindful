@@ -84,10 +84,10 @@ export default function SettingPage() {
           </div>
           <div className="flex flex-col items-center gap-5">
             <Button href="/money-mindful/setting/logout">ログアウト</Button>
-            <Button onClick={() => alert("アカウント削除！")}>
+            <Button onClick={() => alert("実装予定...!")}>
               アカウントを削除する
             </Button>
-            <Button onClick={() => alert("データリセット！")}>
+            <Button onClick={() => alert("実装予定...!")}>
               データリセット
             </Button>
           </div>

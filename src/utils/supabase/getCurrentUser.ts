@@ -12,7 +12,7 @@ export const getCurrentUser = async (
     return null;
   }
 
-  // profiles テーブルから追加情報（name, image_url）を取得
+  // profiles テーブルから追加情報（name, image_urlなど）を取得
   const user = result.data.user;
 
   const { data: profile, error: profileError } = await supabase

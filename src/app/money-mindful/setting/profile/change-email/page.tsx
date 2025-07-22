@@ -36,7 +36,7 @@ const ChangeEmailPage = () => {
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
-  // 現在のメールアドレス取得用
+  // 入力値更新用
   const [email, setEmail] = useState("");
 
   // React hook formの指定

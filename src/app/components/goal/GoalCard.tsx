@@ -1,9 +1,23 @@
-import React from "react";
-import SectionCard from "../section-card/SectionCard";
-import Link from "next/link";
+"use client";
+
 import Button from "../button/Button";
+import SectionCard from "../section-card/SectionCard";
+
+// ===== 目標表示 =====
 
 const GoalCard = () => {
+  // // supabase連携（別ページにて連携済み）
+  // const supabase = createClient();
+
+  // // 現在の目標変更用
+  // const [title, SetTitle] = useState("");
+
+  // // 現在の期限変更用
+  // const [due, SetDue] = useState("");
+
+  // // 現在の金額変更用
+  // const [money, SetMoney] = useState("");
+
   return (
     <div className="w-full">
       {/* セクション */}

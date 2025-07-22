@@ -1,9 +1,10 @@
-// app/money-mindful/layout.tsx
 import { redirect } from "next/navigation";
 
 import { SupabaseLisner } from "@/lib/SupabaseListener";
 
 import ClientWrapper from "./ClientWrapper";
+
+// sessionやprofileがない場合、自動でログイン前画面に遷移。
 
 export default async function Layout({
   children,

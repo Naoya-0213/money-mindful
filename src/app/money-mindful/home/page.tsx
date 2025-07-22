@@ -1,10 +1,10 @@
-// ホームセクション
-
-import React from "react";
 import GoalCard from "@/app/components/goal/GoalCard";
-import GoalStatusCard from "./component/GoalStatusCard";
-import AddRecordCard from "../../components/add/AddRecordCard";
 import RecentLogs from "@/app/components/log/RecentLogs";
+
+import AddRecordCard from "../../components/add/AddRecordCard";
+import GoalStatusCard from "./component/GoalStatusCard";
+
+// ===== ホーム画面 ======
 
 export default function HomePage() {
   return (

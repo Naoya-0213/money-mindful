@@ -17,7 +17,7 @@ export default function SettingPage() {
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
-  // 現在のメールアドレス、名前取得用
+  // 現在のメールアドレス、名前変更用
   const [name, setName] = useState("");
 
   // ページ初回読み込み時のみ実行（ユーザー情報の取得

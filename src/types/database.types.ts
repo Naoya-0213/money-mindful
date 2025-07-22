@@ -1,4 +1,4 @@
-export type Json =
+type Json =
   | string
   | number
   | boolean
@@ -84,31 +84,40 @@ export type Database = {
           },
         ];
       };
-      memos: {
+      "money-savings": {
         Row: {
-          content: string | null;
-          created_at: string;
-          icon_url: string | null;
+          amount: number | null;
+          category_id: string | null;
+          created_at: string | null;
           id: string;
+          memo: string | null;
+          saved_at: string | null;
+          title: string | null;
           user_id: string | null;
         };
         Insert: {
-          content?: string | null;
-          created_at?: string;
-          icon_url?: string | null;
+          amount?: number | null;
+          category_id?: string | null;
+          created_at?: string | null;
           id?: string;
+          memo?: string | null;
+          saved_at?: string | null;
+          title?: string | null;
           user_id?: string | null;
         };
         Update: {
-          content?: string | null;
-          created_at?: string;
-          icon_url?: string | null;
+          amount?: number | null;
+          category_id?: string | null;
+          created_at?: string | null;
           id?: string;
+          memo?: string | null;
+          saved_at?: string | null;
+          title?: string | null;
           user_id?: string | null;
         };
         Relationships: [
           {
-            foreignKeyName: "memos_user_id_fkey";
+            foreignKeyName: "savings_user_id_fkey";
             columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "profiles";
@@ -139,44 +148,6 @@ export type Database = {
           name?: string;
         };
         Relationships: [];
-      };
-      savings: {
-        Row: {
-          amount: number | null;
-          category_id: string | null;
-          created_at: string | null;
-          id: string;
-          memo_id: string | null;
-          saved_at: string | null;
-          user_id: string | null;
-        };
-        Insert: {
-          amount?: number | null;
-          category_id?: string | null;
-          created_at?: string | null;
-          id?: string;
-          memo_id?: string | null;
-          saved_at?: string | null;
-          user_id?: string | null;
-        };
-        Update: {
-          amount?: number | null;
-          category_id?: string | null;
-          created_at?: string | null;
-          id?: string;
-          memo_id?: string | null;
-          saved_at?: string | null;
-          user_id?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "savings_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: false;
-            referencedRelation: "profiles";
-            referencedColumns: ["id"];
-          },
-        ];
       };
     };
     Views: {

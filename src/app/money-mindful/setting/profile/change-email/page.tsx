@@ -30,7 +30,6 @@ type Schema = z.infer<typeof schema>;
 
 // メールアドレス変更
 const ChangeEmailPage = () => {
-  
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
@@ -144,13 +143,15 @@ const ChangeEmailPage = () => {
 
           {/* 注意点 */}
           <div className="flex flex-col items-center gap-5 py-3 font-semibold text-[#777777]">
-            <p className="">変更には確認が必要です！</p>
+            <div className="flex flex-col items-center">
+              <p>新旧両方のメールに</p>
+              <p>届くリンクを</p>
+              <p>クリックする必要があります。</p>
+            </div>
 
             <div className="flex flex-col items-center">
-              <p>確認メールは両方に届きますが、</p>
-              <p>新アドレスに届く</p>
-              <p>リンクから操作してください。</p>
-              <p>（旧アドレスは通知のみ）</p>
+              <p>必ず両方のメールを</p>
+              <p>ご確認ください。</p>
             </div>
           </div>
           <SectionInfoBox>

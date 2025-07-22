@@ -42,6 +42,7 @@
 - signupのコンポ化。FormFieldとエラーメッセのコンポ化
 - supabaseからのメール送信時のロゴ設定
 - login・signupフォルダ内の役割分割）page.tsx or action.tsx　への置き換え
+- アカウント削除、データリセットの実装
 
 ## 📌 本番デプロイ時に忘れずにやること（Supabaseメール認証関連）
 

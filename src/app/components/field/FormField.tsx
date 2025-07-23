@@ -7,6 +7,8 @@ type FormFieldProps = {
   label: string;
   placeholder?: string;
 
+  InputStyle?: React.CSSProperties;
+
   // タイプの選択
   type?: "text" | "number" | "date" | "email";
 
@@ -23,6 +25,8 @@ type FormFieldProps = {
 
   // 対象がフォーカスから外れた時に発火
   onBlur?: (e: React.FocusEvent<any>) => void;
+
+  children?: React.ReactNode;
 };
 
 const FormField = forwardRef<
@@ -30,7 +34,16 @@ const FormField = forwardRef<
   FormFieldProps
 >(
   (
-    { label, placeholder, type = "text", isTextarea = false, icon, ...rest },
+    {
+      label,
+      placeholder,
+      type = "text",
+      isTextarea = false,
+      InputStyle,
+      icon,
+      children,
+      ...rest
+    },
     ref,
   ) => {
     return (
@@ -43,24 +56,33 @@ const FormField = forwardRef<
           <label className="text-lg font-bold text-[#795549]">{label}</label>
         </div>
 
-        {/* inputエリア（textarea） */}
-        {isTextarea ? (
-          <textarea
-            placeholder={placeholder}
-            {...rest}
-            className="min-h-26 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 font-bold text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
-            ref={ref as React.Ref<HTMLTextAreaElement>}
-          />
-        ) : (
-          <input
-            type={type}
-            placeholder={placeholder}
-            {...rest}
-            style={{ height: "var(--input-height)" }}
-            className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 font-bold text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
-            ref={ref as React.Ref<HTMLInputElement>}
-          />
-        )}
+        {/* 入力エリアをラップ */}
+        <div className="relative w-full">
+          {isTextarea ? (
+            <>
+              {children}
+              <textarea
+                placeholder={placeholder}
+                {...rest}
+                className="min-h-26 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 font-bold text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
+                ref={ref as React.Ref<HTMLTextAreaElement>}
+                style={InputStyle}
+              />
+            </>
+          ) : (
+            <>
+              {children}
+              <input
+                type={type}
+                placeholder={placeholder}
+                {...rest}
+                style={{ height: "var(--input-height)", ...InputStyle }}
+                className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 font-bold text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
+                ref={ref as React.Ref<HTMLInputElement>}
+              />
+            </>
+          )}
+        </div>
       </div>
     );
   },

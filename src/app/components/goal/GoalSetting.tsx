@@ -75,66 +75,69 @@ const GoalSetting = () => {
 
   return (
     <SectionCard icon="/icon/setting/goal/flag.png" label="目標設定">
-      {/* 目標タイトル */}
-      <FormField
-        label="目標タイトル"
-        icon="/icon/setting/goal/tag.png"
-        placeholder="北海道旅行"
-      />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* 目標タイトル */}
+        <FormField
+          label="目標タイトル"
+          icon="/icon/setting/goal/tag.png"
+          placeholder="北海道旅行"
+          {...register("title")}
+        />
 
-      {/* 額 */}
-      <FormField
-        label="金額"
-        icon="/icon/setting/goal/money.png"
-        placeholder="¥150"
-      />
+        {/* 額 */}
+        <FormField
+          label="金額"
+          icon="/icon/setting/goal/money.png"
+          placeholder="¥150"
+        />
 
-      {/* 期限 */}
-      <FormField
-        label="金額"
-        icon="/icon/setting/goal/calendar.png"
-        placeholder="2025年12月2日（水）"
-      />
+        {/* 期限 */}
+        <FormField
+          label="金額"
+          icon="/icon/setting/goal/calendar.png"
+          placeholder="2025年12月2日（水）"
+        />
 
-      {/* 追加日 */}
-      <FormField
-        label="追加日"
-        icon="/icon/setting/goal/pin.png"
-        placeholder="2025年7月2日（水）"
-      />
+        {/* 追加日 */}
+        <FormField
+          label="追加日"
+          icon="/icon/setting/goal/pin.png"
+          placeholder="2025年7月2日（水）"
+        />
 
-      {/* メモ */}
-      <FormField
-        label="メモ"
-        icon="/icon/setting/goal/notes.png"
-        placeholder="12月にいく北海道旅行用！"
-        isTextarea
-      />
+        {/* メモ */}
+        <FormField
+          label="メモ"
+          icon="/icon/setting/goal/notes.png"
+          placeholder="12月にいく北海道旅行用！"
+          isTextarea
+        />
 
-      <div className="flex flex-col gap-5 pt-5">
-        {/* 保存ボタン */}
-        <div className="flex w-full justify-center">
-          <Button
-            href="/money-mindful/setting"
-            onClick={() => alert("supabaseへ保存！")}
-          >
-            保存
-          </Button>
+        <div className="flex flex-col gap-5 pt-5">
+          {/* 保存ボタン */}
+          <div className="flex w-full justify-center">
+            <Button
+              href="/money-mindful/setting"
+              onClick={() => alert("supabaseへ保存！")}
+            >
+              保存
+            </Button>
+          </div>
+          {/* 戻るボタン */}
+          <div className="flex w-full justify-center">
+            <Button href="/money-mindful/setting">戻る</Button>
+          </div>
+          {/* 削除ボタン */}
+          <div className="flex w-full justify-center">
+            <Button
+              className="bg-[#D7CDBE] !text-[#795549]"
+              onClick={() => alert("削除！")}
+            >
+              リセット
+            </Button>
+          </div>
         </div>
-        {/* 戻るボタン */}
-        <div className="flex w-full justify-center">
-          <Button href="/money-mindful/setting">戻る</Button>
-        </div>
-        {/* 削除ボタン */}
-        <div className="flex w-full justify-center">
-          <Button
-            className="bg-[#D7CDBE] !text-[#795549]"
-            onClick={() => alert("削除！")}
-          >
-            リセット
-          </Button>
-        </div>
-      </div>
+      </form>
     </SectionCard>
   );
 };

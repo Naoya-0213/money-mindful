@@ -83,7 +83,7 @@ export default function SettingPage() {
             <p>必要に応じてご利用ください。</p>
           </div>
           <div className="flex flex-col items-center gap-5">
-            <Button href="/money-mindful/setting/logout">ログアウト</Button>
+            <Button href="/auth/signout/form">ログアウト</Button>
             <Button onClick={() => alert("実装予定...!")}>
               アカウントを削除する
             </Button>

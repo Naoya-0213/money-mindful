@@ -28,6 +28,7 @@ const schema = z.object({
     .max(20, { message: "20文字以内で入力ください。" }),
   target_amount: z.number().min(1, { message: "金額を入力してください。" }),
   end_date: z.string().min(1, { message: "日付を選択してください。" }),
+  start_date: z.string().min(1, { message: "日付を選択してください。" }),
 });
 
 // Zodスキーマから型を自動推論してSchema型を定義
@@ -40,23 +41,28 @@ const GoalSetting = () => {
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
-  // 入力値更新用
-  const [title, setTitle] = useState("");
+  const [formattedAmount, setFormattedAmount] = useState("");
 
   // React hook formの指定
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<Schema>({
     // 初期値
-    defaultValues: { title: "", target_amount: 0, end_date: "" },
+    defaultValues: {
+      title: "",
+      target_amount: 0,
+      end_date: "",
+      start_date: new Date().toISOString().split("T")[0],
+    },
     // 入力値の検証
     resolver: zodResolver(schema),
   });
 
   // 送信ボタンの動作
-  const onSubmit: SubmitHandler<Schema> = async (data) => {
+  const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     const user = await getCurrentUser(supabase);
     if (!user) return;
 
@@ -75,53 +81,102 @@ const GoalSetting = () => {
 
   return (
     <SectionCard icon="/icon/setting/goal/flag.png" label="目標設定">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         {/* 目標タイトル */}
-        <FormField
-          label="目標タイトル"
-          icon="/icon/setting/goal/tag.png"
-          placeholder="北海道旅行"
-          {...register("title")}
-        />
+        <div className="flex flex-col gap-1">
+          <FormField
+            label="目標タイトル"
+            icon="/icon/setting/goal/tag.png"
+            placeholder="タイトルを入力"
+            {...register("title")}
+          />
+          {errors.title && (
+            <p className="mt-1 px-4 text-sm text-red-500">
+              {errors.title.message}
+            </p>
+          )}
+        </div>
 
         {/* 額 */}
-        <FormField
-          label="金額"
-          icon="/icon/setting/goal/money.png"
-          placeholder="¥150"
-        />
+        <div className="flex flex-col gap-1">
+          <div className="relative w-full">
+            <FormField
+              label="金額"
+              icon="/icon/setting/goal/money.png"
+              placeholder="金額を入力"
+              type="text"
+              InputStyle={{ paddingLeft: "3rem" }}
+              value={formattedAmount}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/,/g, "");
+                const numeric = Number(raw);
+                if (!isNaN(numeric) && raw !== "") {
+                  setValue("target_amount", numeric);
+                  setFormattedAmount(numeric.toLocaleString("ja-JP"));
+                } else {
+                  setValue("target_amount", 0);
+                  setFormattedAmount("");
+                }
+              }}
+            >
+              {/* ¥マーク */}
+              <span className="absolute top-1/2 left-4 -translate-y-1/2 text-xl font-bold text-[#795549]">
+                ¥
+              </span>
+            </FormField>
+            {/* hidden input for react-hook-form */}
+            <input type="hidden" {...register("target_amount")} />
+          </div>
+
+          {errors.target_amount && (
+            <p className="mt-1 px-4 text-sm text-red-500">
+              {errors.target_amount.message}
+            </p>
+          )}
+        </div>
 
         {/* 期限 */}
-        <FormField
-          label="金額"
-          icon="/icon/setting/goal/calendar.png"
-          placeholder="2025年12月2日（水）"
-        />
+        <div className="flex flex-col gap-1">
+          <FormField
+            label="期限"
+            icon="/icon/setting/goal/calendar.png"
+            type="date"
+            {...register("end_date")}
+          />
+          {errors.end_date && (
+            <p className="mt-1 px-4 text-sm text-red-500">
+              {errors.end_date.message}
+            </p>
+          )}
+        </div>
 
         {/* 追加日 */}
-        <FormField
-          label="追加日"
-          icon="/icon/setting/goal/pin.png"
-          placeholder="2025年7月2日（水）"
-        />
+        <div className="flex flex-col gap-1">
+          <FormField
+            label="追加日"
+            icon="/icon/setting/goal/pin.png"
+            type="date"
+            {...register("start_date")}
+          />
+          {errors.start_date && (
+            <p className="mt-1 px-4 text-sm text-red-500">
+              {errors.start_date.message}
+            </p>
+          )}
+        </div>
 
         {/* メモ */}
         <FormField
           label="メモ"
           icon="/icon/setting/goal/notes.png"
-          placeholder="12月にいく北海道旅行用！"
+          placeholder={`詳細を入力`}
           isTextarea
         />
 
         <div className="flex flex-col gap-5 pt-5">
           {/* 保存ボタン */}
           <div className="flex w-full justify-center">
-            <Button
-              href="/money-mindful/setting"
-              onClick={() => alert("supabaseへ保存！")}
-            >
-              保存
-            </Button>
+            <Button type="submit">保存</Button>
           </div>
           {/* 戻るボタン */}
           <div className="flex w-full justify-center">

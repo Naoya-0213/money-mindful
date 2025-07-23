@@ -1,8 +1,10 @@
-import React from "react";
+import Image from "next/image";
+
+import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 import SectionInfoBox from "../section-card/SectionInfoBox";
-import Image from "next/image";
-import Button from "../button/Button";
+
+// ===== 目標未設定時、目標入力画面へ誘導 =====
 
 type NoGoalCardProps = {
   numberIcon?: string;

@@ -1,7 +1,10 @@
+import { redirect } from "next/navigation";
+
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import RecentLogs from "@/app/components/log/RecentLogs";
 
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 import { createClient } from "@/utils/supabase/server";
 
 import AddRecordCard from "../../components/add/AddRecordCard";
@@ -9,8 +12,14 @@ import GoalStatusCard from "./component/GoalStatusCard";
 
 // ===== ホーム画面 ======
 
-export default async function HomePage({ profile }: { profile: { id: string } }) {
+export default async function HomePage() {
   const supabase = await createClient();
+
+  const profile = await getCurrentUser(supabase);
+
+  if (!profile) {
+    redirect("/auth/login");
+  }
 
   const { data: goal } = await supabase
     .from("goals")

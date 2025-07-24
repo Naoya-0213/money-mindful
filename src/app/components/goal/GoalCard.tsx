@@ -10,7 +10,8 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 
-// ===== 目標表示 =====
+// ===== 登録目標表示 =====
+// supabaseへ保存している目標の表示
 
 const GoalCard = () => {
   // supabase連携（別ページにて連携済み）
@@ -19,6 +20,7 @@ const GoalCard = () => {
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
+  // 登録目標表示
   const [goal, setGoal] = useState<{
     title: string;
     start_date: string;
@@ -121,7 +123,7 @@ const GoalCard = () => {
 
         {/* 目標編集ボタン */}
         <div className="flex w-full justify-center">
-          <Button href="/money-mindful/setting/goal">目標を編集する</Button>
+          <Button href="/money-mindful/setting/goal/edit">目標を編集する</Button>
         </div>
       </SectionCard>
     </div>

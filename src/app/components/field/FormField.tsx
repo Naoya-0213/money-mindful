@@ -10,9 +10,6 @@ type FormFieldProps = {
   // 追加のstyle css用
   InputStyle?: React.CSSProperties;
 
-  // 登録済みデータ表示用
-  defaultValue?: string | number;
-
   // タイプの選択
   type?: "text" | "number" | "date" | "email";
 
@@ -45,7 +42,6 @@ const FormField = forwardRef<
       isTextarea = false,
       InputStyle,
       icon,
-      defaultValue,
       children,
       ...rest
     },
@@ -67,7 +63,6 @@ const FormField = forwardRef<
             <>
               {children}
               <textarea
-                defaultValue={defaultValue}
                 placeholder={placeholder}
                 {...rest}
                 className="min-h-26 w-full resize-none rounded-2xl border border-[#E0E0E0] bg-white px-4 py-4 font-bold text-[#795549] placeholder:text-[#9CA3AF] focus:border-[#795549] focus:ring-0 focus:outline-none"
@@ -79,7 +74,6 @@ const FormField = forwardRef<
             <>
               {children}
               <input
-                defaultValue={defaultValue}
                 type={type}
                 placeholder={placeholder}
                 {...rest}

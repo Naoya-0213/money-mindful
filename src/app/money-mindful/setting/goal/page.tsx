@@ -2,7 +2,7 @@
 
 import GoalSetting from "@/app/components/goal/GoalSetting";
 
-// ===== 目標設定用 ======
+// ===== 目標初回設定用 ======
 
 const GoalSettingPage = () => {
   return (

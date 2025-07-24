@@ -41,6 +41,7 @@ const GoalSetting = () => {
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
+  // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
 
   // React hook formの指定
@@ -53,7 +54,7 @@ const GoalSetting = () => {
     // 初期値
     defaultValues: {
       title: "",
-      target_amount: 0,
+      target_amount: undefined,
       end_date: "",
       start_date: new Date().toISOString().split("T")[0],
     },
@@ -106,9 +107,14 @@ const GoalSetting = () => {
               placeholder="金額を入力"
               type="text"
               InputStyle={{ paddingLeft: "3rem" }}
+              {...register("target_amount")}
+              // 金額入力時の , 表示
               value={formattedAmount}
               onChange={(e) => {
+                // 入力された値からカンマを除去（例：“12,000” → “12000”）
                 const raw = e.target.value.replace(/,/g, "");
+
+                // 数値に変換する（“12000” → 12000）
                 const numeric = Number(raw);
                 if (!isNaN(numeric) && raw !== "") {
                   setValue("target_amount", numeric);
@@ -124,8 +130,6 @@ const GoalSetting = () => {
                 ¥
               </span>
             </FormField>
-            {/* hidden input for react-hook-form */}
-            <input type="hidden" {...register("target_amount")} />
           </div>
 
           {errors.target_amount && (

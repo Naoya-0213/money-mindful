@@ -31,7 +31,11 @@ export default async function HomePage() {
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         {/* 目標 */}
-        {goal ? <GoalCard /> : <NoGoalCard />}
+        {goal ? (
+          <GoalCard /> // 設定目標の表示
+        ) : (
+          <NoGoalCard /> // 目標設定を促す画面
+        )}
         {/* 進捗 */}
         <GoalStatusCard />
         {/* 我慢記録 */}

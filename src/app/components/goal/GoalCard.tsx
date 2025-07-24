@@ -1,22 +1,79 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/navigation";
+
+import { createClient } from "@/utils/supabase/clients";
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
+
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 
 // ===== 目標表示 =====
 
 const GoalCard = () => {
-  // // supabase連携（別ページにて連携済み）
-  // const supabase = createClient();
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
 
-  // // 現在の目標変更用
-  // const [title, SetTitle] = useState("");
+  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
+  const router = useRouter();
 
-  // // 現在の期限変更用
-  // const [due, SetDue] = useState("");
+  const [goal, setGoal] = useState<{
+    title: string;
+    start_date: string;
+    end_date: string;
+    target_amount: number;
+  } | null>(null);
 
-  // // 現在の金額変更用
-  // const [money, SetMoney] = useState("");
+  // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(date);
+  };
+
+  // 金額フォーマット関数（¥⚫︎⚫︎,⚫︎⚫︎⚫︎）
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  useEffect(() => {
+    const fetchGoal = async () => {
+      const user = await getCurrentUser(supabase);
+      if (!user) return;
+
+      const { data } = await supabase
+        .from("goals")
+        .select("title, target_amount, start_date, end_date")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (
+        data &&
+        data.title !== null &&
+        data.target_amount !== null &&
+        data.start_date !== null &&
+        data.end_date !== null
+      ) {
+        setGoal({
+          title: data.title,
+          target_amount: data.target_amount,
+          start_date: data.start_date,
+          end_date: data.end_date,
+        });
+      }
+    };
+
+    fetchGoal();
+  }, []);
 
   return (
     <div className="w-full">
@@ -27,7 +84,7 @@ const GoalCard = () => {
           {/* 目的 */}
           <div className="flex items-center gap-5">
             <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
-              北海道旅行
+              {goal?.title}
             </p>
             <div className="flex min-w-[80px] justify-center">
               <span className="text-lg font-bold">のために</span>
@@ -37,7 +94,7 @@ const GoalCard = () => {
           {/* 期限 */}
           <div className="flex items-center gap-5">
             <p className="flex h-auto min-h-[65px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
-              2025年9月30日
+              {goal?.end_date ? formatDate(goal.end_date) : ""}
             </p>
             <div className="flex min-w-[80px] justify-center">
               <span className="text-lg font-bold">までに</span>
@@ -47,7 +104,7 @@ const GoalCard = () => {
           {/* 金額 */}
           <div className="flex items-center gap-5">
             <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
-              ¥50,000
+              {goal?.target_amount ? formatCurrency(goal.target_amount) : ""}
             </p>
             <div className="flex min-w-[10px] justify-center">
               <span className="text-lg font-bold">を貯める！</span>

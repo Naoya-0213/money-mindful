@@ -51,7 +51,7 @@ export default function SettingPage() {
             {/* ユーザー名表示 */}
 
             <div className="flex items-center gap-3 text-lg font-bold">
-              こんにちは、
+              こんにちは！　
               {name}
               　さん
             </div>

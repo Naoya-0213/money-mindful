@@ -34,7 +34,7 @@ const schema = z.object({
 // Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
-const GoalSetting = () => {
+const GoalFirstSetting = () => {
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
@@ -187,18 +187,18 @@ const GoalSetting = () => {
             <Button href="/money-mindful/setting">戻る</Button>
           </div>
           {/* 削除ボタン */}
-          <div className="flex w-full justify-center">
+          {/* <div className="flex w-full justify-center">
             <Button
               className="bg-[#D7CDBE] !text-[#795549]"
               onClick={() => alert("削除！")}
             >
               リセット
             </Button>
-          </div>
+          </div> */}
         </div>
       </form>
     </SectionCard>
   );
 };
 
-export default GoalSetting;
+export default GoalFirstSetting;

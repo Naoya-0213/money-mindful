@@ -249,14 +249,14 @@ const GoalSettingEdit = () => {
             <Button href="/money-mindful/setting">戻る</Button>
           </div>
           {/* 削除ボタン */}
-          <div className="flex w-full justify-center">
+          {/* <div className="flex w-full justify-center">
             <Button
               className="bg-[#D7CDBE] !text-[#795549]"
               onClick={() => alert("削除！")}
             >
               リセット
             </Button>
-          </div>
+          </div> */}
         </div>
       </form>
     </SectionCard>

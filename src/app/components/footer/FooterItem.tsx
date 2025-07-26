@@ -13,7 +13,7 @@ type Props = {
 export default function FooterItem({ icon, label, href }: Props) {
   return (
     <Link href={href!} className="flex flex-col items-center justify-center">
-      <Image src={icon} alt={label} width={30} height={30} />
+      <Image src={icon} alt={label} width={28} height={28} />
       <p className="mt-[1px] text-sm font-semibold">{label}</p>
     </Link>
   );

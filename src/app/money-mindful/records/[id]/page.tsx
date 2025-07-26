@@ -1,16 +1,8 @@
-// 記録履歴、詳細表示・編集・保存・削除用
-
 "use client";
 
 import FirstAddForm from "@/app/components/add/FirstAddForm";
 import Button from "@/app/components/button/Button";
 import SectionCard from "@/app/components/section-card/SectionCard";
-
-// 記録履歴、詳細表示・編集・保存・削除用
-
-// 記録履歴、詳細表示・編集・保存・削除用
-
-// 記録履歴、詳細表示・編集・保存・削除用
 
 // 記録履歴、詳細表示・編集・保存・削除用
 

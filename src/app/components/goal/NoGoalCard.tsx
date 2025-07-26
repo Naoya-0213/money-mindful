@@ -38,7 +38,7 @@ const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
 
         {/* 説明カード2 */}
         <SectionInfoBox>
-          <div className="flex justify-between gap-3 px-5">
+          <div className="flex justify-between gap-3">
             {/* アイコン */}
             <div className="flex w-1/3 min-w-[70px] flex-col items-center justify-center gap-1">
               <Image
@@ -53,7 +53,7 @@ const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
             {/* 備考 */}
             <div className="flex w-2/3 flex-col items-center">
               <p>フッターの設定</p>
-              <p>から変更可能です。</p>
+              <p>から変更可能です！</p>
             </div>
           </div>
         </SectionInfoBox>

@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import Button from "@/app/components/button/Button";
 import GoalCard from "@/app/components/goal/GoalCard";
+import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
@@ -14,20 +16,40 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 // ===== 設定セクション =====
 
 export default function SettingPage() {
-  // supabase連携（別ページにて連携済み）
+  const router = useRouter();
   const supabase = createClient();
 
-  // 現在のメールアドレス、名前変更用
+  const [profile, setProfile] = useState<{ id: string; name?: string } | null>(null);
   const [name, setName] = useState("");
+  const [goal, setGoal] = useState<any>(null);
 
-  // ページ初回読み込み時のみ実行（ユーザー情報の取得
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUserAndGoal = async () => {
       const user = await getCurrentUser(supabase);
-      if (user?.name) setName(user.name);
+      if (!user) {
+        router.push("/auth/login");
+        return;
+      }
+      setProfile(user);
+      if (user.name) setName(user.name);
+
+      const { data: goalData, error } = await supabase
+        .from("goals")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (!error) {
+        setGoal(goalData);
+      }
     };
-    fetchUser();
-  }, []);
+
+    fetchUserAndGoal();
+  }, [router, supabase]);
+
+  if (!profile) {
+    return null;
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
@@ -71,7 +93,11 @@ export default function SettingPage() {
         </SectionCard>
 
         {/* 目標設定 */}
-        <GoalCard />
+        {goal ? (
+          <GoalCard /> // 設定目標の表示
+        ) : (
+          <NoGoalCard /> // 目標設定を促す画面
+        )}
 
         {/* アカウント管理 */}
         <SectionCard

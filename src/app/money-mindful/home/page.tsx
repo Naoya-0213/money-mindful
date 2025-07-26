@@ -2,18 +2,18 @@ import { redirect } from "next/navigation";
 
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
-
+import RecentRecords from "@/app/components/records/RecentRecords";
 
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 import { createClient } from "@/utils/supabase/server";
 
 import AddRecordCard from "../../components/add/AddRecordCard";
 import GoalStatusCard from "./component/GoalStatusCard";
-import RecentRecords from "@/app/components/records/RecentRecords";
 
 // ===== ホーム画面 ======
 
 export default async function HomePage() {
+  // supabase連携（別ページにて連携済み）
   const supabase = await createClient();
 
   const profile = await getCurrentUser(supabase);

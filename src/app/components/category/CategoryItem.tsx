@@ -1,20 +1,22 @@
-// カテゴリー選択セクション用　各アイテムカード
+"use client";
 
-"use client"
-
-import React from "react";
-import CategoryIcon from "./category-icon/CategoryIcon";
-import { CATEGORY_ICON_LIST } from "@/const/category-icon/categoryIconMap";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
+
+import CategoryIcon from "./category-icon/CategoryIcon";
+
+// カテゴリー選択セクション用　各アイテムカード
+
 type CategoryItemProps = {
-  name: keyof typeof CATEGORY_ICON_LIST;
+  id: string;
 };
 
-const CategoryItem = ({ name }: CategoryItemProps) => {
+const CategoryItem = ({ id }: CategoryItemProps) => {
   const router = useRouter();
-  const icon = CATEGORY_ICON_LIST[name];
+  // const icon = CATEGORY_LIST[name];
+  const category = CATEGORY_LIST.find((category) => id === category.id)!;
 
   return (
     <button
@@ -26,10 +28,10 @@ const CategoryItem = ({ name }: CategoryItemProps) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-5 text-lg font-bold text-[#795549]">
           {/* カテゴリーアイコン */}
-          <CategoryIcon name={name} />
+          <CategoryIcon name={category.name} />
 
           {/* カテゴリータイトル */}
-          <h2 className="text-xl font-bold">{icon.title}</h2>
+          <h2 className="text-xl font-bold">{category.title}</h2>
         </div>
         <div>
           <Image

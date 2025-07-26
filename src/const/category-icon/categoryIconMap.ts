@@ -1,82 +1,118 @@
 // カテゴリーアイコン一括管理用
 
-export const CATEGORY_ICON_LIST = {
+export type CategoryType = {
+  name: string;
+  src: string;
+  alt: string;
+  title: string;
+  id: string;
+};
+
+export const CATEGORY_LIST: readonly CategoryType[] = [
   // 食費アイコン
-  food: {
+
+  {
+    name: "food",
     src: "/icon/categories/icon/food.png",
     alt: "食費アイコン",
+
+    // TODO
+    // いずれ下記に！
+    // icon: {
+    //   src: "/icon/categories/icon/food.png",
+    //   alt: "食費アイコン",
+    // },
     title: "食費",
+    id: "category-1",
   },
 
   // 飲み物アイコン
-  drink: {
+  {
+    name: "drink",
     src: "/icon/categories/icon/drink.png",
     alt: "飲み物アイコン",
     title: "飲み物",
+    id: "category-2",
   },
 
   // 飲み会アイコン
-  beer: {
+  {
+    name: "beer",
     src: "/icon/categories/icon/beer.png",
     alt: "飲み会アイコン",
     title: "飲み会",
+    id: "category-3",
   },
 
   // 買い物アイコン
-  shopping: {
+  {
+    name: "shopping",
     src: "/icon/categories/icon/shopping.png",
     alt: "買い物アイコン",
     title: "買い物",
+    id: "category-4",
   },
 
   // 服アイコン
-  clothing: {
+  {
+    name: "clothing",
     src: "/icon/categories/icon/clothing.png",
     alt: "服アイコン",
     title: "衣類",
+    id: "category-5",
   },
 
   // 交通費アイコン
-  transportation: {
+  {
+    name: "transportation",
     src: "/icon/categories/icon/train.png",
     alt: "交通費アイコン",
     title: "交通費",
+    id: "category-6",
   },
 
   // お金アイコン
-  money: {
+  {
+    name: "money",
     src: "/icon/categories/icon/money.png",
     alt: "お金アイコン",
     title: "手数料",
+    id: "category-7",
   },
 
   // 交際費アイコン
-  social: {
+  {
+    name: "social",
     src: "/icon/categories/icon/social.png",
     alt: "交際費アイコン",
     title: "交際費",
+    id: "category-8",
   },
 
   // 趣味アイコン
-  hobby: {
+  {
+    name: "hobby",
     src: "/icon/categories/icon/hobby.png",
     alt: "ゲーム機アイコン",
     title: "趣味",
+    id: "category-9",
   },
 
   // 娯楽アイコン
-  entertainment: {
+  {
+    name: "entertainment",
     src: "/icon/categories/icon/entertainment.png",
     alt: "温泉アイコン",
     title: "娯楽",
+    id: "category-10",
   },
 
   // その他
-  others: {
+  {
+    name: "others",
     src: "/icon/categories/icon/others.png",
     alt: "その他アイコン",
     title: "その他",
+    id: "category-11",
   },
-} as const;
-
-export type CategoryType = keyof typeof CATEGORY_ICON_LIST;
+] as const;

@@ -4,11 +4,13 @@ import Image from "next/image";
 import { CATEGORY_LIST } from "../../../../const/category-icon/categoryIconMap";
 
 type CategoryIconProps = {
-  name: string;
+  id: string;
 };
 
-const CategoryIcon = ({ name }: CategoryIconProps) => {
-  const category = CATEGORY_LIST.find((category) => name === category.name)!;
+const CategoryIcon = ({ id }: CategoryIconProps) => {
+  const category = CATEGORY_LIST.find((category) => id === category.id);
+
+  if (!category) return null;
 
   return (
     <div

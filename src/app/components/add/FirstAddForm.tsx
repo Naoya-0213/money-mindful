@@ -6,8 +6,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import Button from "@/app/components/button/Button";
-import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import FormField from "@/app/components/field/FormField";
+
+import CategoryItem from "../category/CategoryItem";
 
 type AddCardProps = {
   children?: ReactNode;
@@ -58,27 +59,8 @@ const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
           </div>
           <h2 className="text-lg font-bold text-[#795549]">カテゴリー</h2>
         </div>
-        <button
-          className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
-          style={{ height: "var(--input-height)" }}
-          onClick={() => router.push("/money-mindful/add/AddCategoryPage")}
-          type="button"
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-5 text-lg font-bold text-[#795549]">
-              <CategoryIcon name="beer" />
-              飲み会
-            </div>
-            <div>
-              <Image
-                src="/icon/arrow/next-icon.png"
-                alt="矢印"
-                width={24}
-                height={24}
-              />
-            </div>
-          </div>
-        </button>
+
+        <CategoryItem id="category-1" />
       </div>
 
       {/* メモ */}

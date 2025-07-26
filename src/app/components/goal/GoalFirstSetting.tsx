@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 
 import { useRouter } from "next/navigation";
 
@@ -50,6 +50,7 @@ const GoalFirstSetting = () => {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm<Schema>({
     // 初期値
@@ -103,38 +104,38 @@ const GoalFirstSetting = () => {
 
         {/* 額 */}
         <div className="flex flex-col gap-1">
-          <div className="relative w-full">
-            <FormField
-              label="金額"
-              icon="/icon/setting/goal/money.png"
-              placeholder="金額を入力"
-              type="text"
-              InputStyle={{ paddingLeft: "3rem" }}
-              {...register("target_amount")}
-              // 金額入力時の , 表示
-              value={formattedAmount}
-              onChange={(e) => {
-                // 入力された値からカンマを除去（例：“12,000” → “12000”）
-                const raw = e.target.value.replace(/,/g, "");
-
-                // 数値に変換する（“12000” → 12000）
-                const numeric = Number(raw);
-                if (!isNaN(numeric) && raw !== "") {
-                  setValue("target_amount", numeric);
-                  setFormattedAmount(numeric.toLocaleString("ja-JP"));
-                } else {
-                  setValue("target_amount", 0);
-                  setFormattedAmount("");
-                }
-              }}
-            >
-              {/* ¥マーク */}
-              <span className="absolute top-1/2 left-4 -translate-y-1/2 text-xl font-bold text-[#795549]">
-                ¥
-              </span>
-            </FormField>
-          </div>
-
+          {/* react-hook-form の Controller導入（金額の , のため）*/}
+          <Controller
+            name="target_amount"
+            control={control}
+            render={({ field }) => (
+              <div className="relative w-full">
+                <FormField
+                  label="金額"
+                  icon="/icon/setting/goal/money.png"
+                  placeholder="金額を入力"
+                  type="text"
+                  InputStyle={{ paddingLeft: "3rem" }}
+                  value={formattedAmount}
+                  onChange={(e) => {
+                    const raw = e.target.value.replace(/,/g, "");
+                    const numeric = Number(raw);
+                    if (!isNaN(numeric) && raw !== "") {
+                      field.onChange(numeric);
+                      setFormattedAmount(numeric.toLocaleString("ja-JP"));
+                    } else {
+                      field.onChange(0);
+                      setFormattedAmount("");
+                    }
+                  }}
+                >
+                  <span className="absolute top-1/2 left-4 -translate-y-1/2 text-xl font-bold text-[#795549]">
+                    ¥
+                  </span>
+                </FormField>
+              </div>
+            )}
+          />
           {errors.target_amount && (
             <p className="mt-1 px-4 text-sm text-red-500">
               {errors.target_amount.message}

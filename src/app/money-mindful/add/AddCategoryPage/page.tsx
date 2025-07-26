@@ -25,7 +25,6 @@ const AddCategoryPage = () => {
       >
         <div className="flex flex-col gap-3">
           {CATEGORY_LIST.map((category) => (
-            // <CategoryItem id={category.id} key={category.id} />
             <div
               key={category.id}
               onClick={() => {

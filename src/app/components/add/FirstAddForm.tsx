@@ -66,9 +66,9 @@ const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
     }
   }, [selectedCategory, setValue]);
 
+  // 初回登録時、登録履歴がないため、食費カテゴリーを表示
   useEffect(() => {
     if (!selectedCategory) {
-      // 初回なら category-1 を初期選択として反映
       setCategory("category-1");
     }
   }, []);
@@ -81,12 +81,14 @@ const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
         placeholder="タイトルを入力"
         icon="/icon/add/tag.png"
       />
+
       {/* 額 */}
       <FormField
         label="金額"
         placeholder="金額を入力"
         icon="/icon/add/money.png"
       />
+
       {/* カレンダー */}
       <FormField
         label="カレンダー"
@@ -96,6 +98,7 @@ const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
+
       {/* カテゴリー */}
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
@@ -109,6 +112,8 @@ const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
           </div>
           <h2 className="text-lg font-bold text-[#795549]">カテゴリー</h2>
         </div>
+
+        {/* zustandと連携。登録履歴があれば、直近選択したカテゴリーを表示。（なければ、食費を表示）。クリックすれば他カテゴリーが選択できる！ */}
         {selectedCategory && (
           <div
             onClick={() => router.push("/money-mindful/add/addCategoryPage")}
@@ -117,8 +122,6 @@ const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
             <CategoryItem id={selectedCategory} />
           </div>
         )}
-
-        {/* <CategoryItem id="category-1" /> */}
       </div>
       {/* メモ */}
       <FormField

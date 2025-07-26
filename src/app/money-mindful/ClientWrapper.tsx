@@ -7,7 +7,7 @@ import useUserStore from "@/store/useUserStore";
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
-// ===== 全体適用クライアント処理（zustadでの現情報の取得）=====
+// ===== 全体適用クライアント処理（zustandでの現情報の取得）=====
 
 export default function ClientWrapper({
   children,

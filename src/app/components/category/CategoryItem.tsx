@@ -7,7 +7,7 @@ import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
 
 import CategoryIcon from "./category-icon/CategoryIcon";
 
-// カテゴリー選択セクション用　各アイテムカード
+// ===== カテゴリー各アイテムカード =====
 
 type CategoryItemProps = {
   id: string;
@@ -15,7 +15,7 @@ type CategoryItemProps = {
 
 const CategoryItem = ({ id }: CategoryItemProps) => {
   const router = useRouter();
-  // const icon = CATEGORY_LIST[name];
+
   const category = CATEGORY_LIST.find((category) => id === category.id);
   if (!category) {
     return null;
@@ -25,7 +25,6 @@ const CategoryItem = ({ id }: CategoryItemProps) => {
     <button
       className="w-full rounded-2xl border border-[#E0E0E0] bg-white px-4 py-2 text-[#795549] focus:border-[#795549] focus:ring-0 focus:outline-none"
       style={{ height: "var(--input-height)" }}
-      // onClick={() => router.push("/money-mindful/add/addCategoryPage")}
       type="button"
     >
       <div className="flex items-center justify-between">

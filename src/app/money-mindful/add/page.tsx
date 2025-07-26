@@ -1,7 +1,9 @@
-// 追加セクション
+"use client";
 
 import FirstAddForm from "@/app/components/add/FirstAddForm";
 import SectionCard from "@/app/components/section-card/SectionCard";
+
+// ===== 我慢記録初回追加用 =====
 
 export default function AddPage() {
   return (

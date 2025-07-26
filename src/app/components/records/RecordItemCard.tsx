@@ -10,7 +10,7 @@ type Props = {
   title: string;
   id: string;
   amount: number;
-  categoryId: CategoryType; // カテゴリー名 → CategoryIconに渡す用
+  categoryId: CategoryType; 
 };
 
 const RecordItemCard = ({ id, title, amount, categoryId }: Props) => {

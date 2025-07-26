@@ -64,7 +64,7 @@ const GoalFirstSetting = () => {
     resolver: zodResolver(schema),
   });
 
-  // 送信ボタンの動作
+  // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     const user = await getCurrentUser(supabase);
     if (!user) return;

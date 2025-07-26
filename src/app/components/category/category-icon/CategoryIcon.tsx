@@ -1,10 +1,13 @@
 // カテゴリーアイコン用
 import Image from "next/image";
 
-import { CATEGORY_LIST } from "../../../../const/category-icon/categoryIconMap";
+import {
+  CATEGORY_LIST,
+  CategoryType,
+} from "../../../../const/category-icon/categoryIconMap";
 
 type CategoryIconProps = {
-  id: string;
+  id: CategoryType;
 };
 
 const CategoryIcon = ({ id }: CategoryIconProps) => {

@@ -1,7 +1,5 @@
 // 直近の履歴表示用コンポーネント
-
 import SectionCard from "@/app/components/section-card/SectionCard";
-import React from "react";
 
 import type { CategoryType } from "../../../const/category-icon/categoryIconMap";
 import RecordItemCard from "./RecordItemCard";
@@ -10,7 +8,7 @@ type Log = {
   id: string;
   title: string;
   amount: number;
-  category: CategoryType;
+  categoryId: CategoryType;
 };
 
 // 日付ごとのログの型
@@ -24,17 +22,22 @@ const mockLogs: DailyLogs[] = [
   {
     date: "2025年7月4日（金）",
     logs: [
-      { id: "1", title: "ジュース", amount: 150, category: "drink" },
-      { id: "2", title: "カフェラテ", amount: 450, category: "drink" },
-      { id: "3", title: "外食", amount: 780, category: "food" },
+      { id: "1", title: "ジュース", amount: 150, categoryId: "category-2" },
+      { id: "2", title: "カフェラテ", amount: 450, categoryId: "category-2" },
+      { id: "3", title: "外食", amount: 780, categoryId: "category-1" },
     ],
   },
   {
     date: "2025年7月3日（木）",
     logs: [
-      { id: "1", title: "飲み会", amount: 3000, category: "beer" },
-      { id: "2", title: "セブンコーヒー", amount: 150, category: "drink" },
-      { id: "3", title: "朝ごはん", amount: 500, category: "food" },
+      { id: "1", title: "飲み会", amount: 3000, categoryId: "category-3" },
+      {
+        id: "2",
+        title: "セブンコーヒー",
+        amount: 150,
+        categoryId: "category-2",
+      },
+      { id: "3", title: "朝ごはん", amount: 500, categoryId: "category-1" },
     ],
   },
 ];
@@ -53,7 +56,7 @@ const RecentRecords = () => {
                 id={log.id}
                 title={log.title}
                 amount={log.amount}
-                category={log.category}
+                categoryId={log.categoryId}
               />
             ))}
           </div>

@@ -10,10 +10,10 @@ type Props = {
   title: string;
   id: string;
   amount: number;
-  category: CategoryType; // カテゴリー名 → CategoryIconに渡す用
+  categoryId: CategoryType; // カテゴリー名 → CategoryIconに渡す用
 };
 
-const RecordItemCard = ({ id, title, amount, category }: Props) => {
+const RecordItemCard = ({ id, title, amount, categoryId }: Props) => {
   const router = useRouter();
 
   return (
@@ -25,7 +25,7 @@ const RecordItemCard = ({ id, title, amount, category }: Props) => {
       <div className="flex items-center gap-5">
         {/* アイコン */}
         <div>
-          <CategoryIcon name={category} />
+          <CategoryIcon id={categoryId} />
         </div>
         {/* タイトル */}
         <div className="font-bold">{title}</div>

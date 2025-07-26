@@ -1,14 +1,6 @@
 // カテゴリーアイコン一括管理用
 
-export type CategoryType = {
-  name: string;
-  src: string;
-  alt: string;
-  title: string;
-  id: string;
-};
-
-export const CATEGORY_LIST: readonly CategoryType[] = [
+export const CATEGORY_LIST = [
   // 食費アイコン
 
   {
@@ -116,3 +108,9 @@ export const CATEGORY_LIST: readonly CategoryType[] = [
     id: "category-11",
   },
 ] as const;
+
+// ✅ 1件分の型（カテゴリオブジェクト）
+export type CategoryItem = (typeof CATEGORY_LIST)[number];
+
+// ✅ IDだけの型（"category-1" | "category-2" | ...）
+export type CategoryType = CategoryItem["id"];

@@ -16,7 +16,10 @@ type CategoryItemProps = {
 const CategoryItem = ({ id }: CategoryItemProps) => {
   const router = useRouter();
   // const icon = CATEGORY_LIST[name];
-  const category = CATEGORY_LIST.find((category) => id === category.id)!;
+  const category = CATEGORY_LIST.find((category) => id === category.id);
+  if (!category) {
+    return null;
+  }
 
   return (
     <button

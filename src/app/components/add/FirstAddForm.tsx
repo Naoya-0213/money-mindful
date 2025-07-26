@@ -29,7 +29,6 @@ const schema = z.object({
     .min(1, { message: "1文字以上で入力ください。" })
     .max(20, { message: "20文字以内で入力ください。" }),
   target_amount: z.number().min(1, { message: "金額を入力してください。" }),
-  end_date: z.string().min(1, { message: "日付を選択してください。" }),
   start_date: z.string().min(1, { message: "日付を選択してください。" }),
   category_id: z.string().nullable(),
 });

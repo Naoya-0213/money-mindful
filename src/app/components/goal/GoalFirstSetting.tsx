@@ -29,6 +29,7 @@ const schema = z.object({
   target_amount: z.number().min(1, { message: "金額を入力してください。" }),
   end_date: z.string().min(1, { message: "日付を選択してください。" }),
   start_date: z.string().min(1, { message: "日付を選択してください。" }),
+  memo: z.string().optional(),
 });
 
 // Zodスキーマから型を自動推論してSchema型を定義
@@ -57,6 +58,7 @@ const GoalFirstSetting = () => {
       target_amount: undefined,
       end_date: "",
       start_date: new Date().toISOString().split("T")[0],
+      memo: "",
     },
     // 入力値の検証
     resolver: zodResolver(schema),
@@ -73,6 +75,7 @@ const GoalFirstSetting = () => {
       target_amount: data.target_amount,
       end_date: data.end_date,
       start_date: new Date().toISOString().split("T")[0],
+      memo: data.memo ?? "",
     });
 
     if (!error) {
@@ -175,6 +178,7 @@ const GoalFirstSetting = () => {
           icon="/icon/setting/goal/notes.png"
           placeholder={`詳細を入力`}
           isTextarea
+          {...register("memo")}
         />
 
         <div className="flex flex-col gap-5 pt-5">

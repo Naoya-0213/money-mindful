@@ -30,8 +30,8 @@ const schema = z.object({
     .string()
     .min(1, { message: "1文字以上で入力ください。" })
     .max(20, { message: "20文字以内で入力ください。" }),
-  target_amount: z.number().min(1, { message: "金額を入力してください。" }),
-  saved_at: z.string().min(1, { message: "日付を選択してください。" }),
+  amount: z.number().min(1, { message: "金額を入力してください。" }),
+  saved_date: z.string().min(1, { message: "日付を選択してください。" }),
   category_id: z.string().nullable(),
   memo: z.string().optional(),
 });
@@ -67,8 +67,8 @@ const FirstAddForm = ({ children }: AddCardProps) => {
   } = useForm<Schema>({
     defaultValues: {
       title: "",
-      target_amount: undefined,
-      saved_at: new Date().toISOString().split("T")[0],
+      amount: undefined,
+      saved_date: new Date().toISOString().split("T")[0],
       category_id: null,
       memo: "",
     },
@@ -98,10 +98,16 @@ const FirstAddForm = ({ children }: AddCardProps) => {
     const { error } = await supabase.from("money-savings").insert({
       user_id: user.id,
       title: data.title,
-      target_amount: data.target_amount,
-      saved_at: new Date().toISOString().split("T")[0],
+      amount: data.amount,
+      saved_date: data.saved_date,
+      category_id: data.category_id,
       memo: data.memo ?? "",
     });
+
+    if (error) {
+      console.error("❌ Supabase Insert Error:", error);
+      return;
+    }
 
     if (!error) {
       router.replace("/money-mindful/home");
@@ -132,7 +138,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
       <div className="flex flex-col gap-1">
         {/* react-hook-form の Controller導入（金額の , のため）*/}
         <Controller
-          name="target_amount"
+          name="amount"
           control={control}
           render={({ field }) => (
             <div className="relative w-full">
@@ -162,9 +168,9 @@ const FirstAddForm = ({ children }: AddCardProps) => {
             </div>
           )}
         />
-        {errors.target_amount && (
+        {errors.amount && (
           <p className="mt-1 px-4 text-sm text-red-500">
-            {errors.target_amount.message}
+            {errors.amount.message}
           </p>
         )}
       </div>
@@ -175,7 +181,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
           label="追加日"
           icon="/icon/add/calendar.png"
           type="date"
-          {...register("saved_at")}
+          {...register("saved_date")}
           // value={date}
           // onChange={(e) => setDate(e.target.value)}
         />

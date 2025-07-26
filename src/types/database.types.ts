@@ -94,7 +94,7 @@ export type Database = {
           created_at: string | null
           id: string
           memo: string | null
-          saved_at: string | null
+          saved_date: string | null
           title: string | null
           user_id: string | null
         }
@@ -104,7 +104,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           memo?: string | null
-          saved_at?: string | null
+          saved_date?: string | null
           title?: string | null
           user_id?: string | null
         }
@@ -114,7 +114,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           memo?: string | null
-          saved_at?: string | null
+          saved_date?: string | null
           title?: string | null
           user_id?: string | null
         }

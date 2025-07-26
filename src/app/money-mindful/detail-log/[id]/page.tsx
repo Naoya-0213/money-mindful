@@ -2,17 +2,24 @@
 
 "use client";
 
+import FirstAddForm from "@/app/components/add/FirstAddForm";
 import Button from "@/app/components/button/Button";
-import AddCard from "@/app/components/section-card/AddCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import React from "react";
+
+// 記録履歴、詳細表示・編集・保存・削除用
+
+// 記録履歴、詳細表示・編集・保存・削除用
+
+// 記録履歴、詳細表示・編集・保存・削除用
+
+// 記録履歴、詳細表示・編集・保存・削除用
 
 const DetailLogPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] flex-col gap-5 bg-[#F3F0EB] p-5">
       <SectionCard label="我慢を記録" icon="/icon/add/pencil.png">
         {/* 我慢記録 */}
-        <AddCard buttonTitle="保存">
+        <FirstAddForm buttonTitle="保存">
           {/* 戻るボタン */}
           <div className="flex w-full flex-col items-center gap-5 pb-5">
             <div className="flex w-full justify-center">
@@ -27,7 +34,7 @@ const DetailLogPage = () => {
               削除
             </Button>
           </div>
-        </AddCard>
+        </FirstAddForm>
       </SectionCard>
     </div>
   );

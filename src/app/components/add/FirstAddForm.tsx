@@ -1,18 +1,20 @@
 "use client";
 
+import { type ReactNode, useState } from "react";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 import Button from "@/app/components/button/Button";
 import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import FormField from "@/app/components/field/FormField";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { useState, type ReactNode } from "react";
 
 type AddCardProps = {
   children?: ReactNode;
   buttonTitle: string;
 };
 
-const AddCard = ({ children, buttonTitle }: AddCardProps) => {
+const FirstAddForm = ({ children, buttonTitle }: AddCardProps) => {
   const router = useRouter();
   const [date, setDate] = useState(
     () => new Date().toISOString().split("T")[0],
@@ -97,4 +99,4 @@ const AddCard = ({ children, buttonTitle }: AddCardProps) => {
   );
 };
 
-export default AddCard;
+export default FirstAddForm;

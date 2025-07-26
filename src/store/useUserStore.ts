@@ -1,9 +1,13 @@
-// zustandの状態管理用
+import { create } from "zustand";
+
+import type { Database } from "@/types/database.types";
+
+// 📌 zustandの状態管理用
+// 参考↓
 // https://github.com/pmndrs/zustand
 // https://zustand-demo.pmnd.rs/
 
-import type { Database } from "@/types/database.types";
-import { create } from "zustand";
+// ===== ログイン情報の管理用 =====
 
 type ProfileType = Database["public"]["Tables"]["profiles"]["Row"];
 

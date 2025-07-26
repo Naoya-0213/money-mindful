@@ -2,13 +2,14 @@ import { redirect } from "next/navigation";
 
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
-import RecentLogs from "@/app/components/log/RecentLogs";
+
 
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 import { createClient } from "@/utils/supabase/server";
 
 import AddRecordCard from "../../components/add/AddRecordCard";
 import GoalStatusCard from "./component/GoalStatusCard";
+import RecentRecords from "@/app/components/records/RecentRecords";
 
 // ===== ホーム画面 ======
 
@@ -42,7 +43,7 @@ export default async function HomePage() {
         <AddRecordCard />
         {/* 履歴表示 */}
         <div className="w-full">
-          <RecentLogs />
+          <RecentRecords />
         </div>
       </div>
     </div>

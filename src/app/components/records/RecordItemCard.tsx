@@ -1,12 +1,10 @@
-// components/log/LogItemCard.tsx
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import CategoryIcon from "../category/category-icon/CategoryIcon";
+import { useRouter } from "next/navigation";
 
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
-import { useRouter } from "next/navigation";
+import CategoryIcon from "../category/category-icon/CategoryIcon";
 
 type Props = {
   title: string;
@@ -15,7 +13,7 @@ type Props = {
   category: CategoryType; // カテゴリー名 → CategoryIconに渡す用
 };
 
-const LogItemCard = ({ id, title, amount, category }: Props) => {
+const RecordItemCard = ({ id, title, amount, category }: Props) => {
   const router = useRouter();
 
   return (
@@ -51,4 +49,4 @@ const LogItemCard = ({ id, title, amount, category }: Props) => {
   );
 };
 
-export default LogItemCard;
+export default RecordItemCard;

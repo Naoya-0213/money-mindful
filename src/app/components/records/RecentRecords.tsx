@@ -2,8 +2,9 @@
 
 import SectionCard from "@/app/components/section-card/SectionCard";
 import React from "react";
-import LogItemCard from "./LogItemCard";
+
 import type { CategoryType } from "../../../const/category-icon/categoryIconMap";
+import RecordItemCard from "./RecordItemCard";
 
 type Log = {
   id: string;
@@ -38,7 +39,7 @@ const mockLogs: DailyLogs[] = [
   },
 ];
 
-const RecentLogs = () => {
+const RecentRecords = () => {
   return (
     <div className="w-full">
       <SectionCard label="直近の登録履歴" icon="/icon/home/folder.png">
@@ -47,7 +48,7 @@ const RecentLogs = () => {
           <div key={`${daily.date}-${index}`} className="flex flex-col gap-3">
             <h2 className="text-base font-bold">{daily.date}</h2>
             {daily.logs.map((log) => (
-              <LogItemCard
+              <RecordItemCard
                 key={log.id}
                 id={log.id}
                 title={log.title}
@@ -62,4 +63,4 @@ const RecentLogs = () => {
   );
 };
 
-export default RecentLogs;
+export default RecentRecords;

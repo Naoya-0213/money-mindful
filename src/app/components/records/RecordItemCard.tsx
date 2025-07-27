@@ -10,7 +10,16 @@ type Props = {
   title: string;
   id: string;
   amount: number;
-  category_id: CategoryType; 
+  category_id: CategoryType;
+};
+
+// 金額フォーマット関数（¥⚫︎⚫︎,⚫︎⚫︎⚫︎）
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+    maximumFractionDigits: 0,
+  }).format(amount);
 };
 
 const RecordItemCard = ({ id, title, amount, category_id }: Props) => {
@@ -33,7 +42,7 @@ const RecordItemCard = ({ id, title, amount, category_id }: Props) => {
 
       <div className="flex items-center gap-2">
         {/* 金額 */}
-        <div className="font-bold">¥{amount}</div>
+        <div className="font-bold">{formatCurrency(amount)}</div>
 
         {/* 詳細誘導ボタン */}
         <div>

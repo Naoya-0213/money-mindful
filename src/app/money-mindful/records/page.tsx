@@ -20,6 +20,7 @@ type Log = {
   title: string;
   amount: number;
   category_id: CategoryType;
+  saved_date: string;
 };
 
 // 日付ごとのログの型
@@ -28,54 +29,6 @@ type DailyLogs = {
   logs: Log[];
 };
 
-// 仮データ（あとでSupabase連携予定）
-const mockLogs: DailyLogs[] = [
-  {
-    date: "2025年7月4日（金）",
-    logs: [
-      { id: "1", title: "ジュース", amount: 150, category_id: "category-2" },
-      { id: "2", title: "カフェラテ", amount: 450, category_id: "category-2" },
-      { id: "3", title: "外食", amount: 780, category_id: "category-1" },
-    ],
-  },
-  {
-    date: "2025年7月3日（木）",
-    logs: [
-      { id: "1", title: "飲み会", amount: 3000, category_id: "category-3" },
-      {
-        id: "2",
-        title: "セブンコーヒー",
-        amount: 150,
-        category_id: "category-2",
-      },
-      { id: "3", title: "朝ごはん", amount: 500, category_id: "category-1" },
-    ],
-  },
-  {
-    date: "2025年7月2日（水）",
-    logs: [
-      {
-        id: "2",
-        title: "セブンコーヒー",
-        amount: 150,
-        category_id: "category-2",
-      },
-      { id: "3", title: "朝ごはん", amount: 500, category_id: "category-1" },
-    ],
-  },
-  {
-    date: "2025年7月1日（火）",
-    logs: [
-      {
-        id: "2",
-        title: "セブンコーヒー",
-        amount: 150,
-        category_id: "category-2",
-      },
-    ],
-  },
-];
-
 const RecordsPage = () => {
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
@@ -83,13 +36,16 @@ const RecordsPage = () => {
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
-  // 登録記録表示
+  // 登録記録表示（1件のみ）
   const [record, setRecord] = useState<{
     title: string;
     amount: number;
     saved_date: string;
     category_id: string;
   } | null>(null);
+
+  // 日付ごとにグルーピング
+  const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
 
   // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
   const formatDate = (dateString: string) => {
@@ -116,26 +72,70 @@ const RecordsPage = () => {
       const user = await getCurrentUser(supabase);
       if (!user) return;
 
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("money-savings")
-        .select("title, amount, saved_date , category_id")
+        .select("id,title, amount, saved_date , category_id")
         .eq("user_id", user.id)
-        .maybeSingle();
+        .order("saved_date", { ascending: false }); // 最新順
 
-      if (
-        data &&
-        data.title !== null &&
-        data.amount !== null &&
-        data.saved_date !== null &&
-        data.category_id !== null
-      ) {
-        setRecord({
-          title: data.title,
-          amount: data.amount,
-          saved_date: data.saved_date,
-          category_id: data.category_id,
-        });
+      if (error || !data) {
+        console.error("データ取得失敗", error);
+        return;
       }
+
+      // 日付ごとにグルーピング
+      const grouped: { [date: string]: Log[] } = {};
+
+      data.forEach((item) => {
+        if (!item.saved_date) return;
+
+        const date = new Date(item.saved_date).toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          weekday: "short",
+        });
+
+        if (!grouped[date]) grouped[date] = [];
+
+        if (
+          !item.title ||
+          !item.saved_date ||
+          item.amount === null ||
+          !item.category_id
+        )
+          return;
+
+        grouped[date].push({
+          id: item.id,
+          title: item.title,
+          amount: item.amount,
+          saved_date: item.saved_date,
+          category_id: item.category_id as CategoryType,
+        });
+      });
+
+      // 配列に変換してセット
+      const groupedArray: DailyLogs[] = Object.entries(grouped).map(
+        ([date, logs]) => ({ date, logs }),
+      );
+
+      setDailyRecords(groupedArray);
+
+      // if (
+      //   data &&
+      //   data.title !== null &&
+      //   data.amount !== null &&
+      //   data.saved_date !== null &&
+      //   data.category_id !== null
+      // ) {
+      //   setRecord({
+      //     title: data.title,
+      //     amount: data.amount,
+      //     saved_date: data.saved_date,
+      //     category_id: data.category_id,
+      //   });
+      // }
     };
 
     fetchRecord();
@@ -146,7 +146,7 @@ const RecordsPage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard label="登録履歴" icon="/icon/record/record2.png">
           {/* 仮データを map で表示 */}
-          {mockLogs.map((daily, index) => (
+          {dailyRecords.map((daily, index) => (
             <div key={`${daily.date}-${index}`} className="flex flex-col gap-3">
               <h2 className="text-base font-bold">{daily.date}</h2>
               {daily.logs.map((log) => (

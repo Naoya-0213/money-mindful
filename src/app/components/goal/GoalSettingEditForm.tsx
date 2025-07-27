@@ -71,6 +71,7 @@ const GoalSettingEdit = () => {
     resolver: zodResolver(schema),
   });
 
+  // すでに登録している情報の取得
   useEffect(() => {
     const fetchGoal = async () => {
       const user = await getCurrentUser(supabase);
@@ -99,25 +100,6 @@ const GoalSettingEdit = () => {
 
     fetchGoal();
   }, [setValue]);
-
-  // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("ja-JP", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }).format(date);
-  };
-
-  // 金額フォーマット関数（¥⚫︎⚫︎,⚫︎⚫︎⚫︎）
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("ja-JP", {
-      style: "currency",
-      currency: "JPY",
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
 
   // 送信ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {

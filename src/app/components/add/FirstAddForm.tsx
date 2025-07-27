@@ -53,10 +53,6 @@ const FirstAddForm = ({ children }: AddCardProps) => {
   // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
   const setAddForm = useAddFormStore((state) => state.setAddForm);
 
-  // const [date, setDate] = useState(
-  //   () => new Date().toISOString().split("T")[0],
-  // );
-
   // カテゴリー選択管理（zustandで管理：storeと連携。詳細はuseCategoryStoreにて）
   const selectedCategory = useCategoryStore((state) => state.selectedCategory);
   const setCategory = useCategoryStore((state) => state.setCategory);

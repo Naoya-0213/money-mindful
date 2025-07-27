@@ -1,10 +1,8 @@
 // ホーム専用コンポーネント：我慢記録セクション
-
 import Button from "@/app/components/button/Button";
 import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
-import React from "react";
 
 type AddRecordCardProps = {
   numberIcon?: string;
@@ -34,10 +32,10 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
 
             {/* カテゴリー例 */}
             <div className="flex w-full justify-center gap-5">
-              <CategoryIcon name="clothing" />
-              <CategoryIcon name="beer" />
-              <CategoryIcon name="transportation" />
-              <CategoryIcon name="food" />
+              <CategoryIcon id="category-5" />
+              <CategoryIcon id="category-3" />
+              <CategoryIcon id="category-6" />
+              <CategoryIcon id="category-1" />
             </div>
           </div>
         </SectionInfoBox>

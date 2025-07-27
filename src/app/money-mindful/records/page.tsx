@@ -4,6 +4,7 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
 
 // ===== 記録履歴一覧用 =====
+// 📍 supabaseへ保存している記録の表示
 
 type Log = {
   id: string;
@@ -66,7 +67,7 @@ const mockLogs: DailyLogs[] = [
   },
 ];
 
-const page = () => {
+const RecordsPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -92,4 +93,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RecordsPage;

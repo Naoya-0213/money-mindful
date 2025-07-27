@@ -92,6 +92,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
 
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
+    console.log("🔽 登録データ確認:", data);
     const user = await getCurrentUser(supabase);
     if (!user) return;
 

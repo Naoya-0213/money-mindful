@@ -1,13 +1,13 @@
-// money-mindful/page.tsx
+import { redirect } from "next/navigation";
+
+import { createClient } from "@/utils/supabase/server";
+
+import { Database } from "@/types/database.types";
 
 // このファイルは「/money-mindful」にアクセスされた際に、
 // ユーザーがログイン済みであれば /money-mindful/home へ遷移させる役割を持つ。
 // 実際の認証チェックや未ログイン時のリダイレクトは middleware.ts にて制御しており、
 // このファイルではログイン済みユーザー向けの誘導のみを担っている。
-
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
-import { Database } from "@/types/database.types";
 
 export default async function MoneyMindfulRoot() {
   const supabase = await createClient<Database>();

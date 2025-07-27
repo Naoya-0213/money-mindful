@@ -2,9 +2,8 @@ import { redirect } from "next/navigation";
 
 import { SupabaseLisner } from "@/lib/SupabaseListener";
 
-import ClientWrapper from "./ClientWrapper";
-
-// sessionやprofileがない場合、自動でログイン前画面に遷移。
+// ===== セッション確認 =====
+// 📍 sessionやprofileがない場合、自動でログイン前画面に遷移。
 
 export default async function Layout({
   children,
@@ -17,5 +16,5 @@ export default async function Layout({
     redirect("/auth/signin");
   }
 
-  return <ClientWrapper>{children}</ClientWrapper>;
+  return <>{children}</>;
 }

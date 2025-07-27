@@ -19,6 +19,8 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 import CategoryItem from "../category/CategoryItem";
 
 // ===== 我慢の記録、初回登録画面 =====
+// 我慢記録の編集
+// supabaseへの編集内容の保存
 
 type AddCardProps = {
   children?: ReactNode;
@@ -90,19 +92,52 @@ const EditAddForm = ({ children }: AddCardProps) => {
     }
   }, []);
 
+  // すでに登録している情報の取得
+  useEffect(() => {
+    const fetchMoneySavings = async () => {
+      const user = await getCurrentUser(supabase);
+      if (!user) return;
+
+      const { data } = await supabase
+        .from("money-savings")
+        .select("title, amount, saved_date, category_id ,memo")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (!data) return;
+
+      // 各フォームに登録済み目標を表示
+      setValue("title", data.title ?? "");
+      setValue("amount", data.amount ?? 0);
+      setFormattedAmount(
+        typeof data.amount === "number"
+          ? data.amount.toLocaleString("ja-JP")
+          : "",
+      );
+      setValue("saved_date", data.saved_date ?? "");
+      setValue("category_id", data.category_id ?? "");
+      setValue("memo", data.memo ?? "");
+    };
+
+    fetchMoneySavings();
+  }, [setValue]);
+
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     const user = await getCurrentUser(supabase);
     if (!user) return;
 
-    const { error } = await supabase.from("money-savings").insert({
-      user_id: user.id,
-      title: data.title,
-      amount: data.amount,
-      saved_date: data.saved_date,
-      category_id: data.category_id,
-      memo: data.memo ?? "",
-    });
+    const { error } = await supabase
+      .from("money-savings")
+      .update({
+        user_id: user.id,
+        title: data.title,
+        amount: data.amount,
+        saved_date: data.saved_date,
+        category_id: data.category_id,
+        memo: data.memo ?? "",
+      })
+      .eq("user_id", user.id);
 
     if (!error) {
       router.replace("/money-mindful/home");

@@ -11,7 +11,7 @@ import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 
 // ===== 登録目標表示 =====
-// supabaseへ保存している目標の表示
+// 📍 supabaseへ保存している目標の表示
 
 const GoalCard = () => {
   // supabase連携（別ページにて連携済み）

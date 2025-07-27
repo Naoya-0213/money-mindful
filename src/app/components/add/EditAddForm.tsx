@@ -6,6 +6,8 @@ import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import type { CategoryType } from "@/const/category-icon/categoryIconMap";
+import { useAddFormStore } from "@/store/useAddFormStore";
 import useCategoryStore from "@/store/useCategoryStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
@@ -18,12 +20,11 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import CategoryItem from "../category/CategoryItem";
 
-// ===== 我慢の記録、初回登録画面 =====
-// 我慢記録の編集
-// supabaseへの編集内容の保存
+// ===== 我慢の記録、詳細確認・編集・削除画面 =====
 
 type AddCardProps = {
   children?: ReactNode;
+  id: string;
 };
 
 // 入力データの検証ルールを定義
@@ -41,7 +42,7 @@ const schema = z.object({
 // Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
-const EditAddForm = ({ children }: AddCardProps) => {
+const EditAddForm = ({ id, children }: AddCardProps) => {
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
@@ -50,6 +51,9 @@ const EditAddForm = ({ children }: AddCardProps) => {
 
   // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
+
+  // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
+  const setAddForm = useAddFormStore((state) => state.setAddForm);
 
   // const [date, setDate] = useState(
   //   () => new Date().toISOString().split("T")[0],
@@ -64,6 +68,7 @@ const EditAddForm = ({ children }: AddCardProps) => {
     register,
     setValue,
     control,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<Schema>({
@@ -92,54 +97,86 @@ const EditAddForm = ({ children }: AddCardProps) => {
     }
   }, []);
 
-  // すでに登録している情報の取得
+  // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
   useEffect(() => {
-    const fetchMoneySavings = async () => {
+    const { title, amount, saved_date, category_id, memo } =
+      useAddFormStore.getState();
+
+    if (title || amount || memo || category_id) {
+      setValue("title", title);
+      setValue("amount", amount);
+      if (typeof amount === "number") {
+        setFormattedAmount(amount.toLocaleString("ja-JP"));
+      } else {
+        setFormattedAmount("");
+      }
+      setValue("saved_date", saved_date);
+      setValue("category_id", selectedCategory);
+      setValue("memo", memo);
+    }
+  }, [setValue]);
+
+  // 各記録のIDを取得
+  useEffect(() => {
+    const fetchLog = async () => {
       const user = await getCurrentUser(supabase);
       if (!user) return;
 
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("money-savings")
-        .select("title, amount, saved_date, category_id ,memo")
+        .select("*")
+        .eq("id", id)
         .eq("user_id", user.id)
-        .maybeSingle();
+        .single();
 
-      if (!data) return;
+      if (error || !data) {
+        console.error("データ取得失敗", error);
+        return;
+      }
 
-      // 各フォームに登録済み目標を表示
-      setValue("title", data.title ?? "");
-      setValue("amount", data.amount ?? 0);
-      setFormattedAmount(
-        typeof data.amount === "number"
-          ? data.amount.toLocaleString("ja-JP")
-          : "",
-      );
-      setValue("saved_date", data.saved_date ?? "");
-      setValue("category_id", data.category_id ?? "");
-      setValue("memo", data.memo ?? "");
+      if (data.title !== null) {
+        setValue("title", data.title);
+      }
+      if (data.amount !== null) {
+        setValue("amount", data.amount);
+      }
+      if (data.saved_date !== null) {
+        setValue("saved_date", data.saved_date);
+      }
+      if (data.category_id !== null) {
+        setValue("category_id", data.category_id);
+      }
+      if (data.category_id !== null) {
+        setValue("memo", data.memo ?? "");
+      }
+      if (data.amount !== null) {
+        setFormattedAmount(data.amount.toLocaleString("ja-JP"));
+      }
+      if (data.category_id !== null) {
+        setCategory(data.category_id as CategoryType);
+      }
     };
 
-    fetchMoneySavings();
-  }, [setValue]);
+    fetchLog();
+  }, [id]);
 
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
+    console.log("🔽 登録データ確認:", data);
     const user = await getCurrentUser(supabase);
     if (!user) return;
 
-    const { error } = await supabase
-      .from("money-savings")
-      .update({
-        user_id: user.id,
-        title: data.title,
-        amount: data.amount,
-        saved_date: data.saved_date,
-        category_id: data.category_id,
-        memo: data.memo ?? "",
-      })
-      .eq("user_id", user.id);
+    const { error } = await supabase.from("money-savings").update({
+      user_id: user.id,
+      title: data.title,
+      amount: data.amount,
+      saved_date: data.saved_date,
+      category_id: data.category_id,
+      memo: data.memo ?? "",
+    });
 
     if (!error) {
+      useAddFormStore.getState().resetAddForm();
       router.replace("/money-mindful/home");
     }
   };
@@ -234,7 +271,16 @@ const EditAddForm = ({ children }: AddCardProps) => {
         {/* zustandと連携。登録履歴があれば、直近選択したカテゴリーを表示。（なければ、食費を表示）。クリックすれば他カテゴリーが選択できる！ */}
         {selectedCategory && (
           <div
-            onClick={() => router.push("/money-mindful/add/addCategoryPage")}
+            onClick={() => {
+              setAddForm({
+                title: watch("title"),
+                amount: watch("amount"),
+                saved_date: watch("saved_date"),
+                memo: watch("memo"),
+                category_id: selectedCategory,
+              });
+              router.push("/money-mindful/add/addCategoryPage");
+            }}
             className="w-full"
           >
             <CategoryItem id={selectedCategory} />

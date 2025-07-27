@@ -1,17 +1,22 @@
 "use client";
 
+import { useParams } from "next/navigation";
+
 import EditAddForm from "@/app/components/add/EditAddForm";
 import Button from "@/app/components/button/Button";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
-// 記録履歴、詳細表示・編集・保存・削除用
+// ==== 登録記録の詳細確認＆編集画面 =====
 
 const DetailLogPage = () => {
+  const params = useParams();
+  const id = params.id as string; // idはstringとして扱う
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] flex-col gap-5 bg-[#F3F0EB] p-5">
       <SectionCard label="我慢を記録" icon="/icon/add/pencil.png">
         {/* 我慢記録 */}
-        <EditAddForm>
+        <EditAddForm id={id}>
           {/* 戻るボタン */}
           <div className="flex w-full flex-col items-center gap-5 pb-5">
             <div className="flex w-full justify-center">

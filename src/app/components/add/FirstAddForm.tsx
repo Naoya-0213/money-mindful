@@ -6,6 +6,7 @@ import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { useAddFormStore } from "@/store/useAddFormStore";
 import useCategoryStore from "@/store/useCategoryStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
@@ -49,6 +50,9 @@ const FirstAddForm = ({ children }: AddCardProps) => {
   // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
 
+  // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
+  const setAddForm = useAddFormStore((state) => state.setAddForm);
+
   // const [date, setDate] = useState(
   //   () => new Date().toISOString().split("T")[0],
   // );
@@ -62,6 +66,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
     register,
     setValue,
     control,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<Schema>({
@@ -90,6 +95,25 @@ const FirstAddForm = ({ children }: AddCardProps) => {
     }
   }, []);
 
+  // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
+  useEffect(() => {
+    const { title, amount, saved_date, category_id, memo } =
+      useAddFormStore.getState();
+
+    if (title || amount || memo || category_id) {
+      setValue("title", title);
+      setValue("amount", amount);
+      if (typeof amount === "number") {
+        setFormattedAmount(amount.toLocaleString("ja-JP"));
+      } else {
+        setFormattedAmount("");
+      }
+      setValue("saved_date", saved_date);
+      setValue("category_id", selectedCategory);
+      setValue("memo", memo);
+    }
+  }, [setValue]);
+
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
@@ -106,6 +130,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
     });
 
     if (!error) {
+      useAddFormStore.getState().resetAddForm();
       router.replace("/money-mindful/home");
     }
   };
@@ -200,7 +225,16 @@ const FirstAddForm = ({ children }: AddCardProps) => {
         {/* zustandと連携。登録履歴があれば、直近選択したカテゴリーを表示。（なければ、食費を表示）。クリックすれば他カテゴリーが選択できる！ */}
         {selectedCategory && (
           <div
-            onClick={() => router.push("/money-mindful/add/addCategoryPage")}
+            onClick={() => {
+              setAddForm({
+                title: watch("title"),
+                amount: watch("amount"),
+                saved_date: watch("saved_date"),
+                memo: watch("memo"),
+                category_id: selectedCategory,
+              });
+              router.push("/money-mindful/add/addCategoryPage");
+            }}
             className="w-full"
           >
             <CategoryItem id={selectedCategory} />

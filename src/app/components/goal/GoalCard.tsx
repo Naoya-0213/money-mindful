@@ -47,6 +47,7 @@ const GoalCard = () => {
     }).format(amount);
   };
 
+  // 変更時の反映
   useEffect(() => {
     const fetchGoal = async () => {
       const user = await getCurrentUser(supabase);

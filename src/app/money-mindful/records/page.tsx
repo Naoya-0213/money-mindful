@@ -1,5 +1,14 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/navigation";
+
 import RecordItemCard from "@/app/components/records/RecordItemCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
+
+import { createClient } from "@/utils/supabase/clients";
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
 
@@ -68,6 +77,70 @@ const mockLogs: DailyLogs[] = [
 ];
 
 const RecordsPage = () => {
+  // supabase連携（別ページにて連携済み）
+  const supabase = createClient();
+
+  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
+  const router = useRouter();
+
+  // 登録記録表示
+  const [record, setRecord] = useState<{
+    title: string;
+    amount: number;
+    saved_date: string;
+    category_id: string;
+  } | null>(null);
+
+  // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(date);
+  };
+
+  // 金額フォーマット関数（¥⚫︎⚫︎,⚫︎⚫︎⚫︎）
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  // 変更時の反映
+  useEffect(() => {
+    const fetchRecord = async () => {
+      const user = await getCurrentUser(supabase);
+      if (!user) return;
+
+      const { data } = await supabase
+        .from("money-savings")
+        .select("title, amount, saved_date , category_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (
+        data &&
+        data.title !== null &&
+        data.amount !== null &&
+        data.saved_date !== null &&
+        data.category_id !== null
+      ) {
+        setRecord({
+          title: data.title,
+          amount: data.amount,
+          saved_date: data.saved_date,
+          category_id: data.category_id,
+        });
+      }
+    };
+
+    fetchRecord();
+  }, []);
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">

@@ -1,6 +1,6 @@
 "use client";
 
-import GoalFirstSetting from "@/app/components/goal/GoalFirstSetting";
+import GoalFirstSetting from "@/app/components/goal/GoalFirstSettingForm";
 
 // ===== 目標初回設定用 ======
 

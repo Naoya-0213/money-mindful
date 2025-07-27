@@ -19,7 +19,7 @@ const RecordItemCard = ({ id, title, amount, category_id }: Props) => {
   return (
     <button
       type="button"
-      onClick={() => router.push(`/money-mindful/detail-log/${id}`)}
+      onClick={() => router.push(`/money-mindful/records/${id}`)}
       className="flex w-full items-center justify-between rounded-2xl bg-[#F3F0EB] p-3"
     >
       <div className="flex items-center gap-5">

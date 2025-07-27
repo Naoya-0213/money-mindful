@@ -1,4 +1,4 @@
-import GoalSettingEdit from "@/app/components/goal/GoalSettingEdit";
+import GoalSettingEdit from "@/app/components/goal/GoalSettingEditForm";
 
 // ===== 目標の編集用 ======
 

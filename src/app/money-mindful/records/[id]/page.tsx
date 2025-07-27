@@ -1,6 +1,6 @@
 "use client";
 
-import FirstAddForm from "@/app/components/add/FirstAddForm";
+import EditAddForm from "@/app/components/add/EditAddForm";
 import Button from "@/app/components/button/Button";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
@@ -11,7 +11,7 @@ const DetailLogPage = () => {
     <div className="mx-auto flex w-full max-w-[480px] flex-col gap-5 bg-[#F3F0EB] p-5">
       <SectionCard label="我慢を記録" icon="/icon/add/pencil.png">
         {/* 我慢記録 */}
-        <FirstAddForm buttonTitle="保存">
+        <EditAddForm>
           {/* 戻るボタン */}
           <div className="flex w-full flex-col items-center gap-5 pb-5">
             <div className="flex w-full justify-center">
@@ -26,7 +26,7 @@ const DetailLogPage = () => {
               削除
             </Button>
           </div>
-        </FirstAddForm>
+        </EditAddForm>
       </SectionCard>
     </div>
   );

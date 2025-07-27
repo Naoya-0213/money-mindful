@@ -104,11 +104,6 @@ const FirstAddForm = ({ children }: AddCardProps) => {
       memo: data.memo ?? "",
     });
 
-    if (error) {
-      console.error("❌ Supabase Insert Error:", error);
-      return;
-    }
-
     if (!error) {
       router.replace("/money-mindful/home");
     }

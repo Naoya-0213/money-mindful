@@ -8,7 +8,7 @@ type Log = {
   id: string;
   title: string;
   amount: number;
-  categoryId: CategoryType;
+  category_id: CategoryType;
 };
 
 // 日付ごとのログの型
@@ -22,22 +22,22 @@ const mockLogs: DailyLogs[] = [
   {
     date: "2025年7月4日（金）",
     logs: [
-      { id: "1", title: "ジュース", amount: 150, categoryId: "category-2" },
-      { id: "2", title: "カフェラテ", amount: 450, categoryId: "category-2" },
-      { id: "3", title: "外食", amount: 780, categoryId: "category-1" },
+      { id: "1", title: "ジュース", amount: 150, category_id: "category-2" },
+      { id: "2", title: "カフェラテ", amount: 450, category_id: "category-2" },
+      { id: "3", title: "外食", amount: 780, category_id: "category-1" },
     ],
   },
   {
     date: "2025年7月3日（木）",
     logs: [
-      { id: "1", title: "飲み会", amount: 3000, categoryId: "category-3" },
+      { id: "1", title: "飲み会", amount: 3000, category_id: "category-3" },
       {
         id: "2",
         title: "セブンコーヒー",
         amount: 150,
-        categoryId: "category-2",
+        category_id: "category-2",
       },
-      { id: "3", title: "朝ごはん", amount: 500, categoryId: "category-1" },
+      { id: "3", title: "朝ごはん", amount: 500, category_id: "category-1" },
     ],
   },
 ];
@@ -45,7 +45,7 @@ const mockLogs: DailyLogs[] = [
 const RecentRecords = () => {
   return (
     <div className="w-full">
-      <SectionCard label="直近の登録履歴" icon="/icon/home/folder.png">
+      <SectionCard label="直近の登録履歴" icon="/icon/home/record2.png">
         {/* 仮データを map で表示 */}
         {mockLogs.map((daily, index) => (
           <div key={`${daily.date}-${index}`} className="flex flex-col gap-3">
@@ -56,7 +56,7 @@ const RecentRecords = () => {
                 id={log.id}
                 title={log.title}
                 amount={log.amount}
-                categoryId={log.categoryId}
+                category_id={log.category_id}
               />
             ))}
           </div>

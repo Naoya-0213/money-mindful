@@ -15,8 +15,12 @@ type AddFormState = {
   category_id: string | null;
   memo: string;
 
+  initialized: boolean;
+
   setAddForm: (payload: Partial<AddFormState>) => void;
   resetAddForm: () => void;
+  setInitialized: () => void;
+  resetInitialized: () => void;
 };
 
 export const useAddFormStore = create<AddFormState>((set) => ({
@@ -26,12 +30,20 @@ export const useAddFormStore = create<AddFormState>((set) => ({
   category_id: null,
   memo: "",
 
+  initialized: false,
+
   setAddForm: (payload) => set((state) => ({ ...state, ...payload })),
+
   resetAddForm: () =>
     set({
       title: "",
-      amount: undefined,
+      amount: 0,
       saved_date: new Date().toISOString().split("T")[0],
+      category_id: null,
       memo: "",
+      initialized: false,
     }),
+
+  setInitialized: () => set({ initialized: true }),
+  resetInitialized: () => set({ initialized: false }),
 }));

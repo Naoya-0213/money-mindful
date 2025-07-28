@@ -91,14 +91,21 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
   }, [selectedCategory, setValue]);
 
   // 初回登録時、登録履歴がないため、食費カテゴリーを表示
-  useEffect(() => {
-    if (!selectedCategory) {
-      setCategory("category-1");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!selectedCategory) {
+  //     setCategory("category-1");
+  //   }
+  // }, []);
+
+  // useStateの代わりにzustandから取得（置き換え）
+  const initialized = useAddFormStore((state) => state.initialized);
+  const setInitialized = useAddFormStore((state) => state.setInitialized);
+  const resetInitialized = useAddFormStore((state) => state.resetInitialized);
 
   // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
   useEffect(() => {
+    if (!initialized) return;
+
     const { title, amount, saved_date, category_id, memo } =
       useAddFormStore.getState();
 
@@ -111,14 +118,17 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
         setFormattedAmount("");
       }
       setValue("saved_date", saved_date);
-      setValue("category_id", selectedCategory);
+      setValue("category_id", category_id); // ← selectedCategoryではなく実データ
       setValue("memo", memo);
     }
-  }, [setValue]);
-
+  }, [initialized, setValue]);
   // 各記録のIDを取得
   useEffect(() => {
-    const fetchLog = async () => {
+    if (initialized) return;
+
+    console.log("✅ fetchRecord 実行");
+
+    const fetchRecord = async () => {
       const user = await getCurrentUser(supabase);
       if (!user) return;
 
@@ -134,30 +144,29 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
         return;
       }
 
+      console.log("📦 Supabaseデータ取得成功:", data);
+
       if (data.title !== null) {
         setValue("title", data.title);
       }
       if (data.amount !== null) {
         setValue("amount", data.amount);
+        setFormattedAmount(data.amount.toLocaleString("ja-JP"));
       }
       if (data.saved_date !== null) {
         setValue("saved_date", data.saved_date);
       }
       if (data.category_id !== null) {
         setValue("category_id", data.category_id);
-      }
-
-      if (data.amount !== null) {
-        setFormattedAmount(data.amount.toLocaleString("ja-JP"));
-      }
-
-      if (data.category_id !== null) {
         setCategory(data.category_id as CategoryType);
       }
+
+      // 初期化完了フラグをZustandに保存！
+      setInitialized();
     };
 
-    fetchLog();
-  }, [id]);
+    fetchRecord();
+  }, [id, initialized, setValue, setCategory]);
 
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
@@ -165,18 +174,26 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
     const user = await getCurrentUser(supabase);
     if (!user) return;
 
-    const { error } = await supabase.from("money-savings").update({
-      user_id: user.id,
-      title: data.title,
-      amount: data.amount,
-      saved_date: data.saved_date,
-      category_id: data.category_id,
-      memo: data.memo ?? "",
-    });
+    console.log(data);
+
+    const { error } = await supabase
+      .from("money-savings")
+      .update({
+        user_id: user.id,
+        title: data.title,
+        amount: data.amount,
+        saved_date: data.saved_date,
+        category_id: data.category_id,
+        memo: data.memo ?? "",
+      })
+      .eq("id", id)
+      .eq("user_id", user.id);
+
+    console.log(error);
 
     if (!error) {
       useAddFormStore.getState().resetAddForm();
-      router.replace("/money-mindful/home");
+      router.replace(`/money-mindful/records/`);
     }
   };
 

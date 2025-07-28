@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
+import NoRecordCard from "@/app/components/records/NoRecordCard";
 import RecordItemCard from "@/app/components/records/RecordItemCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
@@ -30,19 +31,43 @@ type DailyLogs = {
 };
 
 const RecordsPage = () => {
+  const [record, setRecord] = useState<any>(null);
+
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchRecord = async () => {
+      const user = await getCurrentUser(supabase);
+
+      if (!user) {
+        router.push("/auth/login");
+        return;
+      }
+
+      const { data: RecordData } = await supabase
+        .from("money-savings")
+        .select("*")
+        .eq("user_id", user.id)
+        .limit(1)
+        .select();
+
+      setRecord(RecordData);
+    };
+
+    fetchRecord();
+  }, [router, supabase]);
+
   // 登録記録表示（1件のみ）
-  const [record, setRecord] = useState<{
-    title: string;
-    amount: number;
-    saved_date: string;
-    category_id: string;
-  } | null>(null);
+  // const [record, setRecord] = useState<{
+  //   title: string;
+  //   amount: number;
+  //   saved_date: string;
+  //   category_id: string;
+  // } | null>(null);
 
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
@@ -121,21 +146,6 @@ const RecordsPage = () => {
       );
 
       setDailyRecords(groupedArray);
-
-      // if (
-      //   data &&
-      //   data.title !== null &&
-      //   data.amount !== null &&
-      //   data.saved_date !== null &&
-      //   data.category_id !== null
-      // ) {
-      //   setRecord({
-      //     title: data.title,
-      //     amount: data.amount,
-      //     saved_date: data.saved_date,
-      //     category_id: data.category_id,
-      //   });
-      // }
     };
 
     fetchRecord();
@@ -144,23 +154,30 @@ const RecordsPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
-        <SectionCard label="登録履歴" icon="/icon/record/record2.png">
-          {/* 仮データを map で表示 */}
-          {dailyRecords.map((daily, index) => (
-            <div key={`${daily.date}-${index}`} className="flex flex-col gap-3">
-              <h2 className="text-base font-bold">{daily.date}</h2>
-              {daily.logs.map((log) => (
-                <RecordItemCard
-                  key={log.id}
-                  id={log.id}
-                  title={log.title}
-                  amount={log.amount}
-                  category_id={log.category_id}
-                />
-              ))}
-            </div>
-          ))}
-        </SectionCard>
+        {record ? (
+          <SectionCard label="登録履歴" icon="/icon/record/record2.png">
+            {/* 仮データを map で表示 */}
+            {dailyRecords.map((daily, index) => (
+              <div
+                key={`${daily.date}-${index}`}
+                className="flex flex-col gap-3"
+              >
+                <h2 className="text-base font-bold">{daily.date}</h2>
+                {daily.logs.map((log) => (
+                  <RecordItemCard
+                    key={log.id}
+                    id={log.id}
+                    title={log.title}
+                    amount={log.amount}
+                    category_id={log.category_id}
+                  />
+                ))}
+              </div>
+            ))}
+          </SectionCard>
+        ) : (
+          <NoRecordCard />
+        )}
       </div>
     </div>
   );

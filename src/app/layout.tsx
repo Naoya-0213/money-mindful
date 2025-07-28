@@ -1,3 +1,5 @@
+import { Toaster } from "react-hot-toast";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 
@@ -46,6 +48,35 @@ export default async function RootLayout({
           className="flex w-full max-w-[480px] flex-grow flex-col justify-between bg-[#F3F0EB]"
         >
           {children}
+
+          {/* react-hot-toast */}
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                fontFamily: "var(--font-geist-sans)",
+                background: "#F3F0EB",
+                color: "#795549",
+                fontSize: "14px",
+                padding: "12px 16px",
+                borderRadius: "8px",
+                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+              },
+              success: {
+                iconTheme: {
+                  primary: "#795549",
+                  secondary: "#FFF8F0",
+                },
+              },
+              error: {
+                iconTheme: {
+                  primary: "#B00020",
+                  secondary: "#FFD4D4",
+                },
+              },
+            }}
+            reverseOrder={false}
+          />
         </main>
         <Footer />
       </body>

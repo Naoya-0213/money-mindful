@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
@@ -80,6 +81,7 @@ const GoalFirstSetting = () => {
     });
 
     if (!error) {
+      toast.success("登録しました！");
       router.replace("/money-mindful/home");
     }
   };

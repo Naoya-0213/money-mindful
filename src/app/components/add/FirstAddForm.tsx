@@ -2,6 +2,7 @@
 
 import { type ReactNode, useState } from "react";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -95,6 +96,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
     });
 
     if (!error) {
+      toast.success("記録しました！");
       router.replace("/money-mindful/home");
     }
   };

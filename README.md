@@ -14,7 +14,7 @@
 
 ## 🔧 使用技術スタック（予定）
 
-- **フロントエンド**：Next.js (App Router) + TypeScript + Tailwind CSS
+- **フロントエンド**：Next.js (App Router) + TypeScript + Tailwind CSS 
 - **バックエンド / DB**：Supabase（Auth & Database）
 - **グラフ可視化**：Chart.js
 - **状態管理**：Zustand(https://zustand-demo.pmnd.rs/)

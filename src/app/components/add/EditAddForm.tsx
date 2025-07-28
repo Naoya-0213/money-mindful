@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -124,7 +125,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
-    
+
     const user = await getCurrentUser(supabase);
     if (!user) return;
 
@@ -146,6 +147,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
     console.log(error);
 
     if (!error) {
+      toast.success("変更しました！");
       router.replace(`/money-mindful/records/`);
     }
   };
@@ -277,7 +279,46 @@ const EditAddForm = ({ id }: AddCardProps) => {
             {/* 削除ボタン */}
             <Button
               className="bg-[#D7CDBE] !text-[#795549]"
-              onClick={() => alert("削除！")}
+              onClick={() => {
+                toast((t) => (
+                  <div className="flex flex-col gap-2 px-2 py-1">
+                    <p className="text-sm">本当に削除してもよろしいですか？</p>
+                    <div className="flex justify-end gap-5 pt-1">
+                      <button
+                        className="text-xs text-gray-500 underline"
+                        onClick={() => toast.dismiss(t.id)}
+                      >
+                        キャンセル
+                      </button>
+                      <button
+                        className="text-xs text-red-600 underline"
+                        onClick={async () => {
+                          toast.dismiss(t.id);
+
+                          const user = await getCurrentUser(supabase);
+                          if (!user) return;
+
+                          const { error } = await supabase
+                            .from("money-savings")
+                            .delete()
+                            .eq("id", id)
+                            .eq("user_id", user.id);
+
+                          if (error) {
+                            toast.error("削除に失敗しました");
+                            console.error("削除エラー:", error);
+                          } else {
+                            toast.success("削除しました！");
+                            router.replace("/money-mindful/records/");
+                          }
+                        }}
+                      >
+                        削除する
+                      </button>
+                    </div>
+                  </div>
+                ));
+              }}
             >
               削除
             </Button>

@@ -61,35 +61,8 @@ const RecordsPage = () => {
     fetchRecord();
   }, [router, supabase]);
 
-  // 登録記録表示（1件のみ）
-  // const [record, setRecord] = useState<{
-  //   title: string;
-  //   amount: number;
-  //   saved_date: string;
-  //   category_id: string;
-  // } | null>(null);
-
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
-
-  // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("ja-JP", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }).format(date);
-  };
-
-  // 金額フォーマット関数（¥⚫︎⚫︎,⚫︎⚫︎⚫︎）
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("ja-JP", {
-      style: "currency",
-      currency: "JPY",
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
 
   // 変更時の反映
   useEffect(() => {
@@ -101,7 +74,7 @@ const RecordsPage = () => {
         .from("money-savings")
         .select("id,title, amount, saved_date , category_id")
         .eq("user_id", user.id)
-        .order("saved_date", { ascending: false }); // 最新順
+        .order("saved_date", { ascending: false });
 
       if (error || !data) {
         console.error("データ取得失敗", error);
@@ -154,7 +127,7 @@ const RecordsPage = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
-        {record ? (
+        {record && record.length > 0 ? (
           <SectionCard label="登録履歴" icon="/icon/record/record2.png">
             {/* 仮データを map で表示 */}
             {dailyRecords.map((daily, index) => (

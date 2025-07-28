@@ -12,14 +12,14 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
   return (
     <div className="w-full">
       <SectionCard
-        label="我慢を記録しよう！"
+        label="「がまん」を記録しよう！"
         numberIcon={numberIcon}
         icon="/icon/home/pencil.png"
       >
         {/* 説明文 */}
         <div className="flex flex-col items-center justify-center leading-relaxed font-semibold text-[#777777]">
           <p>コンビニのコーヒーや外食.....</p>
-          <p>ちょっとした我慢を記録しよう。</p>
+          <p>ちょっとした「がまん」を記録しよう。</p>
         </div>
 
         {/* 備考 */}
@@ -42,7 +42,7 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
 
         {/* 追加へ移動ボタン */}
         <div className="flex w-full justify-center">
-          <Button href="/money-mindful/add">我慢を記録する</Button>
+          <Button href="/money-mindful/add">「がまん」を記録する</Button>
         </div>
       </SectionCard>
     </div>

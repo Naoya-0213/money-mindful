@@ -55,6 +55,10 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
   // カテゴリー選択後、フォームに戻った場合も、入力データを保持する
   const setAddForm = useAddFormStore((state) => state.setAddForm);
 
+  // const [date, setDate] = useState(
+  //   () => new Date().toISOString().split("T")[0],
+  // );
+
   // カテゴリー選択管理（zustandで管理：storeと連携。詳細はuseCategoryStoreにて）
   const selectedCategory = useCategoryStore((state) => state.selectedCategory);
   const setCategory = useCategoryStore((state) => state.setCategory);
@@ -79,49 +83,12 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
     resolver: zodResolver(schema),
   });
 
-  // 各記録の情報を取得し表示。
+  // カテゴリーが選択されたら反映
   useEffect(() => {
-    const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
-      if (!user) return;
-
-      const { data, error } = await supabase
-        .from("money-savings")
-        .select("*")
-        .eq("id", id)
-        .eq("user_id", user.id)
-        .single();
-
-      if (error || !data) {
-        console.error("データ取得失敗", error);
-        return;
-      }
-
-      if (data.title !== null) {
-        setValue("title", data.title);
-      }
-      if (data.amount !== null) {
-        setValue("amount", data.amount);
-      }
-      if (data.saved_date !== null) {
-        setValue("saved_date", data.saved_date);
-      }
-      if (data.category_id !== null) {
-        setValue("category_id", data.category_id);
-      }
-      if (data.category_id !== null) {
-        setValue("memo", data.memo ?? "");
-      }
-      if (data.amount !== null) {
-        setFormattedAmount(data.amount.toLocaleString("ja-JP"));
-      }
-      if (data.category_id !== null) {
-        setCategory(data.category_id as CategoryType);
-      }
-    };
-
-    fetchRecord();
-  }, [id]);
+    if (selectedCategory) {
+      setValue("category_id", selectedCategory);
+    }
+  }, [selectedCategory, setValue]);
 
   // 初回登録時、登録履歴がないため、食費カテゴリーを表示
   useEffect(() => {
@@ -149,34 +116,68 @@ const EditAddForm = ({ id, children }: AddCardProps) => {
     }
   }, [setValue]);
 
+  // 各記録のIDを取得
+  useEffect(() => {
+    const fetchLog = async () => {
+      const user = await getCurrentUser(supabase);
+      if (!user) return;
+
+      const { data, error } = await supabase
+        .from("money-savings")
+        .select("*")
+        .eq("id", id)
+        .eq("user_id", user.id)
+        .single();
+
+      if (error || !data) {
+        console.error("データ取得失敗", error);
+        return;
+      }
+
+      if (data.title !== null) {
+        setValue("title", data.title);
+      }
+      if (data.amount !== null) {
+        setValue("amount", data.amount);
+      }
+      if (data.saved_date !== null) {
+        setValue("saved_date", data.saved_date);
+      }
+      if (data.category_id !== null) {
+        setValue("category_id", data.category_id);
+      }
+
+      if (data.amount !== null) {
+        setFormattedAmount(data.amount.toLocaleString("ja-JP"));
+      }
+
+      if (data.category_id !== null) {
+        setCategory(data.category_id as CategoryType);
+      }
+    };
+
+    fetchLog();
+  }, [id]);
+
   // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
     const user = await getCurrentUser(supabase);
     if (!user) return;
 
-    const { error } = await supabase
-      .from("money-savings")
-      .update({
-        title: data.title,
-        amount: data.amount,
-        saved_date: data.saved_date,
-        category_id: data.category_id,
-        memo: data.memo ?? "",
-      })
-      .eq("id", id)
-      .eq("user_id", user.id);
+    const { error } = await supabase.from("money-savings").update({
+      user_id: user.id,
+      title: data.title,
+      amount: data.amount,
+      saved_date: data.saved_date,
+      category_id: data.category_id,
+      memo: data.memo ?? "",
+    });
 
     if (!error) {
       useAddFormStore.getState().resetAddForm();
-      router.replace("/money-mindful/records");
+      router.replace("/money-mindful/home");
     }
-
-    console.log("🔽 送信データ", {
-      id,
-      user_id: user.id,
-      ...data,
-    });
   };
 
   return (

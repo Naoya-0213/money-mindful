@@ -160,10 +160,10 @@ const GoalFirstSetting = () => {
           )}
         </div>
 
-        {/* 追加日 */}
+        {/* 設定日 */}
         <div className="flex flex-col gap-1">
           <FormField
-            label="追加日"
+            label="設定日"
             icon="/icon/setting/goal/pin.png"
             type="date"
             {...register("start_date")}

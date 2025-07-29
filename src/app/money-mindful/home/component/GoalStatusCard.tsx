@@ -1,25 +1,17 @@
-// ホーム専用コンポーネント：目標進捗セクション
-
 import SectionCard from "@/app/components/section-card/SectionCard";
-import Image from "next/image";
-import React from "react";
+import ProgressChart from "@/app/components/table/ProgressChart";
+
+// ===== 目標進捗表示画面 =====
 
 const GoalStatusCard = () => {
   return (
     <div className="w-full">
       {/* 進捗 */}
       <SectionCard icon="/icon/home/paper-plane.png" label="目標達成まで">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-5">
           {/* 進捗グラフ */}
-          <div className="flex w-full items-center justify-center">
-            <Image
-              src="/temp/仮進捗グラフ.png"
-              alt="仮カレンダー"
-              width={200}
-              height={200}
-              style={{ width: "100%", height: "auto" }}
-              className="max-w-[200px]"
-            />
+          <div className="flex w-full items-center justify-center py-5">
+            <ProgressChart progress={70} />
           </div>
 
           {/* 合計 */}

@@ -19,6 +19,7 @@ const ProgressChart = ({ progress }: Props) => {
         data: [progress, 100 - progress],
         backgroundColor: ["#795549", "#EAE3D8"],
         borderWidth: 0,
+        borderColor: "#795549", // 外枠ライン色を指定
       },
     ],
   };
@@ -30,7 +31,7 @@ const ProgressChart = ({ progress }: Props) => {
   };
 
   return (
-    <div className="h-[200px] w-[200px]">
+    <div className="h-[var(--progressChart-height)] w-[var(--progressChart-width)]">
       <Doughnut data={data} options={options} />
     </div>
   );

@@ -23,6 +23,12 @@
   --footer-height: 60px;
 }
 
+/* 進捗確認 円グラフのサイズ */
+:root {
+  --progressChart-width: 200px;
+  --progressChart-height: 200px;
+}
+
 /* globals.css */
 .nextjs-portal {
   display: none !important;

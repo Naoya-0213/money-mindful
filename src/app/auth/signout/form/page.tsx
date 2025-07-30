@@ -64,7 +64,7 @@ const signoutPage = () => {
         return;
       }
 
-      router.replace("/auth/login");
+      router.replace("/auth/signin");
     } catch (error) {
       console.error("予期せぬエラー", error);
       setMessage({
@@ -75,7 +75,6 @@ const signoutPage = () => {
     } finally {
       setLoading(false);
 
-      // メール変更完了後に画面をリフレッシュするために使用するRouterフック
       router.refresh();
     }
   };

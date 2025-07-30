@@ -1,5 +1,3 @@
-// ログイン確認画面用
-
 "use client";
 
 import { useState } from "react";
@@ -16,10 +14,6 @@ import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
-
-// ログイン確認画面用
-
-// ログイン確認画面用
 
 // ログイン確認画面用
 

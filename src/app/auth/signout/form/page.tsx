@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
@@ -65,6 +66,7 @@ const signoutPage = () => {
       }
 
       router.replace("/auth/signin");
+      toast.success("ログアウトしました。");
     } catch (error) {
       console.error("予期せぬエラー", error);
       setMessage({

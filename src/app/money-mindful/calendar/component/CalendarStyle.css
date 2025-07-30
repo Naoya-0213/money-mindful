@@ -8,6 +8,7 @@
 /* タイトル（June 2025） */
 .react-calendar__navigation__label {
   font-weight: bold;
+  font-size: large;
 }
 
 /* 曜日 */
@@ -17,11 +18,12 @@
 
 /* 日 */
 .react-calendar__tile {
-  height: 40px;
+  width: 14.2857%;
+  aspect-ratio: 1 / 1;
+
   font-weight: bold;
-  border-radius: 100%;
+  border-radius: 9999px;
   color: #795549;
-  /* font-weight: 200; */
 }
 
 /* その曜日以外をグレーアウト */
@@ -29,12 +31,27 @@
   color: #7777;
 }
 
+/* 今日の日付の装飾（無効化して目立たせない） */
 .react-calendar__tile--now {
   background: none !important;
 }
 
+/* 選択中の日付のスタイル */
 .react-calendar__tile--active {
   border: 2px solid #795549;
   background-color: #795549 !important;
   color: #eae3d8;
+}
+
+/* フォーカス時の青枠を無効化 */
+.react-calendar__tile:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* カレンダーのタイル要素に対するTabキーでのフォーカス効果を無効化 */
+.react-calendar__tile:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }

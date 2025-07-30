@@ -1,3 +1,4 @@
+import "react-calendar/dist/Calendar.css";
 import { Toaster } from "react-hot-toast";
 
 import type { Metadata } from "next";

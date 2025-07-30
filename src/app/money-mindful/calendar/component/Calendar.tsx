@@ -1,19 +1,38 @@
-import Image from "next/image";
-import React from "react";
+"use client";
 
-const Calendar = () => {
+import { useState } from "react";
+import Calendar from "react-calendar";
+
+import "./CalendarStyle.css";
+
+// ===== カレンダー表示用 =====
+// 📍カレンダーセクションにて使用
+// 自作カスタムCSSにて調整
+// https://github.com/wojtekmaj/react-calendar
+
+const MyCalendar = () => {
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
   return (
-    <div className="flex w-full flex-col items-center gap-5 p-5 text-[#795549]">
-      {/* 仮カレンダー（記録）表示 */}
-      <Image
-        src="/temp/仮カレンダー表示.png"
-        alt="仮カレンダー"
-        width={800}
-        height={400}
-        style={{ width: "100%", height: "auto" }}
+    <div className="">
+      <Calendar
+        locale="en-US"
+        formatShortWeekday={(locale, date) =>
+          ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"][date.getDay()]
+        }
+        onChange={(date) => setSelectedDate(date as Date)}
+        value={selectedDate}
+        tileClassName={({ date, view }) => {
+          // カスタムクラス（次で詳細化）
+          return "";
+        }}
+        tileContent={({ date, view }) => {
+          // アイコンや印など追加可能
+          return null;
+        }}
       />
     </div>
   );
 };
 
-export default Calendar;
+export default MyCalendar;

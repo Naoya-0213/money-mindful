@@ -1,0 +1,40 @@
+/* カレンダー全体 */
+.react-calendar {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+/* タイトル（June 2025） */
+.react-calendar__navigation__label {
+  font-weight: bold;
+}
+
+/* 曜日 */
+.react-calendar__month-view__weekdays {
+  text-transform: none !important;
+}
+
+/* 日 */
+.react-calendar__tile {
+  height: 40px;
+  font-weight: bold;
+  border-radius: 100%;
+  color: #795549;
+  /* font-weight: 200; */
+}
+
+/* その曜日以外をグレーアウト */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #7777;
+}
+
+.react-calendar__tile--now {
+  background: none !important;
+}
+
+.react-calendar__tile--active {
+  border: 2px solid #795549;
+  background-color: #795549 !important;
+  color: #eae3d8;
+}

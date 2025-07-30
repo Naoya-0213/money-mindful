@@ -158,6 +158,13 @@ const GoalStatusCard = () => {
                 小さな積み重ねが大切です！
               </p>
             )}
+            {progress >= 30 && progress < 50 && (
+              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                順調なペースです👍
+                <br />
+                頑張って習慣化していきましょう〜
+              </p>
+            )}
             {progress >= 50 && progress < 75 && (
               <p className="py-3 text-center text-sm font-semibold text-[#795549]">
                 着実に進んでいます👌
@@ -165,6 +172,7 @@ const GoalStatusCard = () => {
                 この調子で続けましょう！
               </p>
             )}
+
             {progress >= 75 && progress < 90 && (
               <p className="py-3 text-center text-sm font-semibold text-[#795549]">
                 ゴールが見えてきました！...

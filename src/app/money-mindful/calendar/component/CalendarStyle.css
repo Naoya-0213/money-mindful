@@ -26,19 +26,24 @@
   color: #795549;
 }
 
-/* その曜日以外をグレーアウト */
+/* 選択月以外の日をグレーアウト */
 .react-calendar__month-view__days__day--neighboringMonth {
   color: #7777;
 }
 
-/* 今日の日付の装飾（無効化して目立たせない） */
+/* 記録のある日付に丸い背景を表示 */
+.has-record {
+  background-color: #d7cdbe;
+  border-radius: 9999px; /* 丸くする */
+}
+
+/* 今日の日付の装飾（無効化して目立たせない）*/
 .react-calendar__tile--now {
   background: none !important;
 }
 
 /* 選択中の日付のスタイル */
 .react-calendar__tile--active {
-  border: 2px solid #795549;
   background-color: #795549 !important;
   color: #eae3d8;
 }

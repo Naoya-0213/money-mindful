@@ -12,9 +12,10 @@ import "./CalendarStyle.css";
 
 type MyCalenderProps = {
   onDateSelect: (dateString: string) => void;
+  markedDates: string[];
 };
 
-const MyCalendar = ({ onDateSelect }: MyCalenderProps) => {
+const MyCalendar = ({ onDateSelect, markedDates }: MyCalenderProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   return (
@@ -27,7 +28,7 @@ const MyCalendar = ({ onDateSelect }: MyCalenderProps) => {
         onChange={(date) => setSelectedDate(date as Date)}
         // 選択日を親へ渡す（React-calender公式）
         onClickDay={(value: Date) => {
-          const formatted = value.toLocaleDateString("ja-JP", {
+          const dateString = value.toLocaleDateString("ja-JP", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -35,17 +36,24 @@ const MyCalendar = ({ onDateSelect }: MyCalenderProps) => {
           }); // 例: "2025年7月4日(金)"
 
           // クリックした日→親へ渡す
-          onDateSelect(formatted);
+          onDateSelect(dateString);
         }}
-        value={selectedDate}
+        // データを持った日はマークをつける（アイコンや印など追加可能）
         tileClassName={({ date, view }) => {
-          // カスタムクラス（次で詳細化）
+          const dateString = date.toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            weekday: "short",
+          });
+
+          if (view === "month" && markedDates.includes(dateString)) {
+            return "has-record";
+          }
+
           return "";
         }}
-        tileContent={({ date, view }) => {
-          // アイコンや印など追加可能
-          return null;
-        }}
+        value={selectedDate}
       />
     </div>
   );

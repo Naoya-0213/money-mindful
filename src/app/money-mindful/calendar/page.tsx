@@ -135,6 +135,9 @@ export default function CalendarPage() {
           <MyCalendar
             // onDateSelect はcalender.jsの関数
             onDateSelect={(dateString) => setSelectedDate(dateString)}
+
+            // 記録のある日付をマークづけ
+            markedDates={dailyRecords.map((d) => d.date)}
           />
         </SectionCard>
 

@@ -175,7 +175,7 @@ const GoalStatusCard = () => {
 
             {progress >= 75 && progress < 90 && (
               <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                ゴールが見えてきました！...
+                ゴールが見えてきました...!
               </p>
             )}
             {progress >= 90 && progress < 100 && (

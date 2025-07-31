@@ -33,7 +33,9 @@ const MyCalendar = ({ onDateSelect }: MyCalenderProps) => {
             day: "numeric",
             weekday: "short",
           }); // 例: "2025年7月4日(金)"
-          onDateSelect(formatted); // 親へ渡す
+
+          // クリックした日→親へ渡す
+          onDateSelect(formatted);
         }}
         value={selectedDate}
         tileClassName={({ date, view }) => {

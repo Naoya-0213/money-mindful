@@ -32,9 +32,7 @@ type DailyLogs = {
 
 export default function CalendarPage() {
   const [record, setRecord] = useState<any>(null);
-  const [selectedDate, setSelectedDate] = useState<string | undefined>(
-    undefined,
-  );
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
@@ -55,7 +53,6 @@ export default function CalendarPage() {
         .from("money-savings")
         .select("*")
         .eq("user_id", user.id)
-        .limit(1)
         .select();
 
       setRecord(RecordData);
@@ -66,6 +63,10 @@ export default function CalendarPage() {
 
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
+
+  const filteredLogs = dailyRecords.find(
+    (daily) => daily.date === selectedDate,
+  );
 
   // 変更時の反映
   useEffect(() => {
@@ -132,18 +133,19 @@ export default function CalendarPage() {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard icon="/icon/calender/calendar.png" label="Calendar">
           <MyCalendar
+            // onDateSelect はcalender.jsの関数
             onDateSelect={(dateString) => setSelectedDate(dateString)}
           />
         </SectionCard>
 
-        {/* 登録データ有 */}
         <SectionCard icon="/icon/calender/record2.png" label="登録履歴">
-          <DataCard />
-        </SectionCard>
-
-        {/* 登録データ無 */}
-        <SectionCard icon="/icon/calender/record2.png" label="登録履歴">
-          <NoDataCard />
+          {filteredLogs && filteredLogs.logs.length > 0 ? (
+            /* 登録データ有 */
+            <DataCard date={filteredLogs.date} logs={filteredLogs.logs} />
+          ) : (
+            /* 登録データ無 */
+            <NoDataCard date={selectedDate} />
+          )}
         </SectionCard>
       </div>
     </div>

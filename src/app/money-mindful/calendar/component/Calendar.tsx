@@ -10,7 +10,11 @@ import "./CalendarStyle.css";
 // 自作カスタムCSSにて調整
 // https://github.com/wojtekmaj/react-calendar
 
-const MyCalendar = () => {
+type MyCalenderProps = {
+  onDateSelect: (dateString: string) => void;
+};
+
+const MyCalendar = ({ onDateSelect }: MyCalenderProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   return (
@@ -21,6 +25,16 @@ const MyCalendar = () => {
           ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"][date.getDay()]
         }
         onChange={(date) => setSelectedDate(date as Date)}
+        // 選択日を親へ渡す（React-calender公式）
+        onClickDay={(value: Date) => {
+          const formatted = value.toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            weekday: "short",
+          }); // 例: "2025年7月4日(金)"
+          onDateSelect(formatted); // 親へ渡す
+        }}
         value={selectedDate}
         tileClassName={({ date, view }) => {
           // カスタムクラス（次で詳細化）

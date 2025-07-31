@@ -32,6 +32,9 @@ type DailyLogs = {
 
 export default function CalendarPage() {
   const [record, setRecord] = useState<any>(null);
+  const [selectedDate, setSelectedDate] = useState<string | undefined>(
+    undefined,
+  );
 
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
@@ -128,7 +131,9 @@ export default function CalendarPage() {
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard icon="/icon/calender/calendar.png" label="Calendar">
-          <MyCalendar />
+          <MyCalendar
+            onDateSelect={(dateString) => setSelectedDate(dateString)}
+          />
         </SectionCard>
 
         {/* 登録データ有 */}

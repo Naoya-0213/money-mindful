@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -19,7 +20,9 @@ export default function SettingPage() {
   const router = useRouter();
   const supabase = createClient();
 
-  const [profile, setProfile] = useState<{ id: string; name?: string } | null>(null);
+  const [profile, setProfile] = useState<{ id: string; name?: string } | null>(
+    null,
+  );
   const [name, setName] = useState("");
   const [goal, setGoal] = useState<any>(null);
 
@@ -50,6 +53,10 @@ export default function SettingPage() {
   if (!profile) {
     return null;
   }
+
+  const onClick = () => {
+    toast.error("今後、実装予定...!");
+  };
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
@@ -110,12 +117,8 @@ export default function SettingPage() {
           </div>
           <div className="flex flex-col items-center gap-5">
             <Button href="/auth/signout/form">ログアウト</Button>
-            <Button onClick={() => alert("実装予定...!")}>
-              アカウントを削除する
-            </Button>
-            <Button onClick={() => alert("実装予定...!")}>
-              データリセット
-            </Button>
+            <Button onClick={onClick}>アカウントを削除する</Button>
+            <Button onClick={onClick}>データリセット</Button>
           </div>
         </SectionCard>
       </div>

@@ -25,9 +25,12 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
         {/* 備考 */}
         <SectionInfoBox>
           <div className="flex flex-col gap-5">
-            <div className="flex flex-col items-center">
-              <p>カテゴリーを追加して、</p>
-              <p>整理できます。</p>
+            <div className="text-center">
+              <p>
+                カテゴリーを追加して
+                <br />
+                整理できます。
+              </p>
             </div>
 
             {/* カテゴリー例 */}
@@ -41,7 +44,7 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
         </SectionInfoBox>
 
         {/* 追加へ移動ボタン */}
-        <div className="flex w-full justify-center">
+        <div className="flex w-full justify-center pt-3">
           <Button href="/money-mindful/add">「がまん」を記録する</Button>
         </div>
       </SectionCard>

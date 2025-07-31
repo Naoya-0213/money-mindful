@@ -123,7 +123,7 @@ const GoalCard = () => {
         </div>
 
         {/* 目標編集ボタン */}
-        <div className="flex w-full justify-center">
+        <div className="flex w-full justify-center pt-3">
           <Button href="/money-mindful/setting/goal/edit">
             目標を編集する
           </Button>

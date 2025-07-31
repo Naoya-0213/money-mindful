@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -75,6 +76,7 @@ const SigninPage = () => {
       }
 
       router.push("/money-mindful/home");
+      toast.success("ログインしました。");
     } catch (error) {
       console.error("予期せぬエラー", error);
       setMessage({

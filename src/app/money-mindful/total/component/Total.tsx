@@ -1,25 +1,53 @@
-import Image from "next/image";
-import React from "react";
+import SectionCard from "@/app/components/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 
 const Total = () => {
   return (
-    <div className="flex w-full flex-col items-center gap-5 p-5 text-[#795549]">
-      {/* 仮セクションバー＆グラフ */}
+    <SectionCard icon="/icon/total/graph.png" label="合計の確認">
+      <div className="flex flex-col gap-5 text-center">
+        <h2 className="font-bold">合計の確認機能、まもなく実装予定！</h2>
 
-      <Image
-        src="/temp/仮合計グラフ2.png"
-        alt="仮合計グラフ"
-        width={800}
-        height={400}
-        style={{ width: "100%", height: "auto" }}
-      />
+        <p className="text-center leading-relaxed font-semibold text-[#777777]">
+          「がまん」した金額の合計を、
+          <br />
+          分かりやすく振り返れるよう
+          <br />
+          以下の機能を近日中に実装予定です！
+        </p>
 
-      {/* 合計表示 */}
-      <div className="text-3xl font-bold">
-        <h3>今週の合計</h3>
-        <p>¥20,000</p>
+        <SectionInfoBox>
+          <div className="flex flex-col gap-3">
+            <h3>📊 カテゴリー別合計</h3>
+            <p className="font-light">
+              食費、趣味、買い物などの
+              <br />
+              カテゴリごとに集計。
+              <br />
+              節約の傾向や無駄遣い
+              <br />
+              のクセも見えてくる！
+            </p>
+          </div>
+        </SectionInfoBox>
+        <SectionInfoBox>
+          <div className="flex flex-col gap-3">
+            <h3>
+              📅 期間別の集計
+              <br />
+              （週・月・年）
+            </h3>
+            <p className="font-light">
+              「今週どれだけ頑張った？」
+              <br />
+              「今月いくら節約できた？」
+              <br />
+              「今年の合計は？」 <br />
+              期間を切り替えて成果を実感！
+            </p>
+          </div>
+        </SectionInfoBox>
       </div>
-    </div>
+    </SectionCard>
   );
 };
 

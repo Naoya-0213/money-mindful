@@ -55,10 +55,10 @@ export default function HomePage() {
           <GoalStatusCard />
           {/* 我慢記録 */}
           <AddRecordCard />
-          {/* 履歴表示 */}
-          <div className="w-full">
+          {/* 履歴表示：実装予定 */}
+          {/* <div className="w-full">
             <RecentRecords />
-          </div>
+          </div> */}
         </div>
       </div>
     </ClientWrapper>

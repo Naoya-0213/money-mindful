@@ -13,7 +13,7 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 // ===== 目標進捗表示画面 =====
 
 const GoalStatusCard = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const supabase = createClient();
 

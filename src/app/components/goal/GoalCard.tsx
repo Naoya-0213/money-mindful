@@ -12,6 +12,16 @@ import SectionCard from "../section-card/SectionCard";
 
 // ===== 登録目標表示 =====
 // 📍 supabaseへ保存している目標の表示
+export type Goal = {
+  id: string;
+  title?: string;
+  target_amount?: number;
+  start_date?: string;
+  end_date?: string;
+  created_at: string;
+  memo?: string;
+  user_id?: string;
+};
 
 const GoalCard = () => {
   // supabase連携（別ページにて連携済み）
@@ -21,12 +31,7 @@ const GoalCard = () => {
   const router = useRouter();
 
   // 登録目標表示
-  const [goal, setGoal] = useState<{
-    title: string;
-    start_date: string;
-    end_date: string;
-    target_amount: number;
-  } | null>(null);
+ const [goal, setGoal] = useState<Goal | undefined>(undefined);
 
   // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
   const formatDate = (dateString: string) => {

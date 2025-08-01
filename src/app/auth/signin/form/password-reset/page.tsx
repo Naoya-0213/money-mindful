@@ -2,15 +2,21 @@
 
 "use client";
 
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
 import Button from "@/app/components/button/Button";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+
 import { createClient } from "@/utils/supabase/clients";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
+// パスワードリセット用
+
+// パスワードリセット用
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
@@ -24,7 +30,7 @@ const schema = z.object({
 });
 
 const PasswordResetConfirmPage = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();

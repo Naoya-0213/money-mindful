@@ -129,7 +129,7 @@ const GoalStatusCard = () => {
     };
 
     fetchRecord();
-  }, []);
+  }, [supabase]);
 
   return (
     <div className="w-full">

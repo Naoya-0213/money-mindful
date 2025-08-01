@@ -6,8 +6,6 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
-import z from "zod";
-
 import Button from "@/app/components/button/Button";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import LoadingSpinner from "@/app/loading";
@@ -17,25 +15,22 @@ import { createClient } from "@/utils/supabase/clients";
 // ===== ログアウト画面用 ======
 
 // 入力データの検証ルールを定義
-const schema = z.object({
-  email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
-});
+// const schema = z.object({
+//   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
+// });
 
 // Zodスキーマから型を自動推論してSchema型を定義
-type Schema = z.infer<typeof schema>;
+// type Schema = z.infer<typeof schema>;
+type Schema = { email: string };
 
-const signoutPage = () => {
+const SignoutPage = () => {
   const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
   // React hook formの指定
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { handleSubmit } = useForm({
     // 初期値
     defaultValues: { email: "" },
   });
@@ -117,4 +112,4 @@ const signoutPage = () => {
   );
 };
 
-export default signoutPage;
+export default SignoutPage;

@@ -40,25 +40,6 @@ const RecordsPage = () => {
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
 
-  // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("ja-JP", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }).format(date);
-  };
-
-  // 金額フォーマット関数（¥⚫︎⚫︎,⚫︎⚫︎⚫︎）
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("ja-JP", {
-      style: "currency",
-      currency: "JPY",
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
   // 変更時の反映
   useEffect(() => {
     const fetchRecord = async () => {

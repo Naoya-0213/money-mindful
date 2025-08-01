@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
 
@@ -14,8 +13,6 @@ type CategoryItemProps = {
 };
 
 const CategoryItem = ({ id }: CategoryItemProps) => {
-  const router = useRouter();
-
   const category = CATEGORY_LIST.find((category) => id === category.id);
   if (!category) {
     return null;

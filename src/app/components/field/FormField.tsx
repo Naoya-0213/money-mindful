@@ -21,11 +21,12 @@ type FormFieldProps = {
 
   value?: string;
 
-  // 内容が更新される度に発火
-  onChange?: (e: React.ChangeEvent<any>) => void;
-
-  // 対象がフォーカスから外れた時に発火
-  onBlur?: (e: React.FocusEvent<any>) => void;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  onBlur?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
 
   children?: React.ReactNode;
 };

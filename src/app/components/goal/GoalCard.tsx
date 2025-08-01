@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { useRouter } from "next/navigation";
-
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
@@ -28,10 +26,10 @@ const GoalCard = () => {
   const supabase = createClient();
 
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
-  const router = useRouter();
+  // const router = useRouter();
 
   // 登録目標表示
- const [goal, setGoal] = useState<Goal | undefined>(undefined);
+  const [goal, setGoal] = useState<Goal | undefined>(undefined);
 
   // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
   const formatDate = (dateString: string) => {
@@ -60,7 +58,9 @@ const GoalCard = () => {
 
       const { data } = await supabase
         .from("goals")
-        .select("title, target_amount, start_date, end_date")
+        .select(
+          "id, title, target_amount, start_date, end_date, created_at, memo, user_id",
+        )
         .eq("user_id", user.id)
         .maybeSingle();
 
@@ -69,13 +69,19 @@ const GoalCard = () => {
         data.title !== null &&
         data.target_amount !== null &&
         data.start_date !== null &&
-        data.end_date !== null
+        data.end_date !== null &&
+        data.created_at !== null &&
+        data.id !== null
       ) {
         setGoal({
           title: data.title,
           target_amount: data.target_amount,
           start_date: data.start_date,
           end_date: data.end_date,
+          created_at: data.created_at,
+          id: data.id,
+          memo: data.memo ?? undefined,
+          user_id: data.user_id ?? undefined,
         });
       }
     };

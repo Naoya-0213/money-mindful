@@ -1,12 +1,9 @@
-// 新規登録用
-
 "use client";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -16,8 +13,6 @@ import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
-
-// 新規登録用
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
@@ -36,7 +31,7 @@ const schema = z.object({
 });
 
 const SignUpPage = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();

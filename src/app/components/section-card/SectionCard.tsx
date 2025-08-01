@@ -1,5 +1,6 @@
+import React from "react";
+
 import Image from "next/image";
-import React, { Children } from "react";
 
 type SectionCardProps = {
   icon: string;

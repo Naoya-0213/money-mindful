@@ -4,6 +4,8 @@
 
 import React from "react";
 
+// フッターの部品用
+
 type Props = {
   title: string;
   children: React.ReactNode;
@@ -11,12 +13,7 @@ type Props = {
   onClick: () => void;
 };
 
-export default function SettingItem({
-  title,
-  children,
-  buttonText,
-  onClick,
-}: Props) {
+export default function SettingItem({ title, children }: Props) {
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-[#EAE3D8] p-5">
       <h2 className="text-2xl font-bold">{title}</h2>

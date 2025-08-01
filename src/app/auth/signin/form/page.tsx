@@ -60,11 +60,10 @@ const SigninPage = () => {
     try {
       const { email, password } = data;
 
-      const { error: signInError } =
-        await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
       if (signInError) {
         console.error("ログインエラー", signInError.message);

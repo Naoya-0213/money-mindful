@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { useRouter } from "next/navigation";
-
 import SectionCard from "@/app/components/section-card/SectionCard";
 import ProgressChart from "@/app/components/table/ProgressChart";
 

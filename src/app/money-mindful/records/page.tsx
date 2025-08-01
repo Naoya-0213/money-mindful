@@ -31,35 +31,11 @@ type DailyLogs = {
 };
 
 const RecordsPage = () => {
-  const [record, setRecord] = useState<any>(null);
-
   // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
   // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
-
-  useEffect(() => {
-    const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
-
-      if (!user) {
-        router.push("/auth/login");
-        return;
-      }
-
-      const { data: RecordData } = await supabase
-        .from("money-savings")
-        .select("*")
-        .eq("user_id", user.id)
-        .limit(1)
-        .select();
-
-      setRecord(RecordData);
-    };
-
-    fetchRecord();
-  }, [router, supabase]);
 
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
@@ -87,7 +63,10 @@ const RecordsPage = () => {
   useEffect(() => {
     const fetchRecord = async () => {
       const user = await getCurrentUser(supabase);
-      if (!user) return;
+      if (!user) {
+        router.push("/auth/login");
+        return;
+      }
 
       const { data, error } = await supabase
         .from("money-savings")
@@ -141,12 +120,12 @@ const RecordsPage = () => {
     };
 
     fetchRecord();
-  }, []);
+  }, [router, supabase]);
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
-        {record ? (
+        {dailyRecords.length > 0 ? (
           <SectionCard label="登録履歴" icon="/icon/record/record2.png">
             {dailyRecords.map((daily, index) => (
               <div

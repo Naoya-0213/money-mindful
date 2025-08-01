@@ -24,55 +24,29 @@ type Log = {
   saved_date: string;
 };
 
-// 日付ごとのログの型
 type DailyLogs = {
   date: string;
   logs: Log[];
 };
 
 export default function CalendarPage() {
-  const [record, setRecord] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<string>("");
-
-  // supabase連携（別ページにて連携済み）
-  const supabase = createClient();
-
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
-  const router = useRouter();
-
-  useEffect(() => {
-    const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
-
-      if (!user) {
-        router.push("/auth/login");
-        return;
-      }
-
-      const { data: RecordData } = await supabase
-        .from("money-savings")
-        .select("*")
-        .eq("user_id", user.id)
-        .select();
-
-      setRecord(RecordData);
-    };
-
-    fetchRecord();
-  }, [router, supabase]);
-
-  // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
+
+  const supabase = createClient();
+  const router = useRouter();
 
   const filteredLogs = dailyRecords.find(
     (daily) => daily.date === selectedDate,
   );
 
-  // 変更時の反映
   useEffect(() => {
     const fetchRecord = async () => {
       const user = await getCurrentUser(supabase);
-      if (!user) return;
+      if (!user) {
+        router.push("/auth/login");
+        return;
+      }
 
       const { data, error } = await supabase
         .from("money-savings")
@@ -85,7 +59,6 @@ export default function CalendarPage() {
         return;
       }
 
-      // 日付ごとにグルーピング
       const grouped: { [date: string]: Log[] } = {};
 
       data.forEach((item) => {
@@ -117,7 +90,6 @@ export default function CalendarPage() {
         });
       });
 
-      // 配列に変換してセット
       const groupedArray: DailyLogs[] = Object.entries(grouped).map(
         ([date, logs]) => ({ date, logs }),
       );
@@ -126,27 +98,22 @@ export default function CalendarPage() {
     };
 
     fetchRecord();
-  }, []);
+  }, [router, supabase]);
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard icon="/icon/calender/calendar.png" label="Calendar">
           <MyCalendar
-            // onDateSelect はcalender.jsの関数
             onDateSelect={(dateString) => setSelectedDate(dateString)}
-
-            // 記録のある日付をマークづけ
             markedDates={dailyRecords.map((d) => d.date)}
           />
         </SectionCard>
 
         <SectionCard icon="/icon/calender/record2.png" label="登録履歴">
           {filteredLogs && filteredLogs.logs.length > 0 ? (
-            /* 登録データ有 */
             <DataCard date={filteredLogs.date} logs={filteredLogs.logs} />
           ) : (
-            /* 登録データ無 */
             <NoDataCard date={selectedDate} />
           )}
         </SectionCard>

@@ -1,9 +1,9 @@
-// utils/supabase/clients.ts
 "use client";
 
-import type { Database } from "@/types/database.types";
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
+
+import type { Database } from "@/types/database.types";
 
 export function createClient(): SupabaseClient<Database> {
   return createBrowserClient<Database>(

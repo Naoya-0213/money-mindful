@@ -2,7 +2,7 @@ import "react-calendar/dist/Calendar.css";
 import { Toaster } from "react-hot-toast";
 
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";

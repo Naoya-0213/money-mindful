@@ -44,7 +44,7 @@ const SignoutPage = () => {
   const [loading, setLoading] = useState(false);
 
   // クリック動作
-  const onSubmit: SubmitHandler<Schema> = async (data) => {
+  const onSubmit: SubmitHandler<Schema> = async () => {
     setLoading(true);
     setMessage(null);
 

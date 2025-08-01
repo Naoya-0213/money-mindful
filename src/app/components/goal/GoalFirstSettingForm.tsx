@@ -50,7 +50,6 @@ const GoalFirstSetting = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     control,
     formState: { errors },
   } = useForm<Schema>({

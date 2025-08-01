@@ -214,6 +214,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
                         setFormattedAmount("");
                       }
                     }}
+                    
                   >
                     <span className="absolute top-1/2 left-4 -translate-y-1/2 text-xl font-bold text-[#795549]">
                       ¥

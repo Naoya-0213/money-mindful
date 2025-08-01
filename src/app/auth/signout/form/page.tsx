@@ -10,6 +10,7 @@ import z from "zod";
 
 import Button from "@/app/components/button/Button";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -76,13 +77,17 @@ const signoutPage = () => {
       return;
     } finally {
       setLoading(false);
-
       router.refresh();
     }
   };
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <LoadingSpinner />
+        </div>
+      )}
       <form
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}

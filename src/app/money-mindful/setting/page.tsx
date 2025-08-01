@@ -16,6 +16,17 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== 設定セクション =====
 
+type Goal = {
+  title?: string;
+  target_amount?: number;
+  start_date?: string;
+  end_date?: string;
+  created_at: string;
+  memo?: string;
+  id: string;
+  user_id?: string;
+};
+
 export default function SettingPage() {
   const router = useRouter();
   const supabase = createClient();
@@ -24,7 +35,7 @@ export default function SettingPage() {
     null,
   );
   const [name, setName] = useState("");
-  const [goal, setGoal] = useState<any>(null);
+  const [goal, setGoal] = useState<Goal | undefined>(undefined);
 
   useEffect(() => {
     const fetchUserAndGoal = async () => {
@@ -42,8 +53,18 @@ export default function SettingPage() {
         .eq("user_id", user.id)
         .maybeSingle();
 
-      if (!error) {
-        setGoal(goalData);
+      if (!error && goalData) {
+        const cleanedGoal: Goal = {
+          title: goalData.title ?? undefined,
+          target_amount: goalData.target_amount ?? undefined,
+          start_date: goalData.start_date ?? undefined,
+          end_date: goalData.end_date ?? undefined,
+          created_at: goalData.created_at,
+          memo: goalData.memo ?? undefined,
+          id: goalData.id,
+          user_id: goalData.user_id ?? undefined,
+        };
+        setGoal(cleanedGoal);
       }
     };
 

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
@@ -12,6 +13,7 @@ import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
@@ -99,10 +101,9 @@ const ChangeUserNamePage = () => {
       }
 
       // 登録成功
-      setMessage({
-        type: "success",
-        text: "名前の変更が完了しました！",
-      });
+      toast.success("名前を変更しました！");
+      setMessage(null);
+      router.replace("/money-mindful/setting");
     } catch (error) {
       console.error("予期せぬエラー", error);
       setMessage({
@@ -118,6 +119,11 @@ const ChangeUserNamePage = () => {
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <LoadingSpinner />
+        </div>
+      )}
       <form
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}

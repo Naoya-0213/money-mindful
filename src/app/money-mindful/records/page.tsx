@@ -148,7 +148,6 @@ const RecordsPage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         {record ? (
           <SectionCard label="登録履歴" icon="/icon/record/record2.png">
-            {/* 仮データを map で表示 */}
             {dailyRecords.map((daily, index) => (
               <div
                 key={`${daily.date}-${index}`}

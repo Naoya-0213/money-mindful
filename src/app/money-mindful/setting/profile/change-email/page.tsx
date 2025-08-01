@@ -14,6 +14,7 @@ import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
@@ -112,6 +113,11 @@ const ChangeEmailPage = () => {
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <LoadingSpinner />
+        </div>
+      )}
       <form
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}

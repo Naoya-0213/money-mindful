@@ -14,17 +14,17 @@ import type { Database } from "@/types/database.types";
 // 認証状態の監視
 
 export default async function SigninAuthPage() {
-  const supabase = await createClient<Database>();
+  // const supabase = await createClient<Database>();
 
-  // セッションの取得
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  // // セッションの取得
+  // const {
+  //   data: { session },
+  // } = await supabase.auth.getSession();
 
-  // 認証している場合、リダイレクト
-  if (session) {
-    redirect("/money-mindful/home");
-  }
+  // // 認証している場合、リダイレクト
+  // // if (session) {
+  // //   redirect("/money-mindful/home");
+  // // }
 
   return <BeforeSignin />;
 }

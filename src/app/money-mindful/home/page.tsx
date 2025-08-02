@@ -39,7 +39,7 @@ export default function HomePage() {
       const user = await getCurrentUser(supabase);
 
       if (!user) {
-        router.push("/auth/login");
+        router.push("/auth/signin");
         return;
       }
 

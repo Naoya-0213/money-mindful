@@ -31,7 +31,7 @@ const schema = z.object({
     .string()
     .min(1, { message: "1文字以上で入力ください。" })
     .max(20, { message: "20文字以内で入力ください。" }),
-  amount: z.number().min(1, { message: "金額を入力してください。" }),
+  amount: z.number({ message: "金額を入力してください。" }),
   saved_date: z.string().min(1, { message: "日付を選択してください。" }),
   category_id: z.string().min(1, { message: "必ず選択してください。" }),
   memo: z.string().optional(),

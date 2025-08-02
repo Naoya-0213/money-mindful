@@ -74,7 +74,7 @@ const SigninPage = () => {
         return;
       }
 
-      router.push("/money-mindful/home");
+      router.replace("/money-mindful/home");
       toast.success("ログインしました。");
     } catch (error) {
       console.error("予期せぬエラー", error);

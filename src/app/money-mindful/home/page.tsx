@@ -37,6 +37,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       const user = await getCurrentUser(supabase);
+      console.log("現在のユーザー：", user);
 
       if (!user) {
         router.push("/auth/signin");

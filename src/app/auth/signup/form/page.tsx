@@ -54,7 +54,7 @@ const SignUpPage = () => {
           password,
           options: {
             emailRedirectTo:
-              "http://localhost:3000/money-mindful/login/first-login",
+              "http://localhost:3000/money-mindful/signin/first-signin",
             data: {
               name, // ← ユーザー名をmetadataに渡す
             },
@@ -131,13 +131,13 @@ const SignUpPage = () => {
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <SectionCard label="新規登録" icon="/icon/login/enter.png">
+        <SectionCard label="新規登録" icon="/icon/signin/enter.png">
           <div className="flex flex-col gap-3">
             {/* 名前入力欄 */}
             <FormField
               label="名前"
               placeholder="名前を入力"
-              icon="/icon/login/profile-user.png"
+              icon="/icon/signin/profile-user.png"
               type="text"
               {...register("name")}
             />
@@ -151,7 +151,7 @@ const SignUpPage = () => {
             <FormField
               label="Email"
               placeholder="メールアドレスを入力"
-              icon="/icon/login/email.png"
+              icon="/icon/signin/email.png"
               type="email"
               {...register("email")}
             />
@@ -165,7 +165,7 @@ const SignUpPage = () => {
             <FormField
               label="Password"
               placeholder="6文字以上でパスワードを入力"
-              icon="/icon/login/lock.png"
+              icon="/icon/signin/lock.png"
               {...register("password")}
             />
             {errors.password && (

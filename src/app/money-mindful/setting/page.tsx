@@ -41,7 +41,7 @@ export default function SettingPage() {
     const fetchUserAndGoal = async () => {
       const user = await getCurrentUser(supabase);
       if (!user) {
-        router.push("/auth/login");
+        router.push("/auth/signin");
         return;
       }
       setProfile(user);

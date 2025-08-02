@@ -2,15 +2,21 @@
 
 "use client";
 
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { useRouter } from "next/navigation";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
 import Button from "@/app/components/button/Button";
 import FormField from "@/app/components/field/FormField";
 import SectionCard from "@/app/components/section-card/SectionCard";
+
 import { createClient } from "@/utils/supabase/clients";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
+// 登録メールアドレスに送られるパスワードリセットリンククリック後画面用
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
@@ -86,13 +92,13 @@ const NewPasswordPage = () => {
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <SectionCard label="パスワード変更" icon="/icon/login/enter.png">
+        <SectionCard label="パスワード変更" icon="/icon/signin/enter.png">
           <div className="flex flex-col gap-3">
             {/* パスワード入力欄 */}
             <FormField
               label="新しいPassword"
               placeholder="6文字以上でパスワードを入力"
-              icon="/icon/login/lock.png"
+              icon="/icon/signin/lock.png"
               {...register("password")}
             />
             {errors.password && (

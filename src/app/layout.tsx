@@ -2,7 +2,7 @@ import "react-calendar/dist/Calendar.css";
 import { Toaster } from "react-hot-toast";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
@@ -14,7 +14,7 @@ import "./globals.css";
 //   subsets: ["latin"],
 // });
 
-// google font(2)
+// // google font(2)
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
 //   subsets: ["latin"],

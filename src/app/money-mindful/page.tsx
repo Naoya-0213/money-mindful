@@ -12,10 +12,10 @@ import { Database } from "@/types/database.types";
 export default async function MoneyMindfulRoot() {
   const supabase = await createClient<Database>();
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (!session) {
+  if (!user) {
     return redirect("/auth/signin");
   }
 

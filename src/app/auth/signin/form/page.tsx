@@ -91,13 +91,13 @@ const SigninPage = () => {
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <SectionCard label="ログイン" icon="/icon/login/enter.png">
+        <SectionCard label="ログイン" icon="/icon/signin/enter.png">
           <div className="flex flex-col gap-3">
             {/* メールアドレス入力欄 */}
             <FormField
               label="Email"
               placeholder="メールアドレスを入力"
-              icon="/icon/login/email.png"
+              icon="/icon/signin/email.png"
               {...register("email")}
             />
             {errors.email && (
@@ -112,7 +112,7 @@ const SigninPage = () => {
             <FormField
               label="Password"
               placeholder="6文字以上でパスワードを入力"
-              icon="/icon/login/lock.png"
+              icon="/icon/signin/lock.png"
               {...register("password")}
             />
             {errors.password && (

@@ -16,7 +16,7 @@ const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
       <SectionCard
         label="目標を登録しよう！"
         numberIcon={numberIcon}
-        icon="/icon/login/step1/flag.png"
+        icon="/icon/signin/step1/flag.png"
       >
         {/* 備考 */}
         <div className="flex flex-col items-center justify-center leading-relaxed font-semibold text-[#777777]">

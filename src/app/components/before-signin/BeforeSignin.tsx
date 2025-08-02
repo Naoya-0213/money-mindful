@@ -12,7 +12,7 @@ const BeforeSignin = () => {
               {/* アイコン */}
               <div>
                 <Image
-                  src="/icon/login/before-login/light-bulb.png"
+                  src="/icon/signin/before-signin/light-bulb.png"
                   alt="アイコン"
                   width={35}
                   height={35}
@@ -22,7 +22,7 @@ const BeforeSignin = () => {
               {/* ロゴ */}
               <div>
                 <Image
-                  src="/icon/login/before-login/money-mindful-title_icon.png"
+                  src="/icon/signin/before-signin/money-mindful-title_icon.png"
                   alt="アイコン"
                   width={150}
                   height={25}

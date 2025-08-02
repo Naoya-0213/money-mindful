@@ -18,6 +18,8 @@ import { createClient } from "@/utils/supabase/clients";
 
 // パスワードリセット用
 
+// パスワードリセット用
+
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
@@ -49,7 +51,7 @@ const PasswordResetConfirmPage = () => {
       // パスワードリセットリンク送信処理
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo:
-          "http://localhost:3000/money-mindful/login/password-reset/confirm",
+          "http://localhost:3000/money-mindful/signin/password-reset/confirm",
       });
 
       if (error) {
@@ -93,14 +95,14 @@ const PasswordResetConfirmPage = () => {
         className="flex w-full flex-col items-center gap-5 p-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <SectionCard label="パスワード再設定" icon="/icon/login/enter.png">
+        <SectionCard label="パスワード再設定" icon="/icon/signin/enter.png">
           <div className="flex flex-col gap-3">
             {/* パスワード入力欄 */}
             <FormField
               label="Email"
               placeholder="メールアドレスを入力"
               type="email"
-              icon="/icon/login/email.png"
+              icon="/icon/signin/email.png"
               {...register("email")}
             />
             {errors.email && (
@@ -139,7 +141,7 @@ const PasswordResetConfirmPage = () => {
 
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/login">戻る</Button>
+              <Button href="/money-mindful/signin">戻る</Button>
             </div>
           </div>
         </SectionCard>

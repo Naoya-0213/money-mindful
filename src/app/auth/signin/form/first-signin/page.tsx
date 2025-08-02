@@ -19,7 +19,7 @@ const FirstSignPage = () => {
               {/* アイコン */}
               <div>
                 <Image
-                  src="/icon/login/first-login/cracker.png"
+                  src="/icon/signin/first-signin/cracker.png"
                   alt="アイコン"
                   width={30}
                   height={30}
@@ -29,7 +29,7 @@ const FirstSignPage = () => {
               {/* ロゴ */}
               <div>
                 <Image
-                  src="/icon/login/before-login/money-mindful-title_icon.png"
+                  src="/icon/signin/before-signin/money-mindful-title_icon.png"
                   alt="アイコン"
                   width={150}
                   height={25}
@@ -59,16 +59,16 @@ const FirstSignPage = () => {
         </div>
 
         {/* step1：目標設定 */}
-        <NoGoalCard numberIcon="/icon/login/step1/number-1.png" />
+        <NoGoalCard numberIcon="/icon/signin/step1/number-1.png" />
 
         {/* step2：我慢記録 */}
-        <AddRecordCard numberIcon="/icon/login/step2/number-2.png" />
+        <AddRecordCard numberIcon="/icon/signin/step2/number-2.png" />
 
         {/* step3：記録確認 */}
         <SectionCard
           label="記録を振り返ろう！"
-          numberIcon="/icon/login/step3/number-3.png"
-          icon="/icon/login/step3/money.png"
+          numberIcon="/icon/signin/step3/number-3.png"
+          icon="/icon/signin/step3/money.png"
         >
           {/* 備考 */}
           <div className="flex flex-col items-center justify-center gap-5 leading-relaxed font-semibold text-[#777777]">

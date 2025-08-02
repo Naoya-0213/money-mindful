@@ -14,7 +14,7 @@
 
 ## 🔧 使用技術スタック（予定）
 
-- **フロントエンド**：Next.js (App Router) + TypeScript + Tailwind CSS 
+- **フロントエンド**：Next.js (App Router) + TypeScript + Tailwind CSS
 - **バックエンド / DB**：Supabase（Auth & Database）
 - **グラフ可視化**：Chart.js
 - **状態管理**：Zustand(https://zustand-demo.pmnd.rs/)
@@ -41,7 +41,7 @@
 - レスポンシブ対応：一時的にスマホ表示に合わせて max-w-[480px] を使用中。あとで消すこと！
 - signupのコンポ化。FormFieldとエラーメッセのコンポ化
 - supabaseからのメール送信時のロゴ設定
-- login・signupフォルダ内の役割分割）page.tsx or action.tsx　への置き換え
+- signin・signupフォルダ内の役割分割）page.tsx or action.tsx　への置き換え
 - アカウント削除、データリセットの実装
 - any型の修正
 - カテゴリーリストのicon管理！

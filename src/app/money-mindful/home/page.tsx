@@ -9,7 +9,6 @@ import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import ClientWrapper from "../ClientWrapper";
 import GoalStatusCard from "./component/GoalStatusCard";
@@ -36,10 +35,12 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const user = await getCurrentUser(supabase);
+     const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
       if (!user) {
-        router.push("/auth/login");
+        router.push("/auth/signin");
         return;
       }
 

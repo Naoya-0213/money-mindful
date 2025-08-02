@@ -1,28 +1,36 @@
-// PageTop
-// "use server"
-import { redirect } from "next/navigation";
+"use client";
 
-import { createClient } from "@/utils/supabase/server";
+import { useEffect, useState } from "react";
 
-import { Database } from "@/types/database.types";
+import { useRouter } from "next/navigation";
+
+import { createClient } from "@/utils/supabase/clients";
 
 import BeforeSignin from "./components/before-signin/BeforeSignin";
 
-export default async function PageTop() {
-  const supabase = await createClient<Database>();
+export default function PageTop() {
+  const router = useRouter();
+  const supabase = createClient();
 
-  // セッションを取得
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const [loading, setLoading] = useState(true);
 
-  if (session) {
-    redirect("/money-mindful/home");
-  }
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-  return (
-    <div>
-      <BeforeSignin />
-    </div>
-  );
+      if (user) {
+        router.push("/money-mindful/home");
+      } else {
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+  }, [router, supabase]);
+
+  if (loading) return null;
+
+  return <BeforeSignin />;
 }

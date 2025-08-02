@@ -7,7 +7,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 // Next.js アプリにおける「全ページ共通のフィルター機能」
 // 「/money-mindful」配下にアクセスされた場合のみ、
 // Supabaseのセッション（ログイン状態）を確認し、
-// ・未ログイン → /auth/login にリダイレクト
+// ・未ログイン → /auth/signin にリダイレクト
 // ・長時間放置などでセッション取得に失敗（期限切れなど）→ /session-error にリダイレクト
 
 export async function middleware(req: NextRequest) {
@@ -19,23 +19,23 @@ export async function middleware(req: NextRequest) {
 
   // ✅ セッション＆エラー情報を取得
   const {
-    data: { session },
+    data: { user },
     error,
-  } = await supabase.auth.getSession();
+  } = await supabase.auth.getUser();
 
   const pathname = req.nextUrl.pathname;
   const isProtected = pathname.startsWith("/money-mindful");
-
-  // ✅ セッションなし（未ログイン） → /auth/login に遷移
-  if ((!session || !session.user) && isProtected) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
-  }
 
   // ✅ セッション取得エラー（トークン切れなど） → /session-error に遷移
   if (error && isProtected) {
     return NextResponse.redirect(
       new URL("/money-mindful/session-error", req.url),
     );
+  }
+
+  // ✅ セッションなし（未ログイン） → /auth/signin に遷移
+  if (!user && isProtected) {
+    return NextResponse.redirect(new URL("/auth/signin", req.url));
   }
 
   return res;

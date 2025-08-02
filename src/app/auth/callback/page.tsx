@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/clients";
-import SectionCard from "@/app/components/section-card/SectionCard";
 import Button from "@/app/components/button/Button";
+import SectionCard from "@/app/components/section-card/SectionCard";
+
+import { createClient } from "@/utils/supabase/clients";
 
 // ===== メール変更時に遷移 ======
 // （UIは後ほど調整）
@@ -21,9 +22,9 @@ const AuthCallbackPage = () => {
   useEffect(() => {
     const checkSession = async () => {
       const supabase = createClient();
-      const { data, error } = await supabase.auth.getSession();
+      const { data, error } = await supabase.auth.getUser();
 
-      if (error || !data.session) {
+      if (error || !data.user) {
         setStatus("error");
       } else {
         setStatus("success");

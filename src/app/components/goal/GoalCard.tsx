@@ -8,8 +8,10 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 
-// ===== 登録目標表示 =====
-// 📍 supabaseへ保存している目標の表示
+// ===== 目標表示カードコンポーネント =====
+// 📍ホーム画面などで使用。Supabaseから取得した目標データを表示
+// タイトル・期限・金額を整ったUIで表示し、編集ページへ誘導
+
 export type Goal = {
   id: string;
   title?: string;
@@ -22,13 +24,7 @@ export type Goal = {
 };
 
 const GoalCard = () => {
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
-
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
-  // const router = useRouter();
-
-  // 登録目標表示
   const [goal, setGoal] = useState<Goal | undefined>(undefined);
 
   // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
@@ -91,9 +87,7 @@ const GoalCard = () => {
 
   return (
     <div className="w-full">
-      {/* セクション */}
       <SectionCard icon="/icon/home/flag.png" label="現在の目標">
-        {/* データ取得 */}
         <div className="flex flex-col gap-3">
           {/* 目的 */}
           <div className="flex items-center gap-5">

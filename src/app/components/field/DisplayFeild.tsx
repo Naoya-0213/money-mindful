@@ -1,7 +1,8 @@
-// 画面表示のみ用// 入力input（textarea）用
-
 import Image from "next/image";
-import React from "react";
+
+// ===== 入力値の表示専用フィールド =====
+// 📍確認画面などで使用。label＋valueの組み合わせを装飾して表示
+// 入力フィールドではなく、子要素（文字列）をそのまま表示する
 
 type DisplayFieldProps = {
   label: string;
@@ -21,7 +22,7 @@ const DisplayField = ({ label, icon, children }: DisplayFieldProps) => {
       </div>
 
       <div
-        className="w-full rounded-2xl bg-white px-4 py-2 text-[#795549] font-bold flex items-center"
+        className="flex w-full items-center rounded-2xl bg-white px-4 py-2 font-bold text-[#795549]"
         style={{ height: "var(--input-height)" }}
       >
         {children}

@@ -1,6 +1,8 @@
-// 共通ボタン
-
 import React from "react";
+
+// ===== 共通ボタンコンポーネント =====
+// 📍全ページで使用される汎用ボタン（リンク or ボタン）
+// href指定時はアンカータグ、未指定時はbuttonタグで描画
 
 type ButtonProps = {
   children: React.ReactNode;

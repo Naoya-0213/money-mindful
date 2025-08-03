@@ -4,7 +4,9 @@ import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 import SectionInfoBox from "../section-card/SectionInfoBox";
 
-// ===== 目標未設定時、目標入力画面へ誘導 =====
+// ===== 目標未設定時の案内カード =====
+// 📍初回チュートリアルや目標未登録時に表示
+// 目標例を提示し、設定ページへの遷移を案内する
 
 type NoGoalCardProps = {
   numberIcon?: string;

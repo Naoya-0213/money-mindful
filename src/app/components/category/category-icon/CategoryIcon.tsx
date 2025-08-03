@@ -1,10 +1,13 @@
-// カテゴリーアイコン用
 import Image from "next/image";
 
 import {
   CATEGORY_LIST,
   CategoryType,
 } from "../../../../const/category-icon/categoryIconMap";
+
+// ===== カテゴリーアイコン表示コンポーネント =====
+// 📍カテゴリーボタンやカード内で使用。カテゴリーIDに応じた画像を表示
+// CATEGORY_LISTから該当アイコンデータを取得し、アイコンをレンダリング
 
 type CategoryIconProps = {
   id: CategoryType;

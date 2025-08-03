@@ -16,12 +16,10 @@ import Button from "../button/Button";
 import FormField from "../field/FormField";
 import SectionCard from "../section-card/SectionCard";
 
-// ＝==== 目標設定用カード ======
-// 目標の初回入力欄
-// supabaseへの保存
-// GoalCardで、保存した目標の表示を行う。
+// ===== 初回目標設定フォームコンポーネント =====
+// 📍初回設定画面で使用。目標タイトル・金額・期限などを入力してSupabaseに保存
+// 保存後はホーム画面へ遷移。Zod＋React Hook Formでバリデーション
 
-// 入力データの検証ルールを定義
 const schema = z.object({
   title: z
     .string()
@@ -33,27 +31,21 @@ const schema = z.object({
   memo: z.string().optional(),
 });
 
-// Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
 const GoalFirstSetting = () => {
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
   // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
 
-  // React hook formの指定
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<Schema>({
-    // 初期値
     defaultValues: {
       title: "",
       target_amount: undefined,
@@ -61,11 +53,9 @@ const GoalFirstSetting = () => {
       start_date: new Date().toISOString().split("T")[0],
       memo: "",
     },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
-  // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     const user = await getCurrentUser(supabase);
     if (!user) return;
@@ -192,15 +182,6 @@ const GoalFirstSetting = () => {
           <div className="flex w-full justify-center">
             <Button href="/money-mindful/setting">戻る</Button>
           </div>
-          {/* 削除ボタン */}
-          {/* <div className="flex w-full justify-center">
-            <Button
-              className="bg-[#D7CDBE] !text-[#795549]"
-              onClick={() => alert("削除！")}
-            >
-              リセット
-            </Button>
-          </div> */}
         </div>
       </form>
     </SectionCard>

@@ -6,7 +6,9 @@ import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
 
 import CategoryIcon from "./category-icon/CategoryIcon";
 
-// ===== カテゴリー各アイテムカード =====
+// ===== カテゴリー選択カードコンポーネント =====
+// 📍カテゴリー選択時に使用。カテゴリーデータからタイトルとアイコンを表示
+// CATEGORY_LIST から該当のカテゴリーデータを取得し、UIに反映
 
 type CategoryItemProps = {
   id: string;

@@ -16,18 +16,13 @@ import Button from "../button/Button";
 import FormField from "../field/FormField";
 import SectionCard from "../section-card/SectionCard";
 
-// ＝==== 目標設定編集用 ======
-// 目標の編集
-// supabaseへの編集内容の保存
-// GoalCardで、保存した目標の表示を行う。
+// ===== 目標編集フォームコンポーネント =====
+// 📍設定画面で使用。登録済みの目標をSupabaseから取得・編集・保存する
+// React Hook FormとZodでバリデーション。金額はカンマ付きで表示・編集
 
-// 📌 このファイルの設計方針メモ
-// - 表示専用のデータ状態（useState）は使わず、すべて React Hook Form の setValue() によってフォームに直接反映。
-// - 表示専用であれば useState(goal) を使うべきだが、本ファイルは「目標編集フォーム」のため setValue のみに統一。
-// - カンマ付き金額表示などのUI制御は useState(formattedAmount) で対応。
-// =========================
+// 🔍 設計方針：フォームはuseStateを使わずsetValueで直接操作。
+// 金額表示のみformattedAmountをuseStateで管理。
 
-// 入力データの検証ルールを定義
 const schema = z.object({
   title: z
     .string()
@@ -39,20 +34,15 @@ const schema = z.object({
   memo: z.string().optional(),
 });
 
-// Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
 const GoalSettingEdit = () => {
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
   // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
 
-  // React hook formの指定
   const {
     register,
     handleSubmit,
@@ -60,7 +50,6 @@ const GoalSettingEdit = () => {
     control,
     formState: { errors },
   } = useForm<Schema>({
-    // 初期値
     defaultValues: {
       title: "",
       target_amount: 0,
@@ -68,7 +57,6 @@ const GoalSettingEdit = () => {
       start_date: new Date().toISOString().split("T")[0],
       memo: "",
     },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
@@ -102,7 +90,6 @@ const GoalSettingEdit = () => {
     fetchGoal();
   }, [setValue]);
 
-  // 送信ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     const user = await getCurrentUser(supabase);
     if (!user) return;
@@ -232,15 +219,6 @@ const GoalSettingEdit = () => {
           <div className="flex w-full justify-center">
             <Button href="/money-mindful/setting">戻る</Button>
           </div>
-          {/* 削除ボタン */}
-          {/* <div className="flex w-full justify-center">
-            <Button
-              className="bg-[#D7CDBE] !text-[#795549]"
-              onClick={() => alert("削除！")}
-            >
-              リセット
-            </Button>
-          </div> */}
         </div>
       </form>
     </SectionCard>

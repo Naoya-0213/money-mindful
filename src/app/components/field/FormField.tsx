@@ -1,7 +1,10 @@
-// 入力input（textarea）用
 import React, { forwardRef } from "react";
 
 import Image from "next/image";
+
+// ===== 入力フィールド共通コンポーネント =====
+// 📍フォーム入力欄（input・textarea）の共通UI。ラベル・アイコン付き
+// フォーム構成に応じてテキストエリア or インプットを自動切り替え
 
 type FormFieldProps = {
   label: string;
@@ -10,15 +13,9 @@ type FormFieldProps = {
   // 追加のstyle css用
   InputStyle?: React.CSSProperties;
 
-  // タイプの選択
   type?: "text" | "number" | "date" | "email";
-
-  // テキストエリアの場合に指定
   isTextarea?: boolean;
-
-  // アイコンがある場合に指定
   icon?: string;
-
   value?: string;
 
   onChange?: (

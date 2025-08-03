@@ -33,15 +33,6 @@ const schema = z.object({
     .min(1, { message: "1文字以上入力する必要があります" }),
 });
 
-const {
-  register,
-  handleSubmit,
-  formState: { errors },
-} = useForm({
-  defaultValues: { name: "", email: "", password: "" },
-  resolver: zodResolver(schema),
-});
-
 const SignUpPage = () => {
   const supabase = createClient();
 
@@ -49,6 +40,15 @@ const SignUpPage = () => {
     type: "success" | "error";
     text: string;
   } | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { name: "", email: "", password: "" },
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async (data: Schema) => {
     try {

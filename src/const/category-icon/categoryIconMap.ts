@@ -1,15 +1,14 @@
-// カテゴリーアイコン一括管理用
+// ===== カテゴリーアイコン管理 =====
 
 export const CATEGORY_LIST = [
   // 食費アイコン
-
   {
     name: "food",
     src: "/icon/categories/icon/food.png",
     alt: "食費アイコン",
 
     // TODO
-    // いずれ下記に！
+    // いずれ下記に修正
     // icon: {
     //   src: "/icon/categories/icon/food.png",
     //   alt: "食費アイコン",
@@ -109,8 +108,8 @@ export const CATEGORY_LIST = [
   },
 ] as const;
 
-// ✅ 1件分の型（カテゴリオブジェクト）
+// 1件分の型（カテゴリオブジェクト）
 export type CategoryItem = (typeof CATEGORY_LIST)[number];
 
-// ✅ IDだけの型（"category-1" | "category-2" | ...）
+// IDだけの型（"category-1" | "category-2" | ...）
 export type CategoryType = CategoryItem["id"];

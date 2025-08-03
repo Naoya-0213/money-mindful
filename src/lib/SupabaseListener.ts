@@ -1,19 +1,18 @@
-// ✅ サーバーコンポーネント専用のSupabaseリスナー関数
-// 1. Supabaseのセッション情報とプロフィール情報を取得
-// 2. 必要に応じてプロフィールのemailを自動更新
-// 3. layout.tsxなどで使用し、zustandにユーザー情報をセットする目的で使う
-
 "use server";
 
-import type { Database } from "@/types/database.types";
 import { createClient } from "@/utils/supabase/server";
+
+import type { Database } from "@/types/database.types";
+
+// ===== ユーザー情報取得リスナー =====
+// 📍layout.tsx などのサーバーコンポーネントで使用
+// 備考：zustand にログイン情報（セッション＆プロフィール）を渡すための初期取得処理
 
 // 認証状態の監視
 export const SupabaseLisner = async () => {
   // Supabaseのサーバー用クライアントを作成（cookie/headers付き）
   const supabase = await createClient<Database>();
 
-  // 認証済みのセッション情報を取得（未ログインならnull）
   const {
     data: { session },
   } = await supabase.auth.getSession();

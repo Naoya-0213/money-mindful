@@ -1,3 +1,10 @@
+// ===== Supabase 型定義ファイル =====
+// 📍Supabase CLI によって自動生成された型
+// 各テーブルの構造（Row/Insert/Update）やリレーション、ジェネリック型補助を定義。型安全に Supabase を操作するために使用。
+
+// 🔧 自動生成コマンド例：
+// npx supabase gen types typescript --project-id "your-project-id" --schema public > src/types/database.types.ts
+
 export type Json =
   | string
   | number

@@ -8,6 +8,8 @@ import type { Database } from "@/types/database.types";
 // https://zustand-demo.pmnd.rs/
 
 // ===== ログイン情報の管理用 =====
+// 📍ログイン後に取得したプロフィール情報を保持
+// zustandで管理し、どの画面からでもログインユーザー情報を参照できるようにする
 
 type ProfileType = Database["public"]["Tables"]["profiles"]["Row"];
 

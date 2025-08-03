@@ -4,9 +4,9 @@ import { Doughnut } from "react-chartjs-2";
 
 import "@/lib/chart";
 
-// ===== 進捗円グラフ =====
-// 📍ホーム画面や合計画面にて表示
-// progress：全記録の合計
+// ===== 進捗円グラフ表示コンポーネント =====
+// 📍使用場所：ホーム画面・合計画面など
+// 備考：記録された金額合計（progress）から達成率を円グラフで視覚化
 
 type Props = {
   progress: number; // 0〜100 の達成率

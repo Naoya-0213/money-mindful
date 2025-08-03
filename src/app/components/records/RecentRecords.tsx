@@ -1,8 +1,10 @@
-// 直近の履歴表示用コンポーネント
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import type { CategoryType } from "../../../const/category-icon/categoryIconMap";
 import RecordItemCard from "./RecordItemCard";
+
+// ===== 直近の登録履歴（仮データ表示） =====
+// TODO （今後実装予定...!）
 
 type Log = {
   id: string;
@@ -17,7 +19,7 @@ type DailyLogs = {
   logs: Log[];
 };
 
-// 仮データ（あとでSupabase連携予定）
+// 📌 仮データ（今後 Supabase から取得予定）
 const mockLogs: DailyLogs[] = [
   {
     date: "2025年7月4日（金）",
@@ -46,7 +48,7 @@ const RecentRecords = () => {
   return (
     <div className="w-full">
       <SectionCard label="直近の登録履歴" icon="/icon/home/record2.png">
-        {/* 仮データを map で表示 */}
+        {/* 📍仮データを日付ごとにマップ表示 */}
         {mockLogs.map((daily, index) => (
           <div key={`${daily.date}-${index}`} className="flex flex-col gap-3">
             <h2 className="text-base font-bold">{daily.date}</h2>

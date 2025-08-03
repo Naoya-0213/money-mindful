@@ -1,3 +1,8 @@
+// ===== セッション切れ時のエラーメッセージを表示する画面 =====
+// 📍使用場所：ログインが必要なページにアクセスしたが、セッションが切れているときに表示
+// 備考：ログイン誘導ボタン付き
+// TODO 今後導入予定
+
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 

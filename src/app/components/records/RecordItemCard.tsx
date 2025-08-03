@@ -6,6 +6,11 @@ import { useRouter } from "next/navigation";
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
 import CategoryIcon from "../category/category-icon/CategoryIcon";
 
+// ===== 役割 =====
+// 記録一覧の1件分を表示するカードコンポーネント
+// 📍使用場所：ホーム画面、カレンダーの記録一覧など
+// 備考：ボタンとして押下可能で、詳細ページへ遷移する
+
 type Props = {
   title: string;
   id: string;

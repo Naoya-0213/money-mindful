@@ -2,6 +2,10 @@ import React from "react";
 
 import Image from "next/image";
 
+// ===== セクションカードUIコンポーネント（見出し＋中身） =====
+// 📍使用場所：ホーム画面や設定画面など複数ページで共通利用
+// 備考：numberIconはステップ番号など任意で表示切替可能
+
 type SectionCardProps = {
   icon: string;
   children: React.ReactNode;

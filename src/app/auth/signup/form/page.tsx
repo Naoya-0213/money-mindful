@@ -77,21 +77,21 @@ const SignUpPage = () => {
 
       const userId = signUpData.user?.id;
 
-      if (!userId) {
-        setMessage({
-          type: "success",
-          text: "確認メールを送信しました！メール確認後にプロフィールが作成されます。",
-        });
-        return;
-      }
-
       // if (!userId) {
       //   setMessage({
-      //     type: "error",
-      //     text: "ユーザーIDの取得に失敗しました。",
+      //     type: "success",
+      //     text: "確認メールを送信しました！メール確認後にプロフィールが作成されます。",
       //   });
       //   return;
       // }
+
+      if (!userId) {
+        setMessage({
+          type: "error",
+          text: "ユーザーIDの取得に失敗しました。",
+        });
+        return;
+      }
 
       const { error: profileError } = await supabase.from("profiles").insert({
         id: userId,

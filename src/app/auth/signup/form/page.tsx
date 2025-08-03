@@ -59,8 +59,7 @@ const SignUpPage = () => {
           email,
           password,
           options: {
-            emailRedirectTo:
-              "http://localhost:3000/money-mindful/signin/first-signin",
+            emailRedirectTo: "https://moneymindful-gamma.vercel.app/",
             data: {
               name, // ← ユーザー名をmetadataに渡す
             },
@@ -80,11 +79,19 @@ const SignUpPage = () => {
 
       if (!userId) {
         setMessage({
-          type: "error",
-          text: "ユーザーIDの取得に失敗しました。",
+          type: "success",
+          text: "確認メールを送信しました！メール確認後にプロフィールが作成されます。",
         });
         return;
       }
+
+      // if (!userId) {
+      //   setMessage({
+      //     type: "error",
+      //     text: "ユーザーIDの取得に失敗しました。",
+      //   });
+      //   return;
+      // }
 
       const { error: profileError } = await supabase.from("profiles").insert({
         id: userId,

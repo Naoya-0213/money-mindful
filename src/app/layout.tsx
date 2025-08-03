@@ -2,25 +2,17 @@ import "react-calendar/dist/Calendar.css";
 import { Toaster } from "react-hot-toast";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import "./globals.css";
 
-// google font(1)
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+// ===== アプリ全体のレイアウト設定 =====
+// 📍全ページ共通のHTML構造とレイアウト（Header / Footer / Toaster含む）
+// グローバルCSS・Googleフォント・通知UIなどをここで定義
 
-// // google font(2)
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// google font(3)
+// google font
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

@@ -1,4 +1,6 @@
-// ページ遷移後の 404 および not-found 表示用（自動で表示）
+// ===== 404ページ（Not Found）表示用 =====
+// 📍存在しないURLにアクセスされた際に自動表示
+// ページ迷子アイコンとメッセージを表示し、ホームへ誘導する
 
 import React from "react";
 import SectionCard from "./components/section-card/SectionCard";

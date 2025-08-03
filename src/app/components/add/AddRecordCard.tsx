@@ -1,8 +1,11 @@
-// ホーム専用コンポーネント：我慢記録セクション
 import Button from "@/app/components/button/Button";
 import CategoryIcon from "@/app/components/category/category-icon/CategoryIcon";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
+
+// ===== ホーム：我慢記録セクションカード =====
+// 📍ホーム画面・初回チュートリアルにて使用
+// 我慢した支出をカテゴリー付きで記録する導線を表示
 
 type AddRecordCardProps = {
   numberIcon?: string;

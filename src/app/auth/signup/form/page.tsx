@@ -14,10 +14,13 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 
+// ===== サインアップフォームページ =====
+// 📍未ログインユーザーがアカウントを作成する入力画面
+// Supabaseのauthとprofilesテーブルへ情報を登録し、確認メールを送信
+
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
-// zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
   email: z
     .string()
@@ -30,24 +33,27 @@ const schema = z.object({
     .min(1, { message: "1文字以上入力する必要があります" }),
 });
 
-const SignUpPage = () => {
-  // const router = useRouter();
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm({
+  defaultValues: { name: "", email: "", password: "" },
+  resolver: zodResolver(schema),
+});
 
-  // supabase連携（別ページにて連携済み）
+const SignUpPage = () => {
   const supabase = createClient();
 
-  // 登録時のメッセージ
   const [message, setMessage] = useState<{
     type: "success" | "error";
     text: string;
   } | null>(null);
 
-  // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
     try {
       const { name, email, password } = data;
 
-      // ① サインアップ
       const { data: signUpData, error: signUpError } =
         await supabase.auth.signUp({
           email,
@@ -70,7 +76,6 @@ const SignUpPage = () => {
         return;
       }
 
-      // ② ユーザーIDを取得
       const userId = signUpData.user?.id;
 
       if (!userId) {
@@ -81,10 +86,9 @@ const SignUpPage = () => {
         return;
       }
 
-      // ③ プロフィール情報などをprofilesテーブルにinsert
       const { error: profileError } = await supabase.from("profiles").insert({
-        id: userId, // Supabase AuthのUID
-        email, // メールアドレス
+        id: userId,
+        email,
         name,
         image_url: null, // 初期はnull
         created_at: new Date().toISOString(),
@@ -99,7 +103,6 @@ const SignUpPage = () => {
         return;
       }
 
-      // 登録成功 → 確認メール送信済み画面へ遷移するなど
       setMessage({
         type: "success",
         text: "確認メールを送信しました！",
@@ -112,18 +115,6 @@ const SignUpPage = () => {
       console.error(error);
     }
   };
-
-  // react-hook-form連携
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    // 初期値
-    defaultValues: { name: "", email: "", password: "" },
-    // バリデーション（zod連携）
-    resolver: zodResolver(schema),
-  });
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

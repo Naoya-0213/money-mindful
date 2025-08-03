@@ -19,13 +19,14 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import CategoryItem from "../category/CategoryItem";
 
-// ===== 我慢の記録、初回登録画面 =====
+// ===== 我慢記録フォーム（初回登録） =====
+// 📍初回チュートリアル画面などで使用
+// React Hook Form + Zodでバリデーションし、Supabaseに記録を保存
 
 type AddCardProps = {
   children?: ReactNode;
 };
 
-// 入力データの検証ルールを定義
 const schema = z.object({
   title: z
     .string()
@@ -37,29 +38,22 @@ const schema = z.object({
   memo: z.string().optional(),
 });
 
-// Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
 const FirstAddForm = ({ children }: AddCardProps) => {
-  const [isDisplayCategory, setIsDisplayCategory] = useState(false);
+  const router = useRouter();
+  const supabase = createClient();
 
+  const [isDisplayCategory, setIsDisplayCategory] = useState(false);
   const onClickCategory = () => setIsDisplayCategory(true);
+  // 金額入力時の , 表示
+  const [formattedAmount, setFormattedAmount] = useState("");
 
   const onChoiceCategory = (categoryId: string) => {
     setValue("category_id", categoryId);
     setIsDisplayCategory(false);
   };
 
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
-  const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
-  const supabase = createClient();
-
-  // 金額入力時の , 表示
-  const [formattedAmount, setFormattedAmount] = useState("");
-
-  // React-hook-form準備
   const {
     register,
     setValue,
@@ -75,11 +69,9 @@ const FirstAddForm = ({ children }: AddCardProps) => {
       category_id: "category-1",
       memo: "",
     },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
-  // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
 
@@ -139,7 +131,6 @@ const FirstAddForm = ({ children }: AddCardProps) => {
 
           {/* 額 */}
           <div className="flex flex-col gap-1">
-            {/* react-hook-form の Controller導入（金額の , のため）*/}
             <Controller
               name="amount"
               control={control}
@@ -185,8 +176,6 @@ const FirstAddForm = ({ children }: AddCardProps) => {
               icon="/icon/add/calendar.png"
               type="date"
               {...register("saved_date")}
-              // value={date}
-              // onChange={(e) => setDate(e.target.value)}
             />
           </div>
 

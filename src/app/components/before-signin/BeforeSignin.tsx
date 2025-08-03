@@ -2,6 +2,10 @@ import Image from "next/image";
 
 import Button from "../button/Button";
 
+// ===== 初回ログイン前の紹介ページ =====
+// 📍未ログイン時に表示されるアプリ紹介画面
+// アプリの概要説明とログイン・新規登録への導線を表示
+
 const BeforeSignin = () => {
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

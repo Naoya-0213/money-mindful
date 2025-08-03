@@ -1,5 +1,3 @@
-// パスワードリセット用
-
 "use client";
 
 import { useState } from "react";
@@ -14,16 +12,13 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 
-// パスワードリセット用
-
-// パスワードリセット用
-
-// パスワードリセット用
+// ===== パスワードリセット申請ページ =====
+// 📍ログインできない場合のリセットリンク送信ページ
+// Supabaseからメールにリセットリンクを送信
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
-// zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
   email: z
     .string()
@@ -43,7 +38,6 @@ const PasswordResetConfirmPage = () => {
     text: string;
   } | null>(null);
 
-  // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
     try {
       const { email } = data;
@@ -63,7 +57,6 @@ const PasswordResetConfirmPage = () => {
         return;
       }
 
-      // 送信成功 → メッセージ表示
       setMessage({
         type: "success",
         text: "変更用のリンクを送信しました！\nメールをご確認ください。",
@@ -77,15 +70,12 @@ const PasswordResetConfirmPage = () => {
     }
   };
 
-  // react-hook-form連携
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // 初期値
     defaultValues: { email: "" },
-    // バリデーション（zod連携）
     resolver: zodResolver(schema),
   });
 

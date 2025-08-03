@@ -16,12 +16,12 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 
-// ログイン確認画面用
+// ===== サインインフォームページ =====
+// 📍ログインフォームの入力画面
+// Supabaseでログイン処理し、成功すればホームに遷移
 
-// Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
-// zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
   email: z
     .string()
@@ -30,36 +30,27 @@ const schema = z.object({
   password: z.string().min(6, { message: "6文字以上入力する必要があります" }),
 });
 
-// ログインページ
 const SigninPage = () => {
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
-  // 登録時のメッセージ
   const [message, setMessage] = useState<{
     type: "success" | "error";
     text: string;
   } | null>(null);
 
-  // react-hook-form連携
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // 初期値
     defaultValues: { email: "", password: "" },
-    // バリデーション（zod連携）
     resolver: zodResolver(schema),
   });
 
-  // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
     try {
       const { email, password } = data;
-
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,

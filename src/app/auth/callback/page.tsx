@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/clients";
-import SectionCard from "@/app/components/section-card/SectionCard";
 import Button from "@/app/components/button/Button";
+import SectionCard from "@/app/components/section-card/SectionCard";
 
-// ===== メール変更時に遷移 ======
-// （UIは後ほど調整）
+import { createClient } from "@/utils/supabase/clients";
+
+// ===== メール変更完了ページ（認証コールバック） =====
+// 📍メールアドレス変更リンクから遷移した際に表示される確認画面
+// Supabaseでセッション確認し、失敗時はエラーページへリダイレクト
 
 const AuthCallbackPage = () => {
   const [status, setStatus] = useState<"loading" | "success" | "error">(
@@ -17,7 +19,7 @@ const AuthCallbackPage = () => {
   );
   const router = useRouter();
 
-  // ✅ 初回セッション確認
+  // 初回セッション確認
   useEffect(() => {
     const checkSession = async () => {
       const supabase = createClient();
@@ -33,7 +35,7 @@ const AuthCallbackPage = () => {
     checkSession();
   }, []);
 
-  // ✅ エラー発生時は別ページへリダイレクト
+  // エラー発生時は別ページへリダイレクト
   useEffect(() => {
     if (status === "error") {
       router.replace("/auth/callback/callback-error");
@@ -41,7 +43,7 @@ const AuthCallbackPage = () => {
   }, [status, router]);
 
   if (status === "loading") return <p>確認中...</p>;
-  if (status === "error") return null; // リダイレクト直前のためUI非表示
+  if (status === "error") return null; 
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

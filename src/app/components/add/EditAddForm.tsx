@@ -19,13 +19,15 @@ import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import CategoryItem from "../category/CategoryItem";
 
-// ===== 我慢の記録、詳細確認・編集・削除画面 =====
+// ===== 我慢記録の編集・削除フォーム =====
+// 📍記録詳細ページにて使用
+// Supabaseから該当データを取得・更新・削除。
+// React Hook Form + Zodでバリデーション対応
 
 type AddCardProps = {
   id: string;
 };
 
-// 入力データの検証ルールを定義
 const schema = z.object({
   title: z
     .string()
@@ -37,29 +39,27 @@ const schema = z.object({
   memo: z.string().optional(),
 });
 
-// Zodスキーマから型を自動推論してSchema型を定義
 type Schema = z.infer<typeof schema>;
 
 const EditAddForm = ({ id }: AddCardProps) => {
+  const router = useRouter();
+  const supabase = createClient();
+
+  // カテゴリー選択画面の表示状態を管理
   const [isDisplayCategory, setIsDisplayCategory] = useState(false);
 
+  // カテゴリー選択画面を表示する
   const onClickCategory = () => setIsDisplayCategory(true);
 
+  // 選択したカテゴリーをフォームに反映し、選択画面を非表示にするs
   const onChoiceCategory = (categoryId: string) => {
     setValue("category_id", categoryId);
     setIsDisplayCategory(false);
   };
 
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
-  const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
-  const supabase = createClient();
-
   // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
 
-  // React-hook-form準備
   const {
     register,
     setValue,
@@ -75,7 +75,6 @@ const EditAddForm = ({ id }: AddCardProps) => {
       category_id: "category-1",
       memo: "",
     },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
@@ -122,7 +121,6 @@ const EditAddForm = ({ id }: AddCardProps) => {
     fetchRecord();
   }, [id, setValue]);
 
-  // 保存ボタンの動作
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
 
@@ -190,7 +188,6 @@ const EditAddForm = ({ id }: AddCardProps) => {
 
           {/* 額 */}
           <div className="flex flex-col gap-1">
-            {/* react-hook-form の Controller導入（金額の , のため）*/}
             <Controller
               name="amount"
               control={control}
@@ -214,7 +211,6 @@ const EditAddForm = ({ id }: AddCardProps) => {
                         setFormattedAmount("");
                       }
                     }}
-                    
                   >
                     <span className="absolute top-1/2 left-4 -translate-y-1/2 text-xl font-bold text-[#795549]">
                       ¥

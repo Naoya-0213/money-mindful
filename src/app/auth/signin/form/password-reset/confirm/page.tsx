@@ -1,5 +1,3 @@
-// 登録メールアドレスに送られるパスワードリセットリンククリック後画面用
-
 "use client";
 
 import { useState } from "react";
@@ -16,21 +14,19 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 
-// 登録メールアドレスに送られるパスワードリセットリンククリック後画面用
+// ===== パスワード再設定ページ =====
+// 📍メールリンクから遷移したユーザーが新しいパスワードを設定する画面
+// Supabaseで新しいパスワードを更新し、完了後ログイン画面へリダイレクト
 
 // Zod＆React-hook-form で使用
 type Schema = z.infer<typeof schema>;
 
-// zodの指定 入力データの検証およびバリデーション
 const schema = z.object({
   password: z.string().min(6, { message: "6文字以上入力する必要があります" }),
 });
 
-// ログインページ
 const NewPasswordPage = () => {
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
   // ログイン画面遷移前のメッセージ
@@ -39,7 +35,6 @@ const NewPasswordPage = () => {
     text: string;
   } | null>(null);
 
-  // submitボタンクリック動作
   const onSubmit = async (data: Schema) => {
     try {
       const { password } = data;
@@ -74,15 +69,12 @@ const NewPasswordPage = () => {
     }
   };
 
-  // react-hook-form連携
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // 初期値
     defaultValues: { password: "" },
-    // バリデーション（zod連携）
     resolver: zodResolver(schema),
   });
 

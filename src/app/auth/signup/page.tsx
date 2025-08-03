@@ -1,15 +1,16 @@
-// このファイルの役割：
-// - このファイルは、auth/signup のページに対応する。
-// - Supabaseを使って現在のセッションを取得し、ユーザーがログイン済みかどうかを確認する。
-// - ログイン済みの場合は、"/money-mindful/home" に自動リダイレクトして、新規登録ページを表示させないようにする。
-// - 未ログイン状態の場合は、クライアント側のSignUpPageコンポーネントを表示する。
-
 // use server
+import { redirect } from "next/navigation";
+
+import SignUpPage from "@/app/auth/signup/form/page";
+
+import { createClient } from "@/utils/supabase/server";
 
 import type { Database } from "@/types/database.types";
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
-import SignUpPage from "@/app/auth/signup/form/page";
+
+// ===== サインアップ認証ページ（サーバー） =====
+// 📍/auth/signup にアクセスしたときの認証確認処理
+// Supabaseのセッション情報を確認し、ログイン済みならホームにリダイレクト
+// 未ログインの場合のみサインアップフォームを表示
 
 // 認証状態の監視
 export default async function SignUpAuthPage() {

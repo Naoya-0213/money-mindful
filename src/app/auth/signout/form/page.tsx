@@ -12,47 +12,34 @@ import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
-// ===== ログアウト画面用 ======
+// ===== ログアウトページ =====
+// 📍設定画面から遷移し、ログアウト処理を実行する画面
+// SupabaseのsignOutメソッドでセッションを削除し、ログイン画面へリダイレクト
 
-// 入力データの検証ルールを定義
-// const schema = z.object({
-//   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
-// });
-
-// Zodスキーマから型を自動推論してSchema型を定義
-// type Schema = z.infer<typeof schema>;
 type Schema = { email: string };
 
 const SignoutPage = () => {
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
 
-  // React hook formの指定
   const { handleSubmit } = useForm({
-    // 初期値
     defaultValues: { email: "" },
   });
 
-  // エラーメッセージ表示用
   const [message, setMessage] = useState<{
     type: "success" | "error";
     text: string;
   } | null>(null);
-  // ローディング画面用
+
   const [loading, setLoading] = useState(false);
 
-  // クリック動作
   const onSubmit: SubmitHandler<Schema> = async () => {
     setLoading(true);
     setMessage(null);
 
     try {
-      // ログアウト
       const { error } = await supabase.auth.signOut();
 
-      // エラーチェック
       if (error) {
         setMessage({
           type: "error",

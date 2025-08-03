@@ -1,4 +1,3 @@
-// 初回ログイン画面用
 import Image from "next/image";
 
 import Button from "@/app/components/button/Button";
@@ -7,6 +6,10 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 
 import AddRecordCard from "../../../../components/add/AddRecordCard";
+
+// ===== 初回ログインページ（チュートリアル） =====
+// 📍新規登録後、初回アクセス時に表示されるチュートリアル画面
+// アプリの使い方を3ステップでガイド
 
 const FirstSignPage = () => {
   return (

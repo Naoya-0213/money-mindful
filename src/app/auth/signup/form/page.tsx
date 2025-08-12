@@ -60,9 +60,9 @@ const SignUpPage = () => {
           password,
           options: {
             emailRedirectTo: "https://moneymindful-gamma.vercel.app/",
-            data: {
-              name, // ← ユーザー名をmetadataに渡す
-            },
+            // data: {
+            //   name, // ← ユーザー名をmetadataに渡す
+            // },
           },
         });
 
@@ -76,14 +76,6 @@ const SignUpPage = () => {
       }
 
       const userId = signUpData.user?.id;
-
-      // if (!userId) {
-      //   setMessage({
-      //     type: "success",
-      //     text: "確認メールを送信しました！メール確認後にプロフィールが作成されます。",
-      //   });
-      //   return;
-      // }
 
       if (!userId) {
         setMessage({

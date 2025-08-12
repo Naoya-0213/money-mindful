@@ -1,9 +1,9 @@
 // ===== Supabase クライアント（サーバー側） =====
 // 📍Server Component や API Route で使用
 // Next.js の cookies() を使ってセッション管理された Supabase クライアントを生成
+import { cookies } from "next/headers";
 
 import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 
 export async function createClient<T = unknown>() {
   const cookieStore = await cookies();
@@ -22,8 +22,8 @@ export async function createClient<T = unknown>() {
               cookieStore.set(name, value, options),
             );
           } catch {
-            // `setAll` メソッドは Server Component から呼び出されました。
-            // ミドルウェアでユーザーセッションを更新している場合は、この警告は無視してかまいません。
+            // Server Component から呼ばれた場合の set 不可は無視してOK
+            // (ミドルウェア等でセッション更新しているなら問題なし)
           }
         },
       },

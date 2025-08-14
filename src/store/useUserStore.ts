@@ -11,6 +11,8 @@ import type { Database } from "@/types/database.types";
 // 📍ログイン後に取得したプロフィール情報を保持
 // zustandで管理し、どの画面からでもログインユーザー情報を参照できるようにする
 
+// TODO ClientUserSetterを用意し、役割を分散させる！
+
 type ProfileType = Database["public"]["Tables"]["profiles"]["Row"];
 
 type StateType = {

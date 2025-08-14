@@ -23,7 +23,7 @@ const CategoryIcon = ({ id }: CategoryIconProps) => {
       className="flex items-center justify-center rounded-full bg-[#D7CDBE]"
       style={{ width: 40, height: 40 }}
     >
-      <Image src={category.src} alt={category.alt} width={25} height={25} />
+      <Image src={category.icon.src} alt={category.icon.alt} width={25} height={25} />
     </div>
   );
 };

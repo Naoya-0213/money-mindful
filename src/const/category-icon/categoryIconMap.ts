@@ -4,15 +4,10 @@ export const CATEGORY_LIST = [
   // 食費アイコン
   {
     name: "food",
-    src: "/icon/categories/icon/food.png",
-    alt: "食費アイコン",
-
-    // TODO
-    // いずれ下記に修正
-    // icon: {
-    //   src: "/icon/categories/icon/food.png",
-    //   alt: "食費アイコン",
-    // },
+    icon: {
+      src: "/icon/categories/icon/food.png",
+      alt: "食費アイコン",
+    },
     title: "食費",
     id: "category-1",
   },
@@ -20,8 +15,10 @@ export const CATEGORY_LIST = [
   // 飲み物アイコン
   {
     name: "drink",
-    src: "/icon/categories/icon/drink.png",
-    alt: "飲み物アイコン",
+    icon: {
+      src: "/icon/categories/icon/drink.png",
+      alt: "飲み物アイコン",
+    },
     title: "飲み物",
     id: "category-2",
   },
@@ -29,8 +26,10 @@ export const CATEGORY_LIST = [
   // 飲み会アイコン
   {
     name: "beer",
-    src: "/icon/categories/icon/beer.png",
-    alt: "飲み会アイコン",
+    icon: {
+      src: "/icon/categories/icon/beer.png",
+      alt: "飲み会アイコン",
+    },
     title: "飲み会",
     id: "category-3",
   },
@@ -38,8 +37,10 @@ export const CATEGORY_LIST = [
   // 買い物アイコン
   {
     name: "shopping",
-    src: "/icon/categories/icon/shopping.png",
-    alt: "買い物アイコン",
+    icon: {
+      src: "/icon/categories/icon/shopping.png",
+      alt: "買い物アイコン",
+    },
     title: "買い物",
     id: "category-4",
   },
@@ -47,8 +48,10 @@ export const CATEGORY_LIST = [
   // 服アイコン
   {
     name: "clothing",
-    src: "/icon/categories/icon/clothing.png",
-    alt: "服アイコン",
+    icon: {
+      src: "/icon/categories/icon/clothing.png",
+      alt: "服アイコン",
+    },
     title: "衣類",
     id: "category-5",
   },
@@ -56,8 +59,10 @@ export const CATEGORY_LIST = [
   // 交通費アイコン
   {
     name: "transportation",
-    src: "/icon/categories/icon/train.png",
-    alt: "交通費アイコン",
+    icon: {
+      src: "/icon/categories/icon/train.png",
+      alt: "交通費アイコン",
+    },
     title: "交通費",
     id: "category-6",
   },
@@ -65,8 +70,10 @@ export const CATEGORY_LIST = [
   // お金アイコン
   {
     name: "money",
-    src: "/icon/categories/icon/money.png",
-    alt: "お金アイコン",
+    icon: {
+      src: "/icon/categories/icon/money.png",
+      alt: "お金アイコン",
+    },
     title: "手数料",
     id: "category-7",
   },
@@ -74,8 +81,10 @@ export const CATEGORY_LIST = [
   // 交際費アイコン
   {
     name: "social",
-    src: "/icon/categories/icon/social.png",
-    alt: "交際費アイコン",
+    icon: {
+      src: "/icon/categories/icon/social.png",
+      alt: "交際費アイコン",
+    },
     title: "交際費",
     id: "category-8",
   },
@@ -83,8 +92,10 @@ export const CATEGORY_LIST = [
   // 趣味アイコン
   {
     name: "hobby",
-    src: "/icon/categories/icon/hobby.png",
-    alt: "ゲーム機アイコン",
+    icon: {
+      src: "/icon/categories/icon/hobby.png",
+      alt: "ゲーム機アイコン",
+    },
     title: "趣味",
     id: "category-9",
   },
@@ -92,8 +103,10 @@ export const CATEGORY_LIST = [
   // 娯楽アイコン
   {
     name: "entertainment",
-    src: "/icon/categories/icon/entertainment.png",
-    alt: "温泉アイコン",
+    icon: {
+      src: "/icon/categories/icon/entertainment.png",
+      alt: "温泉アイコン",
+    },
     title: "娯楽",
     id: "category-10",
   },
@@ -101,8 +114,10 @@ export const CATEGORY_LIST = [
   // その他
   {
     name: "others",
-    src: "/icon/categories/icon/others.png",
-    alt: "その他アイコン",
+    icon: {
+      src: "/icon/categories/icon/others.png",
+      alt: "その他アイコン",
+    },
     title: "その他",
     id: "category-11",
   },

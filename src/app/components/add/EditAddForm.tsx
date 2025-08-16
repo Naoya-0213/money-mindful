@@ -234,6 +234,11 @@ const EditAddForm = ({ id }: AddCardProps) => {
               type="date"
               {...register("saved_date")}
             />
+            {errors.saved_date && (
+              <p className="mt-1 px-4 text-sm text-red-500">
+                {errors.saved_date.message}
+              </p>
+            )}
           </div>
 
           {/* カテゴリー */}

@@ -75,6 +75,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
 
+    // TODO zustand全体適用後、もっとコード簡略化すること。
     const user = await getCurrentUser(supabase);
     if (!user) return;
 

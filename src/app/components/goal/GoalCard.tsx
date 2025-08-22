@@ -51,9 +51,9 @@ const GoalCard = () => {
   // 変更時の反映
   useEffect(() => {
     const fetchGoal = async () => {
-      if (!user) return;
+      if (!user?.id) return;
 
-      const { data } = await supabase
+      const { data: goalData, error: goalError } = await supabase
         .from("goals")
         .select(
           "id, title, target_amount, start_date, end_date, created_at, memo, user_id",
@@ -61,30 +61,35 @@ const GoalCard = () => {
         .eq("user_id", user.id)
         .maybeSingle();
 
+      if (goalError) {
+        console.error("goals取得エラー", goalError);
+        return;
+      }
+
       if (
-        data &&
-        data.title !== null &&
-        data.target_amount !== null &&
-        data.start_date !== null &&
-        data.end_date !== null &&
-        data.created_at !== null &&
-        data.id !== null
+        goalData &&
+        goalData.title !== null &&
+        goalData.target_amount !== null &&
+        goalData.start_date !== null &&
+        goalData.end_date !== null &&
+        goalData.created_at !== null &&
+        goalData.id !== null
       ) {
         setGoal({
-          title: data.title,
-          target_amount: data.target_amount,
-          start_date: data.start_date,
-          end_date: data.end_date,
-          created_at: data.created_at,
-          id: data.id,
-          memo: data.memo ?? undefined,
-          user_id: data.user_id ?? undefined,
+          title: goalData.title,
+          target_amount: goalData.target_amount,
+          start_date: goalData.start_date,
+          end_date: goalData.end_date,
+          created_at: goalData.created_at,
+          id: goalData.id,
+          memo: goalData.memo ?? undefined,
+          user_id: goalData.user_id ?? undefined,
         });
       }
     };
 
     fetchGoal();
-  }, []);
+  }, [user?.id]);
 
   return (
     <div className="w-full">

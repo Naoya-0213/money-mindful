@@ -38,6 +38,7 @@ export default async function RootLayout({
         className={`${inter.className} flex min-h-screen flex-col items-center bg-white text-[#795549]`}
         style={{ minHeight: "100dvh" }}
       >
+        {/* ログイン情報管理 */}
         <ClientUserSetter session={session} profile={profile} />
 
         {/* ヘッダー */}

@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+import useUserStore from "@/store/useUserStore";
+
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
@@ -25,6 +26,7 @@ export type Goal = {
 
 const GoalCard = () => {
   const supabase = createClient();
+  const { user } = useUserStore();
   const [goal, setGoal] = useState<Goal | undefined>(undefined);
 
   // 日付フォーマット関数（⚫︎年⚫︎月⚫︎日）
@@ -49,7 +51,6 @@ const GoalCard = () => {
   // 変更時の反映
   useEffect(() => {
     const fetchGoal = async () => {
-      const user = await getCurrentUser(supabase);
       if (!user) return;
 
       const { data } = await supabase

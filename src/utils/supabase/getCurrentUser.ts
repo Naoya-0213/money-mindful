@@ -1,3 +1,5 @@
+"use client";
+
 import { createClient } from "@/utils/supabase/clients";
 
 // ===== ユーザー情報の取得処理 =====

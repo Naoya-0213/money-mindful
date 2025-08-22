@@ -4,6 +4,10 @@ import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import ClientUserSetter from "@/lib/ClientUserSetter";
+
+import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
+
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import "./globals.css";
@@ -26,12 +30,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { session, profile } = await getCurrentUser();
+
   return (
     <html lang="jp">
       <body
         className={`${inter.className} flex min-h-screen flex-col items-center bg-white text-[#795549]`}
         style={{ minHeight: "100dvh" }}
       >
+        <ClientUserSetter session={session} profile={profile} />
+
+        {/* ヘッダー */}
         <Header />
         <main
           style={{
@@ -42,7 +51,7 @@ export default async function RootLayout({
         >
           {children}
 
-          {/* react-hot-toast */}
+          {/* トースト導入 */}
           <Toaster
             position="top-center"
             toastOptions={{
@@ -71,6 +80,8 @@ export default async function RootLayout({
             reverseOrder={false}
           />
         </main>
+
+        {/* フッター */}
         <Footer />
       </body>
     </html>

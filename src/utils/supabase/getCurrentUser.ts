@@ -1,10 +1,8 @@
 // ===== ユーザー情報の取得処理 =====
 // 📍Supabaseのユーザー情報とプロフィールを取得（サインイン後に使用）
 // email・名前・画像などを profiles テーブルから取得し、画面に渡すための関数
-
 // TODO これを全体layoutで使用し、簡単にユーザー取得できるようにすること。
 // TODO todo-list-nextjsを参考に更新すること
-
 import { createClient } from "@/utils/supabase/clients";
 
 export const getCurrentUser = async (

@@ -6,6 +6,7 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -17,44 +18,33 @@ import SectionInfoBox from "@/app/components/section-card/SectionInfoBox";
 import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== プロフィール設定/Email変更用 =====
 
-// 入力データの検証ルールを定義
+type Schema = z.infer<typeof schema>;
+
 const schema = z.object({
   email: z.string().email({ message: "メールアドレスの形式ではありません。" }),
 });
 
-// Zodスキーマから型を自動推論してSchema型を定義
-type Schema = z.infer<typeof schema>;
-
-// メールアドレス変更
 const ChangeEmailPage = () => {
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
-
-  // 入力値更新用
+  const { user } = useUserStore();
   const [email, setEmail] = useState("");
 
-  // React hook formの指定
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // 初期値
     defaultValues: { email: "" },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
       if (user?.email) setEmail(user.email);
     };
     fetchUser();

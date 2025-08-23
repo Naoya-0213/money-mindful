@@ -72,7 +72,7 @@ export default function SettingPage() {
     };
 
     fetchUserAndGoal();
-  }, [router, supabase]);
+  }, [user, router, supabase]);
 
   if (!profile) {
     return null;

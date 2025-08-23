@@ -68,7 +68,8 @@ export default function HomePage() {
     };
 
     fetchData();
-  }, [router, supabase]);
+  }, [user, router, supabase]);
+
   return (
     // <ClientWrapper>
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

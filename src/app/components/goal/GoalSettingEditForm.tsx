@@ -88,7 +88,7 @@ const GoalSettingEdit = () => {
     };
 
     fetchGoal();
-  }, [setValue]);
+  }, [user, setValue]);
 
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     if (!user?.id) return;

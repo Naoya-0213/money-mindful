@@ -128,7 +128,7 @@ const GoalStatusCard = () => {
     };
 
     fetchRecord();
-  }, [supabase]);
+  }, [user, supabase]);
 
   return (
     <div className="w-full">

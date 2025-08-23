@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { CategoryType } from "@/const/category-icon/categoryIconMap";
+import useUserStore from "@/store/useUserStore";
 
 import SectionCard from "@/app/components/section-card/SectionCard";
 import MyCalendar from "@/app/money-mindful/calendar/component/Calendar";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import DataCard from "./component/DataCard";
 import NoDataCard from "./component/NoDataCard";
@@ -30,11 +30,12 @@ type DailyLogs = {
 };
 
 export default function CalendarPage() {
-  const [selectedDate, setSelectedDate] = useState<string>("");
-  const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
-
   const supabase = createClient();
   const router = useRouter();
+  const { user } = useUserStore();
+
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
 
   const filteredLogs = dailyRecords.find(
     (daily) => daily.date === selectedDate,
@@ -42,7 +43,8 @@ export default function CalendarPage() {
 
   useEffect(() => {
     const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
+
       if (!user) {
         router.push("/auth/signin");
         return;

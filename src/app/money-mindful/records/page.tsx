@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
+
 import NoRecordCard from "@/app/components/records/NoRecordCard";
 import RecordItemCard from "@/app/components/records/RecordItemCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
 
@@ -31,11 +32,9 @@ type DailyLogs = {
 };
 
 const RecordsPage = () => {
-  // supabase連携（別ページにて連携済み）
-  const supabase = createClient();
-
-  // 画面遷移やページのリフレッシュなどに使用するRouterオブジェクトを取得
   const router = useRouter();
+  const supabase = createClient();
+  const { user } = useUserStore();
 
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
@@ -43,7 +42,8 @@ const RecordsPage = () => {
   // 変更時の反映
   useEffect(() => {
     const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
+
       if (!user) {
         router.push("/auth/signin");
         return;

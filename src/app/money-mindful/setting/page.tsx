@@ -6,13 +6,14 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
+
 import Button from "@/app/components/button/Button";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== 設定セクション =====
 
@@ -30,6 +31,7 @@ type Goal = {
 export default function SettingPage() {
   const router = useRouter();
   const supabase = createClient();
+  const { user } = useUserStore();
 
   const [profile, setProfile] = useState<{ id: string; name?: string } | null>(
     null,
@@ -39,7 +41,8 @@ export default function SettingPage() {
 
   useEffect(() => {
     const fetchUserAndGoal = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
+
       if (!user) {
         router.push("/auth/signin");
         return;

@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 
+import useUserStore from "@/store/useUserStore";
+
 import SectionCard from "@/app/components/section-card/SectionCard";
 import ProgressChart from "@/app/components/table/ProgressChart";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== 目標進捗表示画面 =====
 
@@ -14,6 +15,7 @@ const GoalStatusCard = () => {
   // const router = useRouter();
 
   const supabase = createClient();
+  const { user } = useUserStore();
 
   // 登録金額合計
   const [totalSaved, setTotalSaved] = useState(0);
@@ -57,11 +59,10 @@ const GoalStatusCard = () => {
   };
 
   useEffect(() => {
-    console.log("✅ supabase登録情報取得開始！");
+    console.log("supabase登録情報取得開始！");
 
     const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
-      if (!user) return;
+      if (!user?.id) return;
 
       // 合計金額を取得
       const { data: savedData, error: savedError } = await supabase

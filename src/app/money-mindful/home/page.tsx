@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
+
 import AddRecordCard from "@/app/components/add/AddRecordCard";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import ClientWrapper from "../ClientWrapper";
 import GoalStatusCard from "./component/GoalStatusCard";
@@ -30,13 +31,15 @@ export type Goal = {
 
 export default function HomePage() {
   const router = useRouter();
+  const { user } = useUserStore();
   const [goal, setGoal] = useState<Goal | undefined>(undefined);
 
   const supabase = createClient();
 
   useEffect(() => {
     const fetchData = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
+
       console.log("現在のユーザー：", user);
 
       if (!user) {
@@ -73,10 +76,13 @@ export default function HomePage() {
         <div className="flex w-full flex-col items-center gap-5 p-5">
           {/* 目標 */}
           {goal ? <GoalCard /> : <NoGoalCard />}
+
           {/* 進捗 */}
           <GoalStatusCard />
+
           {/* 我慢記録 */}
           <AddRecordCard />
+
           {/* 履歴表示：実装予定 */}
           {/* <div className="w-full">
             <RecentRecords />

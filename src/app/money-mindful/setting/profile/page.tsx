@@ -1,32 +1,30 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
-
 import Link from "next/link";
+
+import useUserStore from "@/store/useUserStore";
 
 import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== プロフィール編集用 =====
 
 const ProfileSetting = () => {
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
-
-  // 現在のメールアドレス、名前取得用
+  const { user } = useUserStore();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
 
-  // ページ初回読み込み時のみ実行（ユーザー情報の取得
+  // ページ初回読み込み時のみ実行（ユーザー情報の取得）
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
       if (user?.email) setEmail(user.email);
       if (user?.name) setName(user.name);
     };

@@ -1,6 +1,8 @@
-"use client";
+"use server";
 
-import { createClient } from "@/utils/supabase/clients";
+import type { Database } from "@/types/database.types";
+
+import { createClient } from "./server";
 
 // ===== ユーザー情報の取得処理 =====
 // 📍Supabaseのユーザー情報とプロフィールを取得（サインイン後に使用）
@@ -9,7 +11,7 @@ import { createClient } from "@/utils/supabase/clients";
 // TODO todo-list-nextjsを参考に更新すること
 
 export const getCurrentUser = async () => {
-  const supabase = await createClient();
+  const supabase = await createClient<Database>();
 
   const {
     data: { session },
@@ -21,7 +23,7 @@ export const getCurrentUser = async () => {
     const { data: currentProfile } = await supabase
       .from("profiles")
       .select("*")
-      .eq("is", session.user.id)
+      .eq("id", session.user.id)
       .single();
 
     profile = currentProfile;

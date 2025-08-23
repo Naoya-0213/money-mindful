@@ -107,7 +107,20 @@ const GoalSettingEdit = () => {
 
     if (!error) {
       toast.success("変更しました！");
-      router.replace("/money-mindful/home");
+      handleBack();
+    }
+  };
+
+  // 元の画面に戻る（戻るボタン、保存ボタン）
+  const handleBack = () => {
+    const canGoback =
+      typeof window !== "undefined" && window.history.length > 1;
+
+    if (canGoback) {
+      router.back();
+    } else {
+      console.log("通常");
+      router.replace("/money-mindful/setting");
     }
   };
 
@@ -216,7 +229,9 @@ const GoalSettingEdit = () => {
           </div>
           {/* 戻るボタン */}
           <div className="flex w-full justify-center">
-            <Button href="/money-mindful/setting">戻る</Button>
+            <Button onClick={handleBack} type="button">
+              戻る
+            </Button>
           </div>
         </div>
       </form>

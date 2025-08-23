@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -15,7 +16,6 @@ import Button from "@/app/components/button/Button";
 import FormField from "@/app/components/field/FormField";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import CategoryItem from "../category/CategoryItem";
 
@@ -26,6 +26,8 @@ import CategoryItem from "../category/CategoryItem";
 type AddCardProps = {
   children?: ReactNode;
 };
+
+type Schema = z.infer<typeof schema>;
 
 const schema = z.object({
   title: z
@@ -38,11 +40,10 @@ const schema = z.object({
   memo: z.string().optional(),
 });
 
-type Schema = z.infer<typeof schema>;
-
 const FirstAddForm = ({ children }: AddCardProps) => {
   const router = useRouter();
   const supabase = createClient();
+  const { user } = useUserStore();
 
   const [isDisplayCategory, setIsDisplayCategory] = useState(false);
   const onClickCategory = () => setIsDisplayCategory(true);
@@ -75,9 +76,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
 
-    // TODO zustand全体適用後、もっとコード簡略化すること。
-    const user = await getCurrentUser(supabase);
-    if (!user) return;
+    if (!user?.id) return;
 
     const { error } = await supabase.from("money-savings").insert({
       user_id: user.id,

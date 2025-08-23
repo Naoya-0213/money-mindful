@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -15,7 +16,6 @@ import Button from "@/app/components/button/Button";
 import FormField from "@/app/components/field/FormField";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import CategoryItem from "../category/CategoryItem";
 
@@ -44,6 +44,7 @@ type Schema = z.infer<typeof schema>;
 const EditAddForm = ({ id }: AddCardProps) => {
   const router = useRouter();
   const supabase = createClient();
+  const { user } = useUserStore();
 
   // カテゴリー選択画面の表示状態を管理
   const [isDisplayCategory, setIsDisplayCategory] = useState(false);
@@ -83,8 +84,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
     console.log("✅ fetchRecord 実行");
 
     const fetchRecord = async () => {
-      const user = await getCurrentUser(supabase);
-      if (!user) return;
+      if (!user?.id) return;
 
       const { data, error } = await supabase
         .from("money-savings")
@@ -124,8 +124,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);
 
-    const user = await getCurrentUser(supabase);
-    if (!user) return;
+    if (!user?.id) return;
 
     console.log(data);
 
@@ -297,8 +296,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
                         onClick={async () => {
                           toast.dismiss(t.id);
 
-                          const user = await getCurrentUser(supabase);
-                          if (!user) return;
+                          if (!user?.id) return;
 
                           const { error } = await supabase
                             .from("money-savings")

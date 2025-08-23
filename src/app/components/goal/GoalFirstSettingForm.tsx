@@ -6,11 +6,11 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import Button from "../button/Button";
 import FormField from "../field/FormField";
@@ -36,6 +36,7 @@ type Schema = z.infer<typeof schema>;
 const GoalFirstSetting = () => {
   const router = useRouter();
   const supabase = createClient();
+  const { user } = useUserStore();
 
   // 金額入力時の , 表示
   const [formattedAmount, setFormattedAmount] = useState("");
@@ -57,8 +58,7 @@ const GoalFirstSetting = () => {
   });
 
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
-    const user = await getCurrentUser(supabase);
-    if (!user) return;
+    if (!user?.id) return;
 
     const { error } = await supabase.from("goals").insert({
       user_id: user.id,

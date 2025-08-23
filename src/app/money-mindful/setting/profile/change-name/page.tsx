@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -16,46 +17,47 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
-import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 // ===== プロフィール設定/ユーザー名変更用 =====
 
-// 入力データの検証ルールを定義
+type Schema = z.infer<typeof schema>;
+
 const schema = z.object({
   name: z
     .string()
     .min(1, { message: "1文字以上入力してください。" })
     .max(20, { message: "20文字以内で入力してください。" }),
 });
-// Zodスキーマから型を自動推論してSchema型を定義
-type Schema = z.infer<typeof schema>;
 
 // ユーザー名の変更
 const ChangeUserNamePage = () => {
   const router = useRouter();
-
-  // supabase連携（別ページにて連携済み）
   const supabase = createClient();
+  const { user } = useUserStore();
 
   // 現在の名前の取得
   const [name, setName] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  // React hook formの指定
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Schema>({
-    // 初期値（すでに登録済みname）
     defaultValues: { name: name },
-    // 入力値の検証
     resolver: zodResolver(schema),
   });
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getCurrentUser(supabase);
+      if (!user?.id) return;
+
       if (user) {
         setName(user.name ?? "");
         setUserId(user.id);
@@ -63,15 +65,6 @@ const ChangeUserNamePage = () => {
     };
     fetchUser();
   }, []);
-
-  // 登録時のメッセージ
-  const [message, setMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
-
-  // ローディング画面用
-  const [loading, setLoading] = useState(false);
 
   // 変更
   const onSubmit: SubmitHandler<Schema> = async (data) => {

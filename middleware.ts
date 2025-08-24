@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 // ===== 認証ミドルウェア =====
-// Supabaseのセッションをチェックし、未ログイン時は /auth/signin、セッション取得失敗時は /session-error にリダイレクトする
+// Supabaseのセッションをチェックし、未ログイン時は /signin、セッション取得失敗時は /session-error にリダイレクトする
 
 export async function middleware(req: NextRequest) {
   // 今のリクエストを「次の処理に進めてもいいよ」と初期化
@@ -32,9 +32,9 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
-  // セッションなし（未ログイン） → /auth/signin に遷移
+  // セッションなし（未ログイン） → /signin に遷移
   if ((!session || !session.user) && isProtected) {
-    return NextResponse.redirect(new URL("/auth/signin", req.url));
+    return NextResponse.redirect(new URL("/signin", req.url));
   }
 
   // セッション取得エラー（トークン切れなど） → /session-error に遷移

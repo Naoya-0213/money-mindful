@@ -44,7 +44,7 @@ export default function SettingPage() {
       if (!user?.id) return;
 
       if (!user) {
-        router.push("/auth/signin");
+        router.push("/signin");
         return;
       }
       setProfile(user);
@@ -116,9 +116,7 @@ export default function SettingPage() {
 
             {/* プロフィール編集ボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile">
-                プロフィール編集
-              </Button>
+              <Button href="/setting/profile">プロフィール編集</Button>
             </div>
           </div>
         </SectionCard>
@@ -140,7 +138,7 @@ export default function SettingPage() {
             <p>必要に応じてご利用ください。</p>
           </div>
           <div className="flex flex-col items-center gap-5">
-            <Button href="/auth/signout/form">ログアウト</Button>
+            <Button href="/signout/form">ログアウト</Button>
             <Button onClick={onClick}>アカウントを削除する</Button>
             <Button onClick={onClick}>データリセット</Button>
           </div>

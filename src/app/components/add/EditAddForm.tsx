@@ -145,7 +145,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
 
     if (!error) {
       toast.success("変更しました！");
-      router.replace(`/money-mindful/records/`);
+      router.replace(`/records/`);
     }
   };
 
@@ -274,7 +274,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
           {/* 戻るボタン */}
           <div className="flex w-full flex-col items-center gap-5 pb-5">
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/home">戻る</Button>
+              <Button href="/home">戻る</Button>
             </div>
 
             {/* 削除ボタン */}
@@ -309,7 +309,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
                             console.error("削除エラー:", error);
                           } else {
                             toast.success("削除しました！");
-                            router.replace("/money-mindful/records/");
+                            router.replace("/records/");
                           }
                         }}
                       >

@@ -195,7 +195,7 @@ const SignUpPage = () => {
             {/* ログインへ誘導 */}
             <p className="font-semibold text-[#777777]">
               ログインは
-              <Link href="/auth/signin/form" className="text-[#666] underline">
+              <Link href="/signin/form" className="text-[#666] underline">
                 こちら
               </Link>
             </p>

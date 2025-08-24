@@ -46,7 +46,7 @@ export default function CalendarPage() {
       if (!user?.id) return;
 
       if (!user) {
-        router.push("/auth/signin");
+        router.push("/signin");
         return;
       }
 

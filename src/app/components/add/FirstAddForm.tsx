@@ -89,7 +89,7 @@ const FirstAddForm = ({ children }: AddCardProps) => {
 
     if (!error) {
       toast.success("記録しました！");
-      router.replace("/money-mindful/home");
+      router.replace("/home");
     }
   };
 

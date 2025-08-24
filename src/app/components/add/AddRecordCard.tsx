@@ -48,7 +48,7 @@ const AddRecordCard = ({ numberIcon }: AddRecordCardProps) => {
 
         {/* 追加へ移動ボタン */}
         <div className="flex w-full justify-center pt-3">
-          <Button href="/money-mindful/add">「がまん」を記録する</Button>
+          <Button href="/add">「がまん」を記録する</Button>
         </div>
       </SectionCard>
     </div>

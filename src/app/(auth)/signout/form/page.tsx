@@ -48,7 +48,7 @@ const SignoutPage = () => {
         return;
       }
 
-      router.replace("/auth/signin");
+      router.replace("/signin");
       toast.success("ログアウトしました。");
     } catch (error) {
       console.error("予期せぬエラー", error);
@@ -91,7 +91,7 @@ const SignoutPage = () => {
               <p className="mt-1 px-4 text-sm text-red-500">{message.text}</p>
             )}
 
-            <Button href="/money-mindful/setting">設定に戻る</Button>
+            <Button href="/setting">設定に戻る</Button>
           </div>
         </SectionCard>
       </form>

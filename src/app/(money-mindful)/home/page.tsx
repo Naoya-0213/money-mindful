@@ -42,7 +42,7 @@ export default function HomePage() {
       console.log("現在のユーザー：", user);
 
       if (!user) {
-        router.push("/auth/signin");
+        router.push("/signin");
         return;
       }
 

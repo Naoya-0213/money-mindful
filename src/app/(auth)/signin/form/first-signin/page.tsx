@@ -133,7 +133,7 @@ const FirstSignPage = () => {
 
         {/* ホームに戻るボタン */}
         <div className="flex w-full justify-center py-5">
-          <Button href="/money-mindful/home">ホームへ移動する</Button>
+          <Button href="/home">ホームへ移動する</Button>
         </div>
       </div>
     </div>

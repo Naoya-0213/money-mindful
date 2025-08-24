@@ -44,8 +44,7 @@ const PasswordResetConfirmPage = () => {
 
       // パスワードリセットリンク送信処理
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo:
-          "http://localhost:3000/money-mindful/signin/password-reset/confirm",
+        redirectTo: "http://localhost:3000/signin/password-reset/confirm",
       });
 
       if (error) {
@@ -131,7 +130,7 @@ const PasswordResetConfirmPage = () => {
 
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/signin">戻る</Button>
+              <Button href="/signin">戻る</Button>
             </div>
           </div>
         </SectionCard>

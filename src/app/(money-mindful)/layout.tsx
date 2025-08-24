@@ -13,7 +13,7 @@ export default async function Layout({
   const { session, profile } = await SupabaseLisner();
 
   if (!session || !profile) {
-    redirect("/auth/signin");
+    redirect("/signin");
   }
 
   return <>{children}</>;

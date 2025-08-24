@@ -120,7 +120,7 @@ const GoalSettingEdit = () => {
       router.back();
     } else {
       console.log("通常");
-      router.replace("/money-mindful/setting");
+      router.replace("/setting");
     }
   };
 

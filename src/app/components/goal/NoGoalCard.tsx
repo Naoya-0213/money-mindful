@@ -62,7 +62,7 @@ const NoGoalCard = ({ numberIcon }: NoGoalCardProps) => {
 
         {/* 目標追加へ遷移ボタン */}
         <div className="flex w-full justify-center">
-          <Button href="/money-mindful/setting/goal">目標を編集</Button>
+          <Button href="/setting/goal">目標を編集</Button>
         </div>
       </SectionCard>
     </div>

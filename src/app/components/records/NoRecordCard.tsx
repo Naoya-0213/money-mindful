@@ -43,7 +43,7 @@ const NoRecordCard = () => {
 
       {/* ボタン：「がまん」追加ページへのリンク */}
       <div className="flex w-full justify-center py-3">
-        <Button href="/money-mindful/add">「がまん」を記録する</Button>
+        <Button href="/add">「がまん」を記録する</Button>
       </div>
     </SectionCard>
   );

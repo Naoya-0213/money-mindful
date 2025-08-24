@@ -68,7 +68,7 @@ const ChangeEmailPage = () => {
       // メールアドレス変更メールを送信
       const { error: updateUserError } = await supabase.auth.updateUser(
         { email: data.email },
-        { emailRedirectTo: `${location.origin}/auth/callback` },
+        { emailRedirectTo: `${location.origin}/callback` },
       );
 
       // エラーチェック
@@ -195,7 +195,7 @@ const ChangeEmailPage = () => {
 
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile">戻る</Button>
+              <Button href="/setting/profile">戻る</Button>
             </div>
           </div>
         </SectionCard>

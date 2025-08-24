@@ -1,11 +1,8 @@
 // ===== 404ページ（Not Found）表示用 =====
 // 📍存在しないURLにアクセスされた際に自動表示
 // ページ迷子アイコンとメッセージを表示し、ホームへ誘導する
-
-import React from "react";
-import SectionCard from "./components/section-card/SectionCard";
-
 import Button from "./components/button/Button";
+import SectionCard from "./components/section-card/SectionCard";
 
 const NotFoundPage = () => {
   return (
@@ -27,7 +24,7 @@ const NotFoundPage = () => {
 
           {/* ホームへ戻る */}
           <div className="flex w-full items-center justify-center pb-5">
-            <Button href="/money-mindful/home">ホームへ戻る</Button>
+            <Button href="/home">ホームへ戻る</Button>
           </div>
         </SectionCard>
       </div>

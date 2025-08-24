@@ -2,7 +2,6 @@
 // 📍使用場所：ログインが必要なページにアクセスしたが、セッションが切れているときに表示
 // 備考：ログイン誘導ボタン付き
 // TODO 今後導入予定
-
 import Button from "../button/Button";
 import SectionCard from "../section-card/SectionCard";
 
@@ -28,7 +27,7 @@ const SessionError = () => {
 
       {/* ログインボタン */}
       <div className="flex justify-center">
-        <Button href="/auth/signin">ログインはこちら</Button>
+        <Button href="/signin">ログインはこちら</Button>
       </div>
     </SectionCard>
   );

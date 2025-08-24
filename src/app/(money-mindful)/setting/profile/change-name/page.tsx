@@ -96,7 +96,7 @@ const ChangeUserNamePage = () => {
       // 登録成功
       toast.success("名前を変更しました！");
       setMessage(null);
-      router.replace("/money-mindful/setting");
+      router.replace("/setting");
     } catch (error) {
       console.error("予期せぬエラー", error);
       setMessage({
@@ -162,7 +162,7 @@ const ChangeUserNamePage = () => {
             )}
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile">戻る</Button>
+              <Button href="/setting/profile">戻る</Button>
             </div>
           </div>
         </SectionCard>

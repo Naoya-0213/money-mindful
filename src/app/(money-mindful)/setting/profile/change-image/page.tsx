@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import Image from "next/image";
 
 import Button from "@/app/components/button/Button";
@@ -52,7 +50,7 @@ const ChangeImagePage = () => {
 
             {/* 戻るボタン */}
             <div className="flex w-full justify-center">
-              <Button href="/money-mindful/setting/profile">戻る</Button>
+              <Button href="/setting/profile">戻る</Button>
             </div>
           </div>
         </SectionCard>

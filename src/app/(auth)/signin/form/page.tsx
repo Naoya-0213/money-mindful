@@ -65,7 +65,7 @@ const SigninPage = () => {
         return;
       }
 
-      router.replace("/money-mindful/home");
+      router.replace("/home");
       toast.success("ログインしました。");
     } catch (error) {
       console.error("予期せぬエラー", error);
@@ -117,7 +117,7 @@ const SigninPage = () => {
               <p className="font-semibold text-[#777777]">
                 パスワードを忘れた方は
                 <Link
-                  href="/auth/signin/form/password-reset"
+                  href="/signin/form/password-reset"
                   className="text-[#666] underline"
                 >
                   こちら
@@ -143,7 +143,7 @@ const SigninPage = () => {
             {/* 新規登録へ誘導 */}
             <p className="font-semibold text-[#777777]">
               アカウント作成は
-              <Link href="/auth/signup/form" className="text-[#666] underline">
+              <Link href="/signup/form" className="text-[#666] underline">
                 こちら
               </Link>
             </p>

@@ -38,12 +38,12 @@ const AuthCallbackPage = () => {
   // エラー発生時は別ページへリダイレクト
   useEffect(() => {
     if (status === "error") {
-      router.replace("/auth/callback/callback-error");
+      router.replace("/callback/callback-error");
     }
   }, [status, router]);
 
   if (status === "loading") return <p>確認中...</p>;
-  if (status === "error") return null; 
+  if (status === "error") return null;
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
@@ -59,12 +59,12 @@ const AuthCallbackPage = () => {
 
           {/* 設定へ戻るボタン */}
           <div className="flex w-full justify-center">
-            <Button href="/money-mindful/setting">設定へ戻る</Button>
+            <Button href="/setting">設定へ戻る</Button>
           </div>
 
           {/* ホームへ戻るボタン */}
           <div className="flex w-full justify-center">
-            <Button href="/money-mindful/home">ホームへ戻る</Button>
+            <Button href="/home">ホームへ戻る</Button>
           </div>
         </SectionCard>
       </div>

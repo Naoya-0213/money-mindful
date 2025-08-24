@@ -58,7 +58,7 @@ const NewPasswordPage = () => {
 
       // 2秒後にログイン画面へ
       setTimeout(() => {
-        router.push("/money-mindful/signin");
+        router.push("/signin");
       }, 2000);
     } catch (error) {
       console.error("予期しないエラー", error);

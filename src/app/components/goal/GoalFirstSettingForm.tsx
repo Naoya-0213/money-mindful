@@ -71,7 +71,7 @@ const GoalFirstSetting = () => {
 
     if (!error) {
       toast.success("登録しました！");
-      router.replace("/money-mindful/home");
+      router.replace("/home");
     }
   };
 
@@ -180,7 +180,7 @@ const GoalFirstSetting = () => {
           </div>
           {/* 戻るボタン */}
           <div className="flex w-full justify-center">
-            <Button href="/money-mindful/setting">戻る</Button>
+            <Button href="/setting">戻る</Button>
           </div>
         </div>
       </form>

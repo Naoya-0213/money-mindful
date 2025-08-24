@@ -3,7 +3,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 // ===== 認証ミドルウェア =====
-// 📍/money-mindful 配下の全ページに適用
 // Supabaseのセッションをチェックし、未ログイン時は /auth/signin、セッション取得失敗時は /session-error にリダイレクトする
 
 export async function middleware(req: NextRequest) {
@@ -20,7 +19,18 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
 
   const pathname = req.nextUrl.pathname;
-  const isProtected = pathname.startsWith("/money-mindful");
+  const isProtected = pathname.startsWith("/");
+
+  // ===== 除外ルート =====
+  const isAuthRoute = pathname.startsWith("/auth"); // ログイン関連ページ
+  const isNextAsset = pathname.startsWith("/_next"); // Next.js 内部のJS/CSS/画像
+  const isStaticFile = pathname.match(
+    /\.(png|jpg|jpeg|gif|svg|ico|css|js|map)$/,
+  ); // 画像などの静的ファイル
+
+  if (isAuthRoute || isNextAsset || isStaticFile) {
+    return res;
+  }
 
   // セッションなし（未ログイン） → /auth/signin に遷移
   if ((!session || !session.user) && isProtected) {
@@ -29,15 +39,13 @@ export async function middleware(req: NextRequest) {
 
   // セッション取得エラー（トークン切れなど） → /session-error に遷移
   if (error && isProtected) {
-    return NextResponse.redirect(
-      new URL("/money-mindful/session-error", req.url),
-    );
+    return NextResponse.redirect(new URL("/session-error", req.url));
   }
 
   return res;
 }
 
-// money-mindful配下のページでのみ適用！
+// すべてのページで適用
 export const config = {
-  matcher: ["/money-mindful/:path*"],
+  matcher: ["/:path*"],
 };

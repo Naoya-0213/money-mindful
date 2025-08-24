@@ -39,7 +39,7 @@ export default function HomePage() {
     const fetchData = async () => {
       // if (!user?.id) return;
 
-      if (!user) return;
+      // if (!user) return;
 
       console.log("現在のユーザー：", user);
 

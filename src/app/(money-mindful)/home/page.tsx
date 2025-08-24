@@ -37,14 +37,16 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!user?.id) return;
+      // if (!user?.id) return;
+
+      if (!user) return;
 
       console.log("現在のユーザー：", user);
 
-      if (!user) {
-        router.push("/signin");
-        return;
-      }
+      // if (!user) {
+      //   router.push("/signin");
+      //   return;
+      // }
 
       const { data: goalData } = await supabase
         .from("goals")

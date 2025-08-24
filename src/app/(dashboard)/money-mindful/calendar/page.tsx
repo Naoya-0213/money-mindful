@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import type { CategoryType } from "@/const/category-icon/categoryIconMap";
 import useUserStore from "@/store/useUserStore";
 
+import MyCalendar from "@/app/(dashboard)/money-mindful/calendar/component/Calendar";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import MyCalendar from "@/app/money-mindful/calendar/component/Calendar";
 
 import { createClient } from "@/utils/supabase/clients";
 

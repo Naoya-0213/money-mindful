@@ -12,7 +12,7 @@ import SectionCard from "@/app/components/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import { CategoryType } from "../../../const/category-icon/categoryIconMap";
+import { CategoryType } from "../../../../const/category-icon/categoryIconMap";
 
 // ===== 記録履歴一覧用 =====
 // 📍 supabaseへ保存している記録の表示

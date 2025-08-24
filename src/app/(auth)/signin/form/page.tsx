@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -33,6 +34,7 @@ const schema = z.object({
 const SigninPage = () => {
   const router = useRouter();
   const supabase = createClient();
+  const { setUser } = useUserStore();
 
   const [message, setMessage] = useState<{
     type: "success" | "error";
@@ -51,10 +53,13 @@ const SigninPage = () => {
   const onSubmit = async (data: Schema) => {
     try {
       const { email, password } = data;
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const { data: signInData, error: signInError } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+      const user = signInData.user;
 
       if (signInError) {
         console.error("ログインエラー", signInError.message);
@@ -63,6 +68,26 @@ const SigninPage = () => {
           text: "ログインに失敗しました。\n再度確認してください。",
         });
         return;
+      }
+
+      // サインイン成功後、zustandへ情報を流し込む
+      // 以降、全体layoutでログイン情報は管理（<ClientUserSetter session={session} profile={profile} />）
+
+      if (user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("id, name, email, image_url, created_at")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        // Zustand にまとめて保存
+        setUser({
+          id: user.id,
+          email: user.email ?? "",
+          name: profile?.name ?? "",
+          image_url: profile?.image_url ?? "",
+          created_at: profile?.created_at ?? "",
+        });
       }
 
       router.replace("/home");

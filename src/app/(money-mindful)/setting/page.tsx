@@ -12,6 +12,7 @@ import Button from "@/app/components/button/Button";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -38,6 +39,7 @@ export default function SettingPage() {
   );
   const [name, setName] = useState("");
   const [goal, setGoal] = useState<Goal | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserAndGoal = async () => {
@@ -49,6 +51,7 @@ export default function SettingPage() {
       }
       setProfile(user);
       if (user.name) setName(user.name);
+      setLoading(false);
 
       const { data: goalData, error } = await supabase
         .from("goals")
@@ -81,6 +84,10 @@ export default function SettingPage() {
   const onClick = () => {
     toast.error("今後、実装予定...!");
   };
+
+  if (loading === true || goal === undefined) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

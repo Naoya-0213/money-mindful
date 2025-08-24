@@ -1,5 +1,5 @@
 // 合計セクション
-import Total from "@/app/(dashboard)/money-mindful/total/component/Total";
+import Total from "@/app/(money-mindful)/money-mindful/total/component/Total";
 
 import GoalStatusCard from "../home/component/GoalStatusCard";
 

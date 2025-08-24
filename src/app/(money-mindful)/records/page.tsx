@@ -9,6 +9,7 @@ import useUserStore from "@/store/useUserStore";
 import NoRecordCard from "@/app/components/records/NoRecordCard";
 import RecordItemCard from "@/app/components/records/RecordItemCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -35,6 +36,7 @@ const RecordsPage = () => {
   const router = useRouter();
   const supabase = createClient();
   const { user } = useUserStore();
+  const [loading, setLoading] = useState(true);
 
   // 日付ごとにグルーピング
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
@@ -98,10 +100,15 @@ const RecordsPage = () => {
       );
 
       setDailyRecords(groupedArray);
+      setLoading(false);
     };
 
     fetchRecord();
   }, [router, supabase]);
+
+  if (loading === true) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

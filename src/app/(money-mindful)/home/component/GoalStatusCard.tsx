@@ -59,7 +59,7 @@ const GoalStatusCard = () => {
   };
 
   useEffect(() => {
-    console.log("supabase登録情報取得開始！");
+    console.log("✅ supabase登録情報取得開始！");
 
     const fetchRecord = async () => {
       if (!user?.id) return;
@@ -75,7 +75,7 @@ const GoalStatusCard = () => {
         return;
       }
 
-      console.log("✅ Supabaseデータ取得成功!：", savedData);
+      console.log("✅ Supabaseデータ取得成功!：");
 
       const total = savedData.reduce(
         (sum, item) => sum + (item.amount ?? 0),

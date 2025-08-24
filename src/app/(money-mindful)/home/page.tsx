@@ -9,6 +9,7 @@ import useUserStore from "@/store/useUserStore";
 import AddRecordCard from "@/app/components/add/AddRecordCard";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -37,16 +38,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // if (!user?.id) return;
-
-      // if (!user) return;
-
       console.log("現在のユーザー：", user);
-
-      // if (!user) {
-      //   router.push("/signin");
-      //   return;
-      // }
 
       const { data: goalData } = await supabase
         .from("goals")
@@ -71,6 +63,10 @@ export default function HomePage() {
 
     fetchData();
   }, [user, router, supabase]);
+
+  if (goal === undefined) {
+    return <LoadingSpinner />;
+  }
 
   return (
     // <ClientWrapper>

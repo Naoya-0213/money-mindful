@@ -44,67 +44,72 @@ const RecordsPage = () => {
   // 変更時の反映
   useEffect(() => {
     const fetchRecord = async () => {
-      if (!user?.id) return;
-
-      if (!user) {
-        router.push("/signin");
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("money-savings")
-        .select("id,title, amount, saved_date , category_id")
-        .eq("user_id", user.id)
-        .order("saved_date", { ascending: false });
-
-      if (error || !data) {
-        console.error("データ取得失敗", error);
-        return;
-      }
-
-      // 日付ごとにグルーピング
-      const grouped: { [date: string]: Log[] } = {};
-
-      data.forEach((item) => {
-        if (!item.saved_date) return;
-
-        const date = new Date(item.saved_date).toLocaleDateString("ja-JP", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          weekday: "short",
-        });
-
-        if (!grouped[date]) grouped[date] = [];
-
-        if (
-          !item.title ||
-          !item.saved_date ||
-          item.amount === null ||
-          !item.category_id
-        )
+      try {
+        if (!user?.id) {
           return;
+        }
 
-        grouped[date].push({
-          id: item.id,
-          title: item.title,
-          amount: item.amount,
-          saved_date: item.saved_date,
-          category_id: item.category_id as CategoryType,
+        if (!user) {
+          router.push("/signin");
+          return;
+        }
+
+        const { data: savingData, error } = await supabase
+          .from("money-savings")
+          .select("id,title, amount, saved_date , category_id")
+          .eq("user_id", user.id)
+          .order("saved_date", { ascending: false });
+
+        if (error || !savingData) {
+          console.error("データ取得失敗", error);
+          return;
+        }
+
+        // 日付ごとにグルーピング
+        const grouped: { [date: string]: Log[] } = {};
+
+        savingData.forEach((item) => {
+          if (!item.saved_date) return;
+
+          const date = new Date(item.saved_date).toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            weekday: "short",
+          });
+
+          if (!grouped[date]) grouped[date] = [];
+
+          if (
+            !item.title ||
+            !item.saved_date ||
+            item.amount === null ||
+            !item.category_id
+          )
+            return;
+
+          grouped[date].push({
+            id: item.id,
+            title: item.title,
+            amount: item.amount,
+            saved_date: item.saved_date,
+            category_id: item.category_id as CategoryType,
+          });
         });
-      });
 
-      // 配列に変換してセット
-      const groupedArray: DailyLogs[] = Object.entries(grouped).map(
-        ([date, logs]) => ({ date, logs }),
-      );
+        // 配列に変換してセット
+        const groupedArray: DailyLogs[] = Object.entries(grouped).map(
+          ([date, logs]) => ({ date, logs }),
+        );
 
-      setDailyRecords(groupedArray);
-      setLoading(false);
+        setDailyRecords(groupedArray);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchRecord();
-  }, [router, supabase]);
+  }, [user?.id, supabase]);
 
   if (loading === true) {
     return <LoadingSpinner />;

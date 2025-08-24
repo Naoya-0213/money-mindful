@@ -8,8 +8,8 @@ import type { CategoryType } from "@/const/category-icon/categoryIconMap";
 import useUserStore from "@/store/useUserStore";
 
 import MyCalendar from "@/app/(money-mindful)/calendar/component/Calendar";
+import LoadingInSectionCard from "@/app/components/loading/LoadingInSectionCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -99,31 +99,43 @@ export default function CalendarPage() {
       );
 
       setDailyRecords(groupedArray);
-      setLoading(false);
     };
 
     fetchRecord();
+    setLoading(false);
   }, [router, supabase]);
 
-  if (loading === true) {
-    return <LoadingSpinner />;
-  }
+  // if (loading === true) {
+  //   return <LoadingSpinner />;
+  // }
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard icon="/icon/calender/calendar.png" label="Calendar">
-          <MyCalendar
-            onDateSelect={(dateString) => setSelectedDate(dateString)}
-            markedDates={dailyRecords.map((d) => d.date)}
-          />
+          {loading ? (
+            <LoadingInSectionCard />
+          ) : (
+            <>
+              <MyCalendar
+                onDateSelect={(dateString) => setSelectedDate(dateString)}
+                markedDates={dailyRecords.map((d) => d.date)}
+              />
+            </>
+          )}
         </SectionCard>
 
         <SectionCard icon="/icon/calender/record2.png" label="登録履歴">
-          {filteredLogs && filteredLogs.logs.length > 0 ? (
-            <DataCard date={filteredLogs.date} logs={filteredLogs.logs} />
+          {loading ? (
+            <LoadingInSectionCard />
           ) : (
-            <NoDataCard date={selectedDate} />
+            <>
+              {filteredLogs && filteredLogs.logs.length > 0 ? (
+                <DataCard date={filteredLogs.date} logs={filteredLogs.logs} />
+              ) : (
+                <NoDataCard date={selectedDate} />
+              )}
+            </>
           )}
         </SectionCard>
       </div>

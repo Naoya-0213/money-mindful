@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import useUserStore from "@/store/useUserStore";
 
+import LoadingInSectionCard from "@/app/components/loading/LoadingInSectionCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
 import ProgressChart from "@/app/components/table/ProgressChart";
 
@@ -16,6 +17,7 @@ const GoalStatusCard = () => {
 
   const supabase = createClient();
   const { user } = useUserStore();
+  const [loading, setLoading] = useState(true);
 
   // 登録金額合計
   const [totalSaved, setTotalSaved] = useState(0);
@@ -125,6 +127,7 @@ const GoalStatusCard = () => {
       }
 
       setEndDate(endDateData.end_date ?? "");
+      setLoading(false);
     };
 
     fetchRecord();
@@ -134,99 +137,105 @@ const GoalStatusCard = () => {
     <div className="w-full">
       {/* 進捗 */}
       <SectionCard icon="/icon/home/paper-plane.png" label="目標達成まで">
-        <div className="flex flex-col gap-5">
-          {/* 進捗グラフ */}
-          <div className="flex w-full flex-col items-center justify-center gap-5">
-            <div className="relative h-[var(--progressChart-height)] w-[var(--progressChart-width)]">
-              <ProgressChart progress={cappedProgress} />
-              <div className="absolute inset-0 flex translate-y-1 items-center justify-center text-xl font-bold text-[#795549]">
-                {Math.round(cappedProgress)}%
+        {loading ? (
+          <LoadingInSectionCard />
+        ) : (
+          <>
+            <div className="flex flex-col gap-5">
+              {/* 進捗グラフ */}
+              <div className="flex w-full flex-col items-center justify-center gap-5">
+                <div className="relative h-[var(--progressChart-height)] w-[var(--progressChart-width)]">
+                  <ProgressChart progress={cappedProgress} />
+                  <div className="absolute inset-0 flex translate-y-1 items-center justify-center text-xl font-bold text-[#795549]">
+                    {Math.round(cappedProgress)}%
+                  </div>
+                </div>
+                {progress < 10 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    一歩ずつ進んでいます！
+                    <br />
+                    続けてみましょう 💪
+                  </p>
+                )}
+                {progress >= 10 && progress < 30 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    スタートおめでとう🎉
+                    <br />
+                    小さな積み重ねが大切です！
+                  </p>
+                )}
+                {progress >= 30 && progress < 50 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    順調なペースです👍
+                    <br />
+                    頑張って習慣化していきましょう〜
+                  </p>
+                )}
+                {progress >= 50 && progress < 75 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    着実に進んでいます👌
+                    <br />
+                    この調子で続けましょう！
+                  </p>
+                )}
+
+                {progress >= 75 && progress < 90 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    ゴールが見えてきました...!
+                  </p>
+                )}
+                {progress >= 90 && progress < 100 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    目標まであと少し...!
+                  </p>
+                )}
+                {progress >= 100 && (
+                  <p className="py-3 text-center text-sm font-semibold text-[#795549]">
+                    目標達成おめでとう🎉
+                  </p>
+                )}
+              </div>
+
+              {/* 合計 */}
+              <div className="flex items-center justify-center gap-5">
+                <div className="flex min-w-[50px] justify-center">
+                  <span className="text-lg font-bold">合計</span>
+                </div>
+
+                <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
+                  {formatCurrency(totalSaved)}
+                </p>
+              </div>
+
+              {/* 区切り線 */}
+              <div className="mx-auto mt-2 mb-2 h-0.5 w-[95%] rounded-full bg-[#795549]" />
+
+              {/* 残数表示 */}
+              {/* 日数 */}
+              <div className="flex items-center justify-center gap-5">
+                <div className="flex min-w-[50px] justify-center">
+                  <span className="text-lg font-bold">残り</span>
+                </div>
+                <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
+                  {daysLeft}
+                </p>
+                <div className="flex min-w-[50px] justify-center">
+                  <span className="text-lg font-bold">日で</span>
+                </div>
+              </div>
+
+              {/* 金額 */}
+              <div className="flex items-center justify-center gap-5">
+                <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
+                  {formatCurrency(getAmountToGoal)}
+                </p>
+                <div className="flex min-w-[100px] justify-center">
+                  <span className="text-lg font-bold">を貯める！</span>
+                </div>
               </div>
             </div>
-            {progress < 10 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                一歩ずつ進んでいます！
-                <br />
-                続けてみましょう 💪
-              </p>
-            )}
-            {progress >= 10 && progress < 30 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                スタートおめでとう🎉
-                <br />
-                小さな積み重ねが大切です！
-              </p>
-            )}
-            {progress >= 30 && progress < 50 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                順調なペースです👍
-                <br />
-                頑張って習慣化していきましょう〜
-              </p>
-            )}
-            {progress >= 50 && progress < 75 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                着実に進んでいます👌
-                <br />
-                この調子で続けましょう！
-              </p>
-            )}
-
-            {progress >= 75 && progress < 90 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                ゴールが見えてきました...!
-              </p>
-            )}
-            {progress >= 90 && progress < 100 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                目標まであと少し...!
-              </p>
-            )}
-            {progress >= 100 && (
-              <p className="py-3 text-center text-sm font-semibold text-[#795549]">
-                目標達成おめでとう🎉
-              </p>
-            )}
-          </div>
-
-          {/* 合計 */}
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex min-w-[50px] justify-center">
-              <span className="text-lg font-bold">合計</span>
-            </div>
-
-            <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
-              {formatCurrency(totalSaved)}
-            </p>
-          </div>
-
-          {/* 区切り線 */}
-          <div className="mx-auto mt-2 mb-2 h-0.5 w-[95%] rounded-full bg-[#795549]" />
-
-          {/* 残数表示 */}
-          {/* 日数 */}
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex min-w-[50px] justify-center">
-              <span className="text-lg font-bold">残り</span>
-            </div>
-            <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
-              {daysLeft}
-            </p>
-            <div className="flex min-w-[50px] justify-center">
-              <span className="text-lg font-bold">日で</span>
-            </div>
-          </div>
-
-          {/* 金額 */}
-          <div className="flex items-center justify-center gap-5">
-            <p className="flex h-auto min-h-[65px] min-w-[100px] items-center justify-center rounded-xl bg-[#F3F0EB] px-6 py-4 text-lg font-bold">
-              {formatCurrency(getAmountToGoal)}
-            </p>
-            <div className="flex min-w-[100px] justify-center">
-              <span className="text-lg font-bold">を貯める！</span>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </SectionCard>
     </div>
   );

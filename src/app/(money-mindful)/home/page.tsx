@@ -9,7 +9,7 @@ import useUserStore from "@/store/useUserStore";
 import AddRecordCard from "@/app/components/add/AddRecordCard";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
-import LoadingSpinner from "@/app/loading";
+import LoadingSpinner from "@/app/components/loading/LoadingSpinner";
 
 import { createClient } from "@/utils/supabase/clients";
 

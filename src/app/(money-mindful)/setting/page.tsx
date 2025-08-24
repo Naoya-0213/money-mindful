@@ -12,9 +12,10 @@ import Button from "@/app/components/button/Button";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import LoadingSpinner from "@/app/loading";
+
 
 import { createClient } from "@/utils/supabase/clients";
+import LoadingSpinner from "@/app/components/loading/LoadingSpinner";
 
 // ===== 設定セクション =====
 
@@ -129,11 +130,7 @@ export default function SettingPage() {
         </SectionCard>
 
         {/* 目標設定 */}
-        {goal ? (
-          <GoalCard /> // 設定目標の表示
-        ) : (
-          <NoGoalCard /> // 目標設定を促す画面
-        )}
+        {goal ? <GoalCard /> : <NoGoalCard />}
 
         {/* アカウント管理 */}
         <SectionCard

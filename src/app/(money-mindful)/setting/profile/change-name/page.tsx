@@ -13,8 +13,8 @@ import z from "zod";
 import Button from "@/app/components/button/Button";
 import DisplayField from "@/app/components/field/DisplayFeild";
 import FormField from "@/app/components/field/FormField";
+import LoadingSpinner from "@/app/components/loading/LoadingSpinner";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 

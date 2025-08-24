@@ -1,6 +1,6 @@
 // ===== ローディングスピナー表示用 =====
 // 📍Next.js の機能（ルートの遅延時に自動表示）
-import LoadingSpinner from "./components/loading/LoadingSpinner";
+import LoadingSpinner from "../components/loading/LoadingSpinner";
 
 const Loading = () => {
   return (

@@ -9,11 +9,12 @@ import useUserStore from "@/store/useUserStore";
 import NoRecordCard from "@/app/components/records/NoRecordCard";
 import RecordItemCard from "@/app/components/records/RecordItemCard";
 import SectionCard from "@/app/components/section-card/SectionCard";
-import LoadingSpinner from "@/app/loading";
+
 
 import { createClient } from "@/utils/supabase/clients";
 
 import { CategoryType } from "../../../const/category-icon/categoryIconMap";
+import LoadingSpinner from "@/app/components/loading/LoadingSpinner";
 
 // ===== 記録履歴一覧用 =====
 // 📍 supabaseへ保存している記録の表示

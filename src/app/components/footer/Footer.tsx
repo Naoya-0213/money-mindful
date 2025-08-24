@@ -10,28 +10,28 @@ const footerItems = [
   {
     icon: "/icon/footer/home.png",
     label: "ホーム",
-    href: "/money-mindful/home",
+    href: "/home",
   },
-  { icon: "/icon/footer/add.png", label: "追加", href: "/money-mindful/add" },
+  { icon: "/icon/footer/add.png", label: "追加", href: "/add" },
   {
     icon: "/icon/footer/records.png",
     label: "履歴",
-    href: "/money-mindful/records",
+    href: "/records",
   },
   {
     icon: "/icon/footer/graph.png",
     label: "合計",
-    href: "/money-mindful/total",
+    href: "/total",
   },
   {
     icon: "/icon/footer/calendar.png",
     label: "記録",
-    href: "/money-mindful/calendar",
+    href: "/calendar",
   },
   {
     icon: "/icon/footer/profile-user.png",
     label: "設定",
-    href: "/money-mindful/setting",
+    href: "/setting",
   },
 ];
 

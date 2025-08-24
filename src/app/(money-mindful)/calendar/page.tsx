@@ -9,6 +9,7 @@ import useUserStore from "@/store/useUserStore";
 
 import MyCalendar from "@/app/(money-mindful)/calendar/component/Calendar";
 import SectionCard from "@/app/components/section-card/SectionCard";
+import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -33,6 +34,7 @@ export default function CalendarPage() {
   const supabase = createClient();
   const router = useRouter();
   const { user } = useUserStore();
+  const [loading, setLoading] = useState(true);
 
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [dailyRecords, setDailyRecords] = useState<DailyLogs[]>([]);
@@ -97,10 +99,15 @@ export default function CalendarPage() {
       );
 
       setDailyRecords(groupedArray);
+      setLoading(false);
     };
 
     fetchRecord();
   }, [router, supabase]);
+
+  if (loading === true) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

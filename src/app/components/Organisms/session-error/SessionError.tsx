@@ -2,8 +2,8 @@
 // 📍使用場所：ログインが必要なページにアクセスしたが、セッションが切れているときに表示
 // 備考：ログイン誘導ボタン付き
 // TODO 今後導入予定
-import Button from "../../atoms/button/Button";
-import SectionCard from "../../molecules/section-card/SectionCard";
+import { Button } from "../../atoms";
+import { SectionCard } from "../../molecules";
 
 const SessionError = () => {
   return (

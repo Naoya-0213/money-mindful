@@ -1,6 +1,4 @@
-import React from "react";
-
-import SessionError from "@/app/components/session-error/SessionError";
+import SessionError from "@/app/components/Organisms/session-error/SessionError";
 
 const SessionErrorPage = () => {
   return (

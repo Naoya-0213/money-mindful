@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 
 import { Database } from "@/types/database.types";
 
-import BeforeSignin from "../components/before-signin/BeforeSignin";
+import BeforeSignin from "../components/Organisms/before-signin/BeforeSignin";
 
 // ===== トップページ（未ログイン時の初期画面） =====
 // 📍ルートパス（"/"）で使用

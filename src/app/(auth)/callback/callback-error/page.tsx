@@ -1,4 +1,4 @@
-import SessionErrorPage from "@/app/components/session-error/SessionError";
+import SessionErrorPage from "@/app/components/Organisms/session-error/SessionError";
 
 // ===== メール変更失敗ページ =====
 // 📍メールアドレス変更時に送信されたリンク先でエラーが発生した場合に表示

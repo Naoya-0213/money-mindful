@@ -103,7 +103,7 @@ export default function CalendarPage() {
 
     fetchRecord();
     setLoading(false);
-  }, [router, supabase]);
+  }, [router, supabase, user]);
 
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">

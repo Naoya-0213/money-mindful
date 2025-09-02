@@ -2,7 +2,7 @@ import Button from "@/app/components/Atoms/button/Button";
 import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 import SectionInfoBox from "@/app/components/Molecules/section-card/SectionInfoBox";
 
-import CategoryIcon from "../../Molecules/category/category-icon/CategoryIcon";
+import CategoryIcon from "../../Atoms/icon/CategoryIcon";
 
 // ===== ホーム：我慢記録セクションカード =====
 // 📍ホーム画面・初回チュートリアルにて使用

@@ -1,8 +1,7 @@
 // ===== 404ページ（Not Found）表示用 =====
 // 📍存在しないURLにアクセスされた際に自動表示
 // ページ迷子アイコンとメッセージを表示し、ホームへ誘導する
-import { Button } from "./components";
-import SectionCard from "./components/molecules/section-card/SectionCard";
+import { Button, SectionCard } from "./components";
 
 const NotFoundPage = () => {
   return (

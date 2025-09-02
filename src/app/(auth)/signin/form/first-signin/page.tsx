@@ -1,9 +1,11 @@
 import Image from "next/image";
 
-import Button from "@/app/components/atoms/button/Button";
-import NoGoalCard from "@/app/components/goal/NoGoalCard";
-import SectionCard from "@/app/components/molecules/section-card/SectionCard";
-import SectionInfoBox from "@/app/components/molecules/section-card/SectionInfoBox";
+import {
+  Button,
+  NoGoalCard,
+  SectionCard,
+  SectionInfoBox,
+} from "@/app/components";
 
 import AddRecordCard from "../../../../components/organisms/add/AddRecordCard";
 

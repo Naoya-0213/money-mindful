@@ -1,11 +1,11 @@
 // use server
 import { redirect } from "next/navigation";
 
-import SignUpPage from "@/app/signup/form/page";
-
 import { createClient } from "@/utils/supabase/server";
 
 import type { Database } from "@/types/database.types";
+
+import SignUpPage from "./form/page";
 
 // ===== サインアップ認証ページ（サーバー） =====
 // 📍/signup にアクセスしたときの認証確認処理

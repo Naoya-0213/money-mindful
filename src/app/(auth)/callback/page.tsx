@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import Button from "@/app/components/atoms/button/Button";
-import SectionCard from "@/app/components/molecules/section-card/SectionCard";
+
 
 import { createClient } from "@/utils/supabase/clients";
+import { Button, SectionCard } from "@/app/components";
 
 // ===== メール変更完了ページ（認証コールバック） =====
 // 📍メールアドレス変更リンクから遷移した際に表示される確認画面

@@ -8,8 +8,7 @@ import ClientUserSetter from "@/lib/ClientUserSetter";
 
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
-import Footer from "./components/organisms/footer/Footer";
-import Header from "./components/organisms/header/Header";
+import { Footer, Header } from "./components";
 import "./globals.css";
 
 // ===== アプリ全体のレイアウト設定 =====

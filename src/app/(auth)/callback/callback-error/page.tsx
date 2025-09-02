@@ -1,8 +1,7 @@
-import SessionErrorPage from "@/app/components/organisms/session-error/SessionError";
-
 // ===== メール変更失敗ページ =====
 // 📍メールアドレス変更時に送信されたリンク先でエラーが発生した場合に表示
 // Supabaseのエラー内容に応じた案内を表示する
+import SessionErrorPage from "@/app/(money-mindful)/session-error/page";
 
 const CallbackErrorPage = () => {
   return (

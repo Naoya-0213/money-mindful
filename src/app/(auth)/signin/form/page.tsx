@@ -11,9 +11,7 @@ import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Button from "@/app/components/atoms/button/Button";
-import FormField from "@/app/components/molecules/field/FormField";
-import SectionCard from "@/app/components/molecules/section-card/SectionCard";
+import { Button, FormField, SectionCard } from "@/app/components";
 
 import { createClient } from "@/utils/supabase/clients";
 

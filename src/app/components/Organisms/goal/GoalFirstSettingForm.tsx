@@ -12,9 +12,9 @@ import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import Button from "../button/Button";
-import FormField from "../field/FormField";
-import SectionCard from "../section-card/SectionCard";
+import Button from "../../Atoms/button/Button";
+import FormField from "../../Molecules/field/FormField";
+import SectionCard from "../../Molecules/section-card/SectionCard";
 
 // ===== 初回目標設定フォームコンポーネント =====
 // 📍初回設定画面で使用。目標タイトル・金額・期限などを入力してSupabaseに保存

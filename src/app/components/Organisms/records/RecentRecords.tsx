@@ -1,6 +1,6 @@
-import SectionCard from "@/app/components/section-card/SectionCard";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
-import type { CategoryType } from "../../../const/category-icon/categoryIconMap";
+import type { CategoryType } from "../../../../const/category-icon/categoryIconMap";
 import RecordItemCard from "./RecordItemCard";
 
 // ===== 直近の登録履歴（仮データ表示） =====

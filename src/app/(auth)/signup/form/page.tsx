@@ -8,9 +8,9 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Button from "@/app/components/button/Button";
-import FormField from "@/app/components/field/FormField";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import Button from "@/app/components/Atoms/button/Button";
+import FormField from "@/app/components/Molecules/field/FormField";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 

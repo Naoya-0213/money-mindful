@@ -8,8 +8,8 @@ import type { CategoryType } from "@/const/category-icon/categoryIconMap";
 import useUserStore from "@/store/useUserStore";
 
 import MyCalendar from "@/app/(money-mindful)/calendar/component/Calendar";
-import LoadingInSectionCard from "@/app/components/loading/LoadingInSectionCard";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import LoadingInSectionCard from "@/app/components/Atoms/loading/LoadingInSectionCard";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 

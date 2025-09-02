@@ -8,14 +8,13 @@ import { useRouter } from "next/navigation";
 
 import useUserStore from "@/store/useUserStore";
 
-import Button from "@/app/components/button/Button";
+import Button from "@/app/components/Atoms/button/Button";
+import LoadingSpinner from "@/app/components/Atoms/loading/LoadingSpinner";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 import GoalCard from "@/app/components/goal/GoalCard";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
-import SectionCard from "@/app/components/section-card/SectionCard";
-
 
 import { createClient } from "@/utils/supabase/clients";
-import LoadingSpinner from "@/app/components/loading/LoadingSpinner";
 
 // ===== 設定セクション =====
 

@@ -6,9 +6,9 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
-import Button from "@/app/components/button/Button";
-import LoadingSpinner from "@/app/components/loading/LoadingSpinner";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import Button from "@/app/components/Atoms/button/Button";
+import LoadingSpinner from "@/app/components/Atoms/loading/LoadingSpinner";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 

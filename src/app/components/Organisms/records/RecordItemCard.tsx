@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import type { CategoryType } from "@/const/category-icon/categoryIconMap";
-
-import CategoryIcon from "../Molecules/category/category-icon/CategoryIcon";
+import { CategoryType } from "../../../../const/category-icon/categoryIconMap";
+import CategoryIcon from "../../Molecules/category/category-icon/CategoryIcon";
 
 // ===== 役割 =====
 // 記録一覧の1件分を表示するカードコンポーネント

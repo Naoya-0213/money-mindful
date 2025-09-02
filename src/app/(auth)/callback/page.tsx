@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import Button from "@/app/components/button/Button";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import Button from "@/app/components/Atoms/button/Button";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 

@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import Button from "../button/Button";
-import SectionCard from "../section-card/SectionCard";
-import SectionInfoBox from "../section-card/SectionInfoBox";
+import Button from "../Atoms/button/Button";
+import SectionCard from "../Atoms/section-card/SectionCard";
+import SectionInfoBox from "../Atoms/section-card/SectionInfoBox";
 
 // ===== 目標未設定時の案内カード =====
 // 📍初回チュートリアルや目標未登録時に表示

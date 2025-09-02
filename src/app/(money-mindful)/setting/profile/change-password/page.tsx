@@ -1,9 +1,9 @@
 "use client";
 
-import Button from "@/app/components/button/Button";
-import DisplayField from "@/app/components/field/DisplayFeild";
-import FormField from "@/app/components/field/FormField";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import Button from "@/app/components/Atoms/button/Button";
+import DisplayField from "@/app/components/Molecules/field/DisplayFeild";
+import FormField from "@/app/components/Molecules/field/FormField";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
 // ===== プロフィール設定/Password変更用 =====
 

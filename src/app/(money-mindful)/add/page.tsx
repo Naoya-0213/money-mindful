@@ -1,7 +1,7 @@
 "use client";
 
-import FirstAddForm from "@/app/components/add/FirstAddForm";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
+import FirstAddForm from "@/app/components/Organisms/add/FirstAddForm";
 
 // ===== 我慢記録初回追加用 =====
 

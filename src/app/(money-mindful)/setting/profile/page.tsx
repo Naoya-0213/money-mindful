@@ -7,9 +7,9 @@ import Link from "next/link";
 
 import useUserStore from "@/store/useUserStore";
 
-import Button from "@/app/components/button/Button";
-import DisplayField from "@/app/components/field/DisplayFeild";
-import SectionCard from "@/app/components/section-card/SectionCard";
+import Button from "@/app/components/Atoms/button/Button";
+import DisplayField from "@/app/components/Molecules/field/DisplayFeild";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
 import { createClient } from "@/utils/supabase/clients";
 

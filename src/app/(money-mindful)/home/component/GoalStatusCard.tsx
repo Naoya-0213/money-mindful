@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 import useUserStore from "@/store/useUserStore";
 
-import LoadingInSectionCard from "@/app/components/loading/LoadingInSectionCard";
-import SectionCard from "@/app/components/section-card/SectionCard";
-import ProgressChart from "@/app/components/table/ProgressChart";
+import LoadingInSectionCard from "@/app/components/Atoms/loading/LoadingInSectionCard";
+import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
+import ProgressChart from "@/app/components/Organisms/table/ProgressChart";
 
 import { createClient } from "@/utils/supabase/clients";
 

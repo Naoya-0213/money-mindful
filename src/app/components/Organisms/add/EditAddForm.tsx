@@ -17,6 +17,7 @@ import FormField from "@/app/components/Molecules/field/FormField";
 
 import { createClient } from "@/utils/supabase/clients";
 
+import ErrorText from "../../Atoms/text/ErrorText";
 import CategoryItem from "../../Molecules/category/CategoryItem";
 
 // ===== 我慢記録の編集・削除フォーム =====
@@ -178,11 +179,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
               icon="/icon/add/tag.png"
               {...register("title")}
             />
-            {errors.title && (
-              <p className="mt-1 px-4 text-sm text-red-500">
-                {errors.title.message}
-              </p>
-            )}
+            {errors.title && <ErrorText> {errors.title.message}</ErrorText>}
           </div>
 
           {/* 額 */}
@@ -218,11 +215,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
                 </div>
               )}
             />
-            {errors.amount && (
-              <p className="mt-1 px-4 text-sm text-red-500">
-                {errors.amount.message}
-              </p>
-            )}
+            {errors.amount && <ErrorText> {errors.amount.message}</ErrorText>}
           </div>
 
           {/* 追加日 */}
@@ -234,9 +227,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
               {...register("saved_date")}
             />
             {errors.saved_date && (
-              <p className="mt-1 px-4 text-sm text-red-500">
-                {errors.saved_date.message}
-              </p>
+              <ErrorText> {errors.saved_date.message}</ErrorText>
             )}
           </div>
 

@@ -17,3 +17,11 @@ export { default as NoGoalCard } from "./goal/NoGoalCard";
 
 // header
 export { default as Header } from "./header/Header";
+
+// record
+export { default as NoRecordCard } from "./records/NoRecordCard";
+export { default as RecentRecords } from "./records/RecentRecords";
+export { default as RecordItemCard } from "./records/RecordItemCard";
+
+// session-error
+export { default as SessionError } from "./session-error/SessionError";

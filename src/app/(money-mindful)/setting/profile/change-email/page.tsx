@@ -11,11 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
 import Button from "@/app/components/Atoms/button/Button";
+import LoadingSpinner from "@/app/components/Atoms/loading/LoadingSpinner";
 import DisplayField from "@/app/components/Molecules/field/DisplayFeild";
 import FormField from "@/app/components/Molecules/field/FormField";
 import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 import SectionInfoBox from "@/app/components/Molecules/section-card/SectionInfoBox";
-import LoadingSpinner from "@/app/loading";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -48,7 +48,7 @@ const ChangeEmailPage = () => {
       if (user?.email) setEmail(user.email);
     };
     fetchUser();
-  }, []);
+  }, [supabase, router, user]);
 
   // 登録時のメッセージ
   const [message, setMessage] = useState<{

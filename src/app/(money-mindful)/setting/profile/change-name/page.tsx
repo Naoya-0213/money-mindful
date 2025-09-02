@@ -64,7 +64,7 @@ const ChangeUserNamePage = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [supabase, user]);
 
   // 変更
   const onSubmit: SubmitHandler<Schema> = async (data) => {

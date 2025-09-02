@@ -11,12 +11,9 @@ import Button from "@/app/components/Atoms/button/Button";
 import DisplayField from "@/app/components/Molecules/field/DisplayFeild";
 import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
 
-import { createClient } from "@/utils/supabase/clients";
-
 // ===== プロフィール編集用 =====
 
 const ProfileSetting = () => {
-  const supabase = createClient();
   const { user } = useUserStore();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");

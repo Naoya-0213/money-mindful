@@ -92,7 +92,7 @@ const GoalCard = () => {
 
     fetchGoal();
     setLoading(false);
-  }, [user?.id]);
+  }, [user?.id, supabase]);
 
   return (
     <div className="w-full">

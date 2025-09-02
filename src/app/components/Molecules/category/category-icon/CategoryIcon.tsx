@@ -2,8 +2,8 @@ import Image from "next/image";
 
 import {
   CATEGORY_LIST,
-  CategoryType,
-} from "../../../../const/category-icon/categoryIconMap";
+  type CategoryType,
+} from "@/const/category-icon/categoryIconMap";
 
 // ===== カテゴリーアイコン表示コンポーネント =====
 // 📍カテゴリーボタンやカード内で使用。カテゴリーIDに応じた画像を表示
@@ -23,7 +23,12 @@ const CategoryIcon = ({ id }: CategoryIconProps) => {
       className="flex items-center justify-center rounded-full bg-[#D7CDBE]"
       style={{ width: 40, height: 40 }}
     >
-      <Image src={category.icon.src} alt={category.icon.alt} width={25} height={25} />
+      <Image
+        src={category.icon.src}
+        alt={category.icon.alt}
+        width={25}
+        height={25}
+      />
     </div>
   );
 };

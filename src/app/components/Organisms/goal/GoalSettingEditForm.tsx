@@ -12,9 +12,9 @@ import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import Button from "../Atoms/button/Button";
-import SectionCard from "../Atoms/section-card/SectionCard";
-import FormField from "../Molecules/field/FormField";
+import Button from "../../Atoms/button/Button";
+import FormField from "../../Molecules/field/FormField";
+import SectionCard from "../../Molecules/section-card/SectionCard";
 
 // ===== 目標編集フォームコンポーネント =====
 // 📍設定画面で使用。登録済みの目標をSupabaseから取得・編集・保存する
@@ -88,7 +88,7 @@ const GoalSettingEdit = () => {
     };
 
     fetchGoal();
-  }, [user, setValue]);
+  }, [user, setValue, supabase]);
 
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     if (!user?.id) return;

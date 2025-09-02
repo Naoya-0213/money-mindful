@@ -12,9 +12,8 @@ import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import Button from "../../atoms/button/Button";
-import FormField from "../../molecules/field/FormField";
-import SectionCard from "../../molecules/section-card/SectionCard";
+import { Button, ErrorText } from "../../atoms";
+import { FormField, SectionCard } from "../../molecules";
 
 // ===== 目標編集フォームコンポーネント =====
 // 📍設定画面で使用。登録済みの目標をSupabaseから取得・編集・保存する
@@ -135,11 +134,7 @@ const GoalSettingEditForm = () => {
             placeholder="タイトルを入力"
             {...register("title")}
           />
-          {errors.title && (
-            <p className="mt-1 px-4 text-sm text-red-500">
-              {errors.title.message}
-            </p>
-          )}
+          {errors.title && <ErrorText>{errors.title.message}</ErrorText>}
         </div>
 
         {/* 額 */}
@@ -177,9 +172,7 @@ const GoalSettingEditForm = () => {
             )}
           />
           {errors.target_amount && (
-            <p className="mt-1 px-4 text-sm text-red-500">
-              {errors.target_amount.message}
-            </p>
+            <ErrorText>{errors.target_amount.message}</ErrorText>
           )}
         </div>
 
@@ -191,11 +184,7 @@ const GoalSettingEditForm = () => {
             type="date"
             {...register("end_date")}
           />
-          {errors.end_date && (
-            <p className="mt-1 px-4 text-sm text-red-500">
-              {errors.end_date.message}
-            </p>
-          )}
+          {errors.end_date && <ErrorText> {errors.end_date.message}</ErrorText>}
         </div>
 
         {/* 設定日 */}
@@ -207,9 +196,7 @@ const GoalSettingEditForm = () => {
             {...register("start_date")}
           />
           {errors.start_date && (
-            <p className="mt-1 px-4 text-sm text-red-500">
-              {errors.start_date.message}
-            </p>
+            <ErrorText>{errors.start_date.message}</ErrorText>
           )}
         </div>
 

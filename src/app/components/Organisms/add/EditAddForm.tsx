@@ -12,13 +12,10 @@ import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
-import Button from "@/app/components/atoms/button/Button";
-import FormField from "@/app/components/molecules/field/FormField";
-
 import { createClient } from "@/utils/supabase/clients";
 
-import ErrorText from "../../atoms/text/ErrorText";
-import CategoryItem from "../../molecules/category/CategoryItem";
+import { Button, ErrorText } from "../../atoms";
+import { CategoryItem, FormField } from "../../molecules";
 
 // ===== 我慢記録の編集・削除フォーム =====
 // 📍記録詳細ページにて使用

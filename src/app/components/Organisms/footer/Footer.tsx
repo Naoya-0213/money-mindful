@@ -1,6 +1,6 @@
 "use client";
 
-import FooterItem from "../../molecules/footer/FooterItem";
+import { FooterItem } from "../../molecules";
 
 // ===== フッターコンポーネント =====
 // 📍全ページ共通のナビゲーションバー

@@ -6,9 +6,8 @@ import useUserStore from "@/store/useUserStore";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import Button from "../../atoms/button/Button";
-import LoadingInSectionCard from "../../atoms/loading/LoadingInSectionCard";
-import SectionCard from "../../molecules/section-card/SectionCard";
+import { Button, LoadingInSectionCard } from "../../atoms";
+import { SectionCard } from "../../molecules";
 
 // ===== 目標表示カードコンポーネント =====
 // 📍ホーム画面などで使用。Supabaseから取得した目標データを表示

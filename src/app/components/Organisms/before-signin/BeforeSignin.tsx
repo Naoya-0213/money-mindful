@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Button from "../../atoms/button/Button";
+import { Button } from "../../atoms";
 
 // ===== 初回ログイン前の紹介ページ =====
 // 📍未ログイン時に表示されるアプリ紹介画面

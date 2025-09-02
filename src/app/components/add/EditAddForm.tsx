@@ -119,7 +119,7 @@ const EditAddForm = ({ id }: AddCardProps) => {
     };
 
     fetchRecord();
-  }, [id, setValue]);
+  }, [id, setValue, user, supabase]);
 
   const onSubmit: SubmitHandler<Schema> = async (data: Schema) => {
     console.log("🔽 登録データ確認:", data);

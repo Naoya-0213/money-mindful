@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/app/components/atoms/button/Button";
-import DisplayField from "@/app/components/molecules/field/DisplayFeild";
+import DisplayField from "@/app/components/molecules/field/DisplayField";
 import FormField from "@/app/components/molecules/field/FormField";
 import SectionCard from "@/app/components/molecules/section-card/SectionCard";
 

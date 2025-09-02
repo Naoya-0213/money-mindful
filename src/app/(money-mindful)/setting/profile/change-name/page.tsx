@@ -12,7 +12,7 @@ import z from "zod";
 
 import Button from "@/app/components/atoms/button/Button";
 import LoadingSpinner from "@/app/components/atoms/loading/LoadingSpinner";
-import DisplayField from "@/app/components/molecules/field/DisplayFeild";
+import DisplayField from "@/app/components/molecules/field/DisplayField";
 import FormField from "@/app/components/molecules/field/FormField";
 import SectionCard from "@/app/components/molecules/section-card/SectionCard";
 

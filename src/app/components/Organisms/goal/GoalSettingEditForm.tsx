@@ -36,7 +36,7 @@ const schema = z.object({
 
 type Schema = z.infer<typeof schema>;
 
-const GoalSettingEdit = () => {
+const GoalSettingEditForm = () => {
   const router = useRouter();
   const supabase = createClient();
   const { user } = useUserStore();
@@ -239,4 +239,4 @@ const GoalSettingEdit = () => {
   );
 };
 
-export default GoalSettingEdit;
+export default GoalSettingEditForm;

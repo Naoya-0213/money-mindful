@@ -2,8 +2,7 @@
 
 import { useParams } from "next/navigation";
 
-import SectionCard from "@/app/components/molecules/section-card/SectionCard";
-import EditAddForm from "@/app/components/organisms/add/EditAddForm";
+import { EditAddForm, SectionCard } from "@/app/components";
 
 // ==== 登録記録の詳細確認＆編集画面 =====
 

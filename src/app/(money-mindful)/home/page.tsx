@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 
 import useUserStore from "@/store/useUserStore";
 
-import LoadingSpinner from "@/app/components/atoms/loading/LoadingSpinner";
-import AddRecordCard from "@/app/components/organisms/add/AddRecordCard";
-import GoalCard from "@/app/components/organisms/goal/GoalCard";
-import NoGoalCard from "@/app/components/organisms/goal/NoGoalCard";
+import {
+  AddRecordCard,
+  GoalCard,
+  LoadingSpinner,
+  NoGoalCard,
+} from "@/app/components";
 
 import { createClient } from "@/utils/supabase/clients";
 

@@ -1,4 +1,4 @@
-import SessionError from "@/app/components/organisms/session-error/SessionError";
+import { SessionError } from "@/app/components";
 
 const SessionErrorPage = () => {
   return (

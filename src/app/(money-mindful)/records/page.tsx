@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 
 import useUserStore from "@/store/useUserStore";
 
-import LoadingSpinner from "@/app/components/atoms/loading/LoadingSpinner";
-import SectionCard from "@/app/components/molecules/section-card/SectionCard";
-import NoRecordCard from "@/app/components/organisms/records/NoRecordCard";
-import RecordItemCard from "@/app/components/organisms/records/RecordItemCard";
+import {
+  LoadingSpinner,
+  NoRecordCard,
+  RecordItemCard,
+  SectionCard,
+} from "@/app/components";
 
 import { createClient } from "@/utils/supabase/clients";
 

@@ -10,14 +10,10 @@ import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
-import Button from "@/app/components/atoms/button/Button";
-import LoadingSpinner from "@/app/components/atoms/loading/LoadingSpinner";
-import DisplayField from "@/app/components/molecules/field/DisplayField";
-import FormField from "@/app/components/molecules/field/FormField";
-import SectionCard from "@/app/components/molecules/section-card/SectionCard";
-import SectionInfoBox from "@/app/components/molecules/section-card/SectionInfoBox";
+
 
 import { createClient } from "@/utils/supabase/clients";
+import { Button, DisplayField, FormField, LoadingSpinner, SectionCard, SectionInfoBox } from "@/app/components";
 
 // ===== プロフィール設定/Email変更用 =====
 

@@ -1,9 +1,9 @@
 "use client";
 
-import Button from "../../Atoms/button/Button";
-import CategoryIcon from "../../Atoms/icon/CategoryIcon";
-import SectionCard from "../../Molecules/section-card/SectionCard";
-import SectionInfoBox from "../../Molecules/section-card/SectionInfoBox";
+import Button from "../../atoms/button/Button";
+import CategoryIcon from "../../atoms/icon/CategoryIcon";
+import SectionCard from "../../molecules/section-card/SectionCard";
+import SectionInfoBox from "../../molecules/section-card/SectionInfoBox";
 
 // ===== 「がまん」記録がない場合の表示カード =====
 

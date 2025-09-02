@@ -1,5 +1,5 @@
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
-import SectionInfoBox from "@/app/components/Molecules/section-card/SectionInfoBox";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/molecules/section-card/SectionInfoBox";
 
 const Total = () => {
   return (

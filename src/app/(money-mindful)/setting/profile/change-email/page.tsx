@@ -10,12 +10,12 @@ import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
-import Button from "@/app/components/Atoms/button/Button";
-import LoadingSpinner from "@/app/components/Atoms/loading/LoadingSpinner";
-import DisplayField from "@/app/components/Molecules/field/DisplayFeild";
-import FormField from "@/app/components/Molecules/field/FormField";
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
-import SectionInfoBox from "@/app/components/Molecules/section-card/SectionInfoBox";
+import Button from "@/app/components/atoms/button/Button";
+import LoadingSpinner from "@/app/components/atoms/loading/LoadingSpinner";
+import DisplayField from "@/app/components/molecules/field/DisplayFeild";
+import FormField from "@/app/components/molecules/field/FormField";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/molecules/section-card/SectionInfoBox";
 
 import { createClient } from "@/utils/supabase/clients";
 

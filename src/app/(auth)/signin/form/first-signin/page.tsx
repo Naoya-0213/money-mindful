@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-import Button from "@/app/components/Atoms/button/Button";
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
-import SectionInfoBox from "@/app/components/Molecules/section-card/SectionInfoBox";
+import Button from "@/app/components/atoms/button/Button";
 import NoGoalCard from "@/app/components/goal/NoGoalCard";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/molecules/section-card/SectionInfoBox";
 
-import AddRecordCard from "../../../../components/Organisms/add/AddRecordCard";
+import AddRecordCard from "../../../../components/organisms/add/AddRecordCard";
 
 // ===== 初回ログインページ（チュートリアル） =====
 // 📍新規登録後、初回アクセス時に表示されるチュートリアル画面

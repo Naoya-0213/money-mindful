@@ -12,9 +12,9 @@ import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import Button from "../../Atoms/button/Button";
-import FormField from "../../Molecules/field/FormField";
-import SectionCard from "../../Molecules/section-card/SectionCard";
+import Button from "../../atoms/button/Button";
+import FormField from "../../molecules/field/FormField";
+import SectionCard from "../../molecules/section-card/SectionCard";
 
 // ===== 目標編集フォームコンポーネント =====
 // 📍設定画面で使用。登録済みの目標をSupabaseから取得・編集・保存する

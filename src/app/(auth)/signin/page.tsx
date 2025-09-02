@@ -1,4 +1,4 @@
-import BeforeSignin from "@/app/components/Organisms/before-signin/BeforeSignin";
+import BeforeSignin from "@/app/components/organisms/before-signin/BeforeSignin";
 
 // ===== サインインページ =====
 // 📍ログインページ（未ログイン状態の初回アクセス時に表示）

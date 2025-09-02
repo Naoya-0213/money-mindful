@@ -1,7 +1,7 @@
 // 直近の履歴表示用コンポーネント
 import type { CategoryType } from "@/const/category-icon/categoryIconMap";
 
-import RecordItemCard from "@/app/components/Organisms/records/RecordItemCard";
+import RecordItemCard from "@/app/components/organisms/records/RecordItemCard";
 
 type Log = {
   id: string;

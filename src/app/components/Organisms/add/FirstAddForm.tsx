@@ -12,13 +12,13 @@ import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
-import Button from "@/app/components/Atoms/button/Button";
-import FormField from "@/app/components/Molecules/field/FormField";
+import Button from "@/app/components/atoms/button/Button";
+import FormField from "@/app/components/molecules/field/FormField";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import ErrorText from "../../Atoms/text/ErrorText";
-import CategoryItem from "../../Molecules/category/CategoryItem";
+import ErrorText from "../../atoms/text/ErrorText";
+import CategoryItem from "../../molecules/category/CategoryItem";
 
 // ===== 我慢記録フォーム（初回登録） =====
 // 📍初回チュートリアル画面などで使用

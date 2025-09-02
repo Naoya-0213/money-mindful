@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 
-import Button from "@/app/components/Atoms/button/Button";
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
+import Button from "@/app/components/atoms/button/Button";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
 
 // プロフィール設定/画像変更用
 

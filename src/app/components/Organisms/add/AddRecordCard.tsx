@@ -1,8 +1,8 @@
-import Button from "@/app/components/Atoms/button/Button";
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
-import SectionInfoBox from "@/app/components/Molecules/section-card/SectionInfoBox";
+import Button from "@/app/components/atoms/button/Button";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
+import SectionInfoBox from "@/app/components/molecules/section-card/SectionInfoBox";
 
-import CategoryIcon from "../../Atoms/icon/CategoryIcon";
+import CategoryIcon from "../../atoms/icon/CategoryIcon";
 
 // ===== ホーム：我慢記録セクションカード =====
 // 📍ホーム画面・初回チュートリアルにて使用

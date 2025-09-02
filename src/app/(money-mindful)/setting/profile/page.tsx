@@ -7,9 +7,9 @@ import Link from "next/link";
 
 import useUserStore from "@/store/useUserStore";
 
-import Button from "@/app/components/Atoms/button/Button";
-import DisplayField from "@/app/components/Molecules/field/DisplayFeild";
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
+import Button from "@/app/components/atoms/button/Button";
+import DisplayField from "@/app/components/molecules/field/DisplayFeild";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
 
 // ===== プロフィール編集用 =====
 

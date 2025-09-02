@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import Button from "../../Atoms/button/Button";
-import SectionCard from "../../Molecules/section-card/SectionCard";
-import SectionInfoBox from "../../Molecules/section-card/SectionInfoBox";
+import Button from "../../atoms/button/Button";
+import SectionCard from "../../molecules/section-card/SectionCard";
+import SectionInfoBox from "../../molecules/section-card/SectionInfoBox";
 
 // ===== 目標未設定時の案内カード =====
 // 📍初回チュートリアルや目標未登録時に表示

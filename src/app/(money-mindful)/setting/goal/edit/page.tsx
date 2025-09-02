@@ -1,8 +1,5 @@
-
-
 // ===== 目標の編集用 ======
-
-import GoalSettingEdit from "@/app/components/Organisms/goal/GoalSettingEditForm";
+import GoalSettingEdit from "@/app/components/organisms/goal/GoalSettingEditForm";
 
 const GoalSettingEditPage = () => {
   return (

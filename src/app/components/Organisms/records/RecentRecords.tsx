@@ -1,4 +1,4 @@
-import SectionCard from "@/app/components/Molecules/section-card/SectionCard";
+import SectionCard from "@/app/components/molecules/section-card/SectionCard";
 
 import type { CategoryType } from "../../../../const/category-icon/categoryIconMap";
 import RecordItemCard from "./RecordItemCard";

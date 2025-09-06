@@ -1,3 +1,5 @@
+// TODO フックスで対応できないか？
+
 "use client";
 
 import { useEffect } from "react";
@@ -6,6 +8,8 @@ import useUserStore from "@/store/useUserStore";
 import type { Session } from "@supabase/supabase-js";
 
 import type { Database } from "@/types/database.types";
+
+// TODO フックスで対応できないか？
 
 type Users = Database["public"]["Tables"]["profiles"]["Row"];
 

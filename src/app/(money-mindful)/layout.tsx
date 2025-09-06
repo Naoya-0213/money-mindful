@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { SupabaseLisner } from "@/lib/SupabaseListener";
+import { SupabaseLisner } from "@/utils/SupabaseListener";
 
 // ===== セッション確認 =====
 // 📍 sessionやprofileがない場合、自動でログイン前画面に遷移。

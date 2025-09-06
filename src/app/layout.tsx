@@ -4,8 +4,7 @@ import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import ClientUserSetter from "@/lib/ClientUserSetter";
-
+import ClientUserSetter from "@/utils/ClientUserSetter";
 import { getCurrentUser } from "@/utils/supabase/getCurrentUser";
 
 import { Footer, Header } from "./components";

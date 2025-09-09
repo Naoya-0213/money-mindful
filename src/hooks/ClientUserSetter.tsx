@@ -1,5 +1,3 @@
-// TODO フックスで対応できないか？
-
 "use client";
 
 import { useEffect } from "react";

@@ -59,6 +59,8 @@ const ChangeImagePage = () => {
                 height={100}
               /> */}
 
+            {/* TODOプレビューの実装 */}
+
             <div className="flex w-full flex-col items-center justify-center gap-3 py-10">
               <Controller
                 name="image_path"

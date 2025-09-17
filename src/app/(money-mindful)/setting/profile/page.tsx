@@ -45,7 +45,6 @@ const ProfileSetting = () => {
 
               {/* 画像変更リンク */}
               <div className="flex flex-col items-center">
-                <p className="font-semibold">実装予定...!</p>
                 <p className="font-semibold text-[#777777]">
                   画像の変更は
                   <Link

@@ -1,12 +1,18 @@
 "use client";
 
+import toast from "react-hot-toast";
+
 import Image from "next/image";
 
 import { Button, SectionCard } from "@/app/components";
 
-// プロフィール設定/画像変更用
+// TODOプロフィール設定/画像変更用
 
 const ChangeImagePage = () => {
+  const onClick = () => {
+    toast.error("今後、実装予定...!");
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -35,7 +41,7 @@ const ChangeImagePage = () => {
             {/* 画像を選択ボタン */}
             <div className="flex w-full justify-center">
               <Button
-                onClick={() => alert("実装予定...！")}
+                onClick={onClick}
                 className="bg-[#D7CDBE] !text-[#795549]"
               >
                 画像を選択
@@ -44,7 +50,7 @@ const ChangeImagePage = () => {
 
             {/* 保存ボタン */}
             <div className="flex w-full justify-center">
-              <Button onClick={() => alert("実装予定...！")}>保存</Button>
+              <Button onClick={onClick}>保存</Button>
             </div>
 
             {/* 戻るボタン */}

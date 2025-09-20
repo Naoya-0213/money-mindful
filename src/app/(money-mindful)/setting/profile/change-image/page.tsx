@@ -60,33 +60,30 @@ const ChangeImagePage = () => {
       <div className="flex w-full flex-col items-center gap-5 p-5">
         <SectionCard
           icon="/icon/setting/profile/social.png"
-          label="ユーザー画像変更（実装予定）"
+          label="ユーザー画像変更"
         >
           <form
             className="flex flex-col items-center gap-5 pb-5"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {/* <Image
-                src="/icon/setting/profile/profile-user.png"
-                alt="プロフィール画像"
-                width={100}
-                height={100}
-              /> */}
-
-            {/* TODOプレビューの実装 */}
-
             <div className="flex w-full flex-col items-center justify-center gap-3 py-7">
               {/* プロフィール画像のプレビュー表示 */}
 
-              {previews.map((url, index) => (
-                <img
-                  key={index}
-                  src={url}
-                  alt="ユーザー画像"
-                  width={130}
-                  height={130}
-                />
-              ))}
+              <div className="relative">
+                <div className="h-36 w-36 overflow-hidden rounded-full ring-2 ring-[#795549]">
+                  {previews.map((url, index) => (
+                    <img
+                      key={index}
+                      src={url}
+                      alt="ユーザー画像"
+                      className="h-full w-full object-cover object-center"
+                      // width={130}
+                      // height={130}
+                    />
+                  ))}
+                </div>
+              </div>
+
               <Controller
                 name="image_path"
                 control={control}

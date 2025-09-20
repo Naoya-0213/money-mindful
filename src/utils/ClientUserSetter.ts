@@ -9,7 +9,7 @@ import type { Database } from "@/types/database.types";
 
 // ===== ログインユーザー情報を zustand に保存するだけのコンポーネント =====
 // - layout.tsx などで使用（session / profile を渡す）
-// - Supabase から取得した情報を useUserStore に保存
+// - Supabase から取得した情報を zustand/useUserStore に保存
 // - UI は持たず、useEffect で初回のみ setUser を実行
 
 type Profile = Database["public"]["Tables"]["profiles"]["Row"];

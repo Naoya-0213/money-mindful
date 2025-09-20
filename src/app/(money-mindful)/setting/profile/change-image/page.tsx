@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,6 +26,7 @@ const ChangeImagePage = () => {
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors, isSubmitted },
   } = useForm({
     defaultValues: {
@@ -34,6 +35,21 @@ const ChangeImagePage = () => {
     resolver: zodResolver(schema),
     reValidateMode: "onSubmit",
   });
+
+  // 選択画像データ
+  const value = watch("image_path");
+
+  // File[](RHF) → objectURL[]（ローカルで管理するURL)
+  // 選択されていない場合は、デフォルト画像を表示
+  const previews = useMemo(() => {
+    if (value.length === 0) return ["/icon/setting/profile/profile-user.png"];
+    return value.map((file) => URL.createObjectURL(file));
+  }, [value]);
+
+  // 画像更新した場合、objectURL[]をリセット
+  useEffect(() => {
+    return () => previews.forEach((url) => URL.revokeObjectURL(url));
+  }, [previews]);
 
   const onSubmit = (data: Schema) => {
     console.log("登録画像データ", data);
@@ -50,8 +66,6 @@ const ChangeImagePage = () => {
             className="flex flex-col items-center gap-5 pb-5"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {/* プロフィール画像 */}
-
             {/* <Image
                 src="/icon/setting/profile/profile-user.png"
                 alt="プロフィール画像"
@@ -61,7 +75,18 @@ const ChangeImagePage = () => {
 
             {/* TODOプレビューの実装 */}
 
-            <div className="flex w-full flex-col items-center justify-center gap-3 py-10">
+            <div className="flex w-full flex-col items-center justify-center gap-3 py-7">
+              {/* プロフィール画像のプレビュー表示 */}
+
+              {previews.map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt="ユーザー画像"
+                  width={130}
+                  height={130}
+                />
+              ))}
               <Controller
                 name="image_path"
                 control={control}

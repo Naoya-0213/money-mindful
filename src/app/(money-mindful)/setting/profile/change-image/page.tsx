@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import Image from "next/image";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -68,20 +70,15 @@ const ChangeImagePage = () => {
           >
             <div className="flex w-full flex-col items-center justify-center gap-3 py-7">
               {/* プロフィール画像のプレビュー表示 */}
-
-              <div className="relative">
-                <div className="h-36 w-36 overflow-hidden rounded-full ring-2 ring-[#795549]">
-                  {previews.map((url, index) => (
-                    <img
-                      key={index}
-                      src={url}
-                      alt="ユーザー画像"
-                      className="h-full w-full object-cover object-center"
-                      // width={130}
-                      // height={130}
-                    />
-                  ))}
-                </div>
+              <div className="relative h-36 w-36 overflow-hidden rounded-full ring-2 ring-[#795549]">
+                <Image
+                  key="previews"
+                  src={previews[0]}
+                  fill
+                  unoptimized
+                  alt="ユーザー画像"
+                  className="object-cover object-center"
+                />
               </div>
 
               <Controller

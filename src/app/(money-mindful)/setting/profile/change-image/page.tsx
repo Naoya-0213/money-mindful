@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import Image from "next/image";
 
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
 import { Button, SectionCard } from "@/app/components";
+
+import { createClient } from "@/utils/supabase/clients";
 
 // TODOプロフィール設定/画像変更用
 
@@ -53,8 +56,41 @@ const ChangeImagePage = () => {
     return () => previews.forEach((url) => URL.revokeObjectURL(url));
   }, [previews]);
 
+  const [message, setMessage] = useState("");
+
   const onSubmit = (data: Schema) => {
     console.log("登録画像データ", data);
+
+    async function hanleSave(file) {
+      const supabase = createClient();
+      const userId = useUserStore.getState().user?.id;
+
+      if (!userId) {
+        console.log("未ログイン、またはユーザー情報未取得");
+        return;
+      }
+
+      // 選択画像の拡張子を指定
+      const ext = file.name.split(".").pop() ?? "png";
+      const filepath = `profiles/${userId}/${ext}`;
+      // TODO登録日付をいれる
+
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("profile_image")
+        .upload(filepath, file, { upsert: true });
+
+      console.log("アップロード画像情報", {
+        filepath,
+        file,
+        uploadData,
+      });
+
+      if (uploadError) {
+        setMessage("アップロードに失敗しました。再度選択してください。");
+      }
+
+      // TODO　↓supabaseへの登録
+    }
   };
 
   return (
@@ -98,11 +134,16 @@ const ChangeImagePage = () => {
                   />
                 )}
               ></Controller>
+
+              {/* RHFエラーメッセージ */}
               {errors.image_path && isSubmitted && (
                 <p className="mt-1 px-4 text-sm text-red-500">
                   {errors.image_path.message}
                 </p>
               )}
+
+              {/* 画像アップロード時エラーメッセージ */}
+              {message && <div className="text-red-500">{message}</div>}
             </div>
 
             {/* 注意点 */}

@@ -20,6 +20,7 @@ export function useHandleSave() {
     }
 
     // 選択画像の拡張子を指定
+    // TODOストレージへの保存時のフォルダを検討すること。
     const ext = file.name.split(".").pop() ?? "png";
     const filepath = `profiles/${userId}/${ext}`;
     // TODO登録日付をいれる

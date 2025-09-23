@@ -74,7 +74,7 @@ const SigninPage = () => {
       if (user) {
         const { data: profile } = await supabase
           .from("profiles")
-          .select("id, name, email, image_url, created_at")
+          .select("id, name, email, image_url, created_at,image_updated_at")
           .eq("id", user.id)
           .maybeSingle();
 
@@ -84,6 +84,7 @@ const SigninPage = () => {
           email: user.email ?? "",
           name: profile?.name ?? "",
           image_url: profile?.image_url ?? "",
+          image_updated_at: profile?.image_updated_at ?? "",
           created_at: profile?.created_at ?? "",
         });
       }

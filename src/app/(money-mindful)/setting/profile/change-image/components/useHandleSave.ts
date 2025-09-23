@@ -86,6 +86,14 @@ export function useHandleSave() {
       );
       return;
     }
+
+    // zustand保存のuser情報更新
+    useUserStore.setState((s) => ({
+      ...s, // 既存の state を展開（他のプロパティは維持）
+      user: s.user
+        ? { ...s.user, image_url: publicUrl, image_updated_at } // userが存在すれば差し替え
+        : s.user, // userがnull/未定義ならそのまま
+    }));
   };
 
   return { handleSave, message };

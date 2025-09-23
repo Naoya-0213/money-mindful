@@ -31,6 +31,8 @@ type Goal = {
   user_id?: string;
 };
 
+export const default_avatar = "/icon/setting/profile/profile-user.png";
+
 export default function SettingPage() {
   const router = useRouter();
   const supabase = createClient();
@@ -40,6 +42,7 @@ export default function SettingPage() {
     null,
   );
   const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState(default_avatar);
   const [goal, setGoal] = useState<Goal | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
@@ -53,6 +56,7 @@ export default function SettingPage() {
       }
       setProfile(user);
       if (user.name) setName(user.name);
+      if (user.image_url) setAvatar(user.image_url);
       setLoading(false);
 
       const { data: goalData, error } = await supabase
@@ -99,19 +103,19 @@ export default function SettingPage() {
           label="プロフィール設定"
           icon="/icon/setting/profile/social.png"
         >
-          <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-col items-center gap-5 pt-5">
             {/* プロフィール画像 */}
-            <div>
+            <div className="relative h-20 w-20 overflow-hidden rounded-full ring-2 ring-[#795549]">
               <Image
-                src="/icon/setting/profile/profile-user.png"
-                alt="プロフィール画像"
-                width={80}
-                height={80}
+                src={avatar || "/icon/setting/profile/profile-user.png"}
+                fill
+                unoptimized
+                alt="ユーザー画像"
+                className="object-cover object-center"
               />
             </div>
 
             {/* ユーザー名表示 */}
-
             <div className="flex items-center gap-3 text-lg font-bold">
               こんにちは！　
               {name}

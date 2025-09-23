@@ -1,17 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
 import { Button, SectionCard } from "@/app/components";
 
+import { default_avatar } from "../../page";
 import { useHandleSave } from "./components/useHandleSave";
 
 // TODOプロフィール設定/画像変更用
@@ -28,6 +30,8 @@ const schema = z.object({
 
 const ChangeImagePage = () => {
   const router = useRouter();
+  const { user } = useUserStore();
+  const [avatar, setAvatar] = useState(default_avatar);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const {
@@ -49,7 +53,6 @@ const ChangeImagePage = () => {
   // File[](RHF) → objectURL[]（ローカルで管理するURL)
   // 選択されていない場合は、デフォルト画像を表示
   const previews = useMemo(() => {
-    if (value.length === 0) return ["/icon/setting/profile/profile-user.png"];
     return value.map((file) => URL.createObjectURL(file));
   }, [value]);
 
@@ -57,6 +60,16 @@ const ChangeImagePage = () => {
   useEffect(() => {
     return () => previews.forEach((url) => URL.revokeObjectURL(url));
   }, [previews]);
+
+  useEffect(() => {
+    if (previews.length > 0) {
+      setAvatar(previews[0]);
+    } else if (user?.image_url) {
+      setAvatar(user.image_url);
+    } else {
+      setAvatar(default_avatar);
+    }
+  }, [user?.image_url, previews]);
 
   const { handleSave, message } = useHandleSave();
 
@@ -88,7 +101,7 @@ const ChangeImagePage = () => {
               <div className="relative h-36 w-36 overflow-hidden rounded-full ring-2 ring-[#795549]">
                 <Image
                   key="previews"
-                  src={previews[0]}
+                  src={avatar}
                   fill
                   unoptimized
                   alt="ユーザー画像"

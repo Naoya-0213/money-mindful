@@ -9,12 +9,15 @@ import useUserStore from "@/store/useUserStore";
 
 import { Button, DisplayField, SectionCard } from "@/app/components";
 
+import { default_avatar } from "../page";
+
 // ===== プロフィール編集用 =====
 
 const ProfileSetting = () => {
   const { user } = useUserStore();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState(default_avatar);
 
   // ページ初回読み込み時のみ実行（ユーザー情報の取得）
   useEffect(() => {
@@ -22,6 +25,7 @@ const ProfileSetting = () => {
       if (!user?.id) return;
       if (user?.email) setEmail(user.email);
       if (user?.name) setName(user.name);
+      if (user?.image_url) setAvatar(user.image_url);
     };
     fetchUser();
   }, [user]);
@@ -33,15 +37,18 @@ const ProfileSetting = () => {
           icon="/icon/setting/profile/social.png"
           label="プロフィール設定"
         >
-          <div className="flex flex-col gap-7">
+          <div className="flex flex-col gap-7 pt-7">
             {/* プロフィール画像 */}
             <div className="flex flex-col items-center gap-5">
-              <Image
-                src="/icon/setting/profile/profile-user.png"
-                alt="プロフィール画像"
-                width={80}
-                height={80}
-              />
+              <div className="relative h-20 w-20 overflow-hidden rounded-full ring-2 ring-[#795549]">
+                <Image
+                  src={avatar || "/icon/setting/profile/profile-user.png"}
+                  fill
+                  unoptimized
+                  alt="ユーザー画像"
+                  className="object-cover object-center"
+                />
+              </div>
 
               {/* 画像変更リンク */}
               <div className="flex flex-col items-center">

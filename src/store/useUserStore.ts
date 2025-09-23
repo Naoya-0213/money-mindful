@@ -21,13 +21,27 @@ type StateType = {
 
 const useUserStore = create<StateType>((set) => ({
   // 初期値
-  user: { id: "", name: "", email: "", image_url: "", created_at: "" },
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    image_url: "",
+    created_at: "",
+    image_updated_at: "",
+  },
   //  アップデート
   setUser: (payload) => set({ user: payload }),
   // リセット
   resetUser: () =>
     set({
-      user: { id: "", name: "", email: "", image_url: "", created_at: "" },
+      user: {
+        id: "",
+        name: "",
+        email: "",
+        image_url: "",
+        created_at: "",
+        image_updated_at: "",
+      },
     }),
 }));
 

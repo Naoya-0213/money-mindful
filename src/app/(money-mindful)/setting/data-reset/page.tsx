@@ -14,13 +14,15 @@ const dataResetPage = () => {
           この操作は取り消せません。
           <br />
           本当に実行しますか？
-          <br /><br />
+          <br />
+          <br />
           なお、アカウント情報は残ります。
         </>
       ),
       confirmText: "リセットする",
       cancelText: "やめる",
       onConfirm: async () => {
+        // TODO動作実装予定(src/hooks/setting/useDataReset.ts)
         // await resetData();
       },
     });

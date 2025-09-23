@@ -19,6 +19,7 @@ const deleteAccountPage = () => {
       confirmText: "削除する",
       cancelText: "やめる",
       onConfirm: async () => {
+        // TODO動作実装予定(src/hooks/setting/useDeleteAccount.ts)
         // await resetData();
       },
     });

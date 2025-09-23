@@ -148,7 +148,7 @@ export default function SettingPage() {
           </div>
           <div className="flex flex-col items-center gap-5">
             <Button href="/signout/form">ログアウト</Button>
-            <Button onClick={onClick}>アカウントを削除する</Button>
+            <Button href="/setting/delete-account">アカウントを削除する</Button>
             <Button onClick={onClick}>データリセット</Button>
           </div>
         </SectionCard>

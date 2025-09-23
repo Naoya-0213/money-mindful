@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -87,10 +86,6 @@ export default function SettingPage() {
     return null;
   }
 
-  const onClick = () => {
-    toast.error("今後、実装予定...!");
-  };
-
   if (loading === true || goal === undefined) {
     return <LoadingSpinner />;
   }
@@ -148,8 +143,8 @@ export default function SettingPage() {
           </div>
           <div className="flex flex-col items-center gap-5">
             <Button href="/signout/form">ログアウト</Button>
-            <Button href="/setting/delete-account">アカウントを削除する</Button>
-            <Button onClick={onClick}>データリセット</Button>
+            <Button href="/setting/delete-account">アカウント削除</Button>
+            <Button href="/setting/data-reset">データリセット</Button>
           </div>
         </SectionCard>
       </div>

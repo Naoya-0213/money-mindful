@@ -1,14 +1,29 @@
 "use client";
 
-import toast from "react-hot-toast";
-
 import Image from "next/image";
 
 import { Button, SectionCard, SectionInfoBox } from "@/app/components";
+import ConfirmToast from "@/app/components/atoms/toast/ConfirmToast";
 
 const dataResetPage = () => {
-  const onClick = () => {
-    toast.error("今後、実装予定...!");
+  const handleClick = () => {
+    ConfirmToast({
+      title: "データをリセットしますか？",
+      message: (
+        <>
+          この操作は取り消せません。
+          <br />
+          本当に実行しますか？
+          <br /><br />
+          なお、アカウント情報は残ります。
+        </>
+      ),
+      confirmText: "リセットする",
+      cancelText: "やめる",
+      onConfirm: async () => {
+        // await resetData();
+      },
+    });
   };
 
   return (
@@ -56,7 +71,7 @@ const dataResetPage = () => {
           </SectionInfoBox>
 
           <div className="flex w-full flex-col items-center gap-5 py-3 pt-5">
-            <Button onClick={onClick}>データをリセットする</Button>
+            <Button onClick={handleClick}>データをリセットする</Button>
             {/* <DeleteAccountButton /> */}
             {/* TODOトースト作成 */}
             <Button href="/setting">設定に戻る</Button>

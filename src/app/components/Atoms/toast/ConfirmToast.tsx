@@ -13,7 +13,7 @@ type ConfirmOptions = {
 
 export default function ConfirmToast({
   title = "確認",
-  message = "この操作は取り消せません。実行しますか？",
+  message = "この操作は取り消せません。本当に実行しますか？",
   confirmText = "実行する",
   cancelText = "キャンセル",
   onConfirm,
@@ -28,6 +28,8 @@ export default function ConfirmToast({
         await onConfirm();
         toast.dismiss(id);
         toast.success("完了しました");
+
+        // TODO成功後どこに飛ばす？
       } catch {
         toast.dismiss(id);
         toast.error("失敗しました。もう一度お試しください。");

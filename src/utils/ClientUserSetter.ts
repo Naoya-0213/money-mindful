@@ -32,6 +32,7 @@ export default function ClientUserSetter({
       email: session.user.email ?? "",
       name: profile.name,
       image_url: profile.image_url,
+      image_updated_at: profile.image_updated_at,
       created_at: profile.created_at,
     });
   }, [session, profile, setUser]);

@@ -69,7 +69,7 @@ const ChangeImagePage = () => {
     toast.success("画像を変更しました！");
     router.replace("/setting/profile");
 
-    console.log("成功！");
+    console.log("✅ 画像選択成功！");
   };
 
   return (

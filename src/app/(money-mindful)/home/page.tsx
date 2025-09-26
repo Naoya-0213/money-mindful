@@ -6,12 +6,7 @@ import { useRouter } from "next/navigation";
 
 import useUserStore from "@/store/useUserStore";
 
-import {
-  AddRecordCard,
-  GoalCard,
-  LoadingSpinner,
-  NoGoalCard,
-} from "@/app/components";
+import { AddRecordCard, GoalCard, NoGoalCard } from "@/app/components";
 
 import { createClient } from "@/utils/supabase/clients";
 
@@ -66,19 +61,24 @@ export default function HomePage() {
     fetchData();
   }, [user, router, supabase]);
 
-  if (goal === undefined) {
-    return <LoadingSpinner />;
-  }
+  // if (goal === undefined) {
+  //   return <LoadingSpinner />;
+  // }
 
   return (
-    // <ClientWrapper>
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
         {/* 目標 */}
-        {goal ? <GoalCard /> : <NoGoalCard />}
+        {goal ? (
+          <>
+            <GoalCard />
+            <GoalStatusCard />
+          </>
+        ) : (
+          <NoGoalCard />
+        )}
 
         {/* 進捗 */}
-        <GoalStatusCard />
 
         {/* 我慢記録 */}
         <AddRecordCard />
@@ -89,6 +89,5 @@ export default function HomePage() {
           </div> */}
       </div>
     </div>
-    // </ClientWrapper>
   );
 }

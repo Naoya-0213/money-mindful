@@ -94,7 +94,7 @@ const GoalStatusCard = () => {
         .single();
 
       if (goalError || !goalData) {
-        console.error("目標取得エラー", goalError);
+        console.error("✅ 目標取得エラー", goalError);
         return;
       }
 
@@ -108,7 +108,7 @@ const GoalStatusCard = () => {
         .single();
 
       if (startDateError || !startDateData) {
-        console.error("目標取得エラー", startDateError);
+        console.error("✅ 目標取得エラー", startDateError);
         return;
       }
 
@@ -122,7 +122,7 @@ const GoalStatusCard = () => {
         .single();
 
       if (endDateError || !endDateData) {
-        console.error("目標取得エラー", endDateError);
+        console.error("✅ 目標取得エラー", endDateError);
         return;
       }
 

@@ -9,14 +9,14 @@ import { createClient } from "@/utils/supabase/clients";
 export function useUploadImage() {
   const supabase = createClient();
 
-  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSave = async (file: File) => {
     const userId = useUserStore.getState().user?.id;
 
     if (!userId) {
       console.log("✅ 未ログイン、またはユーザー情報未取得");
-      setMessage("ユーザー情報が取得できません。ログインし直してください。");
+      setErrorMessage("ユーザー情報が取得できません。ログインし直してください。");
       return;
     }
 
@@ -37,13 +37,13 @@ export function useUploadImage() {
 
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("profile_image")
-      .upload(filePath, file, { upsert: true });
+      .upload(filePath, file);
 
     console.log("✅ アップロード画像情報", { filePath, uploadData });
 
     if (uploadError) {
       console.error("✅ アップロードエラー", uploadError);
-      setMessage("アップロードに失敗しました。再度選択してください。");
+      setErrorMessage("アップロードに失敗しました。再度選択してください。");
       return;
     }
 
@@ -81,7 +81,7 @@ export function useUploadImage() {
 
     if (updateError) {
       console.log("✅ 画像更新失敗", updateError);
-      setMessage(
+      setErrorMessage(
         "プロフィール画像の更新に失敗しました。時間をおいて再度お試しください。",
       );
       return;
@@ -100,5 +100,5 @@ export function useUploadImage() {
     }));
   };
 
-  return { handleSave, message };
+  return { handleSave, errorMessage };
 }

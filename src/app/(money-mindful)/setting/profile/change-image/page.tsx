@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { useUploadImage } from "@/hooks/setting/useUploadImage";
 import useUserStore from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
@@ -14,7 +15,6 @@ import z from "zod";
 import { Button, SectionCard } from "@/app/components";
 
 import { default_avatar } from "../../page";
-import { useHandleSave } from "../../../../../hooks/setting/useUploadImage";
 
 // TODOプロフィール設定/画像変更用
 
@@ -71,7 +71,7 @@ const ChangeImagePage = () => {
     }
   }, [user?.image_url, previews]);
 
-  const { handleSave, message } = useHandleSave();
+  const { handleSave, errorMessage } = useUploadImage();
 
   const onSubmit = (data: Schema) => {
     console.log("登録画像データ", data);
@@ -128,14 +128,18 @@ const ChangeImagePage = () => {
               ></Controller>
 
               {/* RHFエラーメッセージ */}
-              {errors.image_path && isSubmitted && (
-                <p className="mt-1 px-4 text-sm text-red-500">
-                  {errors.image_path.message}
-                </p>
-              )}
+              <div className="flex flex-col gap-3">
+                {errors.image_path && isSubmitted && (
+                  <p className="mt-1 px-4 text-sm text-red-500">
+                    {errors.image_path.message}
+                  </p>
+                )}
 
-              {/* 画像アップロード時エラーメッセージ */}
-              {message && <div className="text-red-500">{message}</div>}
+                {/* 画像アップロード時エラーメッセージ */}
+                {errorMessage && (
+                  <div className="text-red-500">{errorMessage}</div>
+                )}
+              </div>
             </div>
 
             {/* 注意点 */}

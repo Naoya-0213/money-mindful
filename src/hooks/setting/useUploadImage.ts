@@ -16,7 +16,9 @@ export function useUploadImage() {
 
     if (!userId) {
       console.log("✅ 未ログイン、またはユーザー情報未取得");
-      setErrorMessage("ユーザー情報が取得できません。ログインし直してください。");
+      setErrorMessage(
+        "ユーザー情報が取得できません。ログインし直してください。",
+      );
       return;
     }
 
@@ -47,29 +49,6 @@ export function useUploadImage() {
       return;
     }
 
-    // 古い画像を削除
-    const prefix = `profiles/${userId}`;
-    const { data: existing, error: listError } = await supabase.storage
-      .from("profile_image")
-      .list(prefix, { limit: 100 });
-
-    if (listError) {
-      console.log("✅ 古い画像取得に失敗", listError);
-    } else if (existing && existing.length > 0) {
-      const toDelete = existing
-        .filter((obj) => obj.name !== fileName)
-        .map((obj) => `${prefix}/${obj.name}`);
-
-      if (toDelete.length > 0) {
-        const { error: removeError } = await supabase.storage
-          .from("profile_image")
-          .remove(toDelete);
-        if (removeError) {
-          console.error("古い画像の削除に失敗", removeError);
-        }
-      }
-    }
-
     const {
       data: { publicUrl },
     } = supabase.storage.from("profile_image").getPublicUrl(filePath);
@@ -81,10 +60,40 @@ export function useUploadImage() {
 
     if (updateError) {
       console.log("✅ 画像更新失敗", updateError);
+
+      try {
+        await supabase.storage.from("profile_image").remove([filePath]);
+      } catch {}
+
       setErrorMessage(
         "プロフィール画像の更新に失敗しました。時間をおいて再度お試しください。",
       );
       return;
+    }
+
+    if (!updateError) {
+      // 古い画像を削除
+      const prefix = `profiles/${userId}`;
+      const { data: existing, error: listError } = await supabase.storage
+        .from("profile_image")
+        .list(prefix, { limit: 100 });
+
+      if (listError) {
+        console.log("✅ 古い画像取得に失敗", listError);
+      } else if (existing && existing.length > 0) {
+        const toDelete = existing
+          .filter((obj) => obj.name !== fileName)
+          .map((obj) => `${prefix}/${obj.name}`);
+
+        if (toDelete.length > 0) {
+          const { error: removeError } = await supabase.storage
+            .from("profile_image")
+            .remove(toDelete);
+          if (removeError) {
+            console.error("古い画像の削除に失敗", removeError);
+          }
+        }
+      }
     }
 
     // zustand保存のuser情報更新

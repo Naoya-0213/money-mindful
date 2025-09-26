@@ -21,18 +21,28 @@ export default function ConfirmToast({
   const ToastBody = () => {
     const [isRunning, setIsRunning] = useState(false);
 
+    // トースト閉じる際のアニメーション
+    const [isClosing, setIsClosing] = useState(false);
+
     const handleConfirm = async () => {
       setIsRunning(true);
 
       try {
         await onConfirm();
-        toast.dismiss(id);
-        toast.success("完了しました");
+
+        setIsClosing(true);
+        setTimeout(() => {
+          toast.dismiss(id);
+          toast.success("完了しました");
+        }, 300);
 
         // TODO成功後どこに飛ばす？
       } catch {
-        toast.dismiss(id);
-        toast.error("失敗しました。もう一度お試しください。");
+        setIsClosing(true);
+        setTimeout(() => {
+          toast.dismiss(id);
+          toast.error("失敗しました。もう一度お試しください。");
+        }, 300);
       }
     };
 
@@ -40,7 +50,7 @@ export default function ConfirmToast({
       <div
         role="alertdialog"
         aria-labelledby="confirm-title"
-        className="flex w-[280px] flex-col gap-3 rounded-lg shadow-sm"
+        className={`${isClosing ? "animate-slideUpFade" : "animate-slideDownFade"} flex w-[280px] flex-col gap-3 rounded-lg shadow-sm`}
         style={{
           fontFamily: "var(--font-geist-sans)",
           background: "#F3F0EB",
@@ -60,7 +70,10 @@ export default function ConfirmToast({
 
         <div className="flex justify-end gap-2">
           <button
-            onClick={() => toast.dismiss(id)}
+            onClick={() => {
+              setIsClosing(true);
+              toast.dismiss(id);
+            }}
             className="rounded border border-[#795549]/10 bg-white/70 px-3 py-1 text-[12px] text-[#795549] hover:bg-white focus:ring-2 focus:ring-[#795549]/30 focus:outline-none disabled:opacity-60"
             disabled={isRunning}
           >

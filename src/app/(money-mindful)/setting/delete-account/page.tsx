@@ -1,28 +1,14 @@
 "use client";
 
+import toast from "react-hot-toast";
+
 import Image from "next/image";
 
 import { Button, SectionCard, SectionInfoBox } from "@/app/components";
-import ConfirmToast from "@/app/components/atoms/toast/ConfirmToast";
 
 const deleteAccountPage = () => {
   const handleClick = () => {
-    ConfirmToast({
-      title: "アカウントを削除しますか？",
-      message: (
-        <>
-          この操作は取り消せません。
-          <br />
-          本当に実行しますか？
-        </>
-      ),
-      confirmText: "削除する",
-      cancelText: "やめる",
-      onConfirm: async () => {
-        // TODO動作実装予定(src/hooks/setting/useDeleteAccount.ts)
-        // await resetData();
-      },
-    });
+    toast.error("実装予定...!");
   };
 
   return (
@@ -71,8 +57,7 @@ const deleteAccountPage = () => {
 
           <div className="flex w-full flex-col items-center gap-5 py-3 pt-5">
             <Button onClick={handleClick}>アカウントを削除する</Button>
-            {/* <DeleteAccountButton /> */}
-            {/* TODOトースト作成 */}
+
             <Button href="/setting">設定に戻る</Button>
           </div>
         </SectionCard>

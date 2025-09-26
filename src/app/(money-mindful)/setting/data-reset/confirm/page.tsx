@@ -26,31 +26,9 @@ const dataResetConfirmPage = () => {
             </p>
           </div>
 
-          {/* <SectionInfoBox>
-            <div className="flex items-center gap-3">
-              <Image
-                src="/icon/setting/account/warning.png"
-                alt="ナンバーアイコン"
-                width={25}
-                height={25}
-              />
-              <h2 className="text-lg font-bold">注意！</h2>
-            </div>
-            <div className="py-5 leading-relaxed font-semibold text-[#777777]">
-              <p className="text-center">最後の確認です...!</p>
-              <br />
-              <p className="text-center">
-                なお、リセットしても
-                <br />
-                アカウント情報は残ります。
-              </p>
-            </div>
-          </SectionInfoBox> */}
-
           <div className="flex w-full flex-col items-center gap-5 py-3">
             <Button onClick={handleClick}>データをリセットする</Button>
-            {/* <DeleteAccountButton /> */}
-            {/* TODOトースト作成 */}
+
             <Button href="/setting">設定に戻る</Button>
           </div>
         </SectionCard>

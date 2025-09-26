@@ -24,7 +24,7 @@ const deleteAccountConfirmPage = () => {
 
           <div className="flex w-full flex-col items-center gap-5 py-3">
             <Button onClick={handleClick}>アカウントを削除する</Button>
-            {/* TODOトースト作成 */}
+
             <Button href="/setting">設定に戻る</Button>
           </div>
         </SectionCard>

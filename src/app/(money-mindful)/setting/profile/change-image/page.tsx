@@ -14,7 +14,7 @@ import z from "zod";
 import { Button, SectionCard } from "@/app/components";
 
 import { default_avatar } from "../../page";
-import { useHandleSave } from "./components/useHandleSave";
+import { useHandleSave } from "../../../../../hooks/setting/useUploadImage";
 
 // TODOプロフィール設定/画像変更用
 

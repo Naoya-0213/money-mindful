@@ -6,7 +6,7 @@ import useUserStore from "@/store/useUserStore";
 
 import { createClient } from "@/utils/supabase/clients";
 
-export function useHandleSave() {
+export function useUploadImage() {
   const supabase = createClient();
 
   const [message, setMessage] = useState("");
@@ -24,22 +24,22 @@ export function useHandleSave() {
     const ext = (file.name.split(".").pop() || "png").toLowerCase();
 
     // 更新日付
-    const image_updated_at = new Date()
+    const imageUpdatedDate = new Date()
       .toISOString()
       .slice(0, 16) // "2025-08-19T12:53"
       .replace("T", "_"); // "2025-08-19_12:53"
 
     // 保存ファイル名
-    const fileName = `${image_updated_at}_${crypto.randomUUID()}.${ext}`;
+    const fileName = `${imageUpdatedDate}_${crypto.randomUUID()}.${ext}`;
 
     // 保存ディレクトリ
-    const filepath = `profiles/${userId}/${fileName}`;
+    const filePath = `profiles/${userId}/${fileName}`;
 
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("profile_image")
-      .upload(filepath, file, { upsert: true });
+      .upload(filePath, file, { upsert: true });
 
-    console.log("✅ アップロード画像情報", { filepath, uploadData });
+    console.log("✅ アップロード画像情報", { filePath, uploadData });
 
     if (uploadError) {
       console.error("✅ アップロードエラー", uploadError);
@@ -72,11 +72,11 @@ export function useHandleSave() {
 
     const {
       data: { publicUrl },
-    } = supabase.storage.from("profile_image").getPublicUrl(filepath);
+    } = supabase.storage.from("profile_image").getPublicUrl(filePath);
 
     const { error: updateError } = await supabase
       .from("profiles")
-      .update({ image_url: publicUrl, image_updated_at })
+      .update({ image_url: publicUrl, image_updated_at: imageUpdatedDate })
       .eq("id", userId);
 
     if (updateError) {
@@ -91,7 +91,11 @@ export function useHandleSave() {
     useUserStore.setState((s) => ({
       ...s, // 既存の state を展開（他のプロパティは維持）
       user: s.user
-        ? { ...s.user, image_url: publicUrl, image_updated_at } // userが存在すれば差し替え
+        ? {
+            ...s.user,
+            image_url: publicUrl,
+            image_updated_at: imageUpdatedDate,
+          } // userが存在すれば差し替え
         : s.user, // userがnull/未定義ならそのまま
     }));
   };

@@ -86,7 +86,7 @@ export default function SettingPage() {
     return null;
   }
 
-  if (loading === true || goal === undefined) {
+  if (loading === true) {
     return <LoadingSpinner />;
   }
 

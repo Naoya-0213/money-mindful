@@ -1,16 +1,10 @@
 "use client";
 
-import toast from "react-hot-toast";
-
 import Image from "next/image";
 
 import { Button, SectionCard, SectionInfoBox } from "@/app/components";
 
 const dataResetPage = () => {
-  const handleClick = () => {
-    toast.error("実装予定...!");
-  };
-
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -56,9 +50,10 @@ const dataResetPage = () => {
           </SectionInfoBox>
 
           <div className="flex w-full flex-col items-center gap-5 py-3 pt-5">
-            <Button onClick={handleClick}>データをリセットする</Button>
-            {/* <DeleteAccountButton /> */}
-            {/* TODOトースト作成 */}
+            <Button href="/setting/data-reset/confirm">
+              データをリセットする
+            </Button>
+
             <Button href="/setting">設定に戻る</Button>
           </div>
         </SectionCard>

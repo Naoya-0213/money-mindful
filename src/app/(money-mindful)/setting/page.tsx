@@ -40,7 +40,7 @@ export default function SettingPage() {
   const [profile, setProfile] = useState<{ id: string; name?: string } | null>(
     null,
   );
-  const [name, setName] = useState("");
+  const [name, setName] = useState("(名無し)");
   const [avatar, setAvatar] = useState(default_avatar);
   const [goal, setGoal] = useState<Goal | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -112,9 +112,9 @@ export default function SettingPage() {
 
             {/* ユーザー名表示 */}
             <div className="flex items-center gap-3 text-lg font-bold">
-              こんにちは！　
+              こんにちは！{""}
               {name}
-              　さん
+              {""}さん
             </div>
 
             <div className="flex flex-col items-center leading-relaxed font-semibold text-[#777777]">

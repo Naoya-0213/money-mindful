@@ -1,12 +1,48 @@
 "use client";
 
+import { useState } from "react";
 import toast from "react-hot-toast";
+
+import { useRouter } from "next/navigation";
+
+import { useDataReset } from "@/hooks/setting/useDataReset";
 
 import { Button, SectionCard } from "@/app/components";
 
-const dataResetConfirmPage = () => {
-  const handleClick = () => {
-    toast.error("実装予定...!");
+const DataResetConfirmPage = () => {
+  const router = useRouter();
+  const { dataReset } = useDataReset();
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async () => {
+    setLoading(true);
+
+    try {
+      const res = await dataReset();
+
+      // 成功
+      if (res.ok) {
+        setMessage("");
+        toast.success("全ての記録をリセットしました！");
+        router.replace("/setting");
+        console.log("✅ データリセット完了！");
+        return;
+      }
+
+      // エラー
+      if (res.reason === "no-user") {
+        setMessage("ユーザー情報が取得できません。ログインし直してください。");
+        toast.error("リセットできませんでした");
+      } else {
+        // エラー
+        setMessage("リセットに失敗しました。再度お試しください。");
+        toast.error("リセットできませんでした");
+        console.error("❎ リセットエラー！", res.dbError);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,7 +63,12 @@ const dataResetConfirmPage = () => {
           </div>
 
           <div className="flex w-full flex-col items-center gap-5 py-3">
-            <Button onClick={handleClick}>データをリセットする</Button>
+            {/* 画像アップロード時エラーメッセージ */}
+            {message && <div className="text-red-500">{message}</div>}
+
+            <Button onClick={handleClick}>
+              {loading ? "リセット中..." : "データをリセットする"}
+            </Button>
 
             <Button href="/setting">設定に戻る</Button>
           </div>
@@ -37,4 +78,4 @@ const dataResetConfirmPage = () => {
   );
 };
 
-export default dataResetConfirmPage;
+export default DataResetConfirmPage;

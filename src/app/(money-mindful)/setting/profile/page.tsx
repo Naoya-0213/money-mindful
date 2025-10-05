@@ -16,7 +16,7 @@ import { default_avatar } from "../page";
 const ProfileSetting = () => {
   const { user } = useUserStore();
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState("(未設定)");
   const [avatar, setAvatar] = useState(default_avatar);
 
   // ページ初回読み込み時のみ実行（ユーザー情報の取得）

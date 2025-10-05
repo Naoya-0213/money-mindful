@@ -53,6 +53,7 @@ export function useUploadImage() {
       data: { publicUrl },
     } = supabase.storage.from("profile_image").getPublicUrl(filePath);
 
+    // TODO　ここはそのまま！
     const { error: updateError } = await supabase
       .from("profiles")
       .update({ image_url: publicUrl, image_updated_at: imageUpdatedDate })

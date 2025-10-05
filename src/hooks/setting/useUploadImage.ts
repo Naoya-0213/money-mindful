@@ -106,7 +106,7 @@ export function useUploadImage() {
     } catch {
       if (uploadedPath) {
         try {
-          await supabase.storage.from("profile_image").remove([filePath]);
+          await supabase.storage.from("profile_image").remove([uploadedPath]);
         } catch (_) {
           console.warn("❌ 失敗時の一時ファイル削除に失敗", _);
         }

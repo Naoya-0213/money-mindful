@@ -21,6 +21,7 @@ export function useUploadImage() {
       );
       return;
     }
+    // TODO ログアウトし、再度ログインを促す。
 
     // 選択画像の拡張子を指定
     const ext = (file.name.split(".").pop() || "png").toLowerCase();

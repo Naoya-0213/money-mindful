@@ -1,13 +1,12 @@
 import Image from "next/image";
 
 import {
+  AddRecordCard,
   Button,
   NoGoalCard,
   SectionCard,
   SectionInfoBox,
 } from "@/app/components";
-
-import AddRecordCard from "../../../../components/organisms/add/AddRecordCard";
 
 // ===== 初回ログインページ（チュートリアル） =====
 // 📍新規登録後、初回アクセス時に表示されるチュートリアル画面

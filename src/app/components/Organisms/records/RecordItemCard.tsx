@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { CategoryType } from "../../../../const/category-icon/categoryIconMap";
-import { CategoryIcon } from "../../atoms";
+import { CategoryIcon } from "../../Atoms";
 
 // ===== 役割 =====
 // 記録一覧の1件分を表示するカードコンポーネント

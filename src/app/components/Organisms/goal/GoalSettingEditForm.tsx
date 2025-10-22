@@ -11,9 +11,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
+import { FormField, SectionCard } from "../../Molecules";
+import { Button, ErrorText } from "../../Atoms";
 
-import { Button, ErrorText } from "../../atoms";
-import { FormField, SectionCard } from "../../molecules";
+
 
 // ===== 目標編集フォームコンポーネント =====
 // 📍設定画面で使用。登録済みの目標をSupabaseから取得・編集・保存する

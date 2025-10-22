@@ -14,8 +14,8 @@ import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import { Button, ErrorText } from "../../atoms";
-import { CategoryItem, FormField } from "../../molecules";
+import { Button, ErrorText } from "../../Atoms";
+import { CategoryItem, FormField } from "../../Molecules";
 
 // ===== 我慢記録フォーム（初回登録） =====
 // 📍初回チュートリアル画面などで使用

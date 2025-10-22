@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { CATEGORY_LIST } from "@/const/category-icon/categoryIconMap";
 
-import { CategoryIcon } from "../../atoms";
+import { CategoryIcon } from "../../Atoms";
 
 // ===== カテゴリー選択カードコンポーネント =====
 // 📍カテゴリー選択時に使用。カテゴリーデータからタイトルとアイコンを表示

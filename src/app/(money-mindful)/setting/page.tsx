@@ -30,7 +30,7 @@ type Goal = {
   user_id?: string;
 };
 
-export const default_avatar = "/icon/setting/profile/profile-user.png";
+const default_avatar = "/icon/setting/profile/profile-user.png";
 
 export default function SettingPage() {
   const router = useRouter();

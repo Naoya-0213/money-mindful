@@ -2,7 +2,7 @@
 
 import { Doughnut } from "react-chartjs-2";
 
-import "@/app/components/Atoms/chart";
+import "@/app/components/atoms/chart";
 
 // ===== 進捗円グラフ表示コンポーネント =====
 // 📍使用場所：ホーム画面・合計画面など

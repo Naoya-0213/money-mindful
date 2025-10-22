@@ -1,8 +1,8 @@
 // ===== ホーム：我慢記録セクションカード =====
 // 📍ホーム画面・初回チュートリアルにて使用
 // 我慢した支出をカテゴリー付きで記録する導線を表示
-import { Button, CategoryIcon } from "../../Atoms";
-import { SectionCard, SectionInfoBox } from "../../Molecules";
+import { Button, CategoryIcon } from "../../atoms";
+import { SectionCard, SectionInfoBox } from "../../molecules";
 
 type AddRecordCardProps = {
   numberIcon?: string;

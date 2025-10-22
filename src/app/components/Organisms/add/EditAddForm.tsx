@@ -14,8 +14,8 @@ import z from "zod";
 
 import { createClient } from "@/utils/supabase/clients";
 
-import { Button, ErrorText } from "../../Atoms";
-import { CategoryItem, FormField } from "../../Molecules";
+import { Button, ErrorText } from "../../atoms";
+import { CategoryItem, FormField } from "../../molecules";
 
 // ===== 我慢記録の編集・削除フォーム =====
 // 📍記録詳細ページにて使用

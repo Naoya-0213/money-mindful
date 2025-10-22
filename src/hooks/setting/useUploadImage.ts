@@ -56,9 +56,23 @@ export function useUploadImage() {
     }
 
     // 2) 公開URL取得
-    const {
-      data: { publicUrl },
-    } = supabase.storage.from("profile_image").getPublicUrl(filePath);
+
+    let publicUrl: string | null = null;
+
+    try {
+      const { data } = supabase.storage
+        .from("profile_image")
+        .getPublicUrl(filePath);
+
+      publicUrl = data.publicUrl;
+      console.log("✅ 公開URL取得成功:", publicUrl);
+    } catch (e) {
+      console.log("❌ アップロード失敗", e);
+      setErrorMessage(
+        "画像の公開URL取得に失敗しました。時間をおいて再度お試しください。",
+      );
+      throw e instanceof Error ? e : new Error(String(e));
+    }
 
     // 3) DB更新
     try {

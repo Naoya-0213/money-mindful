@@ -14,8 +14,6 @@ import z from "zod";
 
 import { Button, SectionCard } from "@/app/components";
 
-import { default_avatar } from "../../page";
-
 // TODOプロフィール設定/画像変更用
 
 type Schema = z.infer<typeof schema>;
@@ -27,6 +25,8 @@ const schema = z.object({
     })
     .min(1, { message: "画像は必須です！" }),
 });
+
+const default_avatar = "/icon/setting/profile/profile-user.png";
 
 const ChangeImagePage = () => {
   const router = useRouter();

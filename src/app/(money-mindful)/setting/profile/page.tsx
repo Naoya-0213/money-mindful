@@ -9,9 +9,9 @@ import useUserStore from "@/store/useUserStore";
 
 import { Button, DisplayField, SectionCard } from "@/app/components";
 
-import { default_avatar } from "../page";
-
 // ===== プロフィール編集用 =====
+
+const default_avatar = "/icon/setting/profile/profile-user.png";
 
 const ProfileSetting = () => {
   const { user } = useUserStore();

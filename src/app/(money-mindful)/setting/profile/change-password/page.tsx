@@ -1,12 +1,16 @@
 "use client";
 
+import toast from "react-hot-toast";
+
 import { Button, DisplayField, FormField, SectionCard } from "@/app/components";
-
-
 
 // ===== プロフィール設定/Password変更用 =====
 
 const ChangeImagePage = () => {
+  const handleClick = () => {
+    toast.error("実装予定...!");
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-[480px] min-w-[320px] flex-col gap-5 bg-[#F3F0EB]">
       <div className="flex w-full flex-col items-center gap-5 p-5">
@@ -43,7 +47,7 @@ const ChangeImagePage = () => {
 
           {/* 保存ボタン */}
           <div className="flex w-full justify-center">
-            <Button onClick={() => alert("実装予定...！")}>保存</Button>
+            <Button onClick={handleClick}>保存</Button>
           </div>
           {/* 戻るボタン */}
           <div className="flex w-full justify-center pb-5">
